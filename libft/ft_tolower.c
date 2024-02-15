@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:55:02 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/08 14:55:34 by peternsaka       ###   ########.fr       */
+/*   Created: 2022/11/01 15:42:27 by pnsaka            #+#    #+#             */
+/*   Updated: 2022/11/29 18:09:29 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "libft.h"
 
-#endif
+int	ft_tolower(int c)
+{
+	if (c >= 65 && c <= 90)
+	{
+		c = c + 32;
+		return (c);
+	}
+	else
+		return (c);
+}
