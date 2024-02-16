@@ -6,15 +6,13 @@
 /*   By: lvergnas <lvergnas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/16 12:13:00 by lvergnas         ###   ########.fr       */
+/*   Updated: 2024/02/16 12:15:17 by lvergnas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-// dfghjkl;
-// ghjkl;
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
