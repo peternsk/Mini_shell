@@ -3,19 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/15 10:42:33 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/23 08:59:34 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 int		main(int ac, char **av)
 {
-	if(ac > 1)
-		clt_input(av[1]);
+	t_minish *minish;
+	(void)av;
+
+	if(ac > 0)
+	{
+		crt_str_flag();
+		minish = crt_str_ms();
+			
+		minish->input = readline(INPUT);
+		printf("the command is : %s\n", minish->input);
+		
+		
+	}
 	else
-		printf("\n");
+		printf("arg missing !!\n");
 }

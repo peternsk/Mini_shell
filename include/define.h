@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/15 11:38:28 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/23 09:01:24 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
+
+/*--- MACROS ---*/
+# define INPUT "\001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
+
+/*--- ENUM && STRUCT ---*/
 typedef enum token_type 
 {
 	command,
@@ -24,11 +29,12 @@ typedef enum token_type
 	pipe_
 }			token_type;
 
-typedef enum arg_flag
+/*--- ENUM FLAG ---*/
+typedef enum flag_swtch 
 {
-	ON,
-	OFF
-} arg_flag;
+	FLAG_OFF,
+	FLAG_ON
+}	flag_swtch;
 
 typedef	struct s_token
 {
@@ -36,24 +42,36 @@ typedef	struct s_token
 	struct s_token *next;
 	int	token_id;
 	int type;
-	int arg_flag;
-	char *command;
-	char **arg;
+	char *value;
 } t_token;
 
-typedef struct	s_history
+typedef	struct s_cmdlts
 {
-	struct s_history *prev;
-	struct s_history *next;
-	int	cmd_id;
-	char *hist_cmd;
-} t_history;
+	struct s_cmdlts *prev;
+	struct s_cmdlts *next;
+	int index;
+	// link redirection
+	char **command;
+} t_cmdlts;
+
+typedef	struct s_flags
+{
+	int		sgl_flag;
+	int		dbl_flag;
+	int		wsp_flag;
+	int		met_flag;
+	int		otc_flag;
+	int		flag_sw;
+	
+} t_flags;
 
 typedef struct	s_minish
 {
-	t_token *cmd;
-	t_history *cmd_history;
-	
+	t_token *token_lst;
+	t_flags *flags;
+	char	*input;
+	int 	s;
+	int 	e;
 } t_minish;
 
 #endif

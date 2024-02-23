@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clt_input.c                                        :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 11:31:34 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/15 10:42:17 by peternsaka       ###   ########.fr       */
+/*   Created: 2024/02/23 07:37:56 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/02/23 09:00:41 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
-char	*clt_input(char *cmd)
+int     is_quote(char c)
 {
-	printf("command %s\n", cmd);
-	return(0);
+    if(c  == 39) // double quote
+    {
+         
+        return(true);
+    }
+}
+
+void    ft_tokenizer(char *line)
+{
+    
 }

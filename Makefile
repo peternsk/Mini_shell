@@ -2,8 +2,9 @@
 
 NAME    	= minishell
 CC      	= gcc
-FLAGS   	= -Wall -Werror -Wextra -pthread -g
+FLAGS   	= -Wall -Werror -Wextra -g -gdwarf-4 
 RM      	= rm -rf
+
 
 #--- LIBFT ---#
 
@@ -20,17 +21,19 @@ BUILTIN		=
 
 EXECUTION	=
 
-PARSING		=	clt_input main
+PARSING		=
 
 SIGNALS		=
 
-UTILS		=
+UTILS		=	struct
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/parsing/, $(PARSING))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS)))
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
+				$(addsuffix .c, main) 
+				
 
 OBJS 		= 	$(addprefix ${OBJS_DIR}/, $(subst src/,,$(SRCS:.c=.o))) 
 
@@ -43,24 +46,43 @@ YELLOW		=	\033[0;33m
 
 #--- TARGET ---#
 
-${LIBFT_LIB}:
-	@make -C ${LIBFT_DIR}
+#--- readline ---#
+
+LIBRLINE	 	= readline-8.2
+LIBRLINE_DIR 	= include/readline
+LIBRD 			= $(LIBRLINE_DIR)/bin/libreadline.a $(LIBRLINE_DIR)/bin/libhistory.a
+LIBS 			= -lreadline -lcurses $(LIBRD)
 
 all: ${NAME} ${LIBFT_LIB}
 
-${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c ${LIBFT_LIB}
+${LIBFT_LIB}:
+	@make -C ${LIBFT_DIR}
+
+
+$(LIBRD):
+	curl -O ftp://ftp.cwru.edu/pub/bash/$(LIBRLINE).tar.gz
+	tar -zxvf $(LIBRLINE).tar.gz
+	@rm -rf $(LIBRLINE).tar.gz
+	@cd $(LIBRLINE) && bash configure && make
+	@mkdir -p $(LIBRLINE_DIR)/bin
+	@mv ./$(LIBRLINE)/*.h $(LIBRLINE_DIR)
+	@mv ./$(LIBRLINE)/*.a $(LIBRLINE_DIR)/bin
+	@rm -rf $(LIBRLINE)
+
+${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@mkdir -p ${@D}
-	@${CC} ${FLAGS} -c $< -o $@
+	@${CC} ${FLAGS} -I include -c $< -o $@
 	@echo "$(BLACK)Compiling: $< "
 
-${NAME}: ${OBJS}
-	@${CC} ${FLAGS} -I ${OBJS_DIR} $^ -o ${NAME} ${LIBFT_LIB}
+${NAME}: ${LIBRD} ${OBJS}
+	@${CC} ${FLAGS} -I ${OBJS_DIR} $^ -o ${NAME} ${LIBS}
 	@echo "$(GREEN)Compilation terminé avec succès!"
+
 
 clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"
 	@make clean -C ${LIBFT_DIR}
-	@${RM} ${OBJS_DIR} ${LIBFT_LIB}
+	@${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
 	@echo "$(BLACK)Nettoyage effectué avec succès !"
 
 fclean: clean
