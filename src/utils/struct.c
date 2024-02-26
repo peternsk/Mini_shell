@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/23 09:07:31 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 14:34:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ t_minish *crt_str_ms(void)
 	minish = malloc(1 * sizeof(t_minish));
 	if (!minish)
 		return (NULL);
-	minish->token_lst = NULL;
 	minish->input = NULL;
+	minish->token_lst = NULL;
+	minish->index = 0;
     minish->s = 0;
     minish->e = 0;
 	return(minish);
 }
-t_minish *crt_str_flag(void)
+t_flags *crt_str_flag(void)
 {
 	t_flags	*flags;
 

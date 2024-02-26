@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/23 09:00:16 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 14:09:42 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,32 @@
 
 /*--- create struct ---*/
 t_token		*crt_str_tkn(void);
-t_minish    *crt_str_flag(void);
+t_flags		*crt_str_flag(void);
 t_minish 	*crt_str_ms(void);
 
+/*--- node && token ---*/
+t_token		*init_token_lst(t_token *token, t_minish *m_s);
+void		add_token_to_end(t_token *token, t_minish *m_s);
+int		    count_token(t_token *token);
+void    	print_token(t_token *token);
+
+/*--- quote && double quote ---*/
+void     	find_next_quote(t_minish *m_s, char quote_type);
+
+/*--- command ---*/
+void	    find_cmd(t_minish *m_s);
+
+/*--- tokenisation ---*/
+void        flag_switch(char c, t_minish *m_s);
+void		split_token(t_minish *m_s);
+void        tokenizer(t_minish *m_s);
+t_token     *create_token(t_minish *m_s);
+
+/*---  utils ---*/
+char 		*ft_strncpy(char *s1, char *s2, int n);
+
+/*--- ascii font ---*/
+void        ft_ascii_font(void);
+
 #endif
+ 

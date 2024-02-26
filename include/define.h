@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/23 15:28:35 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 10:26:34 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ typedef	struct s_flags
 typedef struct	s_minish
 {
 	t_token *token_lst;
-	t_flags *flags;
+	t_flags  *flags;
 	char	*input;
+	int		index;
 	int 	s;
 	int 	e;
 } t_minish;

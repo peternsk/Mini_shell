@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   reg_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 11:32:40 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/02/26 09:28:28 by peternsaka        #+#    #+#             */
+/*   Updated: 2024/02/26 14:13:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
-int		main(int ac, char **av)
+void     find_cmd(t_minish *m_s)
 {
-	t_minish *minish;
-	(void)av;
+    int i;
 
-	if(ac > 0)
-	{
-		ft_ascii_font();
-		minish = crt_str_ms();
-		minish->flags = crt_str_flag();
-		minish->input = readline(INPUT);
-		printf("the command is : %s\n", minish->input);
-		tokenizer(minish);
-	}
-	else
-		printf("arg missing !!\n");
+	i = m_s->s;
+	while (m_s->input[i] && (m_s->input[i] != ' ' && m_s->input[i] != '\t' && m_s->input[i] != '\n'))
+		i++;
+	m_s->e = i;
+	if(m_s->e > m_s->s)
+		create_token(m_s);
+	m_s->flags->otc_flag = FLAG_OFF;
 }

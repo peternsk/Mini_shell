@@ -2,7 +2,7 @@
 
 NAME    	= minishell
 CC      	= gcc
-FLAGS   	= -Wall -Werror -Wextra -g -gdwarf-4 
+FLAGS   	= -Wall -Werror -Wextra -g -fsanitize=address
 RM      	= rm -rf
 
 
@@ -21,11 +21,11 @@ BUILTIN		=
 
 EXECUTION	=
 
-PARSING		=
+PARSING		=	quotes tokenizer reg_cmd ft_ascii_font
 
 SIGNALS		=
 
-UTILS		=	struct
+UTILS		=	struct node ft_strncpy
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
