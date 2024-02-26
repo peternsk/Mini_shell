@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 14:35:44 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 15:07:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_token		*init_token_lst(t_token *token, t_minish *m_s)
 	token->token_id = m_s->index;
 	m_s->index = m_s->index + 1;
 	ft_strncpy(token->value, &m_s->input[m_s->s], (m_s->e - m_s->s));
-	printf("====token value :  %s====\n", token->value);
+	printf("= token index : %d =\n", token->token_id);
+	printf("= token value init : %s =\n", token->value);
 	token->next = NULL;
 	return(token);
 }

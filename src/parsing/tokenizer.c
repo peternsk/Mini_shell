@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/26 14:12:37 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 15:02:50 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,18 @@ void        tokenizer(t_minish *m_s)
 {
     int i;
 
-    i = 0;
-    while(m_s->input[i])
+    i = -1;
+    while(m_s->input[++i])
     {
         while(m_s->input[i] == ' ' || m_s->input[i] == '\t' || m_s->input[i] == '\n')
             i++;
         if(m_s->input)
 		{
             m_s->s = i;
-			printf("===debbug start===\n");
 			flag_switch(m_s->input[i], m_s);
 			split_token(m_s);
+            printf("== DEBBUG ==\n");
             print_token(m_s->token_lst);
-			printf("===debbug end===\n");
 		}
     }
 }
