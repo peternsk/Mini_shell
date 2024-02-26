@@ -6,11 +6,11 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/23 13:36:11 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/23 16:12:35 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 t_token     *create_token(t_minish *m_s)
 {

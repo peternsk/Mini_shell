@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/23 09:01:24 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/23 15:28:35 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef	struct s_flags
 	int		met_flag;
 	int		otc_flag;
 	int		flag_sw;
-	
 } t_flags;
 
 typedef struct	s_minish
