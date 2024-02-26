@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/23 08:59:34 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 09:13:46 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ int		main(int ac, char **av)
 	{
 		crt_str_flag();
 		minish = crt_str_ms();
-			
 		minish->input = readline(INPUT);
 		printf("the command is : %s\n", minish->input);
-		
-		
+		tokenizer(minish);
 	}
 	else
 		printf("arg missing !!\n");

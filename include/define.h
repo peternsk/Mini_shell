@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/23 09:01:24 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 09:48:16 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ typedef	struct s_flags
 typedef struct	s_minish
 {
 	t_token *token_lst;
-	t_flags *flags;
+	t_flags  *flags;
 	char	*input;
+	int		index;
 	int 	s;
 	int 	e;
 } t_minish;

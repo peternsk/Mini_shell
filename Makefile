@@ -21,11 +21,11 @@ BUILTIN		=
 
 EXECUTION	=
 
-PARSING		=
+PARSING		=	quotes tokenizer reg_cmd
 
 SIGNALS		=
 
-UTILS		=	struct
+UTILS		=	struct node ft_strncpy
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
