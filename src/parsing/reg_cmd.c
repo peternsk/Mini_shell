@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reg_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:28:28 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 14:13:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 18:24:03 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void     find_cmd(t_minish *m_s)
 	m_s->e = i;
 	if(m_s->e > m_s->s)
 		create_token(m_s);
-	m_s->flags->otc_flag = FLAG_OFF;
 }

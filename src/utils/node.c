@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 15:07:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 23:06:27 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@ t_token		*init_token_lst(t_token *token, t_minish *m_s)
 		return(0);
 	token->prev = NULL;
 	token->value = (char *)malloc((sizeof(char) * (m_s->e - m_s->s)) + 1);
+	if(!token->value)
+	{
+		free(token);
+		return(NULL);
+	}
 	token->token_id = m_s->index;
-	m_s->index = m_s->index + 1;
 	ft_strncpy(token->value, &m_s->input[m_s->s], (m_s->e - m_s->s));
-	printf("= token index : %d =\n", token->token_id);
-	printf("= token value init : %s =\n", token->value);
+	printf(" ===> index %d\n", token->token_id);
+	printf(" ===> command %s\n", token->value);
+	m_s->index = m_s->index + 1;
 	token->next = NULL;
 	return(token);
 }
 
 void	add_token_to_end(t_token *token, t_minish *m_s)
 {
+	printf(" === ADD TOKEN ===\n");
 	t_token	*tmp = NULL;
 	t_token	*current;
 
@@ -39,7 +45,6 @@ void	add_token_to_end(t_token *token, t_minish *m_s)
 		current = current->next;
 	tmp->prev = current;
 	current->next = tmp;
-	token->next = NULL;
 }
 
 int		count_token(t_token *token)
@@ -49,7 +54,6 @@ int		count_token(t_token *token)
 	token_num = 0;
 	while(token != NULL)
 	{
-		printf("=====debbug count token=====\n");
 		token_num++;
 		token = token->next;
 	}
@@ -58,23 +62,15 @@ int		count_token(t_token *token)
 
 void	print_token(t_token *token)
 {
+
+	if(token == NULL )
+		printf("empty list\n");
 	while(token != NULL)
 	{
-		t_token *tmp;
-
-		tmp = token;
 		printf("========== token ID========\n");
-		printf("= token id : %d           =\n", tmp->token_id);
-		printf("= token valur : %s        =\n", tmp->value);
+		printf("= token id : %d           =\n", token->token_id);
+		printf("= token valur : %s        =\n", token->value);
 		printf("===========================\n");
-		tmp = tmp->next;
+		token = token->next;
 	}
 }
-
-/*
-	struct s _token *prev;
-	struct s_token *next;
-	int	token_id;
-	int type;
-	char *value;
-*/

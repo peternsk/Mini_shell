@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 14:09:42 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:23 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 #include "readline/history.h"
 
 /*--- create struct ---*/
-t_token		*crt_str_tkn(void);
-t_flags		*crt_str_flag(void);
-t_minish 	*crt_str_ms(void);
+t_token		*init_tkn(void);
+t_flags		 *init_flag(void);
+t_minish 	*init_ms(void);
 
 /*--- node && token ---*/
 t_token		*init_token_lst(t_token *token, t_minish *m_s);

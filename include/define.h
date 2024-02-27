@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 10:26:34 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/26 21:12:24 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define DEFINE_H
 
 /*--- MACROS ---*/
-# define INPUT "\001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
+# define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
 
 /*--- ENUM && STRUCT ---*/
 typedef enum token_type 
