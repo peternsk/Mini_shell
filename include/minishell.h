@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 21:33:23 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/27 09:52:22 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@
 #include "readline/history.h"
 
 /*--- create struct ---*/
-t_token		*init_tkn(void);
 t_flags		 *init_flag(void);
 t_minish 	*init_ms(void);
 
 /*--- node && token ---*/
-t_token		*init_token_lst(t_token *token, t_minish *m_s);
-void		add_token_to_end(t_token *token, t_minish *m_s);
+t_token 	*set_token(t_token *token, t_minish *m_s);;
+void	    add_token_to_end(t_token **lst, t_token *token);
 int		    count_token(t_token *token);
 void    	print_token(t_token *token);
 

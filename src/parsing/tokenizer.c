@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/26 23:03:44 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/27 08:00:22 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_token     *create_token(t_minish *m_s)
-{
-    int i;
-
-    i = count_token(m_s->token_lst);
-	//printf("list size %d\n", i);
-    if(i == 0)
-        init_token_lst(m_s->token_lst, m_s);
-    else
-        add_token_to_end(m_s->token_lst, m_s);
-    return(m_s->token_lst);
-}
 
 void         flag_switch(char c, t_minish *m_s)
 {
@@ -60,15 +47,11 @@ void		split_token(t_minish *m_s)
 
 void        tokenizer(t_minish *m_s)
 {
-    int i;
-
-    i = -1;
-    while(m_s->input[++i])
+    while(m_s->input[m_s->s])
     {
-        while(m_s->input[i] == ' ' || m_s->input[i] == '\t' || m_s->input[i] == '\n')
-            i++;
-        m_s->s = i;
-		flag_switch(m_s->input[i], m_s);
+        while(m_s->input[m_s->s] == ' ' || m_s->input[m_s->s] == '\t' || m_s->input[m_s->s] == '\n')
+            m_s->s++;
+		flag_switch(m_s->input[m_s->s], m_s);
         if(m_s->input)
 		{
 			split_token(m_s);
