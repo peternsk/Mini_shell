@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/27 10:22:22 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/27 13:50:30 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		main(int ac, char **av)
 			minish->flags = init_flag();
 			minish->input = readline(INPUT);
 			add_history(minish->input);
-			printf("the command is : %s\n", minish->input);
 			tokenizer(minish);
-			printf("=== list size %d ===\n", count_token(minish->token_lst));
+			print_token(minish->token_lst);
+			printf("========= list size %d =========\n", count_token(minish->token_lst));
 		}
 	}
 	else

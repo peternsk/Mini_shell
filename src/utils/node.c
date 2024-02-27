@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/27 10:21:30 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/27 14:44:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_token 	*set_token(t_token *token, t_minish *m_s)
 	if(!token)
 		return(0);
 	token->prev = NULL;
-	token->value = (char *)malloc((sizeof(char) * (m_s->e - m_s->s)) + 1);
+	token->value = (char *)malloc((sizeof(char) * (m_s->e - m_s->s)) + 2);
 	if(!token->value)
 		return(0);
 	token->token_id = m_s->index;
-	ft_strncpy(token->value, &m_s->input[m_s->s], (m_s->e - m_s->s));
+	ft_strncpy(token->value, &m_s->input[m_s->s], ((m_s->e + 1) - m_s->s));
 	m_s->index = m_s->index + 1;
 	token->next = NULL;
 	return(token);
@@ -41,10 +41,10 @@ void	add_token_to_end(t_token **lst, t_token *token)
 		return;	
 	}
 	last = *lst;
-	while(last != NULL)
+	while(last->next != NULL)
 		last = last->next;
 	last->next = token;
-		
+	token->prev =last;
 }
 
 
@@ -61,19 +61,25 @@ int		count_token(t_token *token)
 	return(token_num);
 }
 
-void	print_token(t_token *token)
+void	print_token(t_token *lst)
 {
-
-	if(token == NULL )
+	t_token *last;
+	
+	last = lst;
+	if(last == NULL )
 		printf("empty list\n");
-	while(token != NULL)
+	while(last != NULL)
 	{
 		printf("========== token ==============\n");
-		printf("= token id : %d         \n", token->token_id);
-		printf("= token value : %s      \n", token->value);
-		printf("= token type : ** not set **      \n");
+		printf("= token prev  : %p           \n", last->prev);
+		printf("= token id    : %d             \n", last->token_id);
+		printf("= token value : %s          \n", last->value);
+		printf("= token type  : ** not set ** \n");
+		printf("= token next  : %p           \n", last->next);
 		printf("===============================\n");
-		token = token->next;
+		printf("                 =\n");
+		printf("                 =\n");
+		last = last->next;
 	}
 }
 
@@ -83,6 +89,5 @@ t_token     *create_token(t_minish *m_s)
 
 	token = NULL;
     add_token_to_end(&m_s->token_lst, set_token(token, m_s));
-	m_s->s = m_s->e;
     return(m_s->token_lst);
 }
