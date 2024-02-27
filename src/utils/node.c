@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/27 10:01:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/27 10:21:30 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	add_token_to_end(t_token **lst, t_token *token)
 	
 	if(!lst)
 		return;
-	if(count_token(*lst) == 0)
+	if(*lst == NULL)
 	{
 		*lst = token;
 		token->next = NULL;
@@ -71,6 +71,7 @@ void	print_token(t_token *token)
 		printf("========== token ==============\n");
 		printf("= token id : %d         \n", token->token_id);
 		printf("= token value : %s      \n", token->value);
+		printf("= token type : ** not set **      \n");
 		printf("===============================\n");
 		token = token->next;
 	}
