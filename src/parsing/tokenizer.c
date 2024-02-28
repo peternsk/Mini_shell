@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/28 09:34:20 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:02:53 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		split_token(t_minish *m_s)
 void        tokenizer(t_minish *m_s)
 {
 	printf("=== in tokenizer ===\n");
-    while(m_s->input[m_s->s])
+    while(m_s->input[m_s->e])
     {
         while(m_s->input[m_s->s] && (m_s->input[m_s->s] == ' ' || m_s->input[m_s->s] == '\t' || m_s->input[m_s->s] == '\n'))
             m_s->s++;

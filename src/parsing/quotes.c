@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:37:56 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/27 14:44:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/28 14:00:53 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void     find_next_quote(t_minish *m_s, char quote_type)
 			break;
 		}
         m_s->e++;
-	} 
+	}
+	if(m_s->flags->dbl_flag == FLAG_ON)
+	{
+		printf("quote not found\n");
+		return;
+	}
 	m_s->s = m_s->e + 1;
 }
