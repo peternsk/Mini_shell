@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/27 15:10:43 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/28 09:34:20 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void         flag_switch(char c, t_minish *m_s)
         m_s->flags->dbl_flag = FLAG_ON;
     else if(c == 39) // single quote
         m_s->flags->sgl_flag = FLAG_ON;
-    // else if(c == 124 || c == 60 || c == 62) // meta char | < >
-    //     m_s->flags->met_flag = FLAG_ON;
+    else if(c == 124 || c == 60 || c == 62) // meta char | < >
+        m_s->flags->met_flag = FLAG_ON;
     else
         m_s->flags->otc_flag = FLAG_ON; // other char
 }
@@ -36,8 +36,11 @@ void		split_token(t_minish *m_s)
 		find_next_quote(m_s, 39);
 		m_s->flags->sgl_flag = FLAG_OFF;
 	}
-	// if(m_s->flags->met_flag = FLAG_ON)
-	// 	// do this
+	else if(m_s->flags->met_flag == FLAG_ON)
+	{
+		find_meta(m_s);
+		m_s->flags->met_flag = FLAG_OFF;
+	}
 	else if(m_s->flags->otc_flag == FLAG_ON)
 	{
 		find_cmd(m_s);

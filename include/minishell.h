@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/27 20:09:31 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/28 12:00:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void	    print_token(t_token *lst);
 void     	find_next_quote(t_minish *m_s, char quote_type);
 
 /*--- command ---*/
+void	    create_cmd(t_minish *m_s);
 void	    find_cmd(t_minish *m_s);
 bool		is_space(char c);
 
 /*--- meta char ---*/
 bool		is_meta(char c);
+void	    find_meta(t_minish *m_s);
 
 
 /*--- tokenisation ---*/
