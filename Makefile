@@ -21,7 +21,7 @@ BUILTIN		=
 
 EXECUTION	=
 
-PARSING		=	quotes tokenizer reg_cmd ft_ascii_font
+PARSING		=	quotes tokenizer reg_cmd ft_ascii_font meta
 
 SIGNALS		=
 
