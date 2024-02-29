@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:35:35 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:39 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 15:25:49 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	find_meta(t_minish *m_s, char meta)
 		m_s->e++;
 	}
 	create_token(m_s);
+	m_s->in_redr_num = 0;
 	m_s->s = m_s->e + 1;
 }
