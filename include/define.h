@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/28 15:40:00 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/29 14:19:31 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 typedef enum token_type 
 {
 	command,
-	sgl_quote,
-	dbl_quote,
+	argument,
+	sgl_quote_arg,
+	dbl_quote_arg,
 	out_p_redir,
 	in_p_redir,
 	apnd_op_redir,
@@ -67,12 +68,15 @@ typedef	struct s_flags
 
 typedef struct	s_minish
 {
-	t_token *token_lst;
+	t_token  *token_lst;
 	t_flags  *flags;
-	char	*input;
-	int		index;
-	int 	s;
-	int 	e;
+	char	 *input;
+	int		 index;
+	int 	 pipe_num;
+    int 	 in_redr_num;
+    int 	 out_redr_num;
+	int 	 s;
+	int 	 e;
 } t_minish;
 
 #endif

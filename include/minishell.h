@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/28 12:00:37 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 11:41:45 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ t_token 	*set_token(t_token *token, t_minish *m_s);;
 void	    add_token_to_end(t_token **lst, t_token *token);
 int		    count_token(t_token *token);
 void	    print_token(t_token *lst);
+void	    assign_type(t_token *token, t_minish *m_s);
+void	    meta_type(t_token *token);
+void	    assign_token_type(t_token **lst, t_minish *m_s);
+
 
 /*--- quote && double quote ---*/
 void     	find_next_quote(t_minish *m_s, char quote_type);
@@ -65,6 +69,8 @@ char 		*ft_strncpy(char *s1, char *s2, int n);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
+
+
 
 #endif
  

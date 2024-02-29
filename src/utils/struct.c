@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/28 15:36:10 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/29 14:19:09 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ t_minish *init_ms(void)
 	minish->input = NULL;
 	minish->token_lst = NULL;
 	minish->index = 0;
+	minish->pipe_num = 0;
+	minish->in_redr_num = 0;
+	minish->out_redr_num = 0;
     minish->s = 0;
     minish->e = 0;
 	return(minish);
