@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/29 11:51:42 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 15:08:34 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		split_token(t_minish *m_s)
 	}
 	else if(m_s->flags->met_flag == FLAG_ON)
 	{
-		find_meta(m_s);
+		find_meta(m_s, m_s->input[m_s->s]);
 		m_s->flags->met_flag = FLAG_OFF;
 	}
 	else if(m_s->flags->otc_flag == FLAG_ON)

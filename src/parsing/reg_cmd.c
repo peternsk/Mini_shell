@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:28:28 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 12:55:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 15:13:19 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    find_cmd(t_minish *m_s)
 			m_s->e++;
 			m_s->s = m_s->e;
 			if(is_meta(m_s->input[m_s->e]) == true)
-				find_meta(m_s);
+				find_meta(m_s, m_s->input[m_s->s]);
 			m_s->s = m_s->e + 1;
 		}
 		m_s->e++;

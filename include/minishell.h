@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 11:41:45 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 15:08:07 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool		is_space(char c);
 
 /*--- meta char ---*/
 bool		is_meta(char c);
-void	    find_meta(t_minish *m_s);
+void	    find_meta(t_minish *m_s, char meta);
 
 
 /*--- tokenisation ---*/
