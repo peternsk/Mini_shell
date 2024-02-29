@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/26 21:12:24 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/28 15:40:00 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef	struct s_flags
 	int		wsp_flag;
 	int		met_flag;
 	int		otc_flag;
+	int		found_flag;
 	int		flag_sw;
 } t_flags;
 

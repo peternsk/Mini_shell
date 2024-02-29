@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/26 21:20:05 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/02/28 15:36:10 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_flags *init_flag(void)
     flags->wsp_flag = FLAG_OFF;
     flags->met_flag = FLAG_OFF;
     flags->otc_flag = FLAG_OFF;
+	flags->found_flag = FLAG_OFF;
     flags->flag_sw = FLAG_OFF;
 	return(flags);
 }

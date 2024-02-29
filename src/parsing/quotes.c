@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:37:56 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/02/28 14:00:53 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/28 18:18:07 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ void     find_next_quote(t_minish *m_s, char quote_type)
 		if(m_s->input[m_s->e] == quote_type && m_s->e > m_s->s)
 		{
 			create_token(m_s);
+			m_s->flags->found_flag = FLAG_ON;
 			break;
 		}
         m_s->e++;
 	}
-	if(m_s->flags->dbl_flag == FLAG_ON)
+	if(m_s->flags->found_flag == FLAG_OFF)
 	{
-		printf("quote not found\n");
+		printf("**************************************\n");
+		printf("* ERROR : missing ending quotation...*\n");
+		printf("**************************************\n");
 		return;
 	}
 	m_s->s = m_s->e + 1;
