@@ -25,7 +25,7 @@ PARSING		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy
+UTILS		=	struct node ft_strncpy ft_strlen_
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \

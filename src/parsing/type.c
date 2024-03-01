@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:30:12 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 12:41:14 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 17:48:54 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void	meta_type(t_token *token)
 {
 	if(token->value[0] == 124) // pipe |
 		token->type = pipe_;
-	if(token->value[0] == 60)  // input red <
+	if(token->value[0] == 60 && ft_strlen_(token->value) == 1)  // input red <
 		token->type = in_p_redir;
-	if(token->value[0] == 62)  // output red >
+	if(token->value[0] == 60 && ft_strlen_(token->value) == 2)  // here doc <<
+		token->type = here_doc;
+	if(token->value[0] == 62 && ft_strlen_(token->value) == 1)  // output red >
 		token->type = out_p_redir;
+	if(token->value[0] == 62 && ft_strlen_(token->value) == 2)  // append >>
+		token->type = apnd_op_redir;
 }
 
 void	assign_type(t_token *token, t_minish *m_s)

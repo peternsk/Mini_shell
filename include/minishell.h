@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 15:08:07 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/02/29 18:47:05 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@
 #include <stdbool.h>
 #include "define.h"
 #include "error.h"
-#include "../libft/libft.h"
+#include "garbage.h"
 #include "readline/readline.h"
 #include "readline/history.h"
+#include "../libft/libft.h"
 
 /*--- create struct ---*/
 t_flags		 *init_flag(void);
@@ -66,6 +67,7 @@ t_token     *create_token(t_minish *m_s);
 
 /*---  utils ---*/
 char 		*ft_strncpy(char *s1, char *s2, int n);
+size_t		ft_strlen_(const char *s);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
