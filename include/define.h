@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/01 08:05:39 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/04 10:49:23 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct	s_minish
 	int 	 pipe_num;
     int 	 in_redr_num;
     int 	 out_redr_num;
+	int		 read_flag;
 	int 	 s;
 	int 	 e;
 } t_minish;

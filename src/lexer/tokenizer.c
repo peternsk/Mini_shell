@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/02 20:08:03 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/04 10:52:43 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void         flag_switch(char c, t_minish *m_s)
+void		flag_switch(char c, t_minish *m_s)
 {
-    if(c == 34) // double quote
+    if(c == 34)
         m_s->flags->dbl_flag = FLAG_ON;
-    else if(c == 39) // single quote
+    else if(c == 39)
         m_s->flags->sgl_flag = FLAG_ON;
-    else if(c == 124 || c == 60 || c == 62) // meta char | < >
+    else if(c == 124 || c == 60 || c == 62)
         m_s->flags->met_flag = FLAG_ON;
     else
-        m_s->flags->otc_flag = FLAG_ON; // other char
+        m_s->flags->otc_flag = FLAG_ON;
 }
 
 void		split_token(t_minish *m_s)
@@ -53,10 +53,11 @@ void        tokenizer(t_minish *m_s)
 	printf("=== in tokenizer ===\n");
     while(m_s->input[m_s->e])
     {
-        while(m_s->input[m_s->s] && (m_s->input[m_s->s] == ' ' || m_s->input[m_s->s] == '\t' || m_s->input[m_s->s] == '\n'))
+        while(m_s->input[m_s->s] && (m_s->input[m_s->s] == ' ' || m_s->input[m_s->s] == '\t' || m_s->input[m_s->s] == '\n') && (m_s->read_flag == FLAG_ON))
             m_s->s++;
 		flag_switch(m_s->input[m_s->s], m_s);
         if(m_s->input[m_s->e])
 			split_token(m_s);
+		// printf("char [ %c ]\n", m_s->input[m_s->e]);
     }
 }

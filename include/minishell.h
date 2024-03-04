@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 18:47:05 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/04 11:04:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_token     *create_token(t_minish *m_s);
 /*---  utils ---*/
 char 		*ft_strncpy(char *s1, char *s2, int n);
 size_t		ft_strlen_(const char *s);
+char	    *ft_trim(char const *s1, char const *set);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);

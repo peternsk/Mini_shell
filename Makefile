@@ -21,15 +21,18 @@ BUILTIN		=
 
 EXECUTION	=
 
-PARSING		=	quotes tokenizer reg_cmd ft_ascii_font meta type
+LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
+
+PARSER		= 
 
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy ft_strlen_
+UTILS		=	struct node ft_strncpy ft_strlen_ ft_trim
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/parsing/, $(PARSING))) \
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/lexer/, $(LEXER))) \
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/parser/, $(PARSER))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
 				$(addsuffix .c, main) 
