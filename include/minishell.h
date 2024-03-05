@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/04 11:04:37 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/04 13:55:27 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 #include "readline/readline.h"
 #include "readline/history.h"
 #include "../libft/libft.h"
+
+/*====================================================*/
+/*=                      PARSER                      =*/
+/*====================================================*/
 
 /*--- create struct ---*/
 t_flags		 *init_flag(void);
@@ -72,6 +76,15 @@ char	    *ft_trim(char const *s1, char const *set);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
+
+/*====================================================*/
+/*=                      LEXER                       =*/
+/*====================================================*/
+
+/*---  meta_char ---*/
+void		prs_ast_pipe(t_token **lst);
+void		begin_parsing(void);
+
 
 
 

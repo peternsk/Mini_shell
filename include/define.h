@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/04 10:49:23 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/04 18:38:36 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef enum token_type
 	in_p_redir,
 	apnd_op_redir,
 	here_doc,
-	pipe_
+	pipe_,
+	dbl_pipe_
 }			token_type;
 
 /*--- ENUM FLAG ---*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:30:12 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/01 08:07:01 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/04 18:46:02 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	meta_type(t_token *token)
 {
-	if(token->value[0] == 124) // pipe |
+	if(token->value[0] == 124 && ft_strlen_(token->value) == 1) // pipe |
 		token->type = pipe_;
+	else if(token->value[0] == 124 && ft_strlen_(token->value) == 2)  // input red <
+		token->type = dbl_pipe_;
 	else if(token->value[0] == 60 && ft_strlen_(token->value) == 1)  // input red <
 		token->type = in_p_redir;
 	else if(token->value[0] == 60 && ft_strlen_(token->value) == 2)  // here doc <<

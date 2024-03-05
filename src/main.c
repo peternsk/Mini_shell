@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/29 11:52:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/04 13:56:59 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int		main(int ac, char **av)
 			tokenizer(minish);
 			print_token(minish->token_lst);
 			printf("========= list size %d =========\n", count_token(minish->token_lst));
+			begin_parsing();
+			prs_ast_pipe(&minish->token_lst);
+
 		}
 	}
 	else
