@@ -25,7 +25,7 @@ GARBAGE 	=
 
 LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
-PARSER		= 	prs_meta_char 
+PARSER		= 	ft_parsing
 
 SIGNALS		=
 

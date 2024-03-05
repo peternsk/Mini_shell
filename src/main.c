@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/04 13:56:59 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/05 10:29:14 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(int ac, char **av)
 {
-	t_minish *minish;
+	t_minish *m_s;
 	(void)av;
 
 	ft_ascii_font();
@@ -22,15 +22,18 @@ int		main(int ac, char **av)
 	{
 		while(1)
 		{
-			minish = init_ms();
-			minish->flags = init_flag();
-			minish->input = readline(INPUT);
-			add_history(minish->input);
-			tokenizer(minish);
-			print_token(minish->token_lst);
-			printf("========= list size %d =========\n", count_token(minish->token_lst));
+			m_s = init_ms();
+			m_s->flags = init_flag();
+			m_s->input = readline(INPUT);
+			add_history(m_s->input);
+			begin_lexing();
+			tokenizer(m_s);
+			print_token(m_s->token_lst);
+			printf("===============================\n");
+			printf("========= list size %d  ========\n", count_token(m_s->token_lst));
+			printf("===============================\n");	
 			begin_parsing();
-			prs_ast_pipe(&minish->token_lst);
+			ft_lexer(&m_s->token_lst);
 
 		}
 	}

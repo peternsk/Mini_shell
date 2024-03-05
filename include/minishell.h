@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/04 13:55:27 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/05 10:12:26 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@
 /*=                      PARSER                      =*/
 /*====================================================*/
 
+void	    begin_lexing(void);
+
 /*--- create struct ---*/
-t_flags		 *init_flag(void);
+t_flags		*init_flag(void);
 t_minish 	*init_ms(void);
 
 /*--- node && token ---*/
@@ -82,10 +84,11 @@ void        ft_ascii_font(void);
 /*====================================================*/
 
 /*---  meta_char ---*/
-void		prs_ast_pipe(t_token **lst);
+void        ft_lexer(t_token **lst);
+bool	    prs_ast_pipe(t_token **lst);
+bool	    prs_ast_dlb_meta(t_token **lst);
+bool	    prs_ast_redir(t_token **lst);
 void		begin_parsing(void);
-
-
 
 
 #endif
