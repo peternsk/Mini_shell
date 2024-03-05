@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/05 10:33:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/05 11:37:47 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void    ft_lexer(t_token **lst)
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
 		printf("===============================\n");
-		printf("=     bash: syntax error      =\n");
+		printf("=      bash: syntax error     =\n");
 		printf("===============================\n");
 		// add an exit status
 	}
