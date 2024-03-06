@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/04 10:50:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 08:39:21 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 t_minish *init_ms(void)
 {
-	t_minish	*minish;
+	t_minish	*m_s;
 
-	minish = malloc(1 * sizeof(t_minish));
-	if (!minish)
+	m_s = malloc(1 * sizeof(t_minish));
+	if (!m_s)
 		return (NULL);
-	minish->input = NULL;
-	minish->token_lst = NULL;
-	minish->index = 0;
-	minish->pipe_num = 0;
-	minish->in_redr_num = 0;
-	minish->out_redr_num = 0;
-	minish->read_flag = 0;
-    minish->s = 0;
-    minish->e = 0;
-	return(minish);
+	m_s->input = NULL;
+	m_s->token_lst = NULL;
+	m_s->envVarlst = NULL;
+	m_s->index = 0;
+	m_s->pipe_num = 0;
+	m_s->in_redr_num = 0;
+	m_s->out_redr_num = 0;
+	m_s->read_flag = 0;
+    m_s->s = 0;
+    m_s->e = 0;
+	return(m_s);
 }
+
 t_flags *init_flag(void)
 {
 	t_flags	*flags;
@@ -46,3 +48,4 @@ t_flags *init_flag(void)
     flags->flag_sw = FLAG_OFF;
 	return(flags);
 }
+

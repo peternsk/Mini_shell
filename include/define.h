@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/04 18:38:36 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/06 08:24:42 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 /*--- MACROS ---*/
 # define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+
+
+
 
 /*--- ENUM && STRUCT ---*/
 typedef enum token_type 
@@ -67,9 +70,20 @@ typedef	struct s_flags
 	int		flag_sw;
 } t_flags;
 
+/*--- ENV STRUCT ---*/
+typedef struct	s_env
+{
+	struct	s_env *prev;
+	struct	s_env *next;
+	char 	*key;
+	char 	*value;
+} t_env;
+
+
 typedef struct	s_minish
 {
 	t_token  *token_lst;
+	t_env	 *envVarlst;
 	t_flags  *flags;
 	char	 *input;
 	int		 index;

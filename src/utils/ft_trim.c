@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_trim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:57:48 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/01 20:02:35 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/06 10:06:48 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_trim(char const *s1, char const *set)
 	start = 0;
 	if (!s1 || !set)
 		return (0);
-	end = ft_strlen_(s1);
+	end = ft_strlen(s1);
 	while (s1[start] && ft_char_in_set(s1[start], set))
 		start++;
 	while (end > start && ft_char_in_set(s1[end - 1], set))
