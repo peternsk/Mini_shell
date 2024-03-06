@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/06 10:10:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 11:42:01 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void        ft_ascii_font(void);
 /*====================================================*/
 
 /*---  meta_char ---*/
-void        ft_lexer(t_token **lst);
+void        ft_lexer(t_token **lst, int exit_status);
 bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);

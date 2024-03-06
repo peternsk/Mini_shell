@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/05 11:37:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 11:41:43 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,28 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	
 }
 
-void    ft_lexer(t_token **lst)
+void    ft_lexer(t_token **lst, int exit_status)
 {
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
+		exit_status = exit_status + 2;
 		printf("===============================\n");
 		printf("=      bash: syntax error     =\n");
 		printf("===============================\n");
-		// add an exit status
+		printf("                =\n");
+		printf("===============================\n");
+		printf("=             $? : %d          =\n", exit_status);
+		printf("===============================\n");
+		
 	}
 	else
 	{
 		printf("===============================\n");
 		printf("=      command parse ok       =\n");
+		printf("===============================\n");
+		printf("                =\n");
+		printf("===============================\n");
+		printf("=             $? : %d          =\n", exit_status);
 		printf("===============================\n");	
 	}
 }
