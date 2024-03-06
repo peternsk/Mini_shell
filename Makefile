@@ -21,7 +21,7 @@ BUILTIN		=
 
 EXECUTION	=
 
-ENV			=	
+ENV			=	set_env
 
 GARBAGE 	=  
 
@@ -31,7 +31,7 @@ PARSER		= 	ft_parsing
 
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy ft_strlen_ ft_trim
+UTILS		=	struct node ft_strncpy ft_strlen_ ft_trim ft_stringdup ft_envSplit ft_substring
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \

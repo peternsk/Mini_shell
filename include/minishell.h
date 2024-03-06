@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/05 10:12:26 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 09:41:35 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@
 /*====================================================*/
 
 void	    begin_lexing(void);
+
+/*--- env ---*/
+t_env 	    *intEnvVar(t_env *node, char *env_row);
+void	    add_var_to_end(t_env **lst, t_env *var);
+t_env       *create_var(t_minish *m_s, char *env_row);
+void        set_env_lst(t_minish *m_s, char **env);
+
 
 /*--- create struct ---*/
 t_flags		*init_flag(void);
@@ -75,6 +82,9 @@ t_token     *create_token(t_minish *m_s);
 char 		*ft_strncpy(char *s1, char *s2, int n);
 size_t		ft_strlen_(const char *s);
 char	    *ft_trim(char const *s1, char const *set);
+char	    **ft_envSplit(char const *s, char c);
+char	    *ft_stringdup(const char *s1);
+char	    *ft_substring(char const *s, unsigned int start, size_t len);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
@@ -89,6 +99,7 @@ bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);
 void		begin_parsing(void);
+
 
 
 #endif

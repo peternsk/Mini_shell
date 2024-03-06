@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/05 10:12:51 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 07:44:04 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void        tokenizer(t_minish *m_s)
 		flag_switch(m_s->input[m_s->s], m_s);
         if(m_s->input[m_s->e])
 			split_token(m_s);
-		// printf("char [ %c ]\n", m_s->input[m_s->e]);
     }
+	print_token(m_s->token_lst);
+	printf("===============================\n");
+	printf("========= list size %d  ========\n", count_token(m_s->token_lst));
+	printf("===============================\n");	
 }

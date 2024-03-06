@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/05 21:09:09 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 08:24:42 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct	s_env
 typedef struct	s_minish
 {
 	t_token  *token_lst;
+	t_env	 *envVarlst;
 	t_flags  *flags;
 	char	 *input;
 	int		 index;
