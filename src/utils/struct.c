@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/04 10:50:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/05 21:04:31 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_minish *init_ms(void)
     minish->e = 0;
 	return(minish);
 }
+
 t_flags *init_flag(void)
 {
 	t_flags	*flags;
@@ -46,3 +47,4 @@ t_flags *init_flag(void)
     flags->flag_sw = FLAG_OFF;
 	return(flags);
 }
+

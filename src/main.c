@@ -6,13 +6,13 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/05 10:29:14 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/05 22:19:33 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		main(int ac, char **av)
+int		main(int ac, char **av, char **env)
 {
 	t_minish *m_s;
 	(void)av;
