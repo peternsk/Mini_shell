@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/06 09:46:52 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 10:10:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
 {
     char **envTab;
     
-    envTab = ft_envSplit(env_row, '=');
+    envTab = ft_split(env_row, '=');
 	node = malloc(sizeof(t_env));
 	if(!node)
 		return(0);
 	node->prev = NULL;
-    node->key = ft_stringdup(envTab[0]);
-    node->value = ft_stringdup(envTab[1]);
+    node->key = ft_strdup(envTab[0]);
+    node->value = ft_strdup(envTab[1]);
 	node->next = NULL;
 	return(node);
 }
@@ -66,7 +66,7 @@ void	print_env_lst(t_env *lst)
 	{
 		printf("========== token ==============\n");
 		printf("= token prev  : %p           \n", last->prev);
-		printf("= token value : %s          \n", last->key);
+		printf("= token key   : %s          \n", last->key);
 		printf("= token value : %s          \n", last->value);
 		printf("= token next  : %p           \n", last->next);
 		printf("===============================\n");

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/06 09:41:35 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/06 10:10:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ t_token     *create_token(t_minish *m_s);
 
 /*---  utils ---*/
 char 		*ft_strncpy(char *s1, char *s2, int n);
-size_t		ft_strlen_(const char *s);
+size_t		ft_strlen(const char *s);
 char	    *ft_trim(char const *s1, char const *set);
-char	    **ft_envSplit(char const *s, char c);
-char	    *ft_stringdup(const char *s1);
-char	    *ft_substring(char const *s, unsigned int start, size_t len);
+char	    **ft_split(char const *s, char c);
+char	    *ft_strdup(const char *s1);
+char	    *ft_substr(char const *s, unsigned int start, size_t len);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);

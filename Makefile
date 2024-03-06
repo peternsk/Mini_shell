@@ -31,7 +31,7 @@ PARSER		= 	ft_parsing
 
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy ft_strlen_ ft_trim ft_stringdup ft_envSplit ft_substring
+UTILS		=	struct node ft_strncpy ft_trim 
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
@@ -59,9 +59,9 @@ YELLOW		=	\033[0;33m
 LIBRLINE	 	= readline-8.2
 LIBRLINE_DIR 	= include/readline
 LIBRD 			= $(LIBRLINE_DIR)/bin/libreadline.a $(LIBRLINE_DIR)/bin/libhistory.a
-LIBS 			= -lreadline -lcurses $(LIBRD)
+LIBS 			= $(LIBFT_LIB) -lreadline -lcurses $(LIBRD)
 
-all: ${NAME} ${LIBFT_LIB}
+all: ${NAME}
 
 ${LIBFT_LIB}:
 	@make -C ${LIBFT_DIR}
@@ -82,7 +82,7 @@ ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@${CC} ${FLAGS} -I include -c $< -o $@
 	@echo "$(BLACK)Compiling: $< "
 
-${NAME}: ${LIBRD} ${OBJS}
+${NAME}: ${LIBRD} ${LIBFT_LIB} ${OBJS}
 	@${CC} ${FLAGS} -I ${OBJS_DIR} $^ -o ${NAME} ${LIBS}
 	@echo "$(GREEN)Compilation terminé avec succès!"
 
