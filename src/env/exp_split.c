@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/08 11:08:17 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/08 13:10:54 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,27 @@ char	**exp_split(char *str)
         {
 			wc++;
             i++;
-            printf(" word count %d\n", wc);
-            printf(" idx %d\n", i);
         }
 	}
 	char **out = (char **)malloc(sizeof(char *) * (wc + 1));
+	if(!out)
+		return(0);
 	i = 0;
 	while (str[i])
 	{
 		while (str[i] && (str[i] != '$'))
 		    i++;
-		j = i;
+		j = ++i;
+    	printf("j = idx %d\n", j);
 		while (str[i] && (str[i] != '$'))
 			i++;
+    	printf("i = idx %d\n", i);
 		if (i > j)
 		{
-			out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
-			ft_strncpy(out[k++], &str[j], i - j);
-            printf("%s\n", out[k++]);
+    			printf("\n");
+				out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
+				ft_strncpy(out[k++], &str[j], i - j);
+        	    printf("%s\n", out[k++]);
 		}
 	}
 	out[k] = NULL;
