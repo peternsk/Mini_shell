@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/08 00:00:27 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/08 10:35:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ t_env       *create_var(t_minish *m_s, char *env_row);
 void        set_env_lst(t_minish *m_s, char **env);
 
 bool        char_search(char *tok_value, char c);
-char        *find_tmp_key(char *value);
-void        find_key_in_list(t_token **lst, char *tmpKey);
+char        *find_tmp_key(char *value, int i);
+char        *find_key_in_list(t_env **lst, char *tmpKey, char *tmpvalue);
+void        ft_expend(char *str);
+void	    print_expendTab(t_token *lst);
+char	    **exp_split(char *str);
 
 
 /*--- create struct ---*/
@@ -90,6 +93,7 @@ char	    **ft_split(char const *s, char c);
 char	    *ft_strdup(const char *s1);
 char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
+char        *ft_combine(char *s1, char *s2);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);

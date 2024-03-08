@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_combine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 23:21:08 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/08 08:11:19 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/03/08 08:32:42 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/03/08 08:41:24 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool    ft_strcmp(char *tmpKey, char *envKey)
+char    *ft_combine(char *s1, char *s2)
 {
     int i;
-
-    i = 0;
-    if(ft_strlen(tmpKey) != ft_strlen(envKey))
-        return(false);
-    while(tmpKey[i] != '\0')
+    int j;
+    char *combStr;
+    
+    i = -1;
+    j = -1;
+    combStr = (char *)malloc(sizeof(char) *(ft_strlen(s1) + ft_strlen(s2)) + 1);
+    while(s1[++i])
+        combStr[i] = s1[i];
+    while(s2[++j])
     {
-        if(tmpKey[i] == envKey[i])
-            i++;
-        else
-            return(false);
+        combStr[i] = s2[j];
+        i++;
     }
-    return(true);
+    combStr[i] = '\0';
+    return(combStr);
 }
