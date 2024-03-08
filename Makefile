@@ -21,7 +21,7 @@ BUILTIN		=
 
 EXECUTION	=
 
-ENV			=	set_env
+ENV			=	set_env findVarEnv
 
 GARBAGE 	=  
 
@@ -29,9 +29,11 @@ LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 PARSER		= 	ft_parsing
 
+BUILDER		= 	
+
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy ft_trim 
+UTILS		=	struct node ft_strncpy ft_trim ft_strcmp
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
@@ -39,6 +41,7 @@ SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/garbage/, $(GARBAGE))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/lexer/, $(LEXER))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/parser/, $(PARSER))) \
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/builder/, $(BUILDER))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
 				$(addsuffix .c, main) 

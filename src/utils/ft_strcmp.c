@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   garbage.h                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 18:26:45 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/06 21:29:50 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/03/07 23:21:08 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/03/07 23:59:16 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GARBAGE_H
-#define GARBAGE_H
+#include "minishell.h"
 
-typedef struct s_garbage
+bool    ft_strcmp(char *tmpKey, char *envKey)
 {
-	struct s_garbage *prev;
-	void	*adresse;
-	struct s_garbage *next;
-} t_garbage;
+    int i;
 
-
-
-
-#endif
+    i = 0;
+    if(ft_strlen(tmpKey != ft_strlen(envKey)))
+        return(false);
+    while(tmpKey[i] != '\0')
+    {
+        if(tmpKey[i] == envKey[i])
+            i++;
+        else
+            return(false);
+    }
+    return(true);
+}
