@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/08 09:32:24 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/09 08:05:09 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int		main(int ac, char **av, char **env)
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
 			add_history(m_s->input);
-			begin_lexing();
+			begin_setEnvVar();
 			set_env_lst(m_s, env);
+			begin_lexing();
 			tokenizer(m_s);	
 			begin_parsing();
 			ft_lexer(&m_s->token_lst, exit_status);
-			print_expendTab(m_s->token_lst);
+			print_expendTab(m_s->token_lst, &m_s->envVarlst);
 		}
 	}
 	else

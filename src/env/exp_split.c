@@ -6,49 +6,84 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/08 13:10:54 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/08 22:20:20 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**exp_split(char *str)
+static char	**free_tab(char **exp_tab)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int wc = 0;
-	while (str[i])
-	{
-        while (str[i] && (str[i] != '$'))
-			i++;
-		if (str[i] == '$')
-        {
-			wc++;
-            i++;
-        }
-	}
-	char **out = (char **)malloc(sizeof(char *) * (wc + 1));
-	if(!out)
-		return(0);
+	size_t	i;
+
 	i = 0;
-	while (str[i])
+	while (exp_tab[i])
 	{
-		while (str[i] && (str[i] != '$'))
-		    i++;
-		j = ++i;
-    	printf("j = idx %d\n", j);
-		while (str[i] && (str[i] != '$'))
-			i++;
-    	printf("i = idx %d\n", i);
-		if (i > j)
-		{
-    			printf("\n");
-				out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
-				ft_strncpy(out[k++], &str[j], i - j);
-        	    printf("%s\n", out[k++]);
-		}
+		free(exp_tab[i]);
+		i++;
 	}
-	out[k] = NULL;
-	return (out);
+	return (0);
+}
+
+static size_t	count_word(char const *str, char c)
+{
+	size_t	i;
+	size_t	nbw;
+
+	i = 0;
+	nbw = 0;
+	if (!str)
+		return (0);
+	while ((str[i] != c) && str[i])
+			i++;
+	while (str[i] != '\0')
+	{
+		while ((str[i] == c) && str[i])
+			i++;
+		while ((str[i] != c) && str[i])
+			i++;
+		if (str[i - 1] != c)
+			nbw++;
+	}
+	return (nbw);
+}
+
+static char	**splitcpy(char **split, char const *s, char c)
+{
+	size_t	word;
+	size_t	i;
+	size_t	start;
+
+	i = 0;
+	word = 0;
+	while ((s[i] != c) && s[i])
+			i++;
+	while (s[i] && word < count_word(s, c))
+	{
+		while (s[i] == c && s[i])
+			i++;
+		start = i;
+		while (s[i] != c && s[i])
+			i++;
+		split[word] = ft_substr(s, start, i - start);
+		if (!split[word])
+			return (free_tab(split));
+		word++;
+	}
+	split[word] = 0;
+	return (split);
+}
+
+char	**exp_split(char const *s, char c)
+{
+	char	**split;
+	size_t	nbw;
+
+	if (!s)
+		return (0);
+	nbw = count_word(s, c);
+	split = malloc(sizeof(char *) * (nbw + 1));
+	if (!split)
+		return (0);
+	return (splitcpy(split, s, c));
 }

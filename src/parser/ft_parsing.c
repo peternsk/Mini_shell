@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/06 11:41:43 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/09 07:34:30 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	begin_setEnvVar(void)
+{
+	printf("                 =\n");
+	printf("                 =\n");
+	printf("===============================\n");
+	printf("=       Setting env var       =\n");
+	printf("===============================\n");
+	printf("                 =\n");
+	printf("                 =\n");
+}
 
 void	begin_parsing(void)
 {
