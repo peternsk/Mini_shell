@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/09 18:01:43 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/10 09:16:00 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    ft_expend(char *str, t_env **lst)
         while (split_dolla[j])
         {
             printf("=== %s ===\n", split_dolla[j]);
-			find_key_in_list(&curent, *split_dolla);
+			find_key_in_list(&curent, split_dolla[j]);
             j++;
         }
         j = 0;
