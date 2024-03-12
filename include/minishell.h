@@ -6,7 +6,7 @@
 /*   By: lvergnas <lvergnas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/16 12:15:17 by lvergnas         ###   ########.fr       */
+/*   Updated: 2024/02/28 11:55:33 by lvergnas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,24 @@
 
 /*   test   */
 char	*clt_input(char *cmd);
+
+/*   TEST LOU   */
+typedef	struct s_cmdlts
+{
+	struct s_cmdlts *prev;
+	struct s_cmdlts *next;
+	int	index;
+	// linked redirect
+	char **cmd; // cmd -option args
+}	t_cmdlts;
+
+typedef struct s_info
+{
+	t_cmdlts *cmdlts;
+	int		nb_cmds;
+	char	*env_path;
+	char	**them_paths;
+	char	**cmd_args;
+}   t_info;
 
 #endif

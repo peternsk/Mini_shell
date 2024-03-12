@@ -1,88 +1,94 @@
 #include "../../include/minishell.h"
 
-static char	*extract_cmd(char *raw_cmd)
+static char	*find_path_in_env(char **env)
 {
-	int		i;
-	char	*cmd;
+	int	i; 
 
-	i = 0;
-	while (raw_cmd[i] != ' ')
-		i++;
-	cmd = malloc(sizeof(char) * (i + 2));
-	if (!cmd)
-		return (NULL);
-	i = 0;
-	cmd[i] = '/';
-	while (raw_cmd[i] != ' ')
+	i = -1;
+	while (env[++i])
 	{
-		cmd[i + 1] = raw_cmd[i];
-		i++;
-	}
-	cmd[i + 1] = '\0';
-	return (cmd);
-}
-
-static char	*extract_args(char *raw_cmd, char *cmd)
-{
-	char	*args;
-
-	args = ft_strtrim(raw_cmd, (const char *)cmd);
-	if (args[0] != '\0')
-	{
-		args = ft_strtrim(args, " ");
-		return (args);
-	}
-	free(args);
-    return (NULL);
-}
-
-static int	find_path_in_env(char **env, char *tofind)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (env[i])
-	{
-		j = 0;
-		while (j < (int)ft_strlen(tofind))
+		if (env[i][0] == 'P' & env[i][1] == 'A' & env[i][2] == 'T')
 		{
-			if (env[i][j] != tofind[j])
-				break ;
-			j++;
+			return (env[i] + 5);
 		}
-		if (j == (int)ft_strlen(tofind))
-			return (i);
-		i++;
 	}
-	return (-1);
+	return (NULL);
 }
 
-static char	*find_path(char **env, char *cmd)
+static char	*get_cmd(char **them_paths, char *cmd)
 {
 	int		i;
-	char	*path;
-	char	**them_paths;
+	char	*cmd_temp;
+	char	*real_cmd;
 
-	path = ft_strtrim(env[find_path_in_env(env, "PATH=")], "PATH=");
-	if (!path)
-		return (NULL);
-	them_paths = ft_split(path, ':');
-	if (!them_paths)
-		return (NULL);
-	i = 0;
-	while (them_paths[i])
+	i = -1;
+	while (them_paths[++i])
 	{
-		path = ft_strjoin(them_paths[i], cmd);
-		if (access(path, F_OK))
-			break ;
-		free(path);
-		i++;
+		cmd_temp = ft_strjoin(them_paths[i], "/");
+		real_cmd = ft_strjoin(cmd_temp, cmd);
+		free(cmd_temp);
+		if (access(real_cmd, F_OK) == 0)
+			return (real_cmd);
+		free(real_cmd);
 	}
-	return (path);
+	return (NULL);
 }
 
-int test(void)
+static void create_pipes(int *pipes, int nb_cmds)
 {
+	int i;
+
+	i = -1;
+	while (++i < nb_cmds - 1)
+	{
+		if (pipe(pipes[2 * i]) < 0)
+			break;//freethings;
+	}
+}
+
+static int exec_child(t_cmdlts cmd, char **env)
+{
+	execve(cmd.cmd[0], cmd.cmd, env);
+	return (0);
+}
+
+int main(int argc, char **argv, char **env)
+{	
+	pid_t	*pids;
+	int		*pipes;
+	t_info	info;
+	t_cmdlts cmdlts;
+	int i;
+
+	info.cmdlts = &cmdlts;
+	info.env_path = find_path_in_env(env);
+	info.them_paths = ft_split(info.env_path, ':');
+	info.nb_cmds =  cmdlts.prev->index + 1;
+	i = -1;
+	while(++i < info.nb_cmds)
+	{
+		if(!get_cmd(info.them_paths, cmdlts.cmd[0]))
+			return(ERR_CMD);
+		cmdlts = *cmdlts.next;
+	}
+	pids = malloc(sizeof(pid_t) * info.nb_cmds);
+	if (!pids)
+		msg_error(ERR_PID);
+	pipes = malloc(sizeof(int) * (info.nb_cmds - 1) * 2);
+	if (!pipes)
+		msg_error(ERR_PIPE);
+	create_pipes(&pipes, info.nb_cmds);
+	i = -1;
+	while (++i < info.nb_cmds)
+	{
+		while (cmdlts.index != i)
+			cmdlts = *cmdlts.next;
+		
+		pids[i] = fork();
+		if (pids[i] == 0)
+			exec_child(cmdlts, env);
+	}
+
+	
     return (0);
 }
