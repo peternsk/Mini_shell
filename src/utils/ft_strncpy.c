@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clt_input.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 11:31:34 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/15 10:42:17 by peternsaka       ###   ########.fr       */
+/*   Created: 2024/02/25 22:00:10 by peternsaka        #+#    #+#             */
+/*   Updated: 2024/02/26 09:19:17 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
-char	*clt_input(char *cmd)
+char *ft_strncpy(char *s1, char *s2, int n)
 {
-	printf("command %s\n", cmd);
-	return(0);
+	int i = -1;
+
+	while (++i < n && s2[i])
+		s1[i] = s2[i];
+	s1[i] = '\0';
+	return (s1);
 }

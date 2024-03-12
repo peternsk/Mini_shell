@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_combine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:57:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/07 23:20:43 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/03/08 08:32:42 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/03/08 08:41:24 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char    *ft_combine(char *s1, char *s2)
 {
-	size_t	i;
-
-	i = -1;
-	if (!s1 || !s2)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[++i] || s2[i]) && \
-		(s1[i] == s2[i]) && (i < n - 1))
-		;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+    int i;
+    int j;
+    char *combStr;
+    
+    i = -1;
+    j = -1;
+    combStr = (char *)malloc(sizeof(char) *(ft_strlen(s1) + ft_strlen(s2)) + 1);
+    while(s1[++i])
+        combStr[i] = s1[i];
+    while(s2[++j])
+    {
+        combStr[i] = s2[j];
+        i++;
+    }
+    combStr[i] = '\0';
+    return(combStr);
 }

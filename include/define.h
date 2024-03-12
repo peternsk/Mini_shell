@@ -5,55 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvergnas <lvergnas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/02/22 15:28:03 by lvergnas         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/03/12 14:25:59 by lvergnas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef DEFINE_H
 # define DEFINE_H
 
-typedef enum token_type
+/*--- MACROS ---*/
+# define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+
+
+
+
+/*--- ENUM && STRUCT ---*/
+typedef enum token_type 
 {
 	command,
-	sgl_quote,
-	dbl_quote,
+	argument,
+	sgl_quote_arg,
+	dbl_quote_arg,
 	out_p_redir,
 	in_p_redir,
 	apnd_op_redir,
 	here_doc,
-	pipe_
-}	token_type;
+	pipe_,
+	dbl_pipe_
+}			token_type;
 
-typedef enum arg_flag
+/*--- ENUM FLAG ---*/
+typedef enum flag_swtch 
 {
-	ON,
-	OFF
-}	arg_flag;
+	FLAG_OFF,
+	FLAG_ON
+}	flag_swtch;
 
 typedef struct s_token
 {
-	struct s_token	*prev;
-	struct s_token	*next;
-	int				token_id;
-	int				type;
-	int				arg_flag;
-	char			*command;
-	char			**arg;
-}	t_token;
+	struct s_token *prev;
+	struct s_token *next;
+	int	token_id;
+	int type;
+	int arg_flag;
+	char *command;
+	char **arg;
+} t_token;
 
-typedef struct s_history
+typedef	struct s_cmdlts
 {
-	struct s_history	*prev;
-	struct s_history	*next;
-	int					cmd_id;
-	char				*hist_cmd;
-}	t_history;
+	struct s_cmdlts *prev;
+	struct s_cmdlts *next;
+	int index;
+	// link redirection
+	char **command;
+} t_cmdlts;
+
+typedef	struct s_flags
+{
+	int		sgl_flag;
+	int		dbl_flag;
+	int		wsp_flag;
+	int		met_flag;
+	int		otc_flag;
+	int		found_flag;
+	int		flag_sw;
+} t_flags;
+
+/*--- ENV STRUCT ---*/
+typedef struct	s_env
+{
+	struct	s_env *prev;
+	struct	s_env *next;
+	char 	*key;
+	char 	*value;
+} t_env;
+
 
 typedef struct s_minish
 {
-	t_token		*cmd;
-	t_history	*cmd_history;
-}	t_minish;
+	t_token  *token_lst;
+	t_env	 *envVarlst;
+	t_flags  *flags;
+	char	 *input;
+	int		 index;
+	int 	 pipe_num;
+    int 	 in_redr_num;
+    int 	 out_redr_num;
+	int		 read_flag;
+	int 	 s;
+	int 	 e;
+} t_minish;
 
 #endif

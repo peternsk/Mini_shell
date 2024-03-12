@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:57:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/07 23:20:43 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/03/07 23:21:08 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/03/08 08:11:19 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+bool    ft_strcmp(char *tmpKey, char *envKey)
 {
-	size_t	i;
+    int i;
 
-	i = -1;
-	if (!s1 || !s2)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[++i] || s2[i]) && \
-		(s1[i] == s2[i]) && (i < n - 1))
-		;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+    i = 0;
+    if(ft_strlen(tmpKey) != ft_strlen(envKey))
+        return(false);
+    while(tmpKey[i] != '\0')
+    {
+        if(tmpKey[i] == envKey[i])
+            i++;
+        else
+            return(false);
+    }
+    return(true);
 }
