@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/08 09:54:31 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/13 09:11:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_token 	*set_token(t_token *token, t_minish *m_s)
 	ft_strncpy(token->value, &m_s->input[m_s->s], ((m_s->e + 1) - m_s->s));
 	token->type = -1;
 	assign_type(token, m_s);
+	token->varTab = NULL;
+	token->splitToD = NULL;
 	m_s->index = m_s->index + 1;
 	token->next = NULL;
 	return(token);

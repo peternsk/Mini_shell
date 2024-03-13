@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/06 08:24:42 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/13 09:10:04 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ typedef	struct s_token
 	struct s_token *prev;
 	struct s_token *next;
 	int	token_id;
-	int type;
 	char *value;
+	int type;
+	char **varTab;
+	char **splitToD;
 } t_token;
 
 typedef	struct s_cmdlts

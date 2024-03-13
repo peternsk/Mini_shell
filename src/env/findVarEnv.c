@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findVarEnv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/10 09:29:25 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/13 11:56:45 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,48 +44,67 @@ char    *find_tmp_key(char *value, int i)
     return(tmpKey);
 }
 
-void 	find_key_in_list(t_env **lst, char *tmpKey)
+bool 	find_key_in_list(t_env **lst, char *tmpKey)
 {
-    t_env *current;
+    t_env *curVar;
 
-    current = *lst;
-    while(current != NULL)
+    curVar = *lst;
+    while(curVar != NULL)
     {
-        if(ft_strcmp(tmpKey, current->key) == true)
+        if(ft_strcmp(tmpKey, curVar->key) == true)
         {
-			printf(" FIND KEY : %s\n", tmpKey);
-			return;
-            //tmpValue = ft_strdup(current->value);
-            //return(tmpValue);
+			return(true);
         }
-        current = current->next;
+        curVar = curVar->next;
     }
-	printf(" DIDNT FIND KEY : %s\n", tmpKey);
+    return(false);
     //return(tmpValue);
 }
 
-void    ft_expend(char *str, t_env **lst)
+
+char    *findVarEnv(t_env **lst, char *tmpKey)
+{
+    t_env *curVar;
+
+    curVar = *lst;
+    char *tokValue;
+    while(curVar != NULL)
+    {
+        if(ft_strcmp(tmpKey, curVar->key) == true)
+        {
+            tokValue = ft_strdup(curVar->value);
+            printf(" var : %s\n", tokValue);
+            return(tokValue);
+        }
+        curVar = curVar->next;
+    }
+    return(0);
+}
+
+void    ft_expend(t_token *token, t_env **lst)
 {
     int i;
     int j;
-    char **var_tab;
-    char **split_dolla;
-	t_env *curent;
+	t_env *curVar;
+    char *tmpTokValue;
 
     i = 0;
     j = 0;
-	curent = *lst;
-    var_tab = ft_split(str, ' ');
+	curVar = *lst;
+    token->varTab = ft_split(token->value, ' ');
     printf("=========== EXP TAB ===========\n");
-    while(var_tab[i] && char_search(var_tab[i], '$') == true)
+    tmpTokValue = valBefDol(token);
+    printf("before dolalr sign %s\n", tmpTokValue);
+    while(token->varTab[i] && char_search(token->varTab[i], '$') == true)
     {
-        printf("%s\n", var_tab[i]);
-        printf("-------------------------------\n");
-        split_dolla = exp_split(var_tab[i], '$');
-        while (split_dolla[j])
+        printf("the token : %s\n", token->varTab[i]);
+        token->splitToD = exp_split(token->varTab[i], '$');
+        while (token->splitToD[j])
         {
-            printf("=== %s ===\n", split_dolla[j]);
-			find_key_in_list(&curent, split_dolla[j]);
+			if(find_key_in_list(&curVar, token->splitToD[j]))
+            {
+                findVarEnv(&curVar, token->splitToD[j]);  
+            }
             j++;
         }
         j = 0;
@@ -93,22 +112,47 @@ void    ft_expend(char *str, t_env **lst)
     }
     printf("===============================\n");
     printf("                 =\n");
-	printf("                 =\n");
 }
 
 void	print_expendTab(t_token *lst, t_env **envVarlst)
 {
 	t_token *last;
-	t_env *current;
+	t_env *curEnv;
 	
 	last = lst;
-	current = *envVarlst;
+	curEnv = *envVarlst;
 	if(last == NULL)
 		printf("empty list\n");
 	while(last != NULL)
 	{
         if((last->type == argument || last->type == dbl_quote_arg) && (char_search(last->value, '$') == true))
-            ft_expend(last->value, &current);
+            ft_expend(last, &curEnv);
 		last = last->next;
 	}
+}
+
+/* 
+    creer une fonction qui avance dans le token et qui va chercher
+    toute les valeurs avant le $ pour le stocked dans une string.
+*/
+
+char    *valBefDol(t_token *token)
+{
+    int i;
+
+    i = 0;
+    char *tmpValue;
+    while(token->value && token->value[i] != '$')
+        i++;
+    tmpValue = (char *)malloc((sizeof(char) * i) + 1);
+    if(!tmpValue)
+        return(0);
+    i = 0;
+    while(token->value && token->value[i] != '$')
+    {
+        tmpValue[i] = token->value[i];
+        i++;
+    }
+    tmpValue[i] = '\0';
+    return(tmpValue);
 }

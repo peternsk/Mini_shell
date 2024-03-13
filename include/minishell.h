@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/09 07:56:58 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/13 11:50:27 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void        set_env_lst(t_minish *m_s, char **env);
 
 bool        char_search(char *tok_value, char c);
 char        *find_tmp_key(char *value, int i);
-//char        *find_key_in_list(t_env **lst, char *tmpKey, char *tmpvalue);
-void 		find_key_in_list(t_env **lst, char *tmpKey);
-// void        ft_expend(char *str);
-void	    ft_expend(char *str, t_env **lst);
-// void	    print_expendTab(t_token *lst);
+bool 		find_key_in_list(t_env **lst, char *tmpKey);
+void	    ft_expend(t_token *token, t_env **lst);
 void		print_expendTab(t_token *lst, t_env **envVarlst);
 char		**exp_split(char const *s, char c);
+
+char        *findVarEnv(t_env **lst, char *tmpKey);
+char        *valBefDol(t_token *token);
 
 
 /*--- create struct ---*/
