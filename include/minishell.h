@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/13 11:50:27 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/13 12:25:47 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	    ft_expend(t_token *token, t_env **lst);
 void		print_expendTab(t_token *lst, t_env **envVarlst);
 char		**exp_split(char const *s, char c);
 
-char        *findVarEnv(t_env **lst, char *tmpKey);
+char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
 char        *valBefDol(t_token *token);
 
 
