@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/13 13:15:31 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:14:57 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char    *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey)
             tmpStr = ft_strdup(curVar->value);
             *tmpvalue = ft_strjoin(*tmpvalue, tmpStr);
             free(tmpStr);
-            printf(" var : %s\n", *tmpvalue);
         }
         curVar = curVar->next;
     }
@@ -92,24 +91,30 @@ void    ft_expend(t_token *token, t_env **lst)
     j = 0;
 	curVar = *lst;
     token->varTab = ft_split(token->value, ' ');
-    printf("=========== EXP TAB ===========\n");
+    printf("=========== %s ===========\n", token->value);
     tmpTokValue = valBefDol(token);
-    printf("before dollar sign %s\n", tmpTokValue);
     while(token->varTab[i] && char_search(token->varTab[i], '$') == true)
     {
-        printf("the token : %s\n", token->varTab[i]);
         token->splitToD = exp_split(token->varTab[i], '$');
-        while (token->splitToD[j] && find_key_in_list(&curVar, token->splitToD[j]) == true)
+        while (token->splitToD[j])
         {
-            findVarEnv(&curVar, &tmpTokValue, token->splitToD[j]);
+            if(find_key_in_list(&curVar, token->splitToD[j]) == true)
+                findVarEnv(&curVar, &tmpTokValue, token->splitToD[j]);
             j++;
         }
         j = 0;
         i++;
     }
-    printf("after change key in value %s\n", tmpTokValue);
+    replaceToken(token, tmpTokValue);
+    printf("new token value %s\n", token->value);
     printf("===============================\n");
-    printf("                 =\n");
+    free(tmpTokValue);
+}
+
+void    replaceToken(t_token *token, char *tmpTokValue)
+{
+        free(token->value);
+        token->value = ft_strdup(tmpTokValue);
 }
 
 void	print_expendTab(t_token *lst, t_env **envVarlst)

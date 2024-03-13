@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/13 12:25:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:09:25 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char		**exp_split(char const *s, char c);
 
 char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
 char        *valBefDol(t_token *token);
+void        replaceToken(t_token *token, char *tmpTokValue);
 
 
 /*--- create struct ---*/
