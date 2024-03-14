@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/13 20:55:34 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/14 14:13:11 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,11 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 	while(last != NULL)
 	{
         if((last->type == argument || last->type == dbl_quote_arg) && (char_search(last->value, '$') == true))
+        {
+            printf("here\n");
             ft_expend(last, envVarlst, m_s);
+        }
+        printf("result charsearch %d\n", char_search(last->value, '$'));
 		last = last->next;
 	}
 }
