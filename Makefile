@@ -21,7 +21,7 @@ BUILTIN		=
 
 EXECUTION	=
 
-ENV			=	set_env findVarEnv exp_split
+ENV			=	set_env findVarEnv exp_split ft_expend
 
 GARBAGE 	=  
 
