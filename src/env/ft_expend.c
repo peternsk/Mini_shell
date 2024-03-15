@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:48:25 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/15 11:00:25 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 13:46:17 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ static void     phaseOneExp(t_token *token, t_minish *m_s)
     token->expValue = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
 }
 
-void    ft_exitStatus(t_token *token, t_minish *m_s)
+static void    ft_exitStatus(t_token *token, t_minish *m_s)
 {
-    while(token->value[m_s->e] && token->value[m_s->e + 1] == '?')
-        m_s->e = m_s->e + 1;
-    tmpExp = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
-    token->expValue = ft_strjoin(token->expValue, tmpExp);
-    free(tmpExp);
+    char *exitCode;
+    (void)m_s;
+    
+    exitCode = ft_itoa(exit_status);
+    token->expValue = ft_strjoin(token->expValue, exitCode);
+    m_s->e = m_s->e + 2;
+    m_s->s = m_s->e;
+    free(exitCode);
 }
+
 void    ft_expend(t_token *token, t_env **lst, t_minish *m_s)
 {
     char *tmpKey;
@@ -38,13 +42,9 @@ void    ft_expend(t_token *token, t_env **lst, t_minish *m_s)
     while(token->value[m_s->e])
     {
         if(token->value[m_s->e] == '$' && token->value[m_s->e + 1] == '?')
+            ft_exitStatus(token, m_s);
+        if(token->value[m_s->e] == '$' && (token->value[m_s->e + 1] != '\0'))
         {
-            
-        }
-        if(token->value[m_s->e] == '$' && token->value[m_s->e + 1] != '\0')
-        {
-            m_s->e = m_s->e + 1;
-            m_s->s = m_s->e;
             tmpKey = find_tmp_key(token, m_s);
             if(find_key_in_list(lst, tmpKey) == true)
                 findVarEnv(lst, &token->expValue, tmpKey);

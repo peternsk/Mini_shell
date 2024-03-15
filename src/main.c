@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/15 09:30:02 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 14:57:05 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int exit_status = 0;
 
 int		main(int ac, char **av, char **env)
 {
+	
+	
 	t_minish *m_s;
 	(void)av;
 
@@ -33,7 +35,7 @@ int		main(int ac, char **av, char **env)
 			begin_lexing();
 			tokenizer(m_s);	
 			begin_parsing();
-			ft_lexer(&m_s->token_lst, exit_status);
+			ft_lexer(&m_s->token_lst);
 			print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
 			print_token(m_s->token_lst);
 			ft_removeQuotes(&m_s->token_lst);
@@ -43,3 +45,5 @@ int		main(int ac, char **av, char **env)
 	else
 		printf("arg missing !!\n");
 }
+// echo $USER$?$USER
+// echo "'"$USER"'"

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/15 09:18:37 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 11:52:31 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 #include "readline/readline.h"
 #include "readline/history.h"
 #include "../libft/libft.h"
+
+/*====================================================*/
+/*=                  GLOBAL VARIABLE                 =*/
+/*====================================================*/
+
+extern int exit_status;
 
 /*====================================================*/
 /*=                      PARSER                      =*/
@@ -90,7 +96,7 @@ void        ft_ascii_font(void);
 /*====================================================*/
 
 /*---  meta_char ---*/
-void        ft_lexer(t_token **lst, int exit_status);
+void        ft_lexer(t_token **lst);
 bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);

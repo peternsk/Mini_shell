@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/15 00:36:44 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 13:47:05 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ char    *find_tmp_key(t_token *tk, t_minish *m_s)
     char    *tmpKey;
 
     tmpKey = NULL;
-    while(tk->value[m_s->e] && (tk->value[m_s->e] != '$' && is_space(tk->value[m_s->e]) == false))
+    m_s->e = m_s->e + 1;
+    m_s->s = m_s->e;
+    while(tk->value[m_s->e] && (tk->value[m_s->e] != '$' && is_space(tk->value[m_s->e]) == false) && tk->value[m_s->e] != '\"')
         m_s->e++;
     if(m_s->e > m_s->s)
     {

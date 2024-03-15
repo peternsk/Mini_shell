@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/15 09:48:29 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 14:29:41 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,17 @@ typedef	struct s_cmdlts
 	struct s_cmdlts *prev;
 	struct s_cmdlts *next;
 	int index;
-	// link redirection
+	struct s_redlst *redlst;
 	char **command;
 } t_cmdlts;
+
+typedef	struct s_redlts
+{
+	struct s_cmdlst *prev;
+	struct s_cmdlst *next;
+	int redtype;
+	char *filename;
+} t_redlts;
 
 typedef	struct s_flags
 {
