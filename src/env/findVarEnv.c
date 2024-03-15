@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/14 23:55:58 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 00:36:44 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,28 +106,28 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 	}
 }
 
-/* 
-    creer une fonction qui avance dans le token et qui va chercher
-    toute les valeurs avant le $ pour le stocked dans une string.
-*/
+// /* 
+//     creer une fonction qui avance dans le token et qui va chercher
+//     toute les valeurs avant le $ pour le stocked dans une string.
+// */
 
-char    *valBefDol(t_token *token)
-{
-    int i;
+// char    *valBefDol(t_token *token)
+// {
+//     int i;
 
-    i = 0;
-    char *tmpValue;
-    while(token->value && token->value[i] != '$')
-        i++;
-    tmpValue = (char *)malloc((sizeof(char) * i) + 1);
-    if(!tmpValue)
-        return(0);
-    i = 0;
-    while(token->value && token->value[i] != '$')
-    {
-        tmpValue[i] = token->value[i];
-        i++;
-    }
-    tmpValue[i] = '\0';
-    return(tmpValue);
-}
+//     i = 0;
+//     char *tmpValue;
+//     while(token->value && token->value[i] != '$')
+//         i++;
+//     tmpValue = (char *)malloc((sizeof(char) * i) + 1);
+//     if(!tmpValue)
+//         return(0);
+//     i = 0;
+//     while(token->value && token->value[i] != '$')
+//     {
+//         tmpValue[i] = token->value[i];
+//         i++;
+//     }
+//     tmpValue[i] = '\0';
+//     return(tmpValue);
+// }

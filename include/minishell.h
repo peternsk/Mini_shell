@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/14 23:55:24 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/15 09:18:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,6 @@
 
 void	    begin_lexing(void);
 void		begin_setEnvVar(void);
-
-/*--- env ---*/
-t_env 	    *intEnvVar(t_env *node, char *env_row);
-void	    add_var_to_end(t_env **lst, t_env *var);
-t_env       *create_var(t_minish *m_s, char *env_row);
-void        set_env_lst(t_minish *m_s, char **env);
-
-bool        char_search(char *tok_value, char c);
-char        *find_tmp_key(t_token *tk, t_minish *m_s);
-bool 		find_key_in_list(t_env **lst, char *tmpKey);
-// void	    ft_expend(t_token *token, t_env **lst);
-void        ft_expend(t_token *token, t_env **lst, t_minish *m_s);
-// void		print_expendTab(t_token *lst, t_env **envVarlst);
-void	    print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s);
-char		**exp_split(char const *s, char c);
-
-char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
-char        *valBefDol(t_token *token);
-void        replaceToken(t_token *token);
-
 
 /*--- create struct ---*/
 t_flags		*init_flag(void);
@@ -116,6 +96,33 @@ bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);
 void		begin_parsing(void);
 
+/*====================================================*/
+/*=                       ENV                        =*/
+/*====================================================*/
+
+t_env 	    *intEnvVar(t_env *node, char *env_row);
+void	    add_var_to_end(t_env **lst, t_env *var);
+t_env       *create_var(t_minish *m_s, char *env_row);
+void        set_env_lst(t_minish *m_s, char **env);
+
+bool        char_search(char *tok_value, char c);
+char        *find_tmp_key(t_token *tk, t_minish *m_s);
+bool 		find_key_in_list(t_env **lst, char *tmpKey);
+void        ft_expend(t_token *token, t_env **lst, t_minish *m_s);
+void	    print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s);
+char		**exp_split(char const *s, char c);
+
+char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
+char        *valBefDol(t_token *token);
+void        replaceToken(t_token *token);
+
+
+
+/*====================================================*/
+/*=                     BUILDER                      =*/
+/*====================================================*/
+
+void        ft_removeQuotes(t_token **tkLst);
 
 
 #endif
