@@ -6,40 +6,45 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/14 14:13:11 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/14 22:00:22 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 bool    char_search(char *tok_value, char c)
 {
     int i;
 
     i = 0;
-    while(tok_value[i])
+    while(tok_value[i] != '\0')
     {
-        if(tok_value[i] == c && tok_value[i + 1])
+        if(tok_value[i] == c)
+        {
             return(true);
+        }
         i++;
     }
     return(false);
 }
 
-char    *find_tmp_key(char *value, int i)
+char    *find_tmp_key(t_token *tk, t_minish *m_s)
 {
-    int     start;
     char    *tmpKey;
 
-    i = 0;
-    start = i;
     tmpKey = NULL;
-    while(value[i] && (value[i] != '$' || is_space(value[i]) == false))
-        i++;
-    if(i > start)
+    printf("in find key s : %d  e : %d\n", m_s->s , m_s->e);
+    while(tk->value[m_s->e] && (tk->value[m_s->e] != '$' || is_space(tk->value[m_s->e]) == false))
+        m_s->e++;
+    if(m_s->e > m_s->s)
     {
-        tmpKey = (char *)malloc((sizeof(char) * (i - start)) + 1);
-        ft_strncpy(tmpKey, value, (i - start));
+        printf("=== in find key ===\n");
+        tmpKey = (char *)malloc((sizeof(char) * (m_s->e - m_s->s)) + 1);
+        if(!tmpKey)
+            return(0);
+        printf("in find key s : e : %d\n", m_s->e);
+        ft_strncpy(tmpKey, (tk->value + m_s->s), (m_s->e - m_s->s));
     }
     return(tmpKey);
 }
@@ -79,37 +84,6 @@ char    *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey)
     }
     return(0);
 }
-
-// void    ft_expend(t_token *token, t_env **lst)
-// {
-//     int i;
-//     int j;
-// 	t_env *curVar;
-//     char *tmpTokValue;
-
-//     i = 0;
-//     j = 0;
-// 	curVar = *lst;
-//     token->varTab = ft_split(token->value, ' ');
-//     printf("=========== %s ===========\n", token->value);
-//     tmpTokValue = valBefDol(token);
-//     while(token->varTab[i] && char_search(token->varTab[i], '$') == true)
-//     {
-//         token->splitToD = exp_split(token->varTab[i], '$');
-//         while (token->splitToD[j])
-//         {
-//             if(find_key_in_list(&curVar, token->splitToD[j]) == true)
-//                 findVarEnv(&curVar, &tmpTokValue, token->splitToD[j]);
-//             j++;
-//         }
-//         j = 0;
-//         i++;
-//     }
-//     replaceToken(token, tmpTokValue);
-//     printf("new token value %s\n", token->value);
-//     printf("===============================\n");
-//     free(tmpTokValue);
-// }
 
 void    replaceToken(t_token *token, char *tmpTokValue)
 {

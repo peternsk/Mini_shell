@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/13 20:50:22 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/14 19:45:39 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_env       *create_var(t_minish *m_s, char *env_row);
 void        set_env_lst(t_minish *m_s, char **env);
 
 bool        char_search(char *tok_value, char c);
-char        *find_tmp_key(char *value, int i);
+char        *find_tmp_key(t_token *tk, t_minish *m_s);
 bool 		find_key_in_list(t_env **lst, char *tmpKey);
 // void	    ft_expend(t_token *token, t_env **lst);
 void        ft_expend(t_token *token, t_env **lst, t_minish *m_s);
