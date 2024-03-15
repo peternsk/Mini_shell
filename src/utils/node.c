@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/14 18:33:44 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/14 23:58:15 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_token(t_token *lst)
 		printf("empty list\n");
 	while(last != NULL)
 	{
-		printf("========== token ==============\n");
+		printf("========== EXPAND =============\n");
 		printf("= token prev  : %p           \n", last->prev);
 		printf("= token id    : %d             \n", last->token_id);
 		printf("= token value : %s          \n", last->value);
