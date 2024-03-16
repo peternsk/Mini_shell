@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/06 10:10:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 12:14:52 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void       set_env_lst(t_minish *m_s, char **env)
         create_var(m_s, env[i]);
         i++;
     }
-    print_env_lst(m_s->envVarlst);
+    //print_env_lst(m_s->envVarlst);
 }

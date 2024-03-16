@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/15 11:52:31 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 12:18:49 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	    assign_token_type(t_token **lst, t_minish *m_s);
 
 /*--- quote && double quote ---*/
 void     	find_next_quote(t_minish *m_s, char quote_type);
+bool	    is_quotes(char c);
 
 /*--- command ---*/
 void	    create_cmd(t_minish *m_s);

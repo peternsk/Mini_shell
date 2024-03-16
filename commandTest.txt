@@ -1,0 +1,112 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    commandTest.txt                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/03/16 11:25:22 by pnsaka            #+#    #+#              #
+#    Updated: 2024/03/16 11:55:33 by pnsaka           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+
+/*====================================================*/
+/*=                BASH SYNTAXE ERROR                =*/
+/*====================================================*/
+
+
+>
+<
+>>
+<<
+<>
+>>>>>
+>>>>>>>>>>>>>>>
+<<<<<
+<<<<<<<<<<<<<<<<
+> > > >
+>> >> >> >>
+>>>> >> >> >>
+|
+| hola
+| | |
+||
+|||||
+|||||||||||||
+>>|><
+&&
+&&&&&
+&&&&&&&&&&&&&&
+;;
+;;;;;
+;;;;;;;;;;;;;;;
+()
+( ( ) )
+( ( ( ( ) ) ) )
+echo > <
+echo | |
+.echo.
+>echo>
+<echo<
+>>echo>>
+|echo|
+echo hola ||| cat
+echo hola > > bonjour
+echo hola < < bonjour
+echo hola >>> bonjour
+cat >>
+cat >>>
+cat >> <<
+cat >> > >> << >>
+cat <<
+echo hola <<<< bonjour
+echo hola <<<<< bonjour
+
+
+/*====================================================*/
+/*=              VALID COMMAND FOR PASSING           =*/
+/*====================================================*/
+
+echo $"HO""ME"
+echo $'HO''ME'
+echo $'HOME'
+echo "$"HOME
+echo $=HOME
+echo $"HOLA"
+echo $'HOLA'
+echo $DONTEXIST Hola
+echo "hola"
+echo 'hola'
+echo ''hola''
+echo ''h'o'la''
+echo "''h'o'la''"
+echo "'"h'o'la"'"
+echo "'hola'"
+echo '"hola"'
+echo '''ho"''''l"a'''
+echo hola""""""""""""
+echo hola"''''''''''"
+echo hola''''''''''''
+echo hola'""""""""""'
+echo ""hola
+echo "" hola
+echo ""             hola
+echo ""hola
+echo "" hola
+echo hola""bonjour
+"e"'c'ho 'b'"o"nj"o"'u'r
+echo "$DONTEXIST"Makefile
+echo "$DONTEXIST""Makefile"
+echo "$DONTEXIST" "Makefile"
+$?
+$?$?
+?$HOME
+$
+$HOME
+$HOMEdskjhfkdshfsd
+"$HOMEdskjhfkdshfsd"
+'$HOMEdskjhfkdshfsd'
+$DONTEXIST
+$LESS$VAR
