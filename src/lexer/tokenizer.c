@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/16 12:13:13 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 12:35:59 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,9 @@ void		split_token(t_minish *m_s)
 {
 	if(m_s->flags->dbl_flag == FLAG_ON)
 	{
-		printf("****************** 1 *****************\n");
-		printf(" SPLIT FLAG STATE : %d\n", m_s->flags->dbl_flag);
-		printf(" FOUND FLAG STATE : %d\n", m_s->flags->found_flag );
-		printf("**************************************\n");
 		m_s->flags->found_flag = FLAG_OFF;
-		printf("****************** 2 *****************\n");
-		printf(" SPLIT FLAG STATE : %d\n", m_s->flags->dbl_flag);
-		printf(" FOUND FLAG STATE : %d\n", m_s->flags->found_flag );
-		printf("**************************************\n");
 		find_next_quote(m_s, 34);
-		printf("****************** 5 *****************\n");
-		printf(" SPLIT FLAG STATE : %d\n", m_s->flags->dbl_flag);
-		printf(" FOUND FLAG STATE : %d\n", m_s->flags->found_flag );
-		printf("**************************************\n");
 		m_s->flags->dbl_flag = FLAG_OFF;
-		printf("****************** 6 *****************\n");
-		printf(" SPLIT FLAG STATE : %d\n", m_s->flags->dbl_flag);
-		printf(" FOUND FLAG STATE : %d\n", m_s->flags->found_flag );
-		printf("**************************************\n");
 	}
 	else if(m_s->flags->sgl_flag == FLAG_ON)
 	{

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 12:18:49 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 15:24:47 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	    *ft_strdup(const char *s1);
 char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
+void        ft_endToken(t_token *token, t_minish *m_s);
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);

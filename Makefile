@@ -33,7 +33,7 @@ BUILDER		= 	ft_removeQuotes
 
 SIGNALS		=
 
-UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine
+UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 12:15:07 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 12:37:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int		main(int ac, char **av, char **env)
 			tokenizer(m_s);	
 			begin_parsing();
 			ft_lexer(&m_s->token_lst);
-			//print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
+			print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
 			print_token(m_s->token_lst);
 			ft_removeQuotes(&m_s->token_lst);
-			//print_token(m_s->token_lst);
+			print_token(m_s->token_lst);
 		}
 	}
 	else

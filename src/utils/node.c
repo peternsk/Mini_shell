@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/14 23:58:15 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 15:29:58 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_token 	*set_token(t_token *token, t_minish *m_s)
 	ft_strncpy(token->value, &m_s->input[m_s->s], ((m_s->e + 1) - m_s->s));
 	token->type = -1;
 	assign_type(token, m_s);
-	token->varTab = NULL;
-	token->splitToD = NULL;
 	token->expValue = NULL;
 	m_s->index = m_s->index + 1;
+	token->endToken = FLAG_OFF;
+	ft_endToken(token, m_s);
 	token->next = NULL;
 	return(token);
 }
@@ -81,6 +81,7 @@ void	print_token(t_token *lst)
 		printf("= token value : %s          \n", last->value);
 		printf("= token len   : %zu          \n", ft_strlen(last->value));
 		printf("= token type  : %d          \n", last->type);
+		printf("= token end   : %d          \n", last->endToken);
 		printf("= token next  : %p           \n", last->next);
 		printf("===============================\n");
 		printf("                 =\n");
