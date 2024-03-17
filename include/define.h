@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 13:26:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/17 00:20:57 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef	struct s_cmdlts
 	struct s_cmdlts *prev;
 	struct s_cmdlts *next;
 	int index;
+	int arrLen;
 	struct s_redlst *redlst;
 	char **command;
 } t_cmdlts;
@@ -92,7 +93,8 @@ typedef struct	s_minish
 {
 	t_token  *token_lst;
 	t_env	 *envVarlst;
-	t_flags  *flags;
+	t_cmdlts *cmdLst;
+	t_flags   *flags;
 	char	 *input;
 	int		 index;
 	int 	 pipe_num;

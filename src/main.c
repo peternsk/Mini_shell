@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 12:37:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/17 02:04:52 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		main(int ac, char **av, char **env)
 			print_token(m_s->token_lst);
 			ft_removeQuotes(&m_s->token_lst);
 			print_token(m_s->token_lst);
+			create_cmdLst(m_s);
+			print_cmdLst(m_s->cmdLst);
 		}
 	}
 	else
@@ -47,3 +49,5 @@ int		main(int ac, char **av, char **env)
 }
 // echo $USER$?$USER
 // echo "'"$USER"'"
+// echo bonjour comment ca va
+// echo | ls | grep everything | $USER | path

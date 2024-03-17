@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findVarEnv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/15 13:47:05 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 16:58:21 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 	while(last != NULL)
 	{
         if((last->type == argument || last->type == dbl_quote_arg) && (char_search(last->value, '$') == true))
-            ft_expend(last, envVarlst, m_s);
+            ft_expend(last, &curEnv, m_s);
 		last = last->next;
 	}
 }

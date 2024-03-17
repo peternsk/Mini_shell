@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 15:24:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/17 01:22:43 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,7 @@ void		split_token(t_minish *m_s);
 void        tokenizer(t_minish *m_s);
 t_token     *create_token(t_minish *m_s);
 
-/*---  utils ---*/
-char 		*ft_strncpy(char *s1, char *s2, int n);
-size_t		ft_strlen(const char *s);
-char	    *ft_trim(char const *s1, char const *set);
-char	    **ft_split(char const *s, char c);
-char	    *ft_strdup(const char *s1);
-char	    *ft_substr(char const *s, unsigned int start, size_t len);
-bool        ft_strcmp(char *tmpKey, char *envKey);
-char        *ft_combine(char *s1, char *s2);
-void        ft_endToken(t_token *token, t_minish *m_s);
+
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
@@ -131,6 +122,28 @@ void        replaceToken(t_token *token);
 /*====================================================*/
 
 void        ft_removeQuotes(t_token **tkLst);
+int			ft_countArrayspace(t_token **lst);
+int			ft_nbrOfNode(t_token **lst);
+t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s);
+void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
+t_cmdlts    *create_cmdLst(t_minish *m_s);
+void		print_cmdLst(t_cmdlts *lst);
+
+
+
+/*====================================================*/
+/*=                      UTILS                       =*/
+/*====================================================*/
+
+char 		*ft_strncpy(char *s1, char *s2, int n);
+size_t		ft_strlen(const char *s);
+char	    *ft_trim(char const *s1, char const *set);
+char	    **ft_split(char const *s, char c);
+char	    *ft_strdup(const char *s1);
+char	    *ft_substr(char const *s, unsigned int start, size_t len);
+bool        ft_strcmp(char *tmpKey, char *envKey);
+char        *ft_combine(char *s1, char *s2);
+void        ft_endToken(t_token *token, t_minish *m_s);
 
 
 #endif

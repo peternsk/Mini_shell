@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/06 08:39:21 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/17 01:41:48 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_minish *init_ms(void)
 	m_s->input = NULL;
 	m_s->token_lst = NULL;
 	m_s->envVarlst = NULL;
+	m_s->cmdLst = NULL;
 	m_s->index = 0;
 	m_s->pipe_num = 0;
 	m_s->in_redr_num = 0;

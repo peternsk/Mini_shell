@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_removeQuotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:12:50 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/15 09:27:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/16 23:57:52 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void    ft_removeQuotes(t_token **tkLst)
             last->value = ft_strtrim(last->value, "\"");
         last = last->next;
     }
-    
 }
