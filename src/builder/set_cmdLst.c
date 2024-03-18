@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_cmdLst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/17 02:04:36 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/18 11:58:26 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	print_cmdLst(t_cmdlts *lst)
 		printf("========== CMD LST ============\n");
 		printf("= command prev  : %p           \n", last->prev);
 		printf("= command id    : %d             \n", last->index);
-		printf("= array len     : not set yet    \n");
+		printf("= array len     : %d           \n", last->arrLen);
 		printf("= command array : not set yet    \n");
 		printf("= redir list    : not set yet    \n");
 		printf("= command next  : %p           \n", last->next);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/17 01:22:43 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/18 11:54:09 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s);
 void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
 t_cmdlts    *create_cmdLst(t_minish *m_s);
 void		print_cmdLst(t_cmdlts *lst);
+char        *ft_statchValue(t_token **lst);
+void        ft_builder(t_cmdlts *cmd, t_token **tokLst);
 
 
 
@@ -144,6 +146,7 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
+void        ft_builder(t_cmdlts *cmd, t_token **tokLst);
 
 
 #endif

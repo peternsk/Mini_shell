@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 15:29:58 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/18 10:04:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_token 	*set_token(t_token *token, t_minish *m_s)
 	token->expValue = NULL;
 	m_s->index = m_s->index + 1;
 	token->endToken = FLAG_OFF;
+	token->setToCmd = FLAG_OFF;
 	ft_endToken(token, m_s);
 	token->next = NULL;
 	return(token);

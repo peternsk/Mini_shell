@@ -29,7 +29,7 @@ LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 PARSER		= 	ft_parsing
 
-BUILDER		= 	ft_removeQuotes ft_countArrayspace set_cmdLst
+BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr
 
 SIGNALS		=
 
