@@ -6,7 +6,7 @@
 /*   By: lvergnas <lvergnas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/12 14:21:17 by lvergnas         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:24:33 by lvergnas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,26 +111,4 @@ bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);
 void		begin_parsing(void);
 
-
-
-/*   TEST LOU   */
-typedef	struct s_cmdlts
-{
-	struct s_cmdlts *prev;
-	struct s_cmdlts *next;
-	int	index;
-	// linked redirect
-	char **cmd; // cmd -option args
-}	t_cmdlts;
-
-typedef struct s_info
-{
-	t_cmdlts *cmdlts;
-	int		nb_cmds;
-	char	*env_path;
-	char	**them_paths;
-	char	**cmd_args;
-}   t_info;
-
-#endif
  

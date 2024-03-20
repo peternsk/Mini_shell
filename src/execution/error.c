@@ -1,7 +1,7 @@
-#include "minishell.h"
+// #include "minishell.h"
 
 void	msg_error(char *err)
 {
 	perror(err);
-	exit (1);
+	exit(1);
 }

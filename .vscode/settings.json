@@ -28,6 +28,8 @@
 		"ios": "c",
 		"string": "c",
 		"string_view": "c",
-		"unordered_map": "c"
+		"unordered_map": "c",
+		"stdlib.h": "c",
+		"wait.h": "c"
 	}
 }
