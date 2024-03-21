@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/18 12:16:46 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/18 13:52:51 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		main(int ac, char **av, char **env)
 			ft_removeQuotes(&m_s->token_lst);
 			print_token(m_s->token_lst);
 			create_cmdLst(m_s);
+			print_cmdLst(m_s->cmdLst);
 			ft_builder(m_s->cmdLst, &m_s->token_lst);
 			print_cmdLst(m_s->cmdLst);
 			
