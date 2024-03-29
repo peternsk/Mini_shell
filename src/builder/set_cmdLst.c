@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/21 11:15:34 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/21 13:52:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,17 @@ t_cmdlts    *create_cmdLst(t_minish *m_s)
     return(m_s->cmdLst);
 }
 
-static void	printArray(char **arr)
+void	printArray(char **arr)
 {
 	int i = 0;
-
+	printf("========== command ============\n");
 	while(arr[i])
 	{
 		printf("%s\n", arr[i]);
+		printf("_______________________________\n");
 		i++;
 	}
+	printf("===============================\n");
 }
 
 void	print_cmdLst(t_cmdlts *lst)
@@ -104,7 +106,6 @@ void	print_cmdLst(t_cmdlts *lst)
 		printf("= command prev  : %p           \n", last->prev);
 		printf("= command id    : %d             \n", last->index);
 		printf("= array len     : %d           \n", last->arrLen);
-		printArray(last->command);
 		printf("= redir list    : not set yet    \n");
 		printf("= command next  : %p           \n", last->next);
 		printf("===============================\n");

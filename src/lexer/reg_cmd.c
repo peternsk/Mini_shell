@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:28:28 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/16 12:27:01 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/27 14:16:21 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void find_cmd(t_minish *m_s)
             if(is_quotes(m_s->input[m_s->e]))
                 set_quotes(m_s);
         }
-        printf("====char[ %c ] ====\n",m_s->input[m_s->e]);
         m_s->e++;
     }
     if (m_s->e > m_s->s)

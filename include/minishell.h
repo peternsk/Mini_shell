@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/18 11:54:09 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/27 13:32:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ t_minish 	*init_ms(void);
 t_token 	*set_token(t_token *token, t_minish *m_s);;
 void	    add_token_to_end(t_token **lst, t_token *token);
 int		    count_token(t_token *token);
-void	    print_token(t_token *lst);
 void	    assign_type(t_token *token, t_minish *m_s);
 void	    meta_type(t_token *token);
 void	    assign_token_type(t_token **lst, t_minish *m_s);
+void	    printRealList(t_token *lst);
+char        *rightType(int type);
 
 
 /*--- quote && double quote ---*/
@@ -94,6 +95,8 @@ bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);
 void		begin_parsing(void);
+void        setDelimiter(t_token **lst);
+void        setFile(t_token **lst);
 
 /*====================================================*/
 /*=                       ENV                        =*/
@@ -112,7 +115,6 @@ void	    print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s);
 char		**exp_split(char const *s, char c);
 
 char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
-char        *valBefDol(t_token *token);
 void        replaceToken(t_token *token);
 
 
@@ -129,7 +131,8 @@ void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
 t_cmdlts    *create_cmdLst(t_minish *m_s);
 void		print_cmdLst(t_cmdlts *lst);
 char        *ft_statchValue(t_token **lst);
-void        ft_builder(t_cmdlts *cmd, t_token **tokLst);
+char        **ft_builder(t_cmdlts *cmd, t_minish *m_s);
+void	    printArray(char **arr);
 
 
 
@@ -146,7 +149,6 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
-void        ft_builder(t_cmdlts *cmd, t_token **tokLst);
 
 
 #endif

@@ -1,0 +1,15 @@
+total 960
+drwxr-xr-x  14 pnsaka  2022_quebec     476 Mar 28 20:05 .
+drwxr-xr-x   4 pnsaka  2022_quebec     136 Feb 23 07:28 ..
+-rw-r--r--   1 pnsaka  2022_quebec    6148 Feb 23 07:28 .DS_Store
+drwxr-xr-x  15 pnsaka  2022_quebec     510 Mar 21 12:45 .git
+drwxr-xr-x   3 pnsaka  2022_quebec     102 Mar 11 13:04 .vscode
+-rw-r--r--   1 pnsaka  2022_quebec    2542 Mar 27 13:36 Makefile
+drwxr-xr-x  13 pnsaka  2022_quebec     442 Mar 27 11:51 Push_swap
+-rw-r--r--   1 pnsaka  2022_quebec       0 Mar 28 20:05 apndfile.txt
+-rw-r--r--   1 pnsaka  2022_quebec    2393 Mar 21 10:37 commandTest.txt
+drwxr-xr-x   7 pnsaka  2022_quebec     238 Mar 28 19:40 include
+drwxr-xr-x  91 pnsaka  2022_quebec    3094 Mar 28 19:40 libft
+-rwxr-xr-x   1 pnsaka  2022_quebec  473320 Mar 28 19:40 minishell
+drwxr-xr-x   8 pnsaka  2022_quebec     272 Mar 28 19:40 obj
+drwxr-xr-x  10 pnsaka  2022_quebec     340 Mar 21 10:37 src

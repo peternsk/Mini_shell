@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/18 10:04:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/27 13:20:16 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,6 @@ int		count_token(t_token *token)
 	return(token_num);
 }
 
-void	print_token(t_token *lst)
-{
-	t_token *last;
-	
-	last = lst;
-	if(last == NULL )
-		printf("empty list\n");
-	while(last != NULL)
-	{
-		printf("========== EXPAND =============\n");
-		printf("= token prev  : %p           \n", last->prev);
-		printf("= token id    : %d             \n", last->token_id);
-		printf("= token value : %s          \n", last->value);
-		printf("= token len   : %zu          \n", ft_strlen(last->value));
-		printf("= token type  : %d          \n", last->type);
-		printf("= token end   : %d          \n", last->endToken);
-		printf("= token next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
-		last = last->next;
-	}
-}
 
 t_token     *create_token(t_minish *m_s)
 {

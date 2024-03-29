@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/18 13:28:10 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/21 13:40:39 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,25 @@ char    *ft_statchValue(t_token **lst)
 	return(combTok);
 }
 
-void    ft_builder(t_cmdlts *cmd, t_token **tokLst)
+char   **ft_builder(t_cmdlts *cmd, t_minish *m_s)
 {
     int len;
 	int i;
-	t_token *tok;
+	t_cmdlts *cur;
 
-	 i = 0;
-	tok = *tokLst;
-	len = ft_countArrayspace(&tok);
-	cmd->command = (char **)malloc((sizeof(char *) * (len )) + 1);
-	if(!cmd->command)
-		return;
-	cmd->arrLen = len;
+	i = 0;
+	len = ft_countArrayspace(&m_s->token_lst);
+	cur = cmd;
+	cur->command = (char **)malloc((sizeof(char *) * (len )) + 1);
+	if(!cur->command)
+		return(0);
+	cur->arrLen = len;
 	printf("combined token : %d\n", len);
 	while(i < len)
 	{
-		cmd->command[i] = ft_statchValue(&tok);
-		printf("combined token : %s\n", cmd->command[i]);
+		cur->command[i] = ft_statchValue(&m_s->token_lst);
+		printf("combined token : %s\n", cur->command[i]);
 		i++;
 	}
+	return(cur->command);
 }

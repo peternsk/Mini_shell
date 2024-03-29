@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findVarEnv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/16 16:58:21 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/27 12:10:58 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,29 +107,3 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 		last = last->next;
 	}
 }
-
-// /* 
-//     creer une fonction qui avance dans le token et qui va chercher
-//     toute les valeurs avant le $ pour le stocked dans une string.
-// */
-
-// char    *valBefDol(t_token *token)
-// {
-//     int i;
-
-//     i = 0;
-//     char *tmpValue;
-//     while(token->value && token->value[i] != '$')
-//         i++;
-//     tmpValue = (char *)malloc((sizeof(char) * i) + 1);
-//     if(!tmpValue)
-//         return(0);
-//     i = 0;
-//     while(token->value && token->value[i] != '$')
-//     {
-//         tmpValue[i] = token->value[i];
-//         i++;
-//     }
-//     tmpValue[i] = '\0';
-//     return(tmpValue);
-// }
