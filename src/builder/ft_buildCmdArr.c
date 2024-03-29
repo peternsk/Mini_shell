@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/21 13:40:39 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:00:22 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char    *ft_statchValue(t_token **lst)
 			combTok = ft_strjoin(combTok, last->value);
 		last->setToCmd = FLAG_ON;
 	}
+	printf("CMDlist argument : %s\n", combTok);
 	return(combTok);
 }
 
