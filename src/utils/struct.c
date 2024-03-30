@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/17 01:41:48 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/03/30 13:21:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_minish *init_ms(void)
 	m_s->in_redr_num = 0;
 	m_s->out_redr_num = 0;
 	m_s->read_flag = 0;
+	m_s->cmdAllSet = 0;
+	m_s->cmdCounter = 0;
     m_s->s = 0;
     m_s->e = 0;
 	return(m_s);

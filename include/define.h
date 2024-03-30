@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/26 14:26:42 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/30 13:21:33 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,15 @@ typedef struct	s_minish
 	t_token  *token_lst;
 	t_env	 *envVarlst;
 	t_cmdlts *cmdLst;
-	t_flags   *flags;
+	t_flags  *flags;
 	char	 *input;
 	int		 index;
 	int 	 pipe_num;
     int 	 in_redr_num;
     int 	 out_redr_num;
 	int		 read_flag;
+	int		 cmdAllSet;
+	int		 cmdCounter;
 	int 	 s;
 	int 	 e;
 } t_minish;
