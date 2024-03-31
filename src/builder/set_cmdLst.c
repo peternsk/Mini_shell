@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/31 12:46:08 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/31 14:08:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ int		ft_nbrOfNode(t_token **lst)
 //     return(m_s->cmdLst);
 // }
 
-t_cmdlts    *create_cmd(t_minish *m_s)
-{
-	t_cmdlts *cmd;
-	int lstLen;
+// t_cmdlts    *create_cmd(t_minish *m_s)
+// {
+// 	t_cmdlts *cmd;
+// 	int lstLen;
 
-	cmd = NULL;
-    add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
-}
+// 	cmd = NULL;
+//     add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
+// }
 
 void	printArray(char **arr)
 {
