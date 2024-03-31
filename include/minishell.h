@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/27 13:32:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/31 12:33:57 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,10 @@ int			ft_countArrayspace(t_token **lst);
 int			ft_nbrOfNode(t_token **lst);
 t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s);
 void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
-t_cmdlts    *create_cmdLst(t_minish *m_s);
-void		print_cmdLst(t_cmdlts *lst);
-char        *ft_statchValue(t_token **lst);
-char        **ft_builder(t_cmdlts *cmd, t_minish *m_s);
+//t_cmdlts    *create_cmd(t_minish *m_s);
+void		print_cmdLst(t_cmdlts *lst);                                                                                                                                                                     
 void	    printArray(char **arr);
+void	    ft_builder(t_token **tokLst ,t_cmdlts *cmd, t_minish *m_s);
 
 
 

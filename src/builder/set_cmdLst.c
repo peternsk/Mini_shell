@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/21 13:52:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/31 12:46:08 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s)
 	cmd->arrLen = -1;
 	cmd->index = m_s->index;
 	m_s->index = m_s->index + 1;
-	cmd->redlst = NULL;
 	cmd->command = NULL;
+	cmd->redlst = NULL;
 	cmd->next = NULL;
 	return(cmd);
 }
@@ -62,20 +62,29 @@ int		ft_nbrOfNode(t_token **lst)
 	return(nodeNeeded);
 }
 
-t_cmdlts    *create_cmdLst(t_minish *m_s)
+// t_cmdlts    *create_cmdLst(t_minish *m_s)
+// {
+// 	t_cmdlts *cmd;
+// 	int lstLen;
+
+// 	cmd = NULL;
+// 	lstLen = ft_nbrOfNode(&m_s->token_lst);
+// 	m_s->index = 0;
+// 	while(lstLen > 0)
+// 	{
+//     	add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
+// 		lstLen--;
+// 	}
+//     return(m_s->cmdLst);
+// }
+
+t_cmdlts    *create_cmd(t_minish *m_s)
 {
 	t_cmdlts *cmd;
 	int lstLen;
 
 	cmd = NULL;
-	lstLen = ft_nbrOfNode(&m_s->token_lst);
-	m_s->index = 0;
-	while(lstLen > 0)
-	{
-    	add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
-		lstLen--;
-	}
-    return(m_s->cmdLst);
+    add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
 }
 
 void	printArray(char **arr)

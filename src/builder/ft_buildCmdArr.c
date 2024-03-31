@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/30 15:29:38 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/03/31 14:04:17 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,80 +22,62 @@ int		ft_countArrayspace(t_token **lst)
 	arrSpc = 1;
 	while(last && last->type != pipe_)
 	{
-		if(last->endToken == 1)
+		if(last->type == argument && last->endToken == 1 && last->setToCmd == FLAG_OFF)
 			arrSpc++;
 		last = last->next;
 	}
 	return(arrSpc);
 }
 
-// char    *ft_statchValue(t_token **lst)
-// {
-//     t_token *last;
-// 	char *combTok;
 
-// 	last = *lst;
-// 	combTok = NULL;
-// 	while(last != NULL && last->type != pipe_ && last->endToken == 0 && last->setToCmd == FLAG_OFF)
-// 	{
-// 		if(combTok == NULL)
-// 			combTok = ft_strdup(last->value);
-// 		else
-// 			combTok = ft_strjoin(combTok, last->value);
-// 		last->setToCmd = FLAG_ON;
-// 		last = last->next;
-// 	}
-// 	if(last->endToken == 1)
-// 	{
-// 		if(last->prev == NULL)
-// 			combTok = ft_strdup(last->value);
-// 		if(last->prev->endToken == 0)
-// 			combTok = ft_strjoin(combTok, last->value);
-// 		last->setToCmd = FLAG_ON;
-// 	}
-// 	last = *lst;
-// 	printf("CMDlist argument : %s\n", combTok);
-// 	return(combTok);
-// }
-
-char    *ft_setCmd(t_token **lst, t_minish *m_s)
+char	*set_arg_to_arr(t_token **toklst)
 {
-	t_token *last;
+	t_token *cur;
+	char *cmd;
+	
+	cur = *toklst;
+	if(cur != NULL && cur->endToken == 1 && cur->type == argument && cur->setToCmd == FLAG_OFF)
+	{
+		cmd = ft_strdup(cur->value);
+		cur->setToCmd = FLAG_ON;
+	}
+	while(cur != NULL && cur->endToken == 0 && cur->type == argument && cur->setToCmd == FLAG_OFF)
+	{
+		
+	}
+	return(cmd);
+}
+
+char	**fill_cmd_arr(t_token **toklst)
+{
+	t_token *cur;
+	char **cmdarr;
+	int arrlen;
 	int i;
 
-	last = *lst;
+	cur = *toklst;
+	arrlen = ft_countArrayspace(toklst);
+	cmdarr = (char **)malloc((sizeof(char *) * arrlen) + 1);
 	i = 0;
-	while(last != NULL)
+	while(cur && cur->type != pipe_)
 	{
-		while(last->type != pipe_)
+		cmdarr[i] = 
+		i++;
+	}
+	return(cmdarr);
+}
+
+void	ft_builder(t_token **tokLst ,t_cmdlts *cmd, t_minish *m_s)
+{
+	t_token *cur;
+
+	cur = *tokLst;
+	while(cur != NULL)
+	{
+		while(cur != NULL || cur->type != pipe_)
 		{
-			m_s->cmdLst = ;
+			create_cmd(m_s);
 		}
+		//cur = function qui voyage jusqu'a la valeur unset
 	}
 }
-
-void	init_cmdlst(t_minish *m_s)
-{
-	
-}
-
-// char   **ft_builder(t_cmdlts *cmd, t_minish *m_s)
-// {
-// 	t_cmdlts *cur;
-// 	int i;
-
-// 	cur = cmd;
-// 	i = 0;
-// 	cur->arrLen = ft_countArrayspace(&m_s->token_lst);
-// 	cur->command = (char **)malloc((sizeof(char *) * (cur->arrLen)) + 1);
-// 	if(!cur->command)
-// 		return(0);
-// 	printf("combined token : %d\n", cur->arrLen);
-// 	while(i < cur->arrLen)
-// 	{
-// 		cur->command[i] = ft_statchValue(&m_s->token_lst);
-// 		printf("combined token : %s\n", cur->command[i]);
-// 		i++;
-// 	}
-// 	return(cur->command);
-// }
