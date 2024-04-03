@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/31 12:33:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 09:50:07 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,12 @@ void        replaceToken(t_token *token);
 /*====================================================*/
 
 void        ft_removeQuotes(t_token **tkLst);
-int			ft_countArrayspace(t_token **lst);
 int			ft_nbrOfNode(t_token **lst);
 t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s);
 void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
-//t_cmdlts    *create_cmd(t_minish *m_s);
 void		print_cmdLst(t_cmdlts *lst);                                                                                                                                                                     
 void	    printArray(char **arr);
-void	    ft_builder(t_token **tokLst ,t_cmdlts *cmd, t_minish *m_s);
+void 	    ft_createCmdLst(t_minish *m_s);
 
 
 
@@ -148,6 +146,7 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
+void        merge_token(t_token **lst);
 
 
 #endif

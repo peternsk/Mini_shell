@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:18:23 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/27 14:23:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 14:09:24 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	printRealList(t_token *lst)
 		printf("= token len   : %zu          \n", ft_strlen(last->value));
 		printf("= token type  : %s          \n", rightType(last->type));
 		printf("= token end   : %d          \n", last->endToken);
+		printf("= token mrg   : %d          \n", last->to_merge);
 		printf("= token next  : %p           \n", last->next);
 		printf("===============================\n");
 		printf("                 =\n");

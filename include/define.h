@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/30 13:21:33 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 10:12:45 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 
 /*--- MACROS ---*/
 # define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+
+/*--- PRINTF COLOR ---*/
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 
 /*--- ENUM && STRUCT ---*/
@@ -50,6 +60,7 @@ typedef	struct s_token
 	char *expValue;
 	int type;
 	int endToken;
+	int	to_merge;
 	int setToCmd;
 } t_token;
 
@@ -59,8 +70,8 @@ typedef	struct s_cmdlts
 	struct s_cmdlts *next;
 	int index;
 	int arrLen;
-	struct s_redlst *redlst;
 	char **command;
+	struct s_redlst *redlst;
 } t_cmdlts;
 
 typedef	struct s_redlts
