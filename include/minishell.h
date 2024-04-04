@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/03 09:50:07 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 19:45:58 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ void		add_cmdNode_to_end(t_cmdlts **lst, t_cmdlts *cmd);
 void		print_cmdLst(t_cmdlts *lst);                                                                                                                                                                     
 void	    printArray(char **arr);
 void 	    ft_createCmdLst(t_minish *m_s);
+void        combineTokValue(t_token **lst);
+void        merge_token(t_token **lst);
+void        delete_token(t_token **lst, int tokToDel_id);
 
 
 
@@ -146,7 +149,6 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
-void        merge_token(t_token **lst);
 
 
 #endif

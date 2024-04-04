@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:18:23 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/03 14:09:24 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 20:28:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	printRealList(t_token *lst)
 		printf("empty list\n");
 	while(last != NULL)
 	{
-		printf("========== EXPAND =============\n");
+		printf("========== CMDLST =============\n");
 		printf("= token prev  : %p           \n", last->prev);
 		printf("= token id    : %d             \n", last->token_id);
 		printf("= token value : %s          \n", last->value);

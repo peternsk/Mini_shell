@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/03 13:49:07 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 22:38:56 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		main(int ac, char **av, char **env)
 			printRealList(m_s->token_lst);
 			ft_createCmdLst(m_s);
 			merge_token(&m_s->token_lst);
+			combineTokValue(&m_s->token_lst);
+			printRealList(m_s->token_lst);
 			//ft_builder(&m_s->token_lst, m_s->cmdLst, m_s);
 			//print_cmdLst(m_s->cmdLst);
 		}
@@ -57,6 +59,9 @@ int		main(int ac, char **av, char **env)
 // "e"'c'ho 'b'"o"nj"o"'u'r
 // echo "e"'ch'o 'b'"o"n'jo'u"r" ls -la "sal"ut
 // echo bonjour ls -la salut
-// ec"ho" bonjour ls -la salut
+// ec"ho" bon"jour" ls -la salut
+// e"ch"o bo"njo"ur "c"om"m"e"nt"XX
+// echo
+// ec"ho" sa"lut" "b"o"n"j"o"u"r"
 
 
