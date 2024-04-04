@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:37:12 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 10:11:20 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 11:05:54 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void    combineTokValue(t_token **lst)
             cur->value = ft_strjoin(tmp, cur->next->value);
             free(tmp);
             printf("NEW CUR VALUE OF  :" RED "%d " RESET "is " BLU "%s\n" RESET, cur->token_id, cur->value);
+            cur->endToken = cur->next->endToken;
+            cur->to_merge = cur->next->to_merge;
             delete_token(lst, cur->next->token_id);
         }
         if(cur)

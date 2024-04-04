@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 00:12:40 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 13:06:38 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s)
 	cmd->arrLen = -1;
 	cmd->index = m_s->index;
 	m_s->index = m_s->index + 1;
-	cmd->command = NULL;
+	cmd->command = (char **)malloc((sizeof(char *) * 150) + 1);
+	if(!cmd->command)
+		return(0);
 	cmd->redlst = NULL;
 	cmd->next = NULL;
 	return(cmd);

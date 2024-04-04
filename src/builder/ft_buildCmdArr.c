@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 00:14:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 15:14:46 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ int		ft_countArrayspace(t_token **lst)
 	return(arrSpc);
 }
 
+void	ft_builder(t_token **toklst, t_cmdlts **cmdlst)
+{
+	t_token *curTok;
+	t_cmdlts *curCmd;
+	int i;
+	
+	curTok = toklst;
+	curCmd = cmdlst;
+	i = 0;
+	while(curTok)
+	{
+		if(curTok->type)
+		
+	}
+}
 
 // char	*set_arg_to_arr(t_token **toklst)
 // {
