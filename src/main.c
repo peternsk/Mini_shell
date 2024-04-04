@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/03 22:38:56 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:09:27 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		main(int ac, char **av, char **env)
 			merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
 			printRealList(m_s->token_lst);
+			print_cmdLst(m_s->cmdLst);
 			//ft_builder(&m_s->token_lst, m_s->cmdLst, m_s);
-			//print_cmdLst(m_s->cmdLst);
 		}
 	}
 	else
@@ -57,11 +57,11 @@ int		main(int ac, char **av, char **env)
 // echo bonjour comment ca va
 // echo | ls | grep everything | $USER | path
 // "e"'c'ho 'b'"o"nj"o"'u'r
-// echo "e"'ch'o 'b'"o"n'jo'u"r" ls -la "sal"ut
+// echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut
 // echo bonjour ls -la salut
 // ec"ho" bon"jour" ls -la salut
-// e"ch"o bo"njo"ur "c"om"m"e"nt"XX
+// e"ch"o bo"njo"ur | comm"ent"XX "he"ll'o' | ma"k"e ma"in".c | ls -la
 // echo
-// ec"ho" sa"lut" "b"o"n"j"o"u"r"
+// ec"ho" sa"lu"t "b"o"n"j"our"
 
 

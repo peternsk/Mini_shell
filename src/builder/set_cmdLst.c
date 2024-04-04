@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/03 08:58:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:12:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	print_cmdLst(t_cmdlts *lst)
 		printf("empty list\n");
 	while(last != NULL)
 	{
-		printf("========== CMD LST ============\n");
+		printf("============= CMD =============\n");
 		printf("= command prev  : %p           \n", last->prev);
 		printf("= command id    : %d             \n", last->index);
 		printf("= array len     : %d           \n", last->arrLen);

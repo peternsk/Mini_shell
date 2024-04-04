@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:37:12 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/03 22:38:00 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/03 23:36:12 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ void    delete_token(t_token **lst, int tokToDel_id)
 void    combineTokValue(t_token **lst)
 {
     t_token *cur;
+    t_token *head;
     char *tmp;
 
     cur = *lst;
+    head = *lst;
     while(cur != NULL)
     {
         if(cur && (cur->endToken == FLAG_ON && cur->to_merge == FLAG_OFF))
@@ -62,12 +64,14 @@ void    combineTokValue(t_token **lst)
             tmp = ft_strdup(cur->value);
             free(cur->value);
             cur->value = ft_strjoin(tmp, cur->next->value);
+            free(tmp);
             printf("NEW CUR VALUE OF  :" RED "%d " RESET "is " BLU "%s\n" RESET, cur->token_id, cur->value);
             delete_token(lst, cur->next->token_id);
-            //cur = *lst;
         }
         if(cur)
             cur = cur->next;
+        else
+            cur = *lst;
     }
 }
 
