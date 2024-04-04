@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 00:09:27 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 00:27:17 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		main(int ac, char **av, char **env)
 // echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut
 // echo bonjour ls -la salut
 // ec"ho" bon"jour" ls -la salut
-// e"ch"o bo"njo"ur | comm"ent"XX "he"ll'o' | ma"k"e ma"in".c | ls -la
+// e"ch"o bo"njo"ur | comm"ent"XX "he"ll'o' | ma"k"e ma"in".c | ls -la pourquoi ?
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
 
