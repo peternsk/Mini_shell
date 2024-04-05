@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 11:07:42 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 20:57:10 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int		main(int ac, char **av, char **env)
 			merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
 			printRealList(m_s->token_lst);
-			print_cmdLst(m_s->cmdLst);
-			//ft_builder(&m_s->token_lst, m_s->cmdLst, m_s);
+			ft_builder(&m_s->token_lst, &m_s->cmdLst);
+			print_cmdLst(&m_s->cmdLst);
 		}
 	}
 	else
@@ -61,6 +61,7 @@ int		main(int ac, char **av, char **env)
 // echo bonjour ls -la salut
 // ec"ho" bon"jour" ls -la salut
 // e"ch"o bo"njo"ur | comm"ent"XX "he"ll'o' | ma"k"e ma"in".c | ls -la pourquoi ?
+// ech"o"  "$USER" | "comm"entXX "$PATH"  |  ma"in.c" "$HOME" | ls -la pourquoi ?
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
 

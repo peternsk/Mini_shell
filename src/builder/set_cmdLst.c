@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 13:06:38 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 22:01:41 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,33 @@ void	printArray(char **arr)
 	printf("===============================\n");
 }
 
-void	print_cmdLst(t_cmdlts *lst)
+void	print_cmdLst(t_cmdlts **lst)
 {
 	t_cmdlts *last;
 	int i;
 	
-	last = lst;
+	last = *lst;
 	i = 0;
-	if(last == NULL )
+	if(last == NULL)
 		printf("empty list\n");
 	while(last != NULL)
 	{
 		printf("============= CMD =============\n");
 		printf("= command prev  : %p           \n", last->prev);
 		printf("= command id    : %d             \n", last->index);
-		printf("= array len     : %d           \n", last->arrLen);
+		while(last->command[i] != NULL)
+		{
+			printf("= argument[%d]   : %s           \n", i, last->command[i]);
+			i++;
+		}
+		printf("= argument[%d]   : %s           \n", i, last->command[i]);
+		printf("= array len     : %d           \n", i + 1);
 		printf("= redir list    : not set yet    \n");
 		printf("= command next  : %p           \n", last->next);
 		printf("===============================\n");
 		printf("                 =\n");
 		printf("                 =\n");
+		i = 0;
 		last = last->next;
 	}
 }
@@ -115,5 +122,4 @@ void 	ft_createCmdLst(t_minish *m_s)
     	add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
 		nbOfNnode--;
 	}
-	print_cmdLst(m_s->cmdLst);
 }

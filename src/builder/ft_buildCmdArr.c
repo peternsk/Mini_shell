@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 15:14:46 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 21:51:50 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,53 +35,29 @@ void	ft_builder(t_token **toklst, t_cmdlts **cmdlst)
 	t_cmdlts *curCmd;
 	int i;
 	
-	curTok = toklst;
-	curCmd = cmdlst;
+	curTok = *toklst;
+	curCmd = *cmdlst;
 	i = 0;
+	printf("============ CMD ARR ==========\n");
 	while(curTok)
 	{
-		if(curTok->type)
-		
+		if(curTok && (curTok->type == command || curTok->type == argument || curTok->type == sgl_quote_arg || curTok->type == dbl_quote_arg))
+		{
+			curCmd->command[i] = ft_strdup(curTok->value);
+			printf("= argument[%d]  : %s           \n", i, curCmd->command[i]);
+			i++;
+		}
+		else if(curTok && curTok->type == pipe_)
+		{
+			curCmd->command[i] = NULL;
+			i = 0;
+			curCmd = curCmd->next;
+			printf("===============================\n");
+		}
+		curTok = curTok->next;
 	}
+	curCmd->command[i] = NULL;
+	printf("===============================\n");
 }
 
-// char	*set_arg_to_arr(t_token **toklst)
-// {
-// 	t_token *cur;
-// 	char *cmd;
-	
-// 	cur = *toklst;
-// 	cmd = NULL;
-// 	if(cur != NULL && cur->endToken == 1 && cur->type == argument && cur->setToCmd == FLAG_OFF)
-// 	{
-// 		cmd = ft_strdup(cur->value);
-// 		cur->setToCmd = FLAG_ON;
-// 	}
-// 	while(cur != NULL && cur->endToken == 0 && cur->type == argument && cur->setToCmd == FLAG_OFF)
-// 	{
-// 		cmd = ft_strjoin(cmd, cur->value);
-// 		cur->setToCmd = FLAG_ON;
-// 	}
-// 	printf("== cmd : %s\n", cmd);
-// 	return(cmd);
-// }
-
-// char	**fill_cmd_arr(t_token **toklst)
-// {
-// 	t_token *cur;
-// 	char **cmdarr;
-// 	int arrlen;
-// 	int i;
-
-// 	cur = *toklst;
-// 	arrlen = ft_countArrayspace(toklst);
-// 	cmdarr = (char **)malloc((sizeof(char *) * arrlen) + 1);
-// 	i = 0;
-// 	while(cur && cur->type != pipe_)
-// 	{
-// 		cmdarr[i] = set_arg_to_arr(toklst);
-// 		i++;
-// 	}
-// 	return(cmdarr);
-// }
 
