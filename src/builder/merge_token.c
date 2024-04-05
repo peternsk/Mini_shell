@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:37:12 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 11:05:54 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/05 01:23:10 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ void    delete_token(t_token **lst, int tokToDel_id)
 void    combineTokValue(t_token **lst)
 {
     t_token *cur;
-    t_token *head;
     char *tmp;
 
     cur = *lst;
-    head = *lst;
     while(cur != NULL)
     {
         if(cur && (cur->endToken == FLAG_ON && cur->to_merge == FLAG_OFF))
