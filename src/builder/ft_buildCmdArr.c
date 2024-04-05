@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 21:51:50 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 23:30:28 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_countArrayspace(t_token **lst)
 	return(arrSpc);
 }
 
-void	ft_builder(t_token **toklst, t_cmdlts **cmdlst)
+void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 {
 	t_token *curTok;
 	t_cmdlts *curCmd;
@@ -38,13 +38,11 @@ void	ft_builder(t_token **toklst, t_cmdlts **cmdlst)
 	curTok = *toklst;
 	curCmd = *cmdlst;
 	i = 0;
-	printf("============ CMD ARR ==========\n");
 	while(curTok)
 	{
 		if(curTok && (curTok->type == command || curTok->type == argument || curTok->type == sgl_quote_arg || curTok->type == dbl_quote_arg))
 		{
 			curCmd->command[i] = ft_strdup(curTok->value);
-			printf("= argument[%d]  : %s           \n", i, curCmd->command[i]);
 			i++;
 		}
 		else if(curTok && curTok->type == pipe_)
@@ -52,12 +50,14 @@ void	ft_builder(t_token **toklst, t_cmdlts **cmdlst)
 			curCmd->command[i] = NULL;
 			i = 0;
 			curCmd = curCmd->next;
-			printf("===============================\n");
 		}
 		curTok = curTok->next;
 	}
 	curCmd->command[i] = NULL;
-	printf("===============================\n");
 }
 
 
+// void	ft_cmdBuilder(t_token **toklst, t_redlts **redlst)
+// {
+	
+// }

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 20:57:29 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 22:40:00 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void 	    ft_createCmdLst(t_minish *m_s);
 void        combineTokValue(t_token **lst);
 void        merge_token(t_token **lst);
 void        delete_token(t_token **lst, int tokToDel_id);
-void    	ft_builder(t_token **toklst, t_cmdlts **cmdlst);
+void	    ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:01:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/26 21:30:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/04 23:38:30 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    setFile(t_token **lst)
     cur = *lst;
     while(cur != NULL)
     {
-        if((cur->type == delimter || cur->type == apnd_op_redir || cur->type == out_p_redir || cur->type == in_p_redir) && cur->next != NULL)
+        if((cur->type == here_doc || cur->type == apnd_op_redir || cur->type == out_p_redir || cur->type == in_p_redir) && cur->next != NULL)
         {
             cur = cur->next;
             if(cur->type == argument)
