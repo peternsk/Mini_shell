@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildCmdArr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/04 23:30:28 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/05 13:37:34 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,20 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 }
 
 
-// void	ft_cmdBuilder(t_token **toklst, t_redlts **redlst)
-// {
+void	ft_cmdBuilder(t_token **toklst, t_redlts **redlst)
+{
+	t_token *curTok;
+	t_redlts *curRed;
+	int i;
 	
-// }
+	curTok = *toklst;
+	curRed = *redlst;
+	i = 0;
+	while(curTok)
+	{
+		if(curTok && (curTok->type == out_p_redir || curTok->type == in_p_redir || curTok->type = apnd_op_redir || curTok->type = here_doc))
+		{
+			
+		}
+	}
+}

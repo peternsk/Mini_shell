@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 23:32:33 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/05 12:44:03 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int		main(int ac, char **av, char **env)
 // ech"o"  "$USER" | "comm"entXX "$PATH"  |  ma"in.c" "$HOME" | ls -la pourquoi ?
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
+// e"ch"o bo"njo"ur >> file_1.txt | comm"ent"XX "he"ll'o' > file_2. | ma"k"e ma"in".c << EOF
 
 
