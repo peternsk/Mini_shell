@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/04 22:40:00 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/05 19:52:54 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,13 @@ void        combineTokValue(t_token **lst);
 void        merge_token(t_token **lst);
 void        delete_token(t_token **lst, int tokToDel_id);
 void	    ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst);
+
+/*---- REDIRECTION ----*/
+t_redlts 	*setRed(t_redlts *redNode);
+void		add_redNode_to_end(t_redlts **lst, t_redlts *redNode);
+// void 		ft_createRedLst(t_cmdlts *cmdNode, int nb_redTok);
+void 		ft_createRedLst(t_cmdlts *cmdNode);
+int			countNbRednode(t_token **lst);
 
 
 

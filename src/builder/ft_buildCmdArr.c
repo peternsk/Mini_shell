@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/05 13:37:34 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/05 19:38:42 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 	i = 0;
 	while(curTok)
 	{
-		if(curTok && (curTok->type == command || curTok->type == argument || curTok->type == sgl_quote_arg || curTok->type == dbl_quote_arg))
+		if(curTok && (curTok->type == command || curTok->type == argument || 
+		curTok->type == sgl_quote_arg || curTok->type == dbl_quote_arg))
 		{
 			curCmd->command[i] = ft_strdup(curTok->value);
 			i++;
@@ -54,23 +55,4 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 		curTok = curTok->next;
 	}
 	curCmd->command[i] = NULL;
-}
-
-
-void	ft_cmdBuilder(t_token **toklst, t_redlts **redlst)
-{
-	t_token *curTok;
-	t_redlts *curRed;
-	int i;
-	
-	curTok = *toklst;
-	curRed = *redlst;
-	i = 0;
-	while(curTok)
-	{
-		if(curTok && (curTok->type == out_p_redir || curTok->type == in_p_redir || curTok->type = apnd_op_redir || curTok->type = here_doc))
-		{
-			
-		}
-	}
 }
