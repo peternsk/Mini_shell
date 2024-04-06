@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/26 14:00:15 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/05 23:27:07 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ bool	prs_ast_redir(t_token **lst)
 	current = *lst;
 	while(current != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL ||  current->next == NULL))
+		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))
+			return(false);
+		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->next == NULL))
 			return(false);
 		current = current->next;
 	}
@@ -91,6 +93,7 @@ void    ft_lexer(t_token **lst)
 {
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
+		exit_status = 0;
 		exit_status = exit_status + 2;
 		printf("===============================\n");
 		printf("=      bash: syntax error     =\n");
@@ -99,6 +102,7 @@ void    ft_lexer(t_token **lst)
 		printf("===============================\n");
 		printf("=             $? : %d          =\n", exit_status);
 		printf("===============================\n");
+		exit(0);
 		
 	}
 	else

@@ -29,7 +29,7 @@ LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 PARSER		= 	ft_parsing setFile printRealList
 
-BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token
+BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
 SIGNALS		=
 

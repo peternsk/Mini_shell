@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildRedlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/05 19:54:50 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/06 00:19:31 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redlts 	*setRed(t_redlts *redNode)
+t_redlts 	*setRed(t_redlts *redNode, int redtype, char *filename)
 {
 	redNode = malloc(sizeof(t_redlts));
 	if(!redNode)
 		return(0);
 	redNode->prev = NULL;
-	redNode->redtype = -1;
-	redNode->filename = NULL;
+	redNode->redtype = redtype;
+	redNode->filename = filename;
 	redNode->next = NULL;
 	return(redNode);
 }
 
-void	add_redNode_to_end(t_redlts **lst, t_redlts *redNode)
+void	add_redNode_to_end(t_redlts *lst, t_redlts *redNode)
 {
 	t_redlts *last;
 	
 	if(!lst)
 		return;
-	if(*lst == NULL)
+	if(lst == NULL)
 	{
-		*lst = redNode;
+		lst = redNode;
 		redNode->next = NULL;
 		return;	
 	}
-	last = *lst;
+	last = lst;
 	while(last->next != NULL)
 		last = last->next;
 	last->next = redNode;
@@ -44,17 +44,12 @@ void	add_redNode_to_end(t_redlts **lst, t_redlts *redNode)
 }
 
 
-// void 	ft_createRedLst(t_cmdlts *cmdNode, int nb_redTok)
-void 	ft_createRedLst(t_cmdlts *cmdNode)
+void	ft_createRedLst(t_redlts *redlst, int redtype, char *filename)
 {
 	t_redlts *redNode;
 
 	redNode = NULL;
-	// while(nb_redTok > 0)
-	// {
-    	add_cmdNode_to_end(&cmdNode->redlst, set_red(redNode));
-	// 	nb_redTok--;
-	// }
+    add_redNode_to_end(redlst, setRed(redNode, redtype, filename));
 }
 
 int		countNbRednode(t_token **lst)
@@ -76,29 +71,27 @@ int		countNbRednode(t_token **lst)
 }
 
 
-void	ft_redBuilder(t_minish *m_s)
+void	ft_redBuilder(t_token **toklst, t_cmdlts **cmdlst)
 {
+	t_token *curTok;
+	t_cmdlts *curCmd;
 	int i;
-
+	
+	curTok = *toklst;
+	curCmd = *cmdlst;
 	i = 0;
-	t_redlts *redNode;
-
-	redNode = 
-	while(m_s->token_lst)
+	while(curTok)
 	{
-		if(m_s->token_lst && (m_s->token_lst->type == out_p_redir || m_s->token_lst->type == in_p_redir 
-		|| m_s->token_lst->type == apnd_op_redir || m_s->token_lst->type == here_doc))
+		if(curTok && (curTok->type == out_p_redir || curTok->type == in_p_redir || 
+		curTok->type == apnd_op_redir || curTok->type == here_doc))
 		{
-			ft_createRedLst(m_s->cmdLst->redlst);
-			m_s->cmdLst->redlst
+			ft_createRedLst(curCmd->redlst, curTok->type, curTok->next->value);
+			curTok = curTok->next; 
 		}
 		else if(curTok && curTok->type == pipe_)
 		{
-			curCmd->command[i] = NULL;
-			i = 0;
 			curCmd = curCmd->next;
 		}
 		curTok = curTok->next;
 	}
-	curCmd->command[i] = NULL;
 }

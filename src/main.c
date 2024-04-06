@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/05 12:44:03 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/05 23:45:44 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int		main(int ac, char **av, char **env)
 			printRealList(m_s->token_lst);
 			ft_cmdBuilder(&m_s->token_lst, &m_s->cmdLst);
 			print_cmdLst(&m_s->cmdLst);
+			ft_redBuilder(&m_s->token_lst, &m_s->cmdLst);
+
 		}
 	}
 	else
@@ -65,5 +67,3 @@ int		main(int ac, char **av, char **env)
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
 // e"ch"o bo"njo"ur >> file_1.txt | comm"ent"XX "he"ll'o' > file_2. | ma"k"e ma"in".c << EOF
-
-
