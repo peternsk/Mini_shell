@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildCmdArr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/05 23:00:33 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/09 12:14:33 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,20 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 	
 	curTok = *toklst;
 	curCmd = *cmdlst;
-	i = 0;
+	i = -1;
 	while(curTok)
 	{
-		if(curTok && (curTok->type == command || curTok->type == argument || 
-		curTok->type == sgl_quote_arg || curTok->type == dbl_quote_arg))
-		{
-			curCmd->command[i] = ft_strdup(curTok->value);
-			i++;
-		}
+		if(curTok && (curTok->type >= command && curTok->type <= argument))
+			curCmd->command[++i] = ft_strdup(curTok->value);
+		// else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
+		// 	ft_createRedLst(curCmd->redlst, curTok->value, curTok->next->value);
 		else if(curTok && curTok->type == pipe_)
 		{
-			curCmd->command[i] = NULL;
-			i = 0;
+			curCmd->command[++i] = NULL;
+			i = -1;
 			curCmd = curCmd->next;
 		}
 		curTok = curTok->next;
 	}
-	curCmd->command[i] = NULL;
+	curCmd->command[++i] = NULL;
 }

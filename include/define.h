@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/06 00:15:39 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/07 11:12:29 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
+typedef	struct s_redlts t_redlts;
 
 /*--- ENUM && STRUCT ---*/
 typedef enum token_type 
@@ -68,7 +69,7 @@ typedef	struct s_redlts
 {
 	struct s_cmdlst *prev;
 	struct s_cmdlst *next;
-	int redtype;
+	char *redtype;
 	char *filename;
 } t_redlts;
 
@@ -79,7 +80,7 @@ typedef	struct s_cmdlts
 	int index;
 	int arrLen;
 	char **command;
-	struct s_redlst *redlst;
+	t_redlts *redlst;
 } t_cmdlts;
 
 
