@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:37:12 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/05 01:23:10 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/09 21:21:35 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,6 @@ void    combineTokValue(t_token **lst)
             cur->to_merge = cur->next->to_merge;
             delete_token(lst, cur->next->token_id);
         }
-        if(cur)
-            cur = cur->next;
-        else
-            cur = *lst;
     }
 }
 

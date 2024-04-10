@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_cmdLst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 12:17:22 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/09 21:22:55 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	print_cmdLst(t_cmdlts **lst)
 		}
 		printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
 		printf("= array len     : %d           \n", i + 1);
-		// print_redLst(&last->redlst);
+		print_redLst(&last->redlst);
 		printf("= command next  : %p           \n", last->next);
 		printf("===============================\n");
 		printf("                 =\n");

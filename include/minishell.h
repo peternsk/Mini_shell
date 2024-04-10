@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 12:16:37 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/09 20:14:52 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ void        delete_token(t_token **lst, int tokToDel_id);
 void	    ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst);
 
 /*---- REDIRECTION ----*/
-t_redlts 	*setRed(t_redlts *redNode, char *redtype, char *filename);
-void	    add_redNode_to_end(t_redlts **lst, t_redlts *redNode);
-void	    ft_createRedLst(t_redlts *redlst, char *redtype, char *filename);
+t_redlts 	*setRed(char *redtype, char *filename);
+void	    add_redNode_to_end(t_redlts **redNode, t_redlts *newNode);
+// void	    ft_createRedLst(t_redlts *redlst, char *redtype, char *filename);
 int		    countNbRednode(t_token **lst);
-// void		print_redLst(t_redlts **lst);
+void		print_redLst(t_redlts **lst);
 
 
 /*====================================================*/

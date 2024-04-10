@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/07 11:12:29 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/09 19:55:34 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ typedef	struct s_token
 
 typedef	struct s_redlts
 {
-	struct s_cmdlst *prev;
-	struct s_cmdlst *next;
+	struct s_redlts *prev;
+	struct s_redlts *next;
 	char *redtype;
 	char *filename;
 } t_redlts;
