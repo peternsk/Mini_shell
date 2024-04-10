@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:28:24 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/03 13:38:58 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 09:13:26 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void    ft_endToken(t_token *token, t_minish *m_s)
     {
         token->endToken = FLAG_ON;
         token->to_merge = FLAG_ON;
+    }
+    else if (token->type >= out_p_redir && token->type <= dbl_pipe_)
+    {
+        token->endToken = FLAG_ON;
+        token->to_merge = FLAG_OFF;
     }
     else
     {

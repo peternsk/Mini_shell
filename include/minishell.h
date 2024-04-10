@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 20:14:52 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 08:56:01 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ void	    ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst);
 /*---- REDIRECTION ----*/
 t_redlts 	*setRed(char *redtype, char *filename);
 void	    add_redNode_to_end(t_redlts **redNode, t_redlts *newNode);
-// void	    ft_createRedLst(t_redlts *redlst, char *redtype, char *filename);
 int		    countNbRednode(t_token **lst);
 void		print_redLst(t_redlts **lst);
 

@@ -6,13 +6,13 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:02:55 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/03 10:13:27 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 09:10:10 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token 	*set_token(t_token *token, t_minish *m_s)
+t_token 	* set_token(t_token *token, t_minish *m_s)
 {
 	token = malloc(sizeof(t_token));
 	if(!token)

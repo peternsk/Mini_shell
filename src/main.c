@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 22:24:51 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 09:51:28 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		main(int ac, char **av, char **env)
 // echo bonjour comment ca va
 // echo | ls | grep everything | $USER | path
 // "e"'c'ho 'b'"o"nj"o"'u'r
-// echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut
+// echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EOF
 // echo bonjour ls -la salut
 // ec"ho" bon"jour" ls -la salut
 // e"ch"o bo"njo"ur | comm"ent"XX "he"ll'o' | ma"k"e ma"in".c | ls -la pourquoi ?
@@ -65,4 +65,8 @@ int		main(int ac, char **av, char **env)
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
 // e"ch"o bo"njo"ur >> file_1.txt | comm"ent"XX "he"ll'o' > file_2 | ma"k"e ma"in".c << EOF
-// e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt 
+// e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt
+ 
+// echo>>file_1|comment hello>file_2|make<<EOF>file_3
+// echo >> file_1 | comment hello > file_2 | make << EOF
+// e"c"ho >> f'i'le"_1" $USER | c"o"mm'en't 'h'e"ll"o > fi"le_2" $ZDOTDIR | ma"ke" << EO"F"

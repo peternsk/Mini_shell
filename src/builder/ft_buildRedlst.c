@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 22:06:28 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 08:56:32 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void	add_redNode_to_end(t_redlts **lst, t_redlts *redNode)
 	redNode->prev = last;
 }
 
-
-void	ft_createRedLst(t_redlts **redlst, char *redtype, char *filename)
-{
-    add_redNode_to_end(redlst, setRed(redtype, filename));
-}
 
 int		countNbRednode(t_token **lst)
 {
