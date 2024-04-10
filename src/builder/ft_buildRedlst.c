@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildRedlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/10 08:56:32 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:00:18 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,16 @@ void	print_redLst(t_redlts **lst)
 	last = *lst;
 	if(last == NULL)
 	{	
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("------------ RED NODE ---------\n");
-		printf("- " RED "empty redir list  " RESET "  \n");
+		printf("-------------------------------\n");
+		printf("- " RED "EMPTY RED LIST  " RESET "  \n");
 		printf("-------------------------------\n");
 	}
 	while(last != NULL)
 	{
-		printf("===========  RED NODE =========\n");
-		printf("= command prev  : %p           \n", last->prev);
-		printf("= redtype       :" BLU " %s" RESET "         \n", last->redtype);
-		printf("= filename      :" GRN " %s" RESET "         \n", last->filename);
-		printf("= command next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
+		printf("-------------------------------\n");
+		printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
+		printf("= RED->FILE      :" GRN " %s" RESET "         \n", last->filename);
 		last = last->next;
 	}
+	printf("-------------------------------\n");
 }

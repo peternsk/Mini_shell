@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/10 09:51:28 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 11:58:36 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int		main(int ac, char **av, char **env)
 // echo
 // ec"ho" sa"lu"t "b"o"n"j"our"
 // e"ch"o bo"njo"ur >> file_1.txt | comm"ent"XX "he"ll'o' > file_2 | ma"k"e ma"in".c << EOF
-// e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt
+// e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER
  
 // echo>>file_1|comment hello>file_2|make<<EOF>file_3
-// echo >> file_1 | comment hello > file_2 | make << EOF
+// echo >> file_1 | comment hello > file_2 | make << EOF > file_3
 // e"c"ho >> f'i'le"_1" $USER | c"o"mm'en't 'h'e"ll"o > fi"le_2" $ZDOTDIR | ma"ke" << EO"F"
+// e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER | ls -la < file_5 << EOF > file_6

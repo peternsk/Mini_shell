@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_cmdLst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 21:22:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 11:41:04 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,16 @@ void	print_cmdLst(t_cmdlts **lst)
 	while(last != NULL)
 	{
 		printf("============= CMD =============\n");
-		printf("= command prev  : %p           \n", last->prev);
-		printf("= command id    : %d             \n", last->index);
+		printf("= " GRN "command prev  : %p" RESET " \n", last->prev);
+		printf("= command id    : "YEL"%d" RESET " \n", last->index);
 		while(last->command[i] != NULL)
 		{
 			printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
 			i++;
 		}
 		printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
-		printf("= array len     : %d           \n", i + 1);
+		printf("= " GRN "command next  : %p" RESET " \n", last->next);
 		print_redLst(&last->redlst);
-		printf("= command next  : %p           \n", last->next);
 		printf("===============================\n");
 		printf("                 =\n");
 		printf("                 =\n");
