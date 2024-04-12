@@ -1,0 +1,15 @@
+/*====================================================*/
+/*=                       PROMPT                     =*/
+/*====================================================*/
+
+export MY_VAR="example_value" cat input_file.txt | grep "pattern" > filtered_lines.txt sed 's/old/new/g' < filtered_lines.txt | sort -r > sorted_lines.txt uniq -c < sorted_lines.txt | awk '{print $2, $1}' | tee output_file.txt gzip < output_file.txt > compressed_output.gz
+
+ls -l | grep ".txt" > text_files_list.txt awk '{print $5, $9}' < text_files_list.txt | sort -n | tee sorted_text_files.txt sed 's/^/File size: /' < sorted_text_files.txt > final_output.txt
+
+e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER | ls -la < file_5 << EOF > file_6
+
+e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER
+
+echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EOF
+
+"e"'ch'o 'b'"o"n'jo'u"r" c""o"mment" "l"s "-"'la' | gre"p""" all "$USER""$HOME"$PA"TH"

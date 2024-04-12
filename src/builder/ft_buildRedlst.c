@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/10 12:00:18 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/12 08:50:31 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_redLst(t_redlts **lst)
 	{
 		printf("-------------------------------\n");
 		printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
-		printf("= RED->FILE      :" GRN " %s" RESET "         \n", last->filename);
+		printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->filename);
 		last = last->next;
 	}
 	printf("-------------------------------\n");

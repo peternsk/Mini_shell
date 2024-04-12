@@ -23,7 +23,7 @@ EXECUTION	=
 
 ENV			=	set_env findVarEnv exp_split ft_expend
 
-GARBAGE 	=  
+GARBAGE 	=  	add_address
 
 LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
