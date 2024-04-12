@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:28:24 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/10 11:23:04 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/10 14:29:16 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void    ft_endToken(t_token *token, t_minish *m_s)
 {   
-	if(m_s->input[m_s->e + 1] == ' ' || m_s->input[m_s->e + 1] == '\0' || m_s->input[m_s->e + 1] == '<' || m_s->input[m_s->e + 1] == '>')
+	if(m_s->input[m_s->e + 1] == ' ' || m_s->input[m_s->e + 1] == '\0' 
+	|| m_s->input[m_s->e + 1] == '<' || m_s->input[m_s->e + 1] == '>')
     {
         token->endToken = FLAG_ON;
         token->to_merge = FLAG_OFF;
     }
-    else if(m_s->input[m_s->e] && m_s->input[m_s->e + 1] && m_s->input[m_s->e + 1] == ' ')
+    else if(m_s->input[m_s->e] && m_s->input[m_s->e + 1] && m_s->input[m_s->e + 1] == ' ' && token->next->type != pipe_)
     {
         token->endToken = FLAG_ON;
         token->to_merge = FLAG_ON;

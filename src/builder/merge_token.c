@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:37:12 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/10 09:30:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:34:47 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void    combineTokValue(t_token **lst)
     {
         if(cur && (cur->endToken == FLAG_ON && cur->to_merge == FLAG_OFF))
             cur = cur->next;
-        if(cur && (cur->endToken == FLAG_OFF && cur->to_merge == FLAG_ON))
+        if(cur && (cur->endToken == FLAG_OFF && cur->to_merge == FLAG_ON) && cur->next->type != pipe_)
         {
             tmp = ft_strdup(cur->value);
             free(cur->value);
@@ -68,6 +68,8 @@ void    combineTokValue(t_token **lst)
             cur->to_merge = cur->next->to_merge;
             delete_token(lst, cur->next->token_id);
         }
+		else if(cur)
+			cur = cur->next;
     }
 }
 
