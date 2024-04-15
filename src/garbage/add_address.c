@@ -6,13 +6,13 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:50:26 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/12 12:47:35 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/12 21:25:50 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_garbage	*set_add_node(t_garbage *node, void *value)
+t_garbage	*set_addy_node(t_garbage *node, void *value)
 {
 	node = malloc(sizeof(t_garbage));
 	if(!node)
@@ -20,6 +20,7 @@ t_garbage	*set_add_node(t_garbage *node, void *value)
 	node->prev = NULL;
 	node->adresse = value;
 	node->next = NULL;
+	return(node);
 }
 
 void	add_node_to_end(t_garbage **lst, t_garbage *node)
@@ -49,6 +50,6 @@ void	*malloc_and_add(size_t size, void *var_to_malloc, t_garbage **gbLst)
 	var_to_malloc = malloc(size);
 	if(!var_to_malloc)
 		return(0);
-	add_node_to_end(gbLst, set_add_node(node, var_to_malloc));
+	add_node_to_end(gbLst, set_addy_node(node, var_to_malloc));
 	return(var_to_malloc);
 }
