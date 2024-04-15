@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_cmdLst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/10 11:41:04 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/15 13:16:16 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s)
 	cmd->arrLen = -1;
 	cmd->index = m_s->index;
 	m_s->index = m_s->index + 1;
-	cmd->command = (char **)malloc((sizeof(char *) * 150) + 1);
+	cmd->command = (char **)malloc_and_add((sizeof(char *) * 150) + 1);
 	if(!cmd->command)
 		return(0);
 	cmd->redlst = NULL;

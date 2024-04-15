@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/13 14:11:16 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 14:57:59 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**exp_split(char const *s, char c)
 	if (!s)
 		return (0);
 	nbw = count_word(s, c);
-	split = malloc(sizeof(char *) * (nbw + 1));
+	split = malloc_and_add(sizeof(char *) * (nbw + 1));
 	if (!split)
 		return (0);
 	return (splitcpy(split, s, c));

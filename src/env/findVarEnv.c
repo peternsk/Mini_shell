@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/27 12:10:58 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:00:38 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char    *find_tmp_key(t_token *tk, t_minish *m_s)
         m_s->e++;
     if(m_s->e > m_s->s)
     {
-        tmpKey = (char *)malloc((sizeof(char) * (m_s->e - m_s->s)) + 1);
+        tmpKey = (char *)malloc_and_add((sizeof(char) * (m_s->e - m_s->s)) + 1);
         if(!tmpKey)
             return(0);
         ft_strncpy(tmpKey, (tk->value + m_s->s), (m_s->e - m_s->s));
@@ -77,6 +77,7 @@ char    *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey)
         {
             tmpStr = ft_strdup(curVar->value);
             *tmpvalue = ft_strjoin(*tmpvalue, tmpStr);
+            add_garbage(tmpvalue);
             free(tmpStr);
         }
         curVar = curVar->next;
@@ -89,6 +90,7 @@ void    replaceToken(t_token *token)
         free(token->value);
         token->value = ft_strdup(token->expValue);
         free(token->expValue);
+        add_garbage(token->value);
 }
 
 void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)

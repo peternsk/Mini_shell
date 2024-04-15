@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:48:25 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/15 13:46:17 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:14:46 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void     phaseOneExp(t_token *token, t_minish *m_s)
     while(token->value[m_s->e] && token->value[m_s->e] != '$')
         m_s->e = m_s->e + 1;
     token->expValue = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
+    add_garbage(token->expValue);
 }
 
 static void    ft_exitStatus(t_token *token, t_minish *m_s)
@@ -30,6 +31,7 @@ static void    ft_exitStatus(t_token *token, t_minish *m_s)
     token->expValue = ft_strjoin(token->expValue, exitCode);
     m_s->e = m_s->e + 2;
     m_s->s = m_s->e;
+    add_garbage(token->expValue);
     free(exitCode);
 }
 
@@ -56,6 +58,7 @@ void    ft_expend(t_token *token, t_env **lst, t_minish *m_s)
                 m_s->e = m_s->e + 1;
             tmpExp = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
             token->expValue = ft_strjoin(token->expValue, tmpExp);
+            add_garbage(token->expValue);
             free(tmpExp);
         }
     }

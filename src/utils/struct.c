@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/30 13:21:37 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 14:57:00 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_minish *init_ms(void)
 {
 	t_minish	*m_s;
 
-	m_s = malloc(1 * sizeof(t_minish));
+	m_s = malloc_and_add(1 * sizeof(t_minish));
 	if (!m_s)
 		return (NULL);
 	m_s->input = NULL;
@@ -39,7 +39,7 @@ t_flags *init_flag(void)
 {
 	t_flags	*flags;
 
-	flags = malloc(1 * sizeof(t_flags));
+	flags = malloc_and_add(1 * sizeof(t_flags));
 	if (!flags)
 		return (NULL);
     flags->sgl_flag = FLAG_OFF;

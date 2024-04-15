@@ -6,50 +6,99 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:50:26 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/12 14:00:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 14:44:58 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_garbage	*set_add_node(t_garbage *node, void *value)
+t_garbage *get_head(void)
 {
-	node = malloc(sizeof(t_garbage));
-	if(!node)
-		return(0);
-	node->prev = NULL;
-	node->adresse = value;
-	node->next = NULL;
-	return(node);
+	static struct s_garbage garb_coll = {0, 0, 0}; 
+
+	return(&garb_coll);
 }
 
-void	add_node_to_end(t_garbage **lst, t_garbage *node)
-{
-	t_garbage *last;
-	
-	if(!lst)
-		return;
-	if(*lst == NULL)
-	{
-		*lst = node;
-		node->next = NULL;
-		return;	
-	}
-	last = *lst;
-	while(last->next != NULL)
-		last = last->next;
-	last->next = node;
-	node->prev = last;
-}
-
-void	*malloc_and_add(size_t size, void *var_to_malloc, t_garbage **gbLst)
+void	*malloc_and_add(size_t size)
 {
 	t_garbage *node;
 
-	node = NULL;
-	var_to_malloc = malloc(size);
-	if(!var_to_malloc)
+	node = malloc(sizeof(t_garbage));
+	if(!node)
 		return(0);
-	add_node_to_end(gbLst, set_add_node(node, var_to_malloc));
-	return(var_to_malloc);
+	node->adresse = malloc(size);
+	if(!node->adresse)
+	{
+		free(node);
+		return(0);
+	}
+	node->next = get_head()->next;
+	get_head()->next = node;
+	return(node->adresse);
+}
+
+
+void	add_garbage(void *adresse)
+{
+	t_garbage *node;
+
+	node = malloc(sizeof(t_garbage));
+	if(!node)
+		return;
+	node->adresse = adresse;
+	node->next = get_head()->next;
+	get_head()->next = node;
+}
+
+void	all_free(void)
+{
+	t_garbage	*gc_ptr;
+	t_garbage	*tmp;
+
+	gc_ptr = get_head()->next;
+	while (gc_ptr)
+	{
+		if (gc_ptr->adresse)
+		{
+			free(gc_ptr->adresse);
+			gc_ptr->adresse = NULL;
+		}
+		tmp = gc_ptr;
+		gc_ptr = gc_ptr->next;
+		if (tmp)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
+	}
+	get_head()->next = NULL;
+}
+
+
+void	print_garbage_collector()
+{
+	t_garbage *last;
+	int i = 0;
+	
+	last = get_head()->next;
+	if(last == NULL )
+		printf("empty list\n");
+	while(last != NULL)
+	{
+		printf("                 =\n");
+		printf("                 =\n");
+		printf("========== GARLST =============\n");
+		printf("= garbage prev  : %p           \n", last->prev);
+		printf("= garbage addy  : %p           \n", last->adresse);
+		printf("= garbage next  : %p           \n", last->next);
+		printf("===============================\n");
+		printf("                 =\n");
+		printf("                 =\n");
+		i++;
+		last = last->next;
+	}
+	printf("========= GARNODES ============\n");
+	printf("= num of nodes  : %d           \n", i);
+	printf("===============================\n");
+	
 }

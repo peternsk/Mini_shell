@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/12 08:58:44 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/15 14:51:15 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
     char **envTab;
     
     envTab = ft_split(env_row, '=');
-	node = malloc(sizeof(t_env));
+	node = malloc_and_add(sizeof(t_env));
 	if(!node)
 		return(0);
 	node->prev = NULL;
     node->key = ft_strdup(envTab[0]);
+	add_garbage(node->key);
     node->value = ft_strdup(envTab[1]);
+	add_garbage(node->value);
 	node->next = NULL;
 	return(node);
 }
@@ -86,5 +88,5 @@ void       set_env_lst(t_minish *m_s, char **env)
         create_var(m_s, env[i]);
         i++;
     }
-    // print_env_lst(m_s->envVarlst);
+    print_env_lst(m_s->envVarlst);
 }

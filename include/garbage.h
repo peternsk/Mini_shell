@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:26:45 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/12 12:50:47 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/15 13:39:33 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@ typedef struct s_garbage
 
 /*--- ADDING NODE TO THE GARBAGE LINKED LIST ---*/
 
-t_garbage	*set_add_node(t_garbage *node, void *value);
-void		add_node_to_end(t_garbage **lst, t_garbage *node);
-void		*malloc_and_add(size_t size, void *var_to_malloc, t_garbage **gbLst);
+t_garbage 	*get_head(void);
+void		*malloc_and_add(size_t size);
+void		add_garbage(void *adresse);
+void		all_free(void);
 
 /*--- DELETING NODE TO THE GARBAGE LINKED LIST ---*/
+
+
+/*--- PRINTING THE GARBAGE LINKED LIST ---*/
+
+void		print_garbage_collector();
 
 #endif
