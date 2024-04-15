@@ -13,3 +13,4 @@ e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$
 echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EOF
 
 "e"'ch'o 'b'"o"n'jo'u"r" c""o"mment" "l"s "-"'la' | gre"p""" all "$USER""$HOME"$PA"TH"
+
