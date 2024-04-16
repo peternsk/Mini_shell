@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 15:00:38 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 20:33:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ bool 	find_key_in_list(t_env **lst, char *tmpKey)
     return(false);
 }
 
-
 char    *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey)
 {
     t_env *curVar;
@@ -89,8 +88,8 @@ void    replaceToken(t_token *token)
 {
         free(token->value);
         token->value = ft_strdup(token->expValue);
-        free(token->expValue);
         add_garbage(token->value);
+        free(token->expValue);
 }
 
 void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)

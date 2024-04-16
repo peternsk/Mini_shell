@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 14:57:59 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 19:57:51 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static char	**splitcpy(char **split, char const *s, char c)
 		split[word] = ft_substr(s, start, i - start);
 		if (!split[word])
 			return (free_tab(split));
+		add_garbage(split[word]);
 		word++;
 	}
 	split[word] = 0;

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:18:23 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/03 20:28:40 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 19:45:19 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char    *rightType(int type)
         str = ft_strdup("DELIMITER");
     if(type == 11)
         str = ft_strdup("FILE");
+    add_garbage(str);
     return(str);
 }
 

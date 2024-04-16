@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 14:51:15 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 19:51:03 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
     char **envTab;
     
     envTab = ft_split(env_row, '=');
+	add_garbage(envTab);
 	node = malloc_and_add(sizeof(t_env));
 	if(!node)
 		return(0);

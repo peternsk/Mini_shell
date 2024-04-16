@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_removeQuotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:12:50 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/16 23:57:52 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/15 20:35:42 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ void    ft_removeQuotes(t_token **tkLst)
     while(last != NULL)
     {
         if(last->type == sgl_quote_arg)
+        {
             last->value = ft_strtrim(last->value, "\'");
+            add_garbage(last->value);
+        }
         if(last->type == dbl_quote_arg)
+        {
             last->value = ft_strtrim(last->value, "\"");
+            add_garbage(last->value);   
+        }
         last = last->next;
     }
 }

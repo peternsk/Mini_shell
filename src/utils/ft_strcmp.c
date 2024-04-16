@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 23:21:08 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/03/13 14:29:25 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 20:46:05 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ bool    ft_strcmp(char *tmpKey, char *envKey)
     char *newKey;
     i = 0;
     newKey = ft_strtrim(tmpKey, "\"");
+    add_garbage(newKey);
     if(ft_strlen(newKey) != ft_strlen(envKey))
         return(false);
     while(newKey[i] != '\0')

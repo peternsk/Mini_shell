@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 13:08:25 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 20:41:03 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_redlts 	*setRed(char *redtype, char *filename)
 {
 	t_redlts *redNode;
 	
-	// redNode = malloc(sizeof(t_redlts));
 	redNode = malloc_and_add(sizeof(t_redlts));
 	if(!redNode)
 		return(0);

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 13:16:16 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 20:36:28 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_cmdlts 	*set_cmdNode(t_cmdlts *cmd, t_minish *m_s)
 {
-	cmd = malloc(sizeof(t_cmdlts));
+	cmd = malloc_and_add(sizeof(t_cmdlts));
 	if(!cmd)
 		return(0);
 	cmd->prev = NULL;

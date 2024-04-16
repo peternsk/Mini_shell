@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/09 20:38:46 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/15 20:42:05 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 	while(curTok)
 	{
 		if(curTok && (curTok->type >= command && curTok->type <= dbl_quote_arg))
+		{
 			curCmd->command[++i] = ft_strdup(curTok->value);
+			add_garbage(curCmd->command[i]);
+		}
 		else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
 			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value));
 		else if(curTok && curTok->type == pipe_)
