@@ -21,7 +21,7 @@ BUILTIN		=
 
 EXECUTION	=
 
-ENV			=	set_env findVarEnv exp_split ft_expend
+ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
 GARBAGE 	=  	add_address
 

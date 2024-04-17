@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:26:45 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 13:39:33 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/17 09:13:59 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_garbage
 t_garbage 	*get_head(void);
 void		*malloc_and_add(size_t size);
 void		add_garbage(void *adresse);
-void		all_free(void);
 
 /*--- DELETING NODE TO THE GARBAGE LINKED LIST ---*/
+void		all_free(void);
 
 
 /*--- PRINTING THE GARBAGE LINKED LIST ---*/

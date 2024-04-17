@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/09 19:55:34 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/17 12:42:21 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct	s_minish
 	t_cmdlts *cmdLst;
 	t_flags  *flags;
 	char	 *input;
+	char	 **tab_env;
 	int		 index;
 	int 	 pipe_num;
     int 	 in_redr_num;

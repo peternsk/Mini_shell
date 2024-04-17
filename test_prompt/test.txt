@@ -8,7 +8,7 @@ ls -l | grep ".txt" > text_files_list.txt awk '{print $5, $9}' < text_files_list
 
 e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER | ls -la < file_5 << EOF > file_6
 
-e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt >> file_4.txt $USER$USERR$USER
+ls -l  grep ".txt" > text_files_list.txt | e"ch"o bo"njo"ur >> file_1.txt  >> file_2.txt >> file_3.txt << EOF > file_4.txt $USER$USERR$USER
 
 echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EOF
 

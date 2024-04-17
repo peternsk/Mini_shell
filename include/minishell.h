@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/10 08:56:01 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/17 14:45:41 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,9 @@ char		**exp_split(char const *s, char c);
 char        *findVarEnv(t_env **lst, char **tmpvalue, char *tmpKey);
 void        replaceToken(t_token *token);
 
-
+char        **list_to_tab(t_env **lst);
+char        *token_2_str(t_env *env_node);
+int		    count_env_node(t_env *node);
 
 /*====================================================*/
 /*=                     BUILDER                      =*/
