@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list2tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/17 15:40:02 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/17 16:59:19 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,19 @@ char    **list_to_tab(t_env **lst)
     size_t nb_token;
     t_env *node;
     char **env_tab;
+	int i;
 
     node = *lst;
     nb_token = count_env_node(node);
     env_tab = (char**)malloc((sizeof(char *) * nb_token) + 1);
-    printf("tap [%p]\n", &env_tab);
+	i = 0;
     while(node)
     {
-        *env_tab = token_2_str(node);
-        printf("str [%s]\n", *env_tab);
-        printf("add str [%p]\n", &env_tab);
-        env_tab+1;
-        printf("add str 2 [%p]\n", &env_tab);
+        env_tab[i] = token_2_str(node);
+        i++;
         node = node->next;
     }
-    env_tab = NULL;
-    printf("tap [%p]\n", &env_tab);
+    env_tab[i] = NULL;
     return(env_tab);
 }
 
