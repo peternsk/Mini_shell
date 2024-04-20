@@ -19,7 +19,7 @@ OBJS_DIR	= obj
 
 BUILTIN		=
 
-EXECUTION	=
+EXECUTION	= init_cmds add_cmds cout_cmds_pipes
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/17 14:45:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/19 20:01:42 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,13 @@ bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
 
+/*====================================================*/
+/*=                 init_cmd execution               =*/
+/*====================================================*/
+
+void        init_cmds(char **env, t_minish *m_s);
+void        add_cmds(t_cmd **node, t_cmd *new, char **envp, t_redlts *files);
+void        cout_cmds_pipes(t_cmd **cmds);
 
 #endif
  
