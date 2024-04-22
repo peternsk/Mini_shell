@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_address.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 11:50:26 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 14:44:58 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/22 14:00:01 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_garbage *get_head(void)
 {
-	static struct s_garbage garb_coll = {0, 0, 0}; 
+	static struct s_garbage garb_coll = {0, 0}; 
 
 	return(&garb_coll);
 }
@@ -88,7 +88,6 @@ void	print_garbage_collector()
 		printf("                 =\n");
 		printf("                 =\n");
 		printf("========== GARLST =============\n");
-		printf("= garbage prev  : %p           \n", last->prev);
 		printf("= garbage addy  : %p           \n", last->adresse);
 		printf("= garbage next  : %p           \n", last->next);
 		printf("===============================\n");

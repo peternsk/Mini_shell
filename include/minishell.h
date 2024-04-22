@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/17 14:45:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/22 14:37:52 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void        setFile(t_token **lst);
 /*====================================================*/
 /*=                       ENV                        =*/
 /*====================================================*/
+void		print_env_lst(t_env *lst);
 
 t_env 	    *intEnvVar(t_env *node, char *env_row);
 void	    add_var_to_end(t_env **lst, t_env *var);
