@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 20:02:19 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/19 20:43:33 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:55:28 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ t_files *add_curr(t_redlts *new_files)
     if (!files)
         return (NULL);
     files->name = new_files->filename;
-    files->type = 
+    files->type = type_cmds((const char *)new_files->redtype);
     files->next = NULL;
+    return (files);
 }
 
 void    add_files(t_files **files, t_redlts *new_files)
@@ -34,16 +35,21 @@ void    add_files(t_files **files, t_redlts *new_files)
         curr_new_files = new_files;
         while (curr_new_files != NULL)
         {
-            if (!*files)
+            if (!*files)   
                 *files = add_curr(curr_new_files);
             else 
             {
                 curr_add_files = *files;
                 while (curr_add_files->next!= NULL)
-                    curr_add_files = curr_add_files;
+                    curr_add_files = curr_add_files->next;
                 curr_add_files->next = add_curr(curr_new_files);
             }
-            curr_add_files = curr_add_files->next;
+            curr_new_files = curr_new_files->next;
         }
     }
+}
+
+void fake_1()
+{
+    
 }

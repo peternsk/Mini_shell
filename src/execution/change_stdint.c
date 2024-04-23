@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
+/*   change_stdint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:40:35 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:40:36 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cout_cmds_pipes(t_cmd **cmds)
+int change_stdint(t_files *file)
 {
-    t_cmd   *curr;
-    int     i;
+    int fd;
 
-    i = 0;
-    curr = *cmds;
-    while (curr != NULL)
+    if (file)
     {
-        curr->index = i;
-        i++;
-        curr = curr->next;
+        if (file->name)
+        {
+            if (file->name)
+            {
+                fd = open(file->name, O_RDONLY);
+                if (fd > 0)
+                {
+                    dup2(fd, 0);
+                    return (1);
+                }
+            }
+            return (-1);
+        }    
     }
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->nb_cmds = i;
-        curr->nb_pipes = i  - 1;
-        curr = curr->next;
-    }
-   
+    return (-1);
 }

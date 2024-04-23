@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
+/*   wait_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:20:09 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:20:10 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cout_cmds_pipes(t_cmd **cmds)
+void    wait_childs(t_cmd *cmds)
 {
-    t_cmd   *curr;
-    int     i;
-
-    i = 0;
-    curr = *cmds;
-    while (curr != NULL)
+    t_cmd *curr;
+    curr = NULL;
+    if (cmds)
     {
-        curr->index = i;
-        i++;
-        curr = curr->next;
+        if (cmds->nb_pipes > 0)
+        {
+            curr = cmds;
+            while (curr != NULL)
+            {
+                waitpid(curr->id, NULL, 0);
+                curr = curr->next;
+            }
+        }
     }
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->nb_cmds = i;
-        curr->nb_pipes = i  - 1;
-        curr = curr->next;
-    }
-   
 }

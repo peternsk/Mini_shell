@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
+/*   is_change_std.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:31:12 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:33:20 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cout_cmds_pipes(t_cmd **cmds)
+void    is_change_std(t_files *files)
 {
-    t_cmd   *curr;
-    int     i;
+    if (files)
+    {
+        if (files->type == apnd_op_redir)
+            ft_append(files);
+        if (files->type == in_p_redir)
+            change_stdint(files);
+        if (files->type == out_p_redir)
+            change_stdout(files);
 
-    i = 0;
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->index = i;
-        i++;
-        curr = curr->next;
     }
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->nb_cmds = i;
-        curr->nb_pipes = i  - 1;
-        curr = curr->next;
-    }
-   
 }

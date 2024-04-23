@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:58:48 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/19 20:43:48 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 00:50:05 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ t_cmd *init_curr_cmd()
     return (node);
 }
 
-
-void print_cmds(t_cmd *s_cmd)
+void print_cmds(t_cmd **s_cmd)
 {
     t_cmd *curr;
-    curr = s_cmd;
+    t_files *curr_f;
+    
+    curr_f = NULL;
+    curr = *s_cmd;
     int     i = 0;
     printf("======================================is init=============================================\n");
     while (curr != NULL)
@@ -44,7 +46,15 @@ void print_cmds(t_cmd *s_cmd)
         printf("curr->index %d\n", curr->index);
         printf("curr->cmd_name %s\n", curr->cmd_name);
         if (curr->files)
-            printf("curr->files->name %s\n", curr->files->name);
+        {
+            curr_f = curr->files;
+            while (curr_f != NULL)
+            {
+                printf("curr->files->name %s and files type %d \n", curr_f->name, curr_f->type);
+                curr_f = curr_f->next;
+            }
+            
+        }
         printf("cur->nb_pipes %d\n", curr->nb_pipes);
         printf("cur->nb_cmds %d\n", curr->nb_cmds);
         printf("======== av ============\n");
@@ -62,17 +72,18 @@ void print_cmds(t_cmd *s_cmd)
     }
     printf("======================================ends init=============================================\n");
 }
+
+
 // aouter le files [en cours]
 // ajouter nb_cmd [done]
 // ajouter nb_pipes [done]
-// ajouter le type de cmds
+// ajouter le type de cmds [done]
 
 void    init_cmds(char **env, t_minish *m_s)
 {
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
-    
     curr = NULL;
     currList = NULL;
     if (m_s->cmdLst)
@@ -81,14 +92,16 @@ void    init_cmds(char **env, t_minish *m_s)
         while (currList != NULL)
         {
             new = init_curr_cmd();
-            new->cmd_name  = *m_s->cmdLst->command;
-            new->av_cmd  = m_s->cmdLst->command;
-            add_cmds(&curr, new, env, m_s->cmdLst->redlst);
+            new->cmd_name  = *currList->command;
+            new->envp = env;
+            new->type = type_cmds((const char *)new->cmd_name);
+            new->av_cmd  = currList->command;
+            add_cmds(&curr, new, env, currList->redlst);
             currList = currList->next;
         }
         cout_cmds_pipes(&curr);
-        print_cmds(curr);
-        
+        // print_cmds(&curr);
+        run_commands(curr);
     }
 }
 

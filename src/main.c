@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/19 13:29:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 00:01:47 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int		main(int ac, char **av, char **env)
 			tokenizer(m_s);	
 			begin_parsing();
 			ft_lexer(&m_s->token_lst);
-			print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
+			// print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
 			ft_removeQuotes(&m_s->token_lst);
 			setDelimiter(&m_s->token_lst);
 			setFile(&m_s->token_lst);
-			printRealList(m_s->token_lst);
+			// printRealList(m_s->token_lst);
 			ft_createCmdLst(m_s);
 			merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
-			printRealList(m_s->token_lst);
+			// printRealList(m_s->token_lst);
 			ft_cmdBuilder(&m_s->token_lst, &m_s->cmdLst);
-			print_cmdLst(&m_s->cmdLst);
+			// print_cmdLst(&m_s->cmdLst);
 			init_cmds(env, m_s);
 			// print_garbage_collector();
 			m_s->tab_env = list_to_tab(&m_s->envVarlst);

@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
+/*   which_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:33:49 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cout_cmds_pipes(t_cmd **cmds)
+void    which_cmd(t_cmd *current)
 {
-    t_cmd   *curr;
-    int     i;
-
-    i = 0;
-    curr = *cmds;
-    while (curr != NULL)
+    if (current->files)
+        is_change_std(current->files);
+    if (current->type == out_p_redir)
     {
-        curr->index = i;
-        i++;
-        curr = curr->next;
+        // we make de les here and we look at the > redirection
+        // exit();
     }
-    curr = *cmds;
-    while (curr != NULL)
+    if (current->type == 8)
     {
-        curr->nb_cmds = i;
-        curr->nb_pipes = i  - 1;
-        curr = curr->next;
+        // we make de commande and we look at the > redirection
+        // exit();
     }
-   
 }

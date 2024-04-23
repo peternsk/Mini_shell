@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:23:42 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:23:44 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    cout_cmds_pipes(t_cmd **cmds)
+int execute_command(t_cmd *current, char **envp, char *envp_path)
 {
-    t_cmd   *curr;
-    int     i;
+     char	*cmd_path;
 
-    i = 0;
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->index = i;
-        i++;
-        curr = curr->next;
-    }
-    curr = *cmds;
-    while (curr != NULL)
-    {
-        curr->nb_cmds = i;
-        curr->nb_pipes = i  - 1;
-        curr = curr->next;
-    }
-   
+    if (!current)
+        return (printf("current is NULL"), -1);
+    which_cmd(current);
+    cmd_path = get_cmd_path(envp_path, current->cmd_name);
+    if(!cmd_path)
+        return (exit(EXIT_FAILURE), 0);
+    if (execve(cmd_path, current->av_cmd, envp) == -1)
+        return (perror("Command error===="), exit(EXIT_FAILURE), 0);
+    return (1);
 }

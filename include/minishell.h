@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/19 20:01:42 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/22 23:42:49 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,20 @@ void        ft_endToken(t_token *token, t_minish *m_s);
 void        init_cmds(char **env, t_minish *m_s);
 void        add_cmds(t_cmd **node, t_cmd *new, char **envp, t_redlts *files);
 void        cout_cmds_pipes(t_cmd **cmds);
+void        add_files(t_files **files, t_redlts *new_files);
+int         type_cmds(const char *s);
+int         run_commands(t_cmd *cmds);
+char        *get_envp_path(char **envp);
+int         single_command(t_cmd *cmd, char **envp, char *envp_path);
+int         commands(t_cmd *cmds, char *envp_path);
+void        wait_childs(t_cmd *cmds);
+int         execute_command(t_cmd *current, char **envp, char *envp_path);
+char        *get_cmd_path(char *path, char *cmd);
+void        which_cmd(t_cmd *current);
+void        is_change_std(t_files *files);
+int         ft_append(t_files *file);
+int         change_stdint(t_files *file);
+int         change_stdout(t_files *files);
 
 #endif
  
