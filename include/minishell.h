@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/22 23:42:49 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 01:53:52 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void        is_change_std(t_files *files);
 int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
+int         handel_builtin(t_cmd *cmd);
 
 #endif
  
