@@ -6,15 +6,17 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/22 14:34:02 by peternsaka       ###   ########.fr       */
+=======
+/*   Updated: 2024/04/17 17:48:17 by pnsaka           ###   ########.fr       */
+>>>>>>> a821058548c14eabef78e89499447142356e26fd
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 int exit_status = 0;
-
-// static struct s_garbage garb_coll = {0, 0, 0}; 
 
 int		main(int ac, char **av, char **env)
 {

@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/22 14:42:42 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/23 10:37:59 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,14 @@ char    **list_to_tab(t_env **lst)
     node = *lst;
     nb_token = count_env_node(node);
     env_tab = (char**)malloc((sizeof(char *) * nb_token) + 1);
-	i = 0;
-    while(node && i < nb_token)
+	i = -1;
+    while(++i < nb_token)
     {
 		printf("KEY    : %s\n", node->key);
 		printf("VALUE  : %s\n", node->value);
         env_tab[i] = token_2_str(node);
-        i++;
         node = node->next;
     }
-    env_tab = NULL;
     return(env_tab);
 }
 
