@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/17 17:34:36 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/23 10:51:02 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char    *token_2_str(t_env *env_node)
     str[i] = '=';
     i++;
     j = -1;
-    while(tmp->value[++j])
+    while(tmp->value && tmp->value[++j])
     {
         str[i] = tmp->value[j];
         i++;

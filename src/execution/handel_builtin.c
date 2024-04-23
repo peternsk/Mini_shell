@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 02:17:47 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:58:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int handel_builtin(t_cmd *cmd)
 {
-
     // export()   
     return (1);
 }
