@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/23 01:53:52 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:24:38 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int         commands(t_cmd *cmds, char *envp_path);
 void        wait_childs(t_cmd *cmds);
 int         execute_command(t_cmd *current, char **envp, char *envp_path);
 char        *get_cmd_path(char *path, char *cmd);
-void        which_cmd(t_cmd *current);
+void        which_files(t_cmd *current);
 void        is_change_std(t_files *files);
 int         ft_append(t_files *file);
 int         change_stdint(t_files *file);

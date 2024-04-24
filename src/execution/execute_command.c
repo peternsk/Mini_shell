@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:23:42 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:23:44 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:43:39 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,21 @@ int execute_command(t_cmd *current, char **envp, char *envp_path)
 
     if (!current)
         return (printf("current is NULL"), -1);
-    which_cmd(current);
-    cmd_path = get_cmd_path(envp_path, current->cmd_name);
-    if(!cmd_path)
-        return (exit(EXIT_FAILURE), 0);
-    if (execve(cmd_path, current->av_cmd, envp) == -1)
-        return (perror("Command error===="), exit(EXIT_FAILURE), 0);
-    return (1);
+    which_files(current);
+    if (current->nb_cmds > 1 && current->nb_pipes > 0 && current->type == 8)
+        handel_builtin(current);
+    else
+    {     
+        cmd_path = get_cmd_path(envp_path, current->cmd_name);
+        if(!cmd_path)
+            return (exit(EXIT_FAILURE), 0);
+        if (execve(cmd_path, current->av_cmd, envp) == -1)
+            return (perror("Command error===="), exit(EXIT_FAILURE), 0);
+        return (1);
+    }
+}
+
+void fake_3()
+{
+    
 }
