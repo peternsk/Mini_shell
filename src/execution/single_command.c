@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:15:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 01:47:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:04:38 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             wait_childs(cmd);
             return (1);
         }
+        return (1);
     }
     return (-1);   
 }

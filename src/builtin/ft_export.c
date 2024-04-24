@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_cmds.c                                         :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 19:59:10 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 21:52:46 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/23 21:18:05 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/23 21:18:08 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    add_cmds(t_cmd **node, t_cmd *new, t_redlts *files)
+void ft_export(char **envp, char **vars, bool print)
 {
-    t_cmd *curr;
-    if (!*node)
-    {
-        if (files)
-            add_files(&new->files, files);
-        *node = new;
-        return ;
-    }
-    curr = *node;
-    while (curr->next != NULL)
-        curr = curr->next;
-    if (files)
-        add_files(&new->files, files);
-    curr->next = new;
+    if (print)
+        printEnvp(envp);
+    else
+        envp = addEnvp(envp, vars);
+    for (int i = 0; envp[i] != NULL; i++)
+        printf("%s\n", envp[i]);
 }

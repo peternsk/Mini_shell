@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:23:42 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 15:43:39 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:26:30 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int execute_command(t_cmd *current, char **envp, char *envp_path)
             return (perror("Command error===="), exit(EXIT_FAILURE), 0);
         return (1);
     }
+    return (0);
 }
 
-void fake_3()
+void fake_4()
 {
     
 }
