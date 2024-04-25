@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/17 12:42:21 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/19 19:51:31 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,34 @@ typedef struct	s_minish
 	int 	 s;
 	int 	 e;
 } t_minish;
+
+/*----------------- CMDS EXECUTION -------------*/
+
+/*--- FILES/ ---*/
+typedef	struct	s_files 
+{
+	int		type;
+	char	*name;
+	char	*agrv;
+	struct	s_files *next;
+}t_files;
+
+
+/*--- PIPE/ ---*/
+typedef struct  s_cmd {
+	int		type;
+	pid_t	id;
+	int		**pipes;
+	char	**av_cmd;
+	char	*cmd_name;
+	char	**envp;
+	int		index;
+	bool	is_vars;
+	int		nb_cmds;
+	int 	nb_pipes;
+	// should be a void next stuck
+	struct s_cmd *next;
+	t_files *files;
+} t_cmd;
 
 #endif

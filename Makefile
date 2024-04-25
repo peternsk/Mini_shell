@@ -19,7 +19,7 @@ OBJS_DIR	= obj
 
 BUILTIN		=
 
-EXECUTION	=
+EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout #handel_builtin
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
