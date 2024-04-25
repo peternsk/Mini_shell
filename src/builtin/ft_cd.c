@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:11:15 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 11:39:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:20:57 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void    expansion_change_directory(t_cmd *cmds)
         if (chdir(cmds->av_cmd[1]) == 0)
         {
             newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));
+            printf("%s ---- --- \n", newPwd[0]);
             ft_export(cmds->envp, newPwd, false);
+            
+            // ft_export(cmds->envp, newPwd, true);
         }
         else
             perror("minishell");

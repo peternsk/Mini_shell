@@ -1,27 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   addEnvp.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 21:19:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 21:22:25 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
-int size(char **env)
-{
-    int i;
-
-    i = 0;
-    if (env)
-        while (env[i] != NULL)
-            i++;
-    return (i);
-}
 void free_str_envp(char **str)
 {
     int i;
@@ -32,39 +10,44 @@ void free_str_envp(char **str)
         free(str[i]);
         i++;
     }
+    free(str);
 }
 
-// remove the size count make it one count 
+char *is_same_key_value(char **envp, char *s, int index)
+{
+    char *new_str;
+
+    new_str = NULL;
+    if (index == -1)
+        return (s);
+    if (ft_strncmp((const char *)envp[index], (const char *)s, ft_strlen((const char *)envp[index])) == 0)
+        return (new_str);
+    else
+        new_str = ft_strdup(s);
+    return (new_str);
+}
 char **addEnvp(char **envp, char **vars)
 {
-    char    **new;
-    int     len;
-    int     len2;
-    int     i;
-    int     j;
+    int i;
+    int index;
+    char **new;
 
+    new = NULL;
     i = 0;
-    j = 0;
-    len = size(envp);
-    len2 = size(vars);
-    new = malloc(sizeof(char **) * (len + len + 1));
-    if (!new)
-        return (NULL);
-    new[len + len2] = NULL;
-    while ( i < len)
+    while (vars[i] != NULL)
     {
-        new[i] = envp[i];
+        if (ft_strchr(vars[i], '=') != NULL)
+        {
+            index = same_var_value(envp, vars[i]);
+            vars[i] = is_same_key_value(envp, vars[i], index);
+            new = new_envp(envp, new, vars[i], index);
+        }
+        else
+        {
+            index = same_varibale(envp, vars[i]);
+            new = new_envp(envp, new, vars[i], index);
+        }
         i++;
-    }
-    while (j < len2)
-    {
-        new[i] = vars[j];
-        i++;
-        j++;
     }
     return (new);
-}
-void fake_3()
-{
-    
 }

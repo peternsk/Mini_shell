@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export.c                                        :+:      :+:    :+:   */
+/*   is_same.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 21:18:05 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:18:27 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/25 13:28:23 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/25 13:28:29 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_export(char **envp, char **vars, bool print)
+bool is_same(char *s, char *v)
 {
-    char **tmp;
+    int i;
 
-    tmp = NULL;
-    if (print)
-        printEnvp(envp);
-    else
+    i = 0;
+    while (s[i] != '\0' && s[i] != '=' && i < (int)ft_strlen(v))
     {
-        tmp = check_duplicate(vars);
-        envp = addEnvp(envp, tmp);
+        if (s[i] == v[i])
+        {
+            // printf("%c and %c\n", s[i], v[i]);
+            i++;
+        }
+        else 
+            return (false);
     }
-    // (void)print;
-    // (void)vars;
-    for (int i = 0; envp[i] != NULL; i++)
-        printf("%s\n", envp[i]);
+    // printf(" %c -- \n", s[i]);
+    // printf("====================================\n");
+    if (v[i] == '\0' && s[i] == '=')
+        return (true);
+    return (false);
 }

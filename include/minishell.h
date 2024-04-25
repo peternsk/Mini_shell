@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 11:26:02 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 13:40:28 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,13 @@ void        ft_echo(char **av, bool is_line);
 void        ft_export(char **envp, char **vars, bool print);
 char        **addEnvp(char **envp, char **vars);
 void        printEnvp(char **envp);
+char        **check_duplicate(char **vars);
+bool        is_same(char *s, char *v);
+char        **new_envp(char **envp, char **new, char *vars, int index);
+int         same_var_value(char **envp, char *var);
+int         same_varibale(char **envp, char *var);
+int         is_add(char **envp, char *var, int kv);
+int         size(char **env);
 
 #endif
  

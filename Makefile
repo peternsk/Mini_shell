@@ -17,7 +17,7 @@ SRCS_DIR 	= src
 OBJS_DIR	= obj
 
 
-BUILTIN		= ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export
+BUILTIN		= ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export is_same new_envp same_var_value check_duplicate same_variable is_add size
 
 EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin
 
