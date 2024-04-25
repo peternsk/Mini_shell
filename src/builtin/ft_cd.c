@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:11:15 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/24 01:47:41 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:39:35 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,25 @@ char    *form_envp_get_home(char **envp)
     }
     return (NULL);
 }
-int root_directory(char **envp)
-{
-    const char    *path;
-
-    path = form_envp_get_home(envp);
-    if (chdir(path) == 0)
-        ft_pwd();
-    return (0);
-}
 void    expansion_change_directory(t_cmd *cmds)
 {
+    char str[PATH_MAX];
+    char *oldPwd;
+    char **newPwd;
+
+    oldPwd = NULL;
+    newPwd = malloc(sizeof(char *) * 2);
+    if (!newPwd)
+        return;
+    newPwd[1] = NULL;
     if (cmds->av_cmd[1] != NULL)
-    {   
+    {  
+        oldPwd = getcwd(str, PATH_MAX);
         if (chdir(cmds->av_cmd[1]) == 0)
-            ft_pwd();
+        {
+            newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));
+            ft_export(cmds->envp, newPwd, false);
+        }
         else
             perror("minishell");
     }
@@ -61,7 +65,7 @@ void    ft_cd(t_cmd *cmds)
     if (ft_strncmp(cmds->cmd_name, "cd", 2) == 0)
     {
         if (!cmds->av_cmd[1])
-            root_directory(cmds->envp);
+            chdir(form_envp_get_home(cmds->envp));
         else 
             expansion_change_directory(cmds);
     }

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/24 01:32:54 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:42:56 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,21 @@ int which_built(t_cmd *built)
 }
 void    evecv_built(t_cmd *built, int _w)
 {
+    bool    is_print;
+
+    is_print = false;
     if (_w == 1)
         ft_cd(built);
 //     if (_w == 2)
 //         // echo
-//     if (_w == 3)
-//         // pwd
-//     if (_w == 4)
-//         // export
+    if (_w == 3)
+        ft_pwd();
+    if (_w == 4)
+    {
+        if (built->av_cmd)
+            is_print = true;
+        ft_export(built->envp, built->av_cmd, is_print);
+    }
 //     if (_w == 5)
 //         // unset
 //     if (_w == 6)
