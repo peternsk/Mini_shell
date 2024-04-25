@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:58:48 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 11:25:39 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:42:32 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void print_cmds(t_cmd **s_cmd)
 
 void    init_cmds(char **envp, t_minish *m_s)
 {
+    (void)envp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
@@ -93,8 +94,7 @@ void    init_cmds(char **envp, t_minish *m_s)
         {
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
-            // new->envp = list_to_tab(&m_s->envVarlst);
-            new->envp = envp;
+            new->envp = list_to_tab(&m_s->envVarlst);
             // free_list(m_s->envVarlst);
             new->type = type_cmds((const char *)new->cmd_name);
             new->av_cmd  = currList->command;

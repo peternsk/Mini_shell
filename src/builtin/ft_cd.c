@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:11:15 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 13:20:57 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:24:05 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void    expansion_change_directory(t_cmd *cmds)
             newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));
             printf("%s ---- --- \n", newPwd[0]);
             ft_export(cmds->envp, newPwd, false);
-            
-            // ft_export(cmds->envp, newPwd, true);
+            for (int i = 0; cmds->envp[i] != NULL; i++)
+                printf("%s\n", cmds->envp[i]);
         }
         else
             perror("minishell");
