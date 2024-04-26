@@ -24,16 +24,21 @@ char    *form_envp_get_home(char **envp)
     }
     return (NULL);
 }
+
+char    *get_live_path()
+{
+    char    str[PATH_MAX];
+    return (getcwd(str, PATH_MAX));
+}
 void    expansion_change_directory(t_cmd *cmds, char **oldPwd, char **newPwd)
 {
-    char str[PATH_MAX];
    
     if (cmds->av_cmd[1] != NULL)
     {  
-       oldPwd[0] =  ft_strjoin("OLDPWD=", getcwd(str, PATH_MAX));
+       oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
         if (chdir(cmds->av_cmd[1]) == 0)
         {
-            newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));
+            newPwd[0] = ft_strjoin("PWD=", get_live_path());
             printf("new = %s ---- --- \n", newPwd[0]);
             printf("old = %s ---- --- \n", oldPwd[0]);
             ft_export(cmds->envp, newPwd, false);
@@ -46,6 +51,7 @@ void    expansion_change_directory(t_cmd *cmds, char **oldPwd, char **newPwd)
     }
 }
 // TODO: maybe change the function for better error handling
+// test si le update du env function 
 void    ft_cd(t_cmd *cmds)
 {
     char **oldPwd;
@@ -62,8 +68,11 @@ void    ft_cd(t_cmd *cmds)
     {
         if (!cmds->av_cmd[1])
         {
-
+            oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
             chdir(form_envp_get_home(cmds->envp));
+            newPwd[0] =  ft_strjoin("PWD=", get_live_path());
+            ft_export(cmds->envp, oldPwd, false);
+            ft_export(cmds->envp, newPwd, false);
 
         }
         else 
