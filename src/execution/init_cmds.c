@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_cmds.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 12:58:48 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 19:42:32 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 t_cmd *init_curr_cmd()
@@ -94,7 +82,8 @@ void    init_cmds(char **envp, t_minish *m_s)
         {
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
-            new->envp = list_to_tab(&m_s->envVarlst);
+            // new->envp = list_to_tab(&m_s->envVarlst);
+            new->envp = envp;
             // free_list(m_s->envVarlst);
             new->type = type_cmds((const char *)new->cmd_name);
             new->av_cmd  = currList->command;

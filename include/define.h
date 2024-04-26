@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/19 19:51:31 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:57:33 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,19 +138,19 @@ typedef	struct	s_files
 
 /*--- PIPE/ ---*/
 typedef struct  s_cmd {
-	int		type;
-	pid_t	id;
-	int		**pipes;
-	char	**av_cmd;
-	char	*cmd_name;
-	char	**envp;
-	int		index;
-	bool	is_vars;
-	int		nb_cmds;
-	int 	nb_pipes;
-	// should be a void next stuck
-	struct s_cmd *next;
-	t_files *files;
+	int				type;
+	pid_t			id;
+	int				**pipes;
+	char			**av_cmd;
+	char			*cmd_name;
+	char			**envp;
+	int				index;
+	bool			is_vars;
+	int				nb_cmds;
+	int 			nb_pipes;
+	struct s_cmd 	*next;
+	t_minish 		*glob;
+	t_files 		*files;
 } t_cmd;
 
 #endif

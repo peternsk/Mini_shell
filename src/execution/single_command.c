@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:15:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 19:31:33 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:59:17 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
     if (cmd)
     {
         if (cmd->type == 8)
-        {
-                handel_builtin(cmd);
-        }
+            handel_builtin(cmd);
         else
         {
             cmd->id = fork();

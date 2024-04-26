@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 13:40:28 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -194,6 +182,8 @@ int         same_var_value(char **envp, char *var);
 int         same_varibale(char **envp, char *var);
 int         is_add(char **envp, char *var, int kv);
 int         size(char **env);
+void        ft_unset(t_cmd *unset);
+char        *is_same_key_value(char **envp, char *s, int index);
 
 #endif
  
