@@ -184,6 +184,8 @@ int         is_add(char **envp, char *var, int kv);
 int         size(char **env);
 void        ft_unset(t_cmd *unset);
 char        *is_same_key_value(char **envp, char *s, int index);
+void        ft_env(t_cmd *env);
+void        ft_exit(t_cmd *exi);
 
 #endif
  

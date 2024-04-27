@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/26 16:52:44 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:02:57 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void    evecv_built(t_cmd *built, int _w)
     }
     if (_w == 5)
         ft_unset(built);
-//     if (_w == 6)
-//         // env
-//     if (_w == 7)
-//         // exit
+    if (_w == 6)
+        ft_env(built);
+    if (_w == 7)
+       ft_exit(built);
 }
 int handel_builtin(t_cmd *cmd)
 {
