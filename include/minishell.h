@@ -171,7 +171,7 @@ int         change_stdout(t_files *files);
 int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
-void        ft_echo(char **av, bool is_line);
+void        ft_echo(t_cmd *ec);
 void        ft_export(char **envp, char **vars, bool print);
 char        **addEnvp(char **envp, char **vars);
 void        printEnvp(char **envp);

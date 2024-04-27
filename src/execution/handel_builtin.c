@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/26 11:29:10 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:52:44 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void    evecv_built(t_cmd *built, int _w)
     is_print = true;
     if (_w == 1)
         ft_cd(built);
-//     if (_w == 2)
-//         // echo
+    if (_w == 2)
+        ft_echo(built);
     if (_w == 3)
         ft_pwd();
     if (_w == 4)
