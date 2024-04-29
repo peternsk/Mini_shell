@@ -32,11 +32,6 @@ void    ft_echo(t_cmd *ec)
         }
         i++;
     }
-    if (i == 1)
+    if (is_line(ec->av_cmd) == false || size(ec->av_cmd) == 1)
         printf("\n");
-    else 
-    {
-        if  (is_line(ec->av_cmd) == false && size(ec->av_cmd) > 2)
-            printf("\n");
-    }
 }
