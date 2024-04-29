@@ -8,7 +8,7 @@ int execute_command(t_cmd *current, char **envp, char *envp_path)
         return (printf("current is NULL"), -1);
     which_files(current);
     if (current->nb_cmds > 1 && current->nb_pipes > 0 && current->type == 8)
-        handel_builtin(current);
+        exit(handel_builtin(current));
     else
     {     
         cmd_path = get_cmd_path(envp_path, current->cmd_name);

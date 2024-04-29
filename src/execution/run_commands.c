@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:07:27 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/26 14:08:17 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:15:04 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int   run_commands(t_cmd *cmds)
     envp_path = get_envp_path(cmds->envp);
     if (cmds->nb_cmds == 1 && cmds->nb_pipes == 0)
     {
-        printf("printf nb pipes %d\n", cmds->nb_pipes);
         if (single_command(cmds, cmds->envp, envp_path) == -1)
             return (-1);
     }
