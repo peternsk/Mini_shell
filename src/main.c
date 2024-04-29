@@ -6,13 +6,18 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 19:48:19 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:22:09 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 int exit_status = 0;
+void handel()
+{
+	// function mal need to be fix
+	printf("\n");
+}
 
 int		main(int ac, char **av, char **env)
 {
@@ -24,6 +29,9 @@ int		main(int ac, char **av, char **env)
 	{
 		while(1)
 		{
+			/************************* signal *******************/
+			signal(SIGINT, &handel);
+			/***************************************************/
 			m_s = init_ms();
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
