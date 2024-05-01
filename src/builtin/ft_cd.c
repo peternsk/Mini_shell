@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:11:15 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/26 13:20:22 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/01 10:36:40 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ char    *form_envp_get_home(char **envp)
 void    expansion_change_directory(t_cmd *cmds)
 {
     char str[PATH_MAX];
-    char *oldPwd;
+    // char *oldPwd;
     char **newPwd;
 
-    oldPwd = NULL;
+    // oldPwd = NULL;
     newPwd = malloc(sizeof(char *) * 2);
     if (!newPwd)
         return;
     newPwd[1] = NULL;
     if (cmds->av_cmd[1] != NULL)
     {  
-        oldPwd = getcwd(str, PATH_MAX);
+        // oldPwd = getcwd(str, PATH_MAX);
         if (chdir(cmds->av_cmd[1]) == 0)
         {
             newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));

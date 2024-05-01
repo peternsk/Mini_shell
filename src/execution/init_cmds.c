@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:58:48 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 19:42:32 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:51:02 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void    init_cmds(char **envp, t_minish *m_s)
             currList = currList->next;
         }
         cout_cmds_pipes(&curr);
-        // print_cmds(&curr);
+        print_cmds(&curr);
         run_commands(curr);
         
     }

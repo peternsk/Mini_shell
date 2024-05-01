@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:39:40 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 13:39:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:38:19 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int is_add(char **envp, char *var, int kv)
 {
-    int i;
+    // int i;
 
-    i = 0;
+    // i = 0;
 
     if (kv == 1)
     {
