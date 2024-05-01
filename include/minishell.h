@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/22 14:37:52 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/04/25 23:17:24 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #include "readline/readline.h"
 #include "readline/history.h"
 #include "../libft/libft.h"
-
+#include <limits.h>
 /*====================================================*/
 /*=                  GLOBAL VARIABLE                 =*/
 /*====================================================*/
@@ -158,7 +158,43 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
+void        free_list(t_token **list);
 
+/*====================================================*/
+/*=                 init_cmd execution               =*/
+/*====================================================*/
+
+void        init_cmds(char **envp, t_minish *m_s);
+void        add_cmds(t_cmd **node, t_cmd *new, t_redlts *files);
+void        cout_cmds_pipes(t_cmd **cmds);
+void        add_files(t_files **files, t_redlts *new_files);
+int         type_cmds(const char *s);
+int         run_commands(t_cmd *cmds);
+char        *get_envp_path(char **envp);
+int         single_command(t_cmd *cmd, char **envp, char *envp_path);
+int         commands(t_cmd *cmds, char *envp_path);
+void        wait_childs(t_cmd *cmds);
+int         execute_command(t_cmd *current, char **envp, char *envp_path);
+char        *get_cmd_path(char *path, char *cmd);
+void        which_files(t_cmd *current);
+void        is_change_std(t_files *files);
+int         ft_append(t_files *file);
+int         change_stdint(t_files *file);
+int         change_stdout(t_files *files);
+int         handel_builtin(t_cmd *cmd);
+void        ft_pwd();
+void        ft_cd(t_cmd *cmds);
+void        ft_echo(char **av, bool is_line);
+void        ft_export(char **envp, char **vars, bool print);
+char        **addEnvp(char **envp, char **vars);
+void        printEnvp(char **envp);
+char        **check_duplicate(char **vars);
+bool        is_same(char *s, char *v);
+char        **new_envp(char **envp, char **new, char *vars, int index);
+int         same_var_value(char **envp, char *var);
+int         same_varibale(char **envp, char *var);
+int         is_add(char **envp, char *var, int kv);
+int         size(char **env);
 
 #endif
  

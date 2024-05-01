@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   wait_childs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:57:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/25 14:48:28 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/22 23:20:09 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/22 23:20:10 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void    wait_childs(t_cmd *cmds)
 {
-	size_t	i;
-
-	i = -1;
-	if (!s1 || !s2)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[++i] || s2[i]) && \
-		(s1[i] == s2[i]) && (i < n - 1))
-		;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+    t_cmd *curr;
+    curr = NULL;
+    if (cmds)
+    {
+        if (cmds->nb_pipes > 0)
+        {
+            curr = cmds;
+            while (curr != NULL)
+            {
+                waitpid(curr->id, NULL, 0);
+                curr = curr->next;
+            }
+        }
+    }
 }

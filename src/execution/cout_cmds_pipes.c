@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   cout_cmds_pipes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:57:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/25 14:48:28 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/19 20:00:09 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/23 00:41:43 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void    cout_cmds_pipes(t_cmd **cmds)
 {
-	size_t	i;
+    t_cmd   *curr;
+    int     i;
 
-	i = -1;
-	if (!s1 || !s2)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[++i] || s2[i]) && \
-		(s1[i] == s2[i]) && (i < n - 1))
-		;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+    i = 0;
+    curr = *cmds;
+    while (curr != NULL)
+    {
+        curr->index = i;
+        i++;
+        curr = curr->next;
+    }
+    curr = *cmds;
+    while (curr != NULL)
+    {
+        curr->nb_cmds = i;
+        curr->nb_pipes = i  - 1;
+        curr = curr->next;
+    }
+   
 }

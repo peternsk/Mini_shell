@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   is_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:57:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/25 14:48:28 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/25 13:39:40 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/25 13:39:53 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int is_add(char **envp, char *var, int kv)
 {
-	size_t	i;
+    int i;
 
-	i = -1;
-	if (!s1 || !s2)
-		return (0);
-	if (n == 0)
-		return (0);
-	while ((s1[++i] || s2[i]) && \
-		(s1[i] == s2[i]) && (i < n - 1))
-		;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+    i = 0;
+
+    if (kv == 1)
+    {
+        if (same_varibale(envp, var) == 1)
+        {
+            return (1);
+        }
+    }
+    else
+    {
+        if (same_var_value(envp, var) == 1)
+            return (2);
+    }
+    return (0);
 }
