@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_cmds.c                                         :+:      :+:    :+:   */
+/*   is_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 19:59:10 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 21:52:46 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/25 13:39:40 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/25 13:39:53 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    add_cmds(t_cmd **node, t_cmd *new, t_redlts *files)
+int is_add(char **envp, char *var, int kv)
 {
-    t_cmd *curr;
-    if (!*node)
+    int i;
+
+    i = 0;
+
+    if (kv == 1)
     {
-        if (files)
-            add_files(&new->files, files);
-        *node = new;
-        return ;
+        if (same_varibale(envp, var) == 1)
+        {
+            return (1);
+        }
     }
-    curr = *node;
-    while (curr->next != NULL)
-        curr = curr->next;
-    if (files)
-        add_files(&new->files, files);
-    curr->next = new;
+    else
+    {
+        if (same_var_value(envp, var) == 1)
+            return (2);
+    }
+    return (0);
 }

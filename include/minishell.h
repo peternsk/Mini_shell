@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 18:24:33 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/25 19:52:54 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #include "readline/readline.h"
 #include "readline/history.h"
 #include "../libft/libft.h"
-
+#include <limits.h>
 /*====================================================*/
 /*=                  GLOBAL VARIABLE                 =*/
 /*====================================================*/
@@ -158,13 +158,14 @@ char	    *ft_substr(char const *s, unsigned int start, size_t len);
 bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
+void        free_list(t_token **list);
 
 /*====================================================*/
 /*=                 init_cmd execution               =*/
 /*====================================================*/
 
-void        init_cmds(char **env, t_minish *m_s);
-void        add_cmds(t_cmd **node, t_cmd *new, char **envp, t_redlts *files);
+void        init_cmds(char **envp, t_minish *m_s);
+void        add_cmds(t_cmd **node, t_cmd *new, t_redlts *files);
 void        cout_cmds_pipes(t_cmd **cmds);
 void        add_files(t_files **files, t_redlts *new_files);
 int         type_cmds(const char *s);
@@ -180,7 +181,7 @@ void        is_change_std(t_files *files);
 int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
-// int         handel_builtin(t_cmd *cmd);
+int         handel_builtin(t_cmd *cmd);
 
 #endif
  

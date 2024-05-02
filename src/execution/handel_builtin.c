@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 18:23:31 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/25 21:06:47 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,30 @@ int which_built(t_cmd *built)
         return (7);
     return (-1);
 }
-// void    evecv_built(t_cmd *built, int _w)
-// {
-//     (void)built;
-//     // if (_w == 1)
-//     //     // cd
-//     // if (_w == 2)
-//     //     // echo
-//     // if (_w == 3)
-//     //     // pwd
-//     // if (_w == 4)
-//     //     // export
-//     // if (_w == 5)
-//     //     // unset
-//     // if (_w == 6)
-//     //     // env
-//     // if (_w == 7)
-//     //     // exit
-// }
+void    evecv_built(t_cmd *built, int _w)
+{
+    bool    is_print;
+
+    is_print = true;
+    if (_w == 1)
+        ft_cd(built);
+//     if (_w == 2)
+//         // echo
+    if (_w == 3)
+        ft_pwd();
+    if (_w == 4)
+    {
+        if (size(built->av_cmd) > 1)
+            is_print = false;
+        ft_export(built->envp, built->av_cmd, is_print);
+    }
+//     if (_w == 5)
+//         // unset
+//     if (_w == 6)
+//         // env
+//     if (_w == 7)
+//         // exit
+}
 // int handel_builtin(t_cmd *cmd)
 // {
 //     int _res;

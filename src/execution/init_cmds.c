@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:58:48 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/23 00:50:05 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:42:32 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ void print_cmds(t_cmd **s_cmd)
 // ajouter nb_pipes [done]
 // ajouter le type de cmds [done]
 
-void    init_cmds(char **env, t_minish *m_s)
+void    init_cmds(char **envp, t_minish *m_s)
 {
+    (void)envp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
@@ -93,15 +94,17 @@ void    init_cmds(char **env, t_minish *m_s)
         {
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
-            new->envp = env;
+            new->envp = list_to_tab(&m_s->envVarlst);
+            // free_list(m_s->envVarlst);
             new->type = type_cmds((const char *)new->cmd_name);
             new->av_cmd  = currList->command;
-            add_cmds(&curr, new, env, currList->redlst);
+            add_cmds(&curr, new, currList->redlst);
             currList = currList->next;
         }
         cout_cmds_pipes(&curr);
         // print_cmds(&curr);
         run_commands(curr);
+        
     }
 }
 
