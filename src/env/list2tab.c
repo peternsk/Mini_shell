@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/25 23:16:25 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/02 11:37:45 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char    *token_2_str(t_env *env_node)
         i++;
     }
     str[i] = '\0';
-	// printf("= " GRN "%s" RESET " \n", str);
+    printf("%s\n", str);
     return(str);
 }
 

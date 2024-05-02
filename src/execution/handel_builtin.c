@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/27 16:02:57 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:22:00 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ void    evecv_built(t_cmd *built, int _w)
     if (_w == 7)
        ft_exit(built);
 }
-int handel_builtin(t_cmd *cmd)
-{
-    int _res;
+// int handel_builtin(t_cmd *cmd)
+// {
+//     int _res;
     
-    _res = -1;
-    if (cmd)
-    {
-        _res = which_built(cmd);
-        if (_res > -1)    
-            evecv_built(cmd, _res);
-    }    
+    // _res = -1;
+    // if (cmd)
+    // {
+    //     _res = which_built(cmd);
+    //     if (_res > -1)    
+    // //         evecv_built(cmd, _res);
+    // }    
     // set_env_lst(cmd->glob, cmd->envp);
-    return (_res);
-}
+//     return (_res);
+// }
