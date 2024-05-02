@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -10,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+=======
+>>>>>>> fa67a8b1223031c0413dfe763fb5a24595bf5aff
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -182,6 +185,26 @@ int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
 int         handel_builtin(t_cmd *cmd);
+<<<<<<< HEAD
+=======
+void        ft_pwd();
+void        ft_cd(t_cmd *cmds);
+void        ft_echo(t_cmd *ec);
+void        ft_export(char **envp, char **vars, bool print);
+char        **addEnvp(char **envp, char **vars);
+void        printEnvp(char **envp);
+char        **check_duplicate(char **vars);
+bool        is_same(char *s, char *v);
+char        **new_envp(char **envp, char **new, char *vars, int index);
+int         same_var_value(char **envp, char *var);
+int         same_varibale(char **envp, char *var);
+int         is_add(char **envp, char *var, int kv);
+int         size(char **env);
+void        ft_unset(t_cmd *unset);
+char        *is_same_key_value(char **envp, char *s, int index);
+void        ft_env(t_cmd *env);
+void        ft_exit(t_cmd *exi);
+>>>>>>> fa67a8b1223031c0413dfe763fb5a24595bf5aff
 
 #endif
  

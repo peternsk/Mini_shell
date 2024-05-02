@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   single_command.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:15:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 19:53:32 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 
@@ -20,9 +8,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
     if (cmd)
     {
         if (cmd->type == 8)
-        {
-                handel_builtin(cmd);
-        }
+            handel_builtin(cmd);
         else
         {
             cmd->id = fork();

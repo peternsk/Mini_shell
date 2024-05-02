@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 21:11:15 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 17:24:05 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 char    *get_home_path(char *envp)
@@ -36,40 +24,58 @@ char    *form_envp_get_home(char **envp)
     }
     return (NULL);
 }
-void    expansion_change_directory(t_cmd *cmds)
-{
-    char str[PATH_MAX];
-    char *oldPwd;
-    char **newPwd;
 
-    oldPwd = NULL;
-    newPwd = malloc(sizeof(char *) * 2);
-    if (!newPwd)
-        return;
-    newPwd[1] = NULL;
+char    *get_live_path()
+{
+    char    str[PATH_MAX];
+    return (getcwd(str, PATH_MAX));
+}
+void    expansion_change_directory(t_cmd *cmds, char **oldPwd, char **newPwd)
+{
+   
     if (cmds->av_cmd[1] != NULL)
     {  
-        oldPwd = getcwd(str, PATH_MAX);
+       oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
         if (chdir(cmds->av_cmd[1]) == 0)
         {
-            newPwd[0] = ft_strjoin("PWD=", getcwd(str, PATH_MAX));
-            printf("%s ---- --- \n", newPwd[0]);
+            newPwd[0] = ft_strjoin("PWD=", get_live_path());
+            printf("new = %s ---- --- \n", newPwd[0]);
+            printf("old = %s ---- --- \n", oldPwd[0]);
             ft_export(cmds->envp, newPwd, false);
-            for (int i = 0; cmds->envp[i] != NULL; i++)
-                printf("%s\n", cmds->envp[i]);
+            ft_export(cmds->envp, oldPwd, false);
+            // for (int i = 0; cmds->envp[i] != NULL; i++)
+            //     printf("%s\n", cmds->envp[i]);
         }
         else
             perror("minishell");
     }
 }
 // TODO: maybe change the function for better error handling
+// test si le update du env function 
 void    ft_cd(t_cmd *cmds)
 {
+    char **oldPwd;
+    char **newPwd;
+
+    oldPwd = NULL;
+    newPwd = malloc(sizeof(char *) * 2);
+    oldPwd = malloc(sizeof(char *) * 2);
+    if (!newPwd || !oldPwd)
+        return;
+    newPwd[1] = NULL;
+    oldPwd[1] = NULL;
     if (ft_strncmp(cmds->cmd_name, "cd", 2) == 0)
     {
         if (!cmds->av_cmd[1])
+        {
+            oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
             chdir(form_envp_get_home(cmds->envp));
+            newPwd[0] =  ft_strjoin("PWD=", get_live_path());
+            ft_export(cmds->envp, oldPwd, false);
+            ft_export(cmds->envp, newPwd, false);
+
+        }
         else 
-            expansion_change_directory(cmds);
+            expansion_change_directory(cmds, oldPwd, newPwd);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 21:06:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/02 11:16:43 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void    evecv_built(t_cmd *built, int _w)
     is_print = true;
     if (_w == 1)
         ft_cd(built);
-//     if (_w == 2)
-//         // echo
+    if (_w == 2)
+        ft_echo(built);
     if (_w == 3)
         ft_pwd();
     if (_w == 4)
@@ -55,23 +55,24 @@ void    evecv_built(t_cmd *built, int _w)
             is_print = false;
         ft_export(built->envp, built->av_cmd, is_print);
     }
-//     if (_w == 5)
-//         // unset
-//     if (_w == 6)
-//         // env
-//     if (_w == 7)
-//         // exit
+    if (_w == 5)
+        ft_unset(built);
+    if (_w == 6)
+        ft_env(built);
+    if (_w == 7)
+       ft_exit(built);
 }
 // int handel_builtin(t_cmd *cmd)
 // {
 //     int _res;
     
-//     _res = -1;
-//     if (cmd)
-//     {
-//         _res = which_built(cmd);
-//         if (_res > -1)    
-//             evecv_built(cmd, _res);
-//     }
-//     return (_res);
-// }
+    _res = -1;
+    if (cmd)
+    {
+        _res = which_built(cmd);
+        if (_res > -1)    
+            evecv_built(cmd, _res);
+    }    
+    // set_env_lst(cmd->glob, cmd->envp);
+    return (_res);
+}
