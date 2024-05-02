@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 19:35:04 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:02:57 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void    evecv_built(t_cmd *built, int _w)
     is_print = true;
     if (_w == 1)
         ft_cd(built);
-//     if (_w == 2)
-//         // echo
+    if (_w == 2)
+        ft_echo(built);
     if (_w == 3)
         ft_pwd();
     if (_w == 4)
@@ -55,12 +55,12 @@ void    evecv_built(t_cmd *built, int _w)
             is_print = false;
         ft_export(built->envp, built->av_cmd, is_print);
     }
-//     if (_w == 5)
-//         // unset
-//     if (_w == 6)
-//         // env
-//     if (_w == 7)
-//         // exit
+    if (_w == 5)
+        ft_unset(built);
+    if (_w == 6)
+        ft_env(built);
+    if (_w == 7)
+       ft_exit(built);
 }
 int handel_builtin(t_cmd *cmd)
 {
@@ -72,6 +72,7 @@ int handel_builtin(t_cmd *cmd)
         _res = which_built(cmd);
         if (_res > -1)    
             evecv_built(cmd, _res);
-    }
+    }    
+    // set_env_lst(cmd->glob, cmd->envp);
     return (_res);
 }

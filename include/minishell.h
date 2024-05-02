@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 23:17:24 by peternsaka       ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -184,7 +172,7 @@ int         change_stdout(t_files *files);
 int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
-void        ft_echo(char **av, bool is_line);
+void        ft_echo(t_cmd *ec);
 void        ft_export(char **envp, char **vars, bool print);
 char        **addEnvp(char **envp, char **vars);
 void        printEnvp(char **envp);
@@ -195,6 +183,10 @@ int         same_var_value(char **envp, char *var);
 int         same_varibale(char **envp, char *var);
 int         is_add(char **envp, char *var, int kv);
 int         size(char **env);
+void        ft_unset(t_cmd *unset);
+char        *is_same_key_value(char **envp, char *s, int index);
+void        ft_env(t_cmd *env);
+void        ft_exit(t_cmd *exi);
 
 #endif
  
