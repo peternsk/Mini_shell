@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:56:06 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/25 19:52:54 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-=======
->>>>>>> fa67a8b1223031c0413dfe763fb5a24595bf5aff
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -185,8 +170,6 @@ int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
 int         handel_builtin(t_cmd *cmd);
-<<<<<<< HEAD
-=======
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
 void        ft_echo(t_cmd *ec);
@@ -204,7 +187,6 @@ void        ft_unset(t_cmd *unset);
 char        *is_same_key_value(char **envp, char *s, int index);
 void        ft_env(t_cmd *env);
 void        ft_exit(t_cmd *exi);
->>>>>>> fa67a8b1223031c0413dfe763fb5a24595bf5aff
 
 #endif
  
