@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:20:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:20:10 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:02:46 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ void    wait_childs(t_cmd *cmds)
     curr = NULL;
     if (cmds)
     {
-        if (cmds->nb_pipes > 0)
+        curr = cmds;
+        while (curr != NULL)
         {
-            curr = cmds;
-            while (curr != NULL)
-            {
-                waitpid(curr->id, NULL, 0);
-                curr = curr->next;
-            }
+            waitpid(curr->id, NULL, 0);
+            curr = curr->next;
         }
     }
 }

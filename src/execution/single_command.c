@@ -11,6 +11,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             handel_builtin(cmd);
         else
         {
+            // printf("why dont' work !!\n");
             cmd->id = fork();
             if (cmd->id == 0)
             {

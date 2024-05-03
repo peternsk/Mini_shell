@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/29 17:22:09 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:54:41 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int		main(int ac, char **av, char **env)
 		while(1)
 		{
 			/************************* signal *******************/
-			signal(SIGINT, &handel);
 			/***************************************************/
 			m_s = init_ms();
 			m_s->flags = init_flag();
+			signal(SIGINT, SIG_IGN);
 			m_s->input = readline(INPUT);
+			signal(SIGINT, &handel);
 			add_history(m_s->input);
 			begin_setEnvVar();
 			set_env_lst(m_s, env);
