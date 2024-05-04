@@ -13,6 +13,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
         {
             // printf("why dont' work !!\n");
             cmd->id = fork();
+            manage_signal(0);
             if (cmd->id == 0)
             {
                 // is on doit change le stdint ou le out ?
@@ -22,6 +23,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             else if (cmd->id < 0)
                 printf("------Error fork()\n");
             wait_childs(cmd);
+            manage_signal(-1);
             return (1);
         }
         return (1);

@@ -31,7 +31,7 @@ PARSER		= 	ft_parsing setFile printRealList
 
 BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-SIGNALS		=
+SIGNALS		= manage_signal
 
 UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function
 
