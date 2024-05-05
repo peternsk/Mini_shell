@@ -12,3 +12,32 @@ void	ft_here_doc(t_redlts **lst)
 		tmp = tmp->next;
 	}
 }
+
+/*
+	c'est la representation d'une linked list de redirection qu'on trouve dans une node de commande que je domme a l'execution.
+	l'objectif va etre de passer a traver et de trouver une here document et de lancer la function qui va permetre de creer un fichier
+	tempopraire qui va etre traiter par la command en cas de besoin.
+
+			###########			###########			###########			###########			###########			###########
+	<=======#         # <====== #		  # <====== #         # <====== #		  # <====== #		  # <====== #		  #
+			#	<<	  *			#	<<	  *			#	<<	  *			#	<<	  *			#	<<	  *			#	<<	  *
+			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
+			#	EOF	  *			#	EOF	  *			#	EOF	  *			#	EOF	  *			#	EOF	  *			#	EOF	  *
+			#         # ======> #		  # ======> #         # ======> #		  # ======> #		  # ======> #		  # ======>
+			###########			###########			###########			###########			###########			###########
+
+				#					#					#					#					#					#
+				#					#					#					#					#					#
+				#					#					#					#					#					#
+
+			###########			###########			###########			###########			###########			###########
+			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  #
+			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
+			#	tmp	  *			#	tmp	  *			#	tmp	  *			#	tmp	  *			#	tmp	  *			#	tmp	  *
+			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
+			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  # 		
+			###########			###########			###########			###########			###########			###########
+
+
+
+*/
