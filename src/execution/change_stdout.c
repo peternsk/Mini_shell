@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:42:20 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:42:21 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/04 20:22:22 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,23 @@ int _files(t_files *files)
 
 int change_stdout(t_files *files)
 {
-    int fd;
-
+    int fd_name;
+    int old_fd;
     if (files)
     {
         if (files->next == NULL)
         {
             if (files->name)
             {
-                fd = open(files->name, O_WRONLY | O_CREAT ,  07777);
-                if (fd < 0)
+                old_fd = dup(STDOUT_FILENO);
+                fd_name = open(files->name, O_WRONLY | O_CREAT ,  07777);
+                if (fd_name < 0)
                     return (perror("file did't make it"), -1);
-                dup2(fd, 1);
+                printf("remettre les fd la bonne plasse \n");
+                dup2(fd_name, STDOUT_FILENO);
+                close(fd_name);
+                dup2(old_fd, fd_name);
+                close(fd_name);
                 return (1);
             }
         }

@@ -1,9 +1,333 @@
-[?2004h░▒▓███[0m[33m Minishell>> [0mls s
-[?2004llifliif^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[?2004lC[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C^C[?2004lhello from the parent
-[?2004h[?2004l
+[?2004h░▒▓███[0m[33m Minishell>> [0m[?2004l
+exit
+
+minishell
+obj
+src
+test
+test_prompt
+[?2004h░▒▓███[0m[33m Minishell>> [0m
+[?2004l                 =
+                 =
+===============================
+=       Setting env var       =
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x0           
+= token key   : PWD          
+= token value : /Users/mnshimiy/Desktop/save/Mini_shell          
+= token next  : 0x603000004b70           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000004a50           
+= token key   : USER          
+= token value : mnshimiy          
+= token next  : 0x603000004c90           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000004b70           
+= token key   : MallocNanoZone          
+= token value : 0          
+= token next  : 0x603000004db0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000004c90           
+= token key   : ITERM_PROFILE          
+= token value : Default          
+= token next  : 0x603000004ed0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000004db0           
+= token key   : LANG          
+= token value : fr_CA.UTF-8          
+= token next  : 0x603000005020           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000004ed0           
+= token key   : LC_TERMINAL_VERSION          
+= token value : 3.4.19          
+= token next  : 0x603000005170           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005020           
+= token key   : LOGNAME          
+= token value : mnshimiy          
+= token next  : 0x603000005290           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005170           
+= token key   : TERM          
+= token value : xterm-256color          
+= token next  : 0x6030000053b0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005290           
+= token key   : PATH          
+= token value : /Users/mnshimiy/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin:/Users/mnshimiy/homebrew/bin          
+= token next  : 0x6030000054d0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x6030000053b0           
+= token key   : SHLVL          
+= token value : 2          
+= token next  : 0x603000005620           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x6030000054d0           
+= token key   : TERM_PROGRAM_VERSION          
+= token value : 1.83.1          
+= token next  : 0x603000005770           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005620           
+= token key   : SSH_AUTH_SOCK          
+= token value : /private/tmp/com.apple.launchd.Vw6T8JxIV9/Listeners          
+= token next  : 0x603000005890           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005770           
+= token key   : TERM_SESSION_ID          
+= token value : w0t0p0:1D2F733F-CCB8-4E44-B891-2074FADDB9E6          
+= token next  : 0x6030000059b0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005890           
+= token key   : HOME          
+= token value : /Users/mnshimiy          
+= token next  : 0x603000005ad0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x6030000059b0           
+= token key   : COLORTERM          
+= token value : truecolor          
+= token next  : 0x603000005bf0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005ad0           
+= token key   : SHELL          
+= token value : /bin/zsh          
+= token next  : 0x603000005d10           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005bf0           
+= token key   : OLDPWD          
+= token value : /Users/mnshimiy/Desktop/save/Mini_shell          
+= token next  : 0x603000005e60           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005d10           
+= token key   : __CF_USER_TEXT_ENCODING          
+= token value : 0x18BDB:0x0:0x0          
+= token next  : 0x603000005fe0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005e60           
+= token key   : ITERM_SESSION_ID          
+= token value : w0t0p0:1D2F733F-CCB8-4E44-B891-2074FADDB9E6          
+= token next  : 0x603000006130           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000005fe0           
+= token key   : TMPDIR          
+= token value : /var/folders/zz/zyxvpxvq6csfxvn_n000cbvc0032yv/T/          
+= token next  : 0x603000006250           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006130           
+= token key   : LC_TERMINAL          
+= token value : iTerm2          
+= token next  : 0x603000006370           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006250           
+= token key   : TERM_PROGRAM          
+= token value : vscode          
+= token next  : 0x603000006490           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006370           
+= token key   : COLORFGBG          
+= token value : 7;0          
+= token next  : 0x6030000065e0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006490           
+= token key   : XPC_SERVICE_NAME          
+= token value : 0          
+= token next  : 0x603000006730           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x6030000065e0           
+= token key   : XPC_FLAGS          
+= token value : 0x0          
+= token next  : 0x603000006880           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006730           
+= token key   : ORIGINAL_XDG_CURRENT_DESKTOP          
+= token value : undefined          
+= token next  : 0x6030000069d0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006880           
+= token key   : GIT_ASKPASS          
+= token value : /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh          
+= token next  : 0x603000006b20           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x6030000069d0           
+= token key   : VSCODE_GIT_ASKPASS_NODE          
+= token value : /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)          
+= token next  : 0x603000006ca0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006b20           
+= token key   : VSCODE_GIT_ASKPASS_EXTRA_ARGS          
+= token value : --ms-enable-electron-run-as-node          
+= token next  : 0x603000006e20           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006ca0           
+= token key   : VSCODE_GIT_ASKPASS_MAIN          
+= token value : /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js          
+= token next  : 0x603000006fa0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006e20           
+= token key   : VSCODE_GIT_IPC_HANDLE          
+= token value : /var/folders/zz/zyxvpxvq6csfxvn_n000cbvc0032yv/T/vscode-git-7bf40ed0c9.sock          
+= token next  : 0x603000007120           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000006fa0           
+= token key   : VSCODE_INJECTION          
+= token value : 1          
+= token next  : 0x603000007270           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000007120           
+= token key   : ZDOTDIR          
+= token value : /Users/mnshimiy          
+= token next  : 0x603000007390           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000007270           
+= token key   : USER_ZDOTDIR          
+= token value : /Users/mnshimiy          
+= token next  : 0x6030000074b0           
+===============================
+                 =
+                 =
+========== token ==============
+= token prev  : 0x603000007390           
+= token key   : _          
+= token value : /Users/mnshimiy/Desktop/save/Mini_shell/./minishell          
+= token next  : 0x0           
+===============================
+                 =
+                 =
+===============================
+=              LEXER          =
+===============================
+                 =
+                 =
+===============================
+========= list size 0  ========
+===============================
+                 =
+                 =
+===============================
+=             PARSER          =
+===============================
+                 =
+                 =
+===============================
+=      command parse ok       =
+===============================
+                =
+===============================
+=             $? : 0          =
+===============================
+empty list change
+============= CMD =============
+= [32mcommand prev  : 0x0[0m 
+= command id    : [33m0[0m 
+= argument[0]   :[34m (null)[0m         
+= [32mcommand next  : 0x0[0m 
+-------------------------------
+- [31mEMPTY RED LIST  [0m  
+-------------------------------
+-------------------------------
+===============================
+                 =
+                 =
+[?2004h░▒▓███[0m[33m Minishell>> [0m[?2004l
+exit

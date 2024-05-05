@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/04 13:05:21 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:34:18 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(int ac, char **av, char **env)
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
 			if (!m_s->input)
-				return (0);
+				return (printf("exit\n"), 0);
 			add_history(m_s->input);
 			begin_setEnvVar();
 			set_env_lst(m_s, env);
