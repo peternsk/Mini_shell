@@ -2,9 +2,9 @@
 
 int is_add(char **envp, char *var, int kv)
 {
-    int i;
+    // int i;
 
-    i = 0;
+    // i = 0;
 
     if (kv == 1)
     {

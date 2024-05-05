@@ -91,7 +91,7 @@ void    init_cmds(char **envp, t_minish *m_s)
             currList = currList->next;
         }
         cout_cmds_pipes(&curr);
-        // print_cmds(&curr);
+        print_cmds(&curr);
         run_commands(curr);
         
     }
