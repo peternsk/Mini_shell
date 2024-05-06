@@ -17,11 +17,11 @@ void	ft_here_doc(t_redlts *redNode)
 {
 	char *here_input;
 
-	here_input = NULL;
-	while(delim_cmp(here_input, redNode->filename) == false)
+	while(1)
 	{
 		here_input = readline(HERE_INPUT);
-		printf("> %s", here_input);
+		if(delim_cmp(here_input, redNode->filename) == true)
+			break;
 	}
 }
 
