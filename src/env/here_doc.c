@@ -5,12 +5,14 @@ void	check_here_doc(t_redlts **lst)
 	t_redlts *tmp;
 
 	tmp = *lst;
-	while(tmp)
+	while(tmp->next)
 	{
 		if(delim_cmp(tmp->redtype, "<<"))
 			ft_here_doc(tmp);
 		tmp = tmp->next;
+		printf("NEXT TMP\n");
 	}
+	return;
 }
 
 void	ft_here_doc(t_redlts *redNode)
@@ -23,6 +25,7 @@ void	ft_here_doc(t_redlts *redNode)
 		if(delim_cmp(here_input, redNode->filename) == true)
 			break;
 	}
+	return;
 }
 
 /*

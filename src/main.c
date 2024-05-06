@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/06 11:05:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/06 14:47:07 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int		main(int ac, char **av, char **env)
 			m_s->input = readline(INPUT);
 			signal(SIGINT, &handel);
 			add_history(m_s->input);
-			begin_setEnvVar();
+			// begin_setEnvVar();
 			set_env_lst(m_s, env);
-			begin_lexing();
+			// begin_lexing();
 			tokenizer(m_s);	
-			begin_parsing();
+			// begin_parsing();
 			ft_lexer(&m_s->token_lst);
 			// print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
 			ft_removeQuotes(&m_s->token_lst);
@@ -50,7 +50,7 @@ int		main(int ac, char **av, char **env)
 			setFile(&m_s->token_lst);
 			// printRealList(m_s->token_lst);
 			ft_createCmdLst(m_s);
-			merge_token(&m_s->token_lst);
+			// merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
 			// printRealList(m_s->token_lst);
 			ft_cmdBuilder(&m_s->token_lst, &m_s->cmdLst);
