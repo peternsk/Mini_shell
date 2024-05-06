@@ -7,9 +7,9 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
     if (cmd)
     {
-        if (cmd->type == 8)
-            handel_builtin(cmd);
-        else
+        // if (cmd->type == 8)
+        //     handel_builtin(cmd);
+        // else
         {
             // printf("why dont' work !!\n");
             cmd->id = fork();

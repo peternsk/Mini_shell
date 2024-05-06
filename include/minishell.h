@@ -111,6 +111,10 @@ char        **list_to_tab(t_env **lst);
 char        *token_2_str(t_env *env_node);
 int		    count_env_node(t_env *node);
 
+bool        delim_cmp(char *input, char *delimiter);
+void	    check_here_doc(t_redlts **lst);
+void    	ft_here_doc(t_redlts *redNode);
+
 /*====================================================*/
 /*=                     BUILDER                      =*/
 /*====================================================*/
@@ -170,7 +174,7 @@ void        is_change_std(t_files *files);
 int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
-int         handel_builtin(t_cmd *cmd);
+// int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
 void        ft_echo(t_cmd *ec);

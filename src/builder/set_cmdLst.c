@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 23:58:11 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 20:36:28 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/06 11:08:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void 	ft_createCmdLst(t_minish *m_s)
 	while(nbOfNnode > 0)
 	{
     	add_cmdNode_to_end(&m_s->cmdLst, set_cmdNode(cmd, m_s));
+		check_here_doc(&cmd->redlst);
 		nbOfNnode--;
 	}
 }

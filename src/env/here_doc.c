@@ -1,15 +1,27 @@
 #include "minishell.h"
 
-void	ft_here_doc(t_redlts **lst)
+void	check_here_doc(t_redlts **lst)
 {
 	t_redlts *tmp;
 
 	tmp = *lst;
 	while(tmp)
 	{
-		if(tmp->redtype == here_doc)
-			printf("GOT TO DO THE HERE DOC FUNCTION\n");
+		if(delim_cmp(tmp->redtype, "<<"))
+			ft_here_doc(tmp);
 		tmp = tmp->next;
+	}
+}
+
+void	ft_here_doc(t_redlts *redNode)
+{
+	char *here_input;
+
+	here_input = NULL;
+	while(delim_cmp(here_input, redNode->filename) == false)
+	{
+		here_input = readline(HERE_INPUT);
+		printf("> %s", here_input);
 	}
 }
 

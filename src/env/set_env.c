@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/26 10:36:02 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:10:07 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ void       set_env_lst(t_minish *m_s, char **env)
         create_var(m_s, env[i]);
         i++;
     }
-    print_env_lst(m_s->envVarlst);
+    // print_env_lst(m_s->envVarlst);
 }

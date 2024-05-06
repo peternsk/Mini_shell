@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/02 23:50:09 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:43:02 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /*--- MACROS ---*/
 # define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+# define HERE_INPUT "> "
 
 /*--- PRINTF COLOR ---*/
 #define RED   "\x1B[31m"

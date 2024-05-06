@@ -26,7 +26,10 @@ echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EO
 
 cat << E1 > file1 | cat << E2 > file2 | cat << E3 > file3 | cat << E4 > file4 | cat << E5 > file5
 
-cat << E1 > file1 
+cat << E1 > file1 exp_split.c  !!! pourquoi est-ce que file1 a exp_split au lieu de ce qui est dans le here documement 
+
+cat > file1 exp_split.c
+
 
 
 test1

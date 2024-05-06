@@ -35,7 +35,7 @@ void ft_unset(t_cmd *unset)
     av = NULL;
     if (size(unset->av_cmd) > 1)
     {
-        av = check_duplxicate(unset->av_cmd);
+        // av = check_duplxicate(unset->av_cmd);
         if (!av)
             return ;
         while (av[i] != NULL)
