@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:36:29 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:36:30 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:50:52 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,20 @@ int more_files(t_files *files)
     files_ = files;
     if (files)
     {
-        while (files_->next != NULL)
+        while (files_->next != NULL && files_->type == apnd_op_redir)
         {
             fd = open(files_->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
             files_ = files_->next;
             close (fd);
         }
-        fd = open(files_->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
-        if (fd < 0)
-            return (-1);
-        dup2(fd, 1);
-        return (1);
+        if (files_->type == apnd_op_redir)
+        {    
+            fd = open(files_->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
+            if (fd < 0)
+                return (perror(files_->name), -1);
+            dup2(fd, 1);
+            return (1);
+        }
     }
     return (-1);
 }
@@ -59,12 +62,12 @@ int ft_append(t_files *file)
 
     if (file)
     {
-        if (file->next == NULL)
+        if (file->next == NULL && file->type ==apnd_op_redir)
         {
             printf("the next is NULL\n");
             fd = open(file->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
             if (fd < 0)
-                return (perror("file did't make it"), -1);
+                return (perror(file->name), -1);
             dup2(fd, 1);
             return (1);
         }

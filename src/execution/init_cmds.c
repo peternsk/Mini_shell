@@ -9,6 +9,7 @@ t_cmd *init_curr_cmd()
     node->av_cmd = NULL;
     node->cmd_name = NULL;
     node->envp = NULL;
+    node->is_file_on = 0;
     node->nb_cmds = 0;
     node->nb_pipes = 0;
     node->is_vars = false;
@@ -69,7 +70,6 @@ void print_cmds(t_cmd **s_cmd)
 
 void    init_cmds(char **envp, t_minish *m_s)
 {
-    (void)envp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
@@ -87,11 +87,15 @@ void    init_cmds(char **envp, t_minish *m_s)
             // free_list(m_s->envVarlst);
             new->type = type_cmds((const char *)new->cmd_name);
             new->av_cmd  = currList->command;
-            add_cmds(&curr, new, currList->redlst);
+            if (new->files == NULL)
+                printf("is file null\n");
+            else
+                printf("tell me the is not NULL \n");
+            add_cmds_files(&curr, new, currList->redlst);
             currList = currList->next;
         }
-        cout_cmds_pipes(&curr);
-        // print_cmds(&curr);
+        cout_cmds_pipes(curr);
+        print_cmds(&curr);
         run_commands(curr);
         
     }

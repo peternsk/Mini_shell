@@ -6,13 +6,13 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 20:02:19 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/26 13:56:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:09 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_files *add_curr(t_redlts *new_files)
+t_files *add_curr_file(t_redlts *new_files)
 {
     t_files *files;
 
@@ -25,24 +25,25 @@ t_files *add_curr(t_redlts *new_files)
     return (files);
 }
 
-void    add_files(t_files **files, t_redlts *new_files)
+void    add_files(t_cmd *cmd_file, t_redlts *new_files)
 {
     t_redlts *curr_new_files;
     t_files *curr_add_files;
 
+    curr_add_files = NULL;
     if (new_files)
     {
         curr_new_files = new_files;
         while (curr_new_files != NULL)
         {
-            if (!*files)   
-                *files = add_curr(curr_new_files);
+            if (cmd_file->files == NULL)   
+                cmd_file->files = add_curr_file(curr_new_files);
             else 
             {
-                curr_add_files = *files;
-                while (curr_add_files->next!= NULL)
+                curr_add_files = cmd_file->files;
+                while (curr_add_files->next != NULL)
                     curr_add_files = curr_add_files->next;
-                curr_add_files->next = add_curr(curr_new_files);
+                curr_add_files->next = add_curr_file(curr_new_files);
             }
             curr_new_files = curr_new_files->next;
         }

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:42:20 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/04 20:22:22 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:31:08 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int _files(t_files *files)
 
     if (files)
     {
-        while (files->next != NULL)
+        while (files->next != NULL && files->type == out_p_redir)
         {
             if (files->name)
             {
@@ -27,7 +27,7 @@ int _files(t_files *files)
                 close (fd);
             }
         }
-        if (files->name)
+        if (files->name && files->type == out_p_redir && files->next == NULL)
         {
             fd = open(files->name, O_WRONLY | O_CREAT ,  07777);
             if (fd > 0)
@@ -41,25 +41,25 @@ int _files(t_files *files)
     return (-1);
 }
 
-int change_stdout(t_files *files)
+int change_stdout(t_files *files )
 {
     int fd_name;
     int old_fd;
     if (files)
     {
-        if (files->next == NULL)
+        if (files->next == NULL && files->type == out_p_redir)
         {
             if (files->name)
             {
-                old_fd = dup(STDOUT_FILENO);
+                old_fd = dup(1);
                 fd_name = open(files->name, O_WRONLY | O_CREAT ,  07777);
                 if (fd_name < 0)
-                    return (perror("file did't make it"), -1);
+                    return (perror(files->name), -1);
                 printf("remettre les fd la bonne plasse \n");
-                dup2(fd_name, STDOUT_FILENO);
+                dup2(fd_name, 1);
                 close(fd_name);
-                dup2(old_fd, fd_name);
-                close(fd_name);
+                dup2(old_fd, 1);
+                close(old_fd);
                 return (1);
             }
         }

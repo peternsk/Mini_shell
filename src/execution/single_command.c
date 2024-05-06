@@ -29,9 +29,10 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
     if (cmd)
     {
         which_files(cmd);
-        if (cmd->type == 8)
+        printf("is file good %d\n", cmd->is_file_on);
+        if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
-        else if (cmd->type != -1)
+        else if (cmd->type != -1 && cmd->is_file_on == 0)
         {
             // printf("why dont' work !!\n");
             cmd->id = fork();

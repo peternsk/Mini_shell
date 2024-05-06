@@ -6,22 +6,24 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:31:12 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:33:20 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:17:16 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    is_change_std(t_files *files)
+void    is_change_std(t_cmd *current)
 {
-    if (files)
+    if (current->files)
     {
-        if (files->type == apnd_op_redir)
+        t_files *files = current->files;
+        while (files != NULL)
+        {            
             ft_append(files);
-        if (files->type == in_p_redir)
-            change_stdint(files);
-        if (files->type == out_p_redir)
-            change_stdout(files);
+            current->is_file_on = change_stdint(files);
+            current->is_file_on = change_stdout(files);
+            files = files->next;
+        }
 
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/04 15:44:17 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:31:29 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ typedef	struct	s_files
 	int		type;
 	char	*name;
 	char	*agrv;
-	int		on;
 	struct	s_files *next;
 }t_files;
 
@@ -149,6 +148,7 @@ typedef struct  s_cmd {
 	bool			is_vars;
 	int				nb_cmds;
 	int 			nb_pipes;
+	int				is_file_on;
 	struct s_cmd 	*next;
 	t_minish 		*glob;
 	t_files 		*files;

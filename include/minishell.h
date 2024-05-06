@@ -152,9 +152,9 @@ void        free_list(t_token **list);
 /*====================================================*/
 
 void        init_cmds(char **envp, t_minish *m_s);
-void        add_cmds(t_cmd **node, t_cmd *new, t_redlts *files);
-void        cout_cmds_pipes(t_cmd **cmds);
-void        add_files(t_files **files, t_redlts *new_files);
+void        add_cmds_files(t_cmd **node, t_cmd *new, t_redlts *files);
+void        cout_cmds_pipes(t_cmd *cmds);
+void        add_files(t_cmd *cmd, t_redlts *new_files);
 int         type_cmds(const char *s);
 int         run_commands(t_cmd *cmds);
 char        *get_envp_path(char **envp);
@@ -164,7 +164,7 @@ void        wait_childs(t_cmd *cmds);
 int         execute_command(t_cmd *current, char **envp, char *envp_path);
 char        *get_cmd_path(char *path, char *cmd);
 void        which_files(t_cmd *current);
-void        is_change_std(t_files *files);
+void        is_change_std(t_cmd *current);
 int         ft_append(t_files *file);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
