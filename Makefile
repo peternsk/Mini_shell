@@ -71,7 +71,7 @@ ${LIBFT_LIB}:
 
 
 $(LIBRD):
-	curl -O ftp://ftp.cwru.edu/pub/bash/$(LIBRLINE).tar.gz
+	curl -O https://ftp.gnu.org/gnu/readline/$(LIBRLINE).tar.gz
 	tar -zxvf $(LIBRLINE).tar.gz
 	@rm -rf $(LIBRLINE).tar.gz
 	@cd $(LIBRLINE) && bash configure && make
@@ -93,7 +93,8 @@ ${NAME}: ${LIBRD} ${LIBFT_LIB} ${OBJS}
 clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"
 	@make clean -C ${LIBFT_DIR}
-	@${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
+	@${RM} ${OBJS_DIR}
+#@${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
 	@echo "$(BLACK)Nettoyage effectué avec succès !"
 
 fclean: clean
