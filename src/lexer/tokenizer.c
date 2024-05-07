@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/06 14:47:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/07 14:23:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void		split_token(t_minish *m_s)
 
 void        tokenizer(t_minish *m_s)
 {
-    while(m_s->input && m_s->input[m_s->e])
+	if(m_s->input == NULL)
+		return;
+    while(m_s->input[m_s->e])
     {
         while(m_s->input[m_s->s] && (m_s->input[m_s->s] == ' ' || m_s->input[m_s->s] == '\t' || m_s->input[m_s->s] == '\n') && (m_s->read_flag == FLAG_ON))
             m_s->s++;

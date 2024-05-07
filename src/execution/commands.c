@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/03 17:56:34 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:23:33 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int      commands(t_cmd *cmds, char *envp_path)
     {
         last_fd = _childs_fd(fd, last_fd, curr, cmds);
         curr->id = fork();
+        manage_signal(0);
         if (curr->id == 0)
         {
             // printf("the childs make it !!\n");
@@ -90,5 +91,5 @@ int      commands(t_cmd *cmds, char *envp_path)
             curr = curr->next;
         } 
     }
-    return (wait_childs(cmds), 1);
+    return (manage_signal(-1), wait_childs(cmds), 1);
 }
