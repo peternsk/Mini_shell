@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:36:29 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/05 21:50:52 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:49:42 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int ft_append(t_files *file)
 
     if (file)
     {
-        if (file->next == NULL && file->type ==apnd_op_redir)
+        if (file->next == NULL && file->type == apnd_op_redir)
         {
             printf("the next is NULL\n");
             fd = open(file->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
@@ -71,7 +71,7 @@ int ft_append(t_files *file)
             dup2(fd, 1);
             return (1);
         }
-        else
+        else if (file->type == apnd_op_redir)
         {
             printf("More the one files\n");
             // print_file(file);
@@ -79,5 +79,5 @@ int ft_append(t_files *file)
                 return (1);
         }
     }
-    return (-1);
+    return (0);
 }
