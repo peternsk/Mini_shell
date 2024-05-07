@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 14:09:06 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:11:40 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void    which_files(t_cmd *current)
         while (files != NULL)
         {            
             // ft_append(files);
-            current->is_file_on = change_stdint(files);
-            current->is_file_on = change_stdout(files);
+            change_stdint(files);
+            change_stdout(files);
             files = files->next;
             
         }
-
     }
 }

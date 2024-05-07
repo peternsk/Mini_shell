@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 20:02:19 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 13:51:56 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:19:26 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_files *add_curr_file(t_redlts *new_files)
         return (NULL);
     files->name = new_files->filename;
     files->made = 0;
+    files->error = 0;
     files->type = type_cmds((const char *)new_files->redtype);
     files->next = NULL;
     files->manage_fd = NULL;

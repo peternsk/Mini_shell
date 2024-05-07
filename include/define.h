@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/07 13:51:26 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:18:38 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef	struct	s_files
 	char	*name;
 	char	*agrv;
 	int		made;
+	int		error;
 	struct	s_files *next;
 	struct s_manage_fds *manage_fd;
 }t_files;

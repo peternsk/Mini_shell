@@ -187,6 +187,7 @@ char        *is_same_key_value(char **envp, char *s, int index);
 void        ft_env(t_cmd *env);
 void        ft_exit(t_cmd *exi);
 t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
+int            is_files_valide(t_cmd *cmds);
 
 /*====================================================*/
 /*=                    signal                        =*/

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:42:20 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 14:07:39 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:50:15 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int put_int_fd(t_files *file)
         file->manage_fd->type = out_p_redir;
         fd_name = open(file->name, O_WRONLY | O_CREAT ,  07777);
         if (fd_name < 0)
-            return (perror(file->name), -1);
+            return (perror(file->name), file->error = 1,  -1);
         printf("remettre les fd a la bonne plasse  file %d \n", old_fd);
         dup2(fd_name, 1);
-        // close(fd_name);
+        close(fd_name);
         return (0);
     }
     return (-1);
