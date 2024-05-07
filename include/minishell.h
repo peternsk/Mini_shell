@@ -113,7 +113,7 @@ int		    count_env_node(t_env *node);
 
 bool        delim_cmp(char *input, char *delimiter);
 void	    check_here_doc(t_redlts **lst);
-void    	ft_here_doc(t_redlts *redNode);
+void    	ft_here_doc(t_redlts **redNode);
 
 /*====================================================*/
 /*=                     BUILDER                      =*/

@@ -1,32 +1,43 @@
 #include "minishell.h"
 
+bool    delim_cmp(char *input, char *delimiter)
+{
+    int i;
+
+    i = 0;
+    if(ft_strlen(input) != ft_strlen(delimiter))
+        return(false);
+    while(input[i] != '\0')
+    {
+        if(input[i] == delimiter[i])
+            i++;
+        else
+            return(false);
+    }
+    return(true);
+}
+
 void	check_here_doc(t_redlts **lst)
 {
 	t_redlts *tmp;
-
-	tmp = *lst;
-	while(tmp->next)
-	{
-		if(delim_cmp(tmp->redtype, "<<"))
-			ft_here_doc(tmp);
-		tmp = tmp->next;
-		printf("NEXT TMP\n");
-	}
-	return;
-}
-
-void	ft_here_doc(t_redlts *redNode)
-{
 	char *here_input;
 
-	while(1)
+	tmp = *lst;
+	while(tmp && delim_cmp(tmp->redtype, "<<"))
 	{
-		here_input = readline(HERE_INPUT);
-		if(delim_cmp(here_input, redNode->filename) == true)
-			break;
+		while(1)
+		{
+			here_input = readline(HERE_INPUT);
+			if(delim_cmp(here_input, tmp->filename) == true)
+				return;
+			else
+				printf("ADD TO FILE\n");
+		}
+		tmp = tmp->next;
 	}
 	return;
 }
+
 
 /*
 	c'est la representation d'une linked list de redirection qu'on trouve dans une node de commande que je domme a l'execution.
