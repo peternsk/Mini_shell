@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:40:35 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 18:18:55 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:19:42 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int change_stdint(t_files *files)
             current->made = -1;
             current = current->next;
         }
-        if (current->name && files->type == in_p_redir && current->next == NULL && current->made == 0) 
+        if (current->name && current->type == in_p_redir && current->next == NULL && current->made == 0) 
            return (put_fd(current));
         return (-1);
     }

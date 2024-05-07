@@ -67,7 +67,6 @@ void print_cmds(t_cmd **s_cmd)
 // ajouter nb_cmd [done]
 // ajouter nb_pipes [done]
 // ajouter le type de cmds [done]
-
 void    init_cmds(char **envp, t_minish *m_s)
 {
     t_cmd   *curr;

@@ -23,6 +23,11 @@ void replace_fd(t_files *files)
                         dup2(files->manage_fd->copy_fd, 0);
                         close(files->manage_fd->copy_fd);
                     }
+                    if (files->type == apnd_op_redir)
+                    {
+                        dup2(files->manage_fd->copy_fd, 1);
+                        close(files->manage_fd->copy_fd);
+                    }
                 }
             }
             files = files->next;

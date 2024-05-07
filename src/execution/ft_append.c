@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:36:29 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/06 16:49:42 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:42:02 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,40 @@
 // even with no files you create the file whit nothing inside 
 // take only one argv;
 // is important to close the files .. .. ?
-
-void print_file (t_files *files)
-{
-    t_files *files_;
-
-    files_ = files;
-    printf("=======================\n");
-    while (files_ != NULL)
-    {
-        printf("= file name :%s =\n", files_->name);
-        files_  = files_->next;
-    }
-    printf("=======================\n");
-}
-
-int more_files(t_files *files)
+int ft_append_fd(t_files *current)
 {
     int fd;
-    t_files *files_;
-
-    files_ = files;
-    if (files)
-    {
-        while (files_->next != NULL && files_->type == apnd_op_redir)
-        {
-            fd = open(files_->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
-            files_ = files_->next;
-            close (fd);
-        }
-        if (files_->type == apnd_op_redir)
-        {    
-            fd = open(files_->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
-            if (fd < 0)
-                return (perror(files_->name), -1);
-            dup2(fd, 1);
-            return (1);
-        }
-    }
-    return (-1);
+    
+    fd = open(current->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
+    if (fd < 0)
+        return (close(fd), perror(current->name), current->error = -1, current->made = -1);
+    current->manage_fd = init_manage_fd(dup(1), 0, 1);
+    current->manage_fd->type = apnd_op_redir;
+    current->made = -1;
+    dup2(fd, 1);
+    close(fd);
+    return (0);
 }
-
-int ft_append(t_files *file)
+int ft_append(t_files *files)
 {
+    t_files *current;
     int fd;
 
-    if (file)
+    current = files;
+    if (current->name)
     {
-        if (file->next == NULL && file->type == apnd_op_redir)
+        while (current->next != NULL && current->type == apnd_op_redir && current->made == 0)
         {
-            printf("the next is NULL\n");
-            fd = open(file->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
+            fd = open(current->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
             if (fd < 0)
-                return (perror(file->name), -1);
-            dup2(fd, 1);
-            return (1);
+                return (close(fd), perror(current->name), current->error = -1, current->made = -1, -1);
+            close(fd);
+            current->made = -1;
+            current = current->next;
         }
-        else if (file->type == apnd_op_redir)
-        {
-            printf("More the one files\n");
-            // print_file(file);
-            if (more_files(file) == -1)
-                return (1);
-        }
+        if (current->name && current->type == apnd_op_redir && current->next == NULL && current->made == 0)
+            return (ft_append_fd(current));
+        return (-1);
     }
     return (0);
 }
