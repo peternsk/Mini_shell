@@ -1,6 +1,12 @@
 #include "minishell.h"
 
 
+void cmd_path_error(int error_type, char *message)
+{
+    write(error_type, "minishell: ", ft_strlen("minishell: "));
+    write(error_type, message, ft_strlen(message));
+    write(error_type, ": command not found\n", ft_strlen(": command not found\n"));
+}
 // check the cmd type 
 // if is 
 void replace_fd(t_files *files)
@@ -50,9 +56,9 @@ int execute_one_command(t_cmd *current, char **envp, char *envp_path)
     {     
         cmd_path = get_cmd_path(envp_path, current->cmd_name);
         if(!cmd_path)
-            return (exit(EXIT_FAILURE), 0);
+            return (cmd_path_error(2, current->cmd_name), exit(EXIT_FAILURE),  0);
         if (execve(cmd_path, current->av_cmd, envp) == -1)
-            return (perror("Command error===="), exit(EXIT_FAILURE), 0);
+            return (perror(cmd_path), exit(EXIT_FAILURE), 0);
         return (1);
     }
     return (0);
@@ -68,7 +74,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
         if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
-        {
+        { 
             (void)envp_path;
             (void)envp;
             printf("why dont' work !!\n");

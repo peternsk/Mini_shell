@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 08:49:30 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:19:18 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void   print_files_index(t_files *files)
     current = files;
     while (current != NULL)   
     {
-        if (current->type ==   out_p_redir ||  current->type == apnd_op_redir)
-           printf("------\ncurrent-last : %d \ncurrent-type %d\n current->name %s\n---------", current->index_out, current->type, current->name);
+        printf("------\ncurrent-last : %d \ncurrent-type %d\n current->name %s\n---------", current->index_out, current->type, current->name);
         current = current->next;
     }
         
@@ -56,6 +55,7 @@ void    which_files(t_cmd *current)
             change_stdint(files);
             if (is_files_valide(current) == 0)
                 change_stdout(files);
+            ft_here_doc(files, current);
             files = files->next;
             
         }
