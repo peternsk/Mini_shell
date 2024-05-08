@@ -23,15 +23,19 @@ void	check_here_doc(t_redlts **lst)
 	char *here_input;
 
 	tmp = *lst;
-	while(tmp && delim_cmp(tmp->redtype, "<<"))
+	while(tmp)
 	{
-		while(1)
+		if(delim_cmp(tmp->redtype, "<<") == true)
 		{
-			here_input = readline(HERE_INPUT);
-			if(delim_cmp(here_input, tmp->filename) == true)
-				return;
-			else
-				printf("ADD TO FILE\n");
+			while(1 && tmp->next)
+			{
+				printf("DELIMITER [%s]\n", tmp->filename);
+				here_input = readline(HERE_INPUT);
+				if(delim_cmp(here_input, tmp->filename) == true)
+					return;
+				else
+					printf("ADD TO FILE\n");
+			}
 		}
 		tmp = tmp->next;
 	}
