@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/07 15:18:38 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/08 08:21:15 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,12 @@ typedef struct	s_minish
 typedef	struct	s_files 
 {
 	int		type;
+	int		index;
 	char	*name;
 	char	*agrv;
 	int		made;
+	int		index_out;
+	int		put_last;
 	int		error;
 	struct	s_files *next;
 	struct s_manage_fds *manage_fd;

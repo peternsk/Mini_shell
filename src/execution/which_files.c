@@ -6,16 +6,49 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 19:05:54 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/08 08:49:30 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void    check_last_files(t_files *files)
+{
+    t_files *node;
+    t_files *tmp;
+
+    tmp = NULL;
+    node = files;
+    while (node != NULL)
+    {
+        if (node->type == apnd_op_redir || node->type == out_p_redir)
+            tmp = node;
+        node = node->next;    
+    }
+    if (tmp)
+        tmp->put_last = 1;
+    // printf("tmp->index_ou %d\n tmp->name %s\n", tmp->index_out, tmp->name);
+}
+void   print_files_index(t_files *files)
+{
+    t_files *current;
+
+    current = files;
+    while (current != NULL)   
+    {
+        if (current->type ==   out_p_redir ||  current->type == apnd_op_redir)
+           printf("------\ncurrent-last : %d \ncurrent-type %d\n current->name %s\n---------", current->index_out, current->type, current->name);
+        current = current->next;
+    }
+        
+}
+
 void    which_files(t_cmd *current)
 {
-   if (current->files)
+    // print_files_index(current->files);
+    if (current->files)
     {
+        check_last_files(current->files);
         t_files *files = current->files;
         while (files != NULL)
         {            

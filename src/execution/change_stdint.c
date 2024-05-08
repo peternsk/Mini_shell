@@ -6,29 +6,44 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:40:35 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 19:19:42 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/08 09:19:45 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int put_error(t_files *current)
+{
+    t_files *node;
 
-#include "minishell.h"
+    node = current;
+    while (node != NULL)
+    {
+        if (node->type == in_p_redir)
+            node->error = -1;
+        node = node->next;
+    }
+    return (0);
+}
 
 int put_fd(t_files *current)
 {
     int fd;
     
     fd = open(current->name, O_RDONLY);
-    if (fd > 0 && current->made == 0)
+    if (current->error == 0)
     {
-        current->manage_fd = init_manage_fd(dup(0), 0, 1);
-        current->manage_fd->type = in_p_redir;             
-        dup2(fd, 0);
-        close(fd);
-        return (current->made = -1, 0);
+        if (fd > 0 && current->made == 0)
+        {
+            current->manage_fd = init_manage_fd(dup(0), 0, 1);
+            current->manage_fd->type = in_p_redir;             
+            dup2(fd, 0);
+            close(fd);
+            return (current->made = -1, 0);
+        }
+        return (put_error(current), close(fd), perror(current->name), current->error = -1, current->made = -1,  -1);
     }
-    return (close(fd), perror(current->name), current->error = -1, current->made = -1,  -1);
+    return (0);
 }
 int change_stdint(t_files *files)
 {
@@ -36,15 +51,18 @@ int change_stdint(t_files *files)
     int fd;
 
     current = files;
-    if (current->name)
+    if (current)
     {
         while (current->next != NULL && current->type == in_p_redir && current->made == 0)
         {
-            fd = open(current->name, O_RDONLY);
-            if (fd < 0)
-                return (close (fd), perror(current->name), current->error = -1, current->made = -1 -1);
-            close(fd);
-            current->made = -1;
+            if (current->error == 0)
+            {
+                fd = open(current->name, O_RDONLY);
+                if (fd < 0)
+                    return (put_error(files), close (fd), perror(current->name), current->error = -1, current->made = -1,  -1);
+                close(fd);
+                current->made = -1;
+            }
             current = current->next;
         }
         if (current->name && current->type == in_p_redir && current->next == NULL && current->made == 0) 
