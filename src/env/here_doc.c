@@ -5,7 +5,7 @@ void	check_here_doc(t_redlts **lst)
 	t_redlts *tmp;
 
 	tmp = *lst;
-	while(tmp->next)
+	while(tmp)
 	{
 		if(delim_cmp(tmp->redtype, "<<"))
 			ft_here_doc(tmp);
@@ -21,6 +21,7 @@ void	ft_here_doc(t_redlts *redNode)
 
 	while(1)
 	{
+		printf("delimiter : %s\n", redNode->filename);
 		here_input = readline(HERE_INPUT);
 		if(delim_cmp(here_input, redNode->filename) == true)
 			break;
