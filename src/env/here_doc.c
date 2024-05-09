@@ -26,7 +26,6 @@ void	ft_here_doc(t_redlts *redNode)
 		if(delim_cmp(here_input, redNode->filename) == true)
 			break;
 	}
-	return;
 }
 
 /*
