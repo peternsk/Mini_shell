@@ -14,6 +14,7 @@ int ft_here_doc(t_files *files, t_cmd *current)
             while (1)
             {
                 input = readline("> ");
+
                 if (!input)
                     break;
                 if (ft_strncmp(input, files->name, ft_strlen(input)) == 0)

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 18:19:18 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:20:02 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void   print_files_index(t_files *files)
 
 void    which_files(t_cmd *current)
 {
-    // print_files_index(current->files);
+    print_files_index(current->files);
     if (current->files)
     {
         check_last_files(current->files);

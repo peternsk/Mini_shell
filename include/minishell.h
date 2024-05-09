@@ -155,7 +155,7 @@ void        init_cmds(char **envp, t_minish *m_s);
 void        add_cmds_files(t_cmd **node, t_cmd *new, t_redlts *files);
 void        cout_cmds_pipes(t_cmd *cmds);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
-int         type_cmds(const char *s);
+int         type_cmds(char *s);
 int         run_commands(t_cmd *cmds);
 char        *get_envp_path(char **envp);
 int         single_command(t_cmd *cmd, char **envp, char *envp_path);
