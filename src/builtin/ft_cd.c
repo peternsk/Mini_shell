@@ -41,8 +41,8 @@ void    expansion_change_directory(t_cmd *cmds, char **oldPwd, char **newPwd)
             newPwd[0] = ft_strjoin("PWD=", get_live_path());
             printf("new = %s ---- --- \n", newPwd[0]);
             printf("old = %s ---- --- \n", oldPwd[0]);
-            ft_export(cmds->envp, newPwd, false);
-            ft_export(cmds->envp, oldPwd, false);
+            ft_export(cmds, cmds->envp, newPwd, false);
+            ft_export(cmds, cmds->envp, oldPwd, false);
             // for (int i = 0; cmds->envp[i] != NULL; i++)
             //     printf("%s\n", cmds->envp[i]);
         }
@@ -71,8 +71,8 @@ void    ft_cd(t_cmd *cmds)
             oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
             chdir(form_envp_get_home(cmds->envp));
             newPwd[0] =  ft_strjoin("PWD=", get_live_path());
-            ft_export(cmds->envp, oldPwd, false);
-            ft_export(cmds->envp, newPwd, false);
+            ft_export(cmds, cmds->envp, oldPwd, false);
+            ft_export(cmds, cmds->envp, newPwd, false);
 
         }
         else 

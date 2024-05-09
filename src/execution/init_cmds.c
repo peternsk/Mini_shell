@@ -96,7 +96,9 @@ void    init_cmds(char **envp, t_minish *m_s)
         cout_cmds_pipes(curr);
         // print_cmds(&curr);
         run_commands(curr);
-        
+        // envp = curr->envp;
+        // for (int i = 0; envp[i] != NULL; i++)
+        //     printf("%s\n", envp[i]);
     }
 }
 

@@ -172,7 +172,7 @@ int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
 void        ft_echo(t_cmd *ec);
-void        ft_export(char **envp, char **vars, bool print);
+void        ft_export(t_cmd *built, char **envp, char **vars, bool print);
 char        **addEnvp(char **envp, char **vars);
 void        printEnvp(char **envp);
 char        **check_duplicate(char **vars);
@@ -187,8 +187,8 @@ char        *is_same_key_value(char **envp, char *s, int index);
 void        ft_env(t_cmd *env);
 void        ft_exit(t_cmd *exi);
 t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
-int            is_files_valide(t_cmd *cmds);
-int             ft_here_doc(t_files *files, t_cmd *current);
+int         is_files_valide(t_cmd *cmds);
+int         ft_here_doc(t_files *files, t_cmd *current);
 
 /*====================================================*/
 /*=                    signal                        =*/
