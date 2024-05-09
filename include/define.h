@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/07 14:22:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/09 10:39:49 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,24 +105,33 @@ typedef struct	s_env
 	char 	*value;
 } t_env;
 
+/*--- HERE STRUCT ---*/
+typedef struct s_heredoc
+{
+	struct	s_heredoc *prev;
+	struct	s_heredoc *next;
+	char	*str;
+	char	*expstr;
+} t_heredoc;
 
 typedef struct	s_minish
 {
-	t_token  *token_lst;
-	t_env	 *envVarlst;
-	t_cmdlts *cmdLst;
-	t_flags  *flags;
-	char	 *input;
-	char	 **tab_env;
-	int		 index;
-	int 	 pipe_num;
-    int 	 in_redr_num;
-    int 	 out_redr_num;
-	int		 read_flag;
-	int		 cmdAllSet;
-	int		 cmdCounter;
-	int 	 s;
-	int 	 e;
+	t_token  	*token_lst;
+	t_env	 	*envVarlst;
+	t_cmdlts 	*cmdLst;
+	t_flags  	*flags;
+	t_heredoc	*herelst; 
+	char	 	*input;
+	char	 	**tab_env;
+	int		 	index;
+	int 	 	pipe_num;
+    int 	 	in_redr_num;
+    int 	 	out_redr_num;
+	int		 	read_flag;
+	int		 	cmdAllSet;
+	int		 	cmdCounter;
+	int 	 	s;
+	int 	 	e;
 } t_minish;
 
 /*----------------- CMDS EXECUTION -------------*/
@@ -166,6 +175,8 @@ typedef struct s_manage_fds
 	int copy_fd;
 	struct s_manage_fds *next;	
 } t_manage_fds;
+
+
 
  
 #endif

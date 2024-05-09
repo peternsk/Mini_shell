@@ -111,9 +111,6 @@ char        **list_to_tab(t_env **lst);
 char        *token_2_str(t_env *env_node);
 int		    count_env_node(t_env *node);
 
-bool        delim_cmp(char *input, char *delimiter);
-void	    check_here_doc(t_redlts **lst);
-void    	ft_here_doc(t_redlts **redNode);
 
 /*====================================================*/
 /*=                     BUILDER                      =*/
@@ -129,7 +126,7 @@ void 	    ft_createCmdLst(t_minish *m_s);
 void        combineTokValue(t_token **lst);
 void        merge_token(t_token **lst);
 void        delete_token(t_token **lst, int tokToDel_id);
-void	    ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst);
+void	    ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst);
 
 /*---- REDIRECTION ----*/
 t_redlts 	*setRed(char *redtype, char *filename);
@@ -199,6 +196,24 @@ t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
 /*====================================================*/
 
 void manage_signal(int id);
+
+/*====================================================*/
+/*=                  HERE DOCUMENT                   =*/
+/*====================================================*/
+
+/* init linked list*/
+t_heredoc   *intHereLst(t_heredoc *node, char *input);
+void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
+t_heredoc   *create_here_lst(t_minish *m_s, char *input);
+
+/* parsing */
+
+/* core function */
+bool        delim_cmp(char *input, char *delimiter);
+void	    check_here_doc(t_minish *m_s, t_redlts **lst);
+
+/* print test */
+void	    print_here_lst(t_heredoc *lst);
 
 #endif
  

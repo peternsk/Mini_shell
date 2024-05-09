@@ -17,7 +17,7 @@ bool    delim_cmp(char *input, char *delimiter)
     return(true);
 }
 
-void	check_here_doc(t_redlts **lst)
+void	check_here_doc(t_minish *m_s, t_redlts **lst)
 {
 	t_redlts *tmp;
 	char *here_input;
@@ -32,14 +32,18 @@ void	check_here_doc(t_redlts **lst)
 				printf("DELIMITER [%s]\n", tmp->filename);
 				here_input = readline(HERE_INPUT);
 				if(delim_cmp(here_input, tmp->filename) == true)
+				{
+					print_here_lst(m_s->herelst);
 					return;
+				}
 				else
-					printf("ADD TO FILE\n");
+					create_here_lst(m_s, here_input);
 			}
+			tmp = tmp->next;
 		}
-		tmp = tmp->next;
+		// tmp = tmp->next;
 	}
-	return;
+	print_here_lst(m_s->herelst);
 }
 
 

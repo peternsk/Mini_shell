@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/06 14:07:29 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/09 11:14:29 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_countArrayspace(t_token **lst)
 	return(arrSpc);
 }
 
-void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
+void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 {
 	t_token *curTok;
 	t_cmdlts *curCmd;
@@ -46,10 +46,7 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 			add_garbage(curCmd->command[i]);
 		}
 		else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
-		{
 			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value));
-			check_here_doc(&curCmd->redlst);
-		}
 		else if(curTok && curTok->type == pipe_)
 		{
 			curCmd->command[++i] = NULL;
@@ -58,5 +55,6 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 		}
 		curTok = curTok->next;
 	}
+	// check_here_doc(m_s, &curCmd->redlst);
 	curCmd->command[++i] = NULL;
 }
