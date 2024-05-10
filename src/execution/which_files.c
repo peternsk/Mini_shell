@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/09 14:20:02 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:01:16 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void   print_files_index(t_files *files)
         printf("------\ncurrent-last : %d \ncurrent-type %d\n current->name %s\n---------", current->index_out, current->type, current->name);
         current = current->next;
     }
-        
 }
 
 void    which_files(t_cmd *current)

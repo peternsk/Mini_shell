@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:40:35 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 09:19:45 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:59:21 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int put_fd(t_files *current)
             close(fd);
             return (current->made = -1, 0);
         }
-        return (put_error(current), close(fd), perror(current->name), current->error = -1, current->made = -1,  -1);
+        return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1,  -1);
+        // return (put_error(current), close(fd),  current->error = -1, current->made = -1,  -1);
     }
     return (0);
 }
@@ -59,7 +60,7 @@ int change_stdint(t_files *files)
             {
                 fd = open(current->name, O_RDONLY);
                 if (fd < 0)
-                    return (put_error(files), close (fd), perror(current->name), current->error = -1, current->made = -1,  -1);
+                    return (put_error(files),  perror(current->name), close (fd),current->error = -1, current->made = -1,  -1);
                 close(fd);
                 current->made = -1;
             }
