@@ -25,7 +25,7 @@ ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
 EXECUTION	=	init_cmds add_cmds_files cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin init_manage_fd
 
-HERE_DOC	=   here_doc set_here_lst
+HERE_DOC	=   here_doc set_here_lst here_pars
 
 GARBAGE 	=  	add_address
 
@@ -33,7 +33,7 @@ LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 PARSER		= 	ft_parsing setFile printRealList
 
-SIGNALS		= manage_signal
+SIGNALS		= 	manage_signal
 
 UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function
 

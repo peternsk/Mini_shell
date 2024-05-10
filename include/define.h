@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/09 10:39:49 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/09 17:15:08 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum token_type
 	here_doc,
 	pipe_,
 	dbl_pipe_,
+	dbl_et,
 	delimter,
 	_file
 }			token_type;

@@ -41,7 +41,7 @@ void	check_here_doc(t_minish *m_s, t_redlts **lst)
 			}
 			tmp = tmp->next;
 		}
-		// tmp = tmp->next;
+		tmp = tmp->next;
 	}
 	print_here_lst(m_s->herelst);
 }

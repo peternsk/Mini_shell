@@ -48,7 +48,6 @@ void	    assign_token_type(t_token **lst, t_minish *m_s);
 void	    printRealList(t_token *lst);
 char        *rightType(int type);
 
-
 /*--- quote && double quote ---*/
 void     	find_next_quote(t_minish *m_s, char quote_type);
 bool	    is_quotes(char c);
@@ -62,14 +61,11 @@ bool		is_space(char c);
 bool		is_meta(char c);
 void	    find_meta(t_minish *m_s, char meta);
 
-
 /*--- tokenisation ---*/
 void        flag_switch(char c, t_minish *m_s);
 void		split_token(t_minish *m_s);
 void        tokenizer(t_minish *m_s);
 t_token     *create_token(t_minish *m_s);
-
-
 
 /*--- ascii font ---*/
 void        ft_ascii_font(void);
@@ -111,7 +107,6 @@ char        **list_to_tab(t_env **lst);
 char        *token_2_str(t_env *env_node);
 int		    count_env_node(t_env *node);
 
-
 /*====================================================*/
 /*=                     BUILDER                      =*/
 /*====================================================*/
@@ -134,7 +129,6 @@ void	    add_redNode_to_end(t_redlts **redNode, t_redlts *newNode);
 int		    countNbRednode(t_token **lst);
 void		print_redLst(t_redlts **lst);
 
-
 /*====================================================*/
 /*=                      UTILS                       =*/
 /*====================================================*/
@@ -149,6 +143,30 @@ bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
 void        free_list(t_token **list);
+
+/*====================================================*/
+/*=                  HERE DOCUMENT                   =*/
+/*====================================================*/
+
+/* init linked list*/
+t_heredoc   *intHereLst(t_heredoc *node, char *input);
+void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
+t_heredoc   *create_here_lst(t_minish *m_s, char *input);
+
+/* parsing */
+bool        end_key(char c);
+char        *find_here_key(t_heredoc *node, t_minish *m_s);
+void        hereExp(t_heredoc *node, t_env **lst, t_minish *m_s);
+void	    herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s);
+
+/* core function */
+bool        delim_cmp(char *input, char *delimiter);
+void	    check_here_doc(t_minish *m_s, t_redlts **lst);
+void        reset_ms(t_heredoc *node, t_minish *m_s);
+void        replace_here_str(t_heredoc *node);
+
+/* print test */
+void	    print_here_lst(t_heredoc *lst);
 
 /*====================================================*/
 /*=                 init_cmd execution               =*/
@@ -197,23 +215,6 @@ t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
 
 void manage_signal(int id);
 
-/*====================================================*/
-/*=                  HERE DOCUMENT                   =*/
-/*====================================================*/
-
-/* init linked list*/
-t_heredoc   *intHereLst(t_heredoc *node, char *input);
-void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
-t_heredoc   *create_here_lst(t_minish *m_s, char *input);
-
-/* parsing */
-
-/* core function */
-bool        delim_cmp(char *input, char *delimiter);
-void	    check_here_doc(t_minish *m_s, t_redlts **lst);
-
-/* print test */
-void	    print_here_lst(t_heredoc *lst);
 
 #endif
  

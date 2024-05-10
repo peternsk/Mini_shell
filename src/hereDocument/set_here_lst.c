@@ -54,7 +54,7 @@ void	print_here_lst(t_heredoc *lst)
 		printf("empty HERE DOCUMENT list\n");
 	while(last != NULL)
 	{
-		printf("========== token ==============\n");
+		printf("========== HERE STR ==============\n");
 		printf("= token prev  : %p           \n", last->prev);
 		printf("= token key   : %s          \n", last->str);
 		printf("= token value : %s          \n", last->expstr);
