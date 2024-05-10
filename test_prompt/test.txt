@@ -49,12 +49,13 @@ rm -rf file1 && rm -rf file2 && rm -rf file3 && rm -rf file4 && rm -rf file5
 
 /* PARSING */
 
-AAAA$USER       |   AAAApnsaka
-AAAA$USERAAAA   |   AAAA
-AAAA"$USER"     |   AAAA"pnsaka"
-AAAA"$USER      |   AAAA"pnsaka
-AAAA$USER"      |   AAAApnsaka"
-AAAA'$USER'     |   AAAA'pnsaka'
-AAAA$US"ER"     |   AAAA"ER"
-$US"ER"         |   "ER"
-EOF             |
+AAAA$USER
+AAAA$USERAAAA
+AAAA"$USER"
+AAAA"$USER
+AAAA$USER"
+AAAA'$USER'
+AAAA$US"ER"
+'$USER$?$USER'
+$US"ER"
+EOF

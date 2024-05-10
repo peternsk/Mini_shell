@@ -29,7 +29,7 @@ void	check_here_doc(t_minish *m_s, t_redlts **lst)
 		{
 			while(1 && tmp->next)
 			{
-				printf("DELIMITER [%s]\n", tmp->filename);
+				// printf("DELIMITER [%s]\n", tmp->filename);
 				here_input = readline(HERE_INPUT);
 				if(delim_cmp(here_input, tmp->filename) == true)
 				{
@@ -45,33 +45,3 @@ void	check_here_doc(t_minish *m_s, t_redlts **lst)
 	}
 	print_here_lst(m_s->herelst);
 }
-
-
-/*
-	c'est la representation d'une linked list de redirection qu'on trouve dans une node de commande que je domme a l'execution.
-	l'objectif va etre de passer a traver et de trouver une here document et de lancer la function qui va permetre de creer un fichier
-	tempopraire qui va etre traiter par la command en cas de besoin.
-
-			###########			###########			###########			###########			###########			###########
-	<=======#         # <====== #		  # <====== #         # <====== #		  # <====== #		  # <====== #		  #
-			#	<<	  *			#	 >	  *			#	<<	  *			#	 >	  *			#	<<	  *			#	 >	  *
-			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
-			#	EOF	  *			#	fil	  *			#	EOF	  *			#	fil	  *			#	EOF	  *			#	fil	  *
-			#         # ======> #		  # ======> #         # ======> #		  # ======> #		  # ======> #		  # ======>
-			###########			###########			###########			###########			###########			###########
-
-				#					#					#					#					#					#
-				#					#					#					#					#					#
-				#					#					#					#					#					#
-
-			###########			###########			###########			###########			###########			###########
-			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  #
-			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
-			#	tmp	  *	===>	#	rel	  *			#	tmp	  *	===>	#	rel	  *			#	tmp	  *	===>	#	rel	  *
-			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *
-			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  # 		
-			###########			###########			###########			###########			###########			###########
-
-
-
-*/
