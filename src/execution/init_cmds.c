@@ -67,7 +67,6 @@ void print_cmds(t_cmd **s_cmd)
 // ajouter nb_cmd [done]
 // ajouter nb_pipes [done]
 // ajouter le type de cmds [done]
-
 void    init_cmds(char **envp, t_minish *m_s)
 {
     t_cmd   *curr;
@@ -85,7 +84,7 @@ void    init_cmds(char **envp, t_minish *m_s)
             // new->envp = list_to_tab(&m_s->envVarlst);
             new->envp = envp;
             // free_list(m_s->envVarlst);
-            new->type = type_cmds((const char *)new->cmd_name);
+            new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
             // if (new->files == NULL)
             //     printf("is file null\n");
@@ -97,7 +96,9 @@ void    init_cmds(char **envp, t_minish *m_s)
         cout_cmds_pipes(curr);
         // print_cmds(&curr);
         run_commands(curr);
-        
+        // envp = curr->envp;
+        // for (int i = 0; envp[i] != NULL; i++)
+        //     printf("%s\n", envp[i]);
     }
 }
 

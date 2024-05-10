@@ -27,11 +27,13 @@ char **addEnvp(char **envp, char **vars)
         if (ft_strchr(vars[i], '=') != NULL)
         {
             index = same_var_value(envp, vars[i]);
+            printf("index %d and vars %s\n", index, vars[i]);
             vars[i] = is_same_key_value(envp, vars[i], index);
             new = new_envp(envp, new, vars[i], index);
         }
         else
         {
+            printf("%s\n", vars[i]);
             index = same_varibale(envp, vars[i]);
             new = new_envp(envp, new, vars[i], index);
         }

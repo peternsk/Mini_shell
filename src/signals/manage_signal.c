@@ -1,28 +1,32 @@
 #include "minishell.h"
 
-void handel()
+void ctrl_c_parent()
 {
 	// function mal need to be fix
-    printf("hello from the parent");
-	printf("\n");
+    // readline(INPUT); // printf("\n");
+	// rl_on_new_line();
 }
-void	handel_childs()
+void ctrl_quit_childs()
 {
-    printf("hello from the childs -- -- \n");
 	return ;
 }
-void nothing(){ printf("say my name ... \n");}
+void	ctrl_c_childs()
+{
+	printf("ctr \\");
+	return ;
+}
+// void nothing(){ printf("say my name ... \n");}
 
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
-		signal(SIGINT, handel_childs);
-		signal(SIGQUIT, handel_childs); 
+		signal(SIGINT, ctrl_c_childs);
+		signal(SIGQUIT, ctrl_quit_childs); 
 	}
 	else
 	{
-		signal(SIGINT, handel);
-		signal(SIGQUIT, nothing); 
+		signal(SIGINT, ctrl_c_parent);
+		signal(SIGQUIT, SIG_IGN); 
 	}
 }

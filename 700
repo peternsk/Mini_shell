@@ -1,15 +1,2 @@
-name->file : 700
-name->file : 700
-name->file : 700
-is file good -1
-----here family avant: s ---
-
-here family after 1 : 
-here family while 2 : s
-here family while 2 : 300
-here family while 2 : 400
-here family while 2 : 600
-here family while 2 : 700
-here family while 3: 700
-here family while 4: 700
-here family while 5 the name files : 700  fd copy 3
+file->error -> 0
+is file good 0
