@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_duplicate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:25:52 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 14:53:03 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:37:09 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char **init_new(char **vars)
 {
     char    **new;
     int     len;
-    int     i;
+    // int     i;
 
-    i = 0;
+    // i = 0;
     len = size(vars);
     new =   malloc(sizeof(char *) * (len + 1));
     if (!new)

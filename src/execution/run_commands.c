@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_commands.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:07:27 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/04 18:58:42 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 // void print_cmds(t_cmd *s_cmd)
@@ -56,10 +44,10 @@
 
 int   run_commands(t_cmd *cmds)
 {
-    int     i;
+    // int     i;
     char	*envp_path;
 
-    i = 0;
+    // i = 0;
     if (!cmds)
         return (-1);
     envp_path = get_envp_path(cmds->envp);
@@ -71,7 +59,7 @@ int   run_commands(t_cmd *cmds)
     else
     {
         // printf("more than one command\n");
-        commands(cmds, envp_path);
+        // commands(cmds, envp_path);
         // print_cmds(cmds);
     }
     return (1);

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/09 16:01:16 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:46:32 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void    which_files(t_cmd *current)
             change_stdint(files);
             if (is_files_valide(current) == 0)
                 change_stdout(files);
-            ft_here_doc(files, current);
+            // ft_here_doc(files, current);
+            // check_here_doc(m_s, &curCmd->redlst);
             files = files->next;
             
         }

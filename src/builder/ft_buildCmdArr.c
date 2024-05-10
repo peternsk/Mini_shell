@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildCmdArr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 20:42:05 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/10 15:45:42 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_countArrayspace(t_token **lst)
 	return(arrSpc);
 }
 
-void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
+void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 {
 	t_token *curTok;
 	t_cmdlts *curCmd;
@@ -55,5 +55,8 @@ void	ft_cmdBuilder(t_token **toklst, t_cmdlts **cmdlst)
 		}
 		curTok = curTok->next;
 	}
+	// check_here_doc(m_s, &curCmd->redlst);
+	herelist_exp(&m_s->herelst, &m_s->envVarlst, m_s);
+	print_here_lst(m_s->herelst);
 	curCmd->command[++i] = NULL;
 }

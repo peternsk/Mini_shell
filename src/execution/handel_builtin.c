@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handel_builtin.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 20:14:03 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:17:33 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ int handel_builtin(t_cmd *cmd)
         if (_res > -1)    
             evecv_built(cmd, _res);
     }    
-    // set_env_lst(cmd->glob, cmd->envp);
+    set_env_lst(cmd->glob, cmd->envp);
     return (_res);
 }
