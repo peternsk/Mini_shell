@@ -177,7 +177,7 @@ void        init_cmds(char **envp, t_minish *m_s);
 void        add_cmds_files(t_cmd **node, t_cmd *new, t_redlts *files);
 void        cout_cmds_pipes(t_cmd *cmds);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
-int         type_cmds(const char *s);
+int         type_cmds(char *s);
 int         run_commands(t_cmd *cmds);
 char        *get_envp_path(char **envp);
 int         single_command(t_cmd *cmd, char **envp, char *envp_path);
@@ -194,7 +194,7 @@ int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
 void        ft_echo(t_cmd *ec);
-void        ft_export(char **envp, char **vars, bool print);
+void        ft_export(t_cmd *built, char **envp, char **vars, bool print);
 char        **addEnvp(char **envp, char **vars);
 void        printEnvp(char **envp);
 char        **check_duplicate(char **vars);
@@ -209,6 +209,8 @@ char        *is_same_key_value(char **envp, char *s, int index);
 void        ft_env(t_cmd *env);
 void        ft_exit(t_cmd *exi);
 t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
+int         is_files_valide(t_cmd *cmds);
+int         ft_here_doc(t_files *files, t_cmd *current);
 
 /*====================================================*/
 /*=                    signal                        =*/

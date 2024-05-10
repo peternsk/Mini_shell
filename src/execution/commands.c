@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/04 11:23:33 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/08 20:01:23 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int expan_child(int fd[], t_cmd *curr, char *envp_path)
     }
     if (fd[1] != 1)
     {
+        // pas sur check si c'est un file ou bien redirection de file et append file 
         if (!curr->files)
             dup2(fd[1], 1);
         close(fd[1]);

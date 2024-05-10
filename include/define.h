@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/09 17:15:08 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/10 14:16:03 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,13 @@ typedef struct	s_minish
 typedef	struct	s_files 
 {
 	int		type;
+	int		index;
 	char	*name;
 	char	*agrv;
 	int		made;
+	int		index_out;
+	int		put_last;
+	int		error;
 	struct	s_files *next;
 	struct s_manage_fds *manage_fd;
 }t_files;

@@ -1,33 +1,37 @@
 #include "minishell.h"
 
 
+void cmd_path_error(int error_type, char *message)
+{
+    write(error_type, "minishell: ", ft_strlen("minishell: "));
+    write(error_type, message, ft_strlen(message));
+    write(error_type, ": command not found\n", ft_strlen(": command not found\n"));
+}
 // check the cmd type 
 // if is 
 void replace_fd(t_files *files)
 {
-    printf("----here family avant: %s ---\n\n", files->name);
     if (files)
     {
-        printf("here family after 1 : \n");
         while (files != NULL)
         {
-            printf("here family while 2 : %s\n", files->name);
             if (files->manage_fd)
             {
-            printf("here family while 3: %s\n", files->name);
                 if (files->manage_fd->error == 0)
                 {
-            printf("here family while 4: %s\n", files->name);
                     if (files->type == out_p_redir)
                     {
-            printf("here family while 5 the name files : %s  fd copy %d\n", files->name, files->manage_fd->copy_fd);
                         dup2(files->manage_fd->copy_fd, 1);
                         close(files->manage_fd->copy_fd);
                     }
                     if (files->type == in_p_redir)
                     {
-                        printf("files->name 6 : %s\n", files->name);
                         dup2(files->manage_fd->copy_fd, 0);
+                        close(files->manage_fd->copy_fd);
+                    }
+                    if (files->type == apnd_op_redir)
+                    {
+                        dup2(files->manage_fd->copy_fd, 1);
                         close(files->manage_fd->copy_fd);
                     }
                 }
@@ -52,9 +56,9 @@ int execute_one_command(t_cmd *current, char **envp, char *envp_path)
     {     
         cmd_path = get_cmd_path(envp_path, current->cmd_name);
         if(!cmd_path)
-            return (exit(EXIT_FAILURE), 0);
+            return (cmd_path_error(2, current->cmd_name), exit(EXIT_FAILURE),  0);
         if (execve(cmd_path, current->av_cmd, envp) == -1)
-            return (perror("Command error===="), exit(EXIT_FAILURE), 0);
+            return (perror(cmd_path), exit(EXIT_FAILURE), 0);
         return (1);
     }
     return (0);
@@ -65,11 +69,12 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
     if (cmd)
     {
         which_files(cmd);
-        printf("is file good %d\n", cmd->is_file_on);
+        cmd->is_file_on = is_files_valide(cmd);
+        printf("is file good %d\n", is_files_valide(cmd));
         if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
-        {
+        { 
             (void)envp_path;
             (void)envp;
             printf("why dont' work !!\n");

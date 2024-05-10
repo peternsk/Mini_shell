@@ -20,4 +20,4 @@ bool is_same(char *s, char *v)
     if (v[i] == '\0' && s[i] == '=')
         return (true);
     return (false);
-}
+}                                                                                   
