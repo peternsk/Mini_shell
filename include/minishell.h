@@ -212,6 +212,7 @@ t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
 int         is_files_valide(t_cmd *cmds);
 int         ft_here_doc(t_files *files, t_cmd *current);
 
+
 /*====================================================*/
 /*=                    signal                        =*/
 /*====================================================*/
