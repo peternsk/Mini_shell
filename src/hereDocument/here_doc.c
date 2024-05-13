@@ -85,5 +85,4 @@ void	run_here_redlst(t_minish *m_s, t_redlts **lst)
 		}
 		tmp = tmp->next;
 	}
-
 }
