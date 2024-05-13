@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/13 05:37:26 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/13 09:41:38 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		main(int ac, char **av, char **env)
 			// printRealList(m_s->token_lst);
 			ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 			print_cmdLst(&m_s->cmdLst);
-			init_cmds(env, m_s);
+			// init_cmds(env, m_s);
 			// print_garbage_collector();
 			// m_s->tab_env = list_to_tab(&m_s->envVarlst);
 		}

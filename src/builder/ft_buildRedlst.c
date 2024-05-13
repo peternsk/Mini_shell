@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildRedlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/13 06:28:21 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/13 10:09:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s)
 	redNode->prev = NULL;
 	redNode->redtype = redtype;
 	redNode->filename = filename;
-	if(strcmp(redNode->redtype, "<<") == true)
+	if(ft_strcmp(redNode->redtype, "<<") == true)
 	{
 		redNode->hereID = m_s->here_id;
 		m_s->here_id = m_s->here_id + 1;

@@ -41,8 +41,6 @@ void	empty_hereDoc(t_redlts *tmp)
 		here_input = readline(HERE_INPUT);
 		if(delim_cmp(here_input, tmp->filename) == true)
 			return;
-		// else
-		// 	printf(" >%s\n", here_input);
 	}
 }
 
@@ -70,9 +68,21 @@ void	run_here_redlst(t_minish *m_s, t_redlts **lst)
 	while(tmp)
 	{
 		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID < hereNbr))
+		{
+			printf(" HERE NBR [%d]\n", hereNbr);
+			printf(" TMP ID [%d]\n", tmp->hereID);
+			printf(" TMP DELIMITER [%s]\n", tmp->filename);
+			printf(" IN EMPTY\n");
 			empty_hereDoc(tmp);
+		}
 		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID == hereNbr))
+		{
+			printf(" HERE NBR [%d]\n", hereNbr);
+			printf(" TMP ID [%d]\n", tmp->hereID);
+			printf(" TMP DELIMITER [%s]\n", tmp->filename);
+			printf(" IN LAST\n");
 			last_here_doc(m_s, tmp);
+		}
 		tmp = tmp->next;
 	}
 
