@@ -32,6 +32,8 @@ cat << E1 > file1 exp_split.c  !!! pourquoi est-ce que file1 a exp_split au lieu
 
 cat > file1 exp_split.c
 
+cat << EOF > file1
+
 
 
 test1
