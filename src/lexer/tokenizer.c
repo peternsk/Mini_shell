@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 08:05:00 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/04 11:42:43 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:23:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void        tokenizer(t_minish *m_s)
         if(m_s->input[m_s->e])
 			split_token(m_s);
     }
-	printf("===============================\n");
-	printf("========= list size %d  ========\n", count_token(m_s->token_lst));
-	printf("===============================\n");	
+	// printf("===============================\n");
+	// printf("========= list size %d  ========\n", count_token(m_s->token_lst));
+	// printf("===============================\n");	
 }

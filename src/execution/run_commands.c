@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:07:27 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/04 18:58:42 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:52:58 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@
 
 int   run_commands(t_cmd *cmds)
 {
-    int     i;
+    // int     i;
     char	*envp_path;
 
-    i = 0;
+    // i = 0;
     if (!cmds)
         return (-1);
     envp_path = get_envp_path(cmds->envp);

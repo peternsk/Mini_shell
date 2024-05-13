@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:18:05 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 21:12:40 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:50:26 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void ft_export(t_cmd * built, char **envp, char **vars, bool print)
     //         i++;
     //     }
     // }
-    printf("==========================================\n");
-    for (int i = 0; envp[i] != NULL; i++)
-        printf("%s\n", envp[i]);
+    // printf("==========================================\n");
+    // for (int i = 0; envp[i] != NULL; i++)
+    //     printf("%s\n", envp[i]);
 }

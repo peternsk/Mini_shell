@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/08 08:21:15 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:24:13 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /*--- MACROS ---*/
 # define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+# define HERE_INPUT "> "
 
 /*--- PRINTF COLOR ---*/
 #define RED   "\x1B[31m"
@@ -41,6 +42,7 @@ typedef enum token_type
 	here_doc,
 	pipe_,
 	dbl_pipe_,
+	dbl_et,
 	delimter,
 	_file
 }			token_type;
@@ -71,6 +73,7 @@ typedef	struct s_redlts
 	struct s_redlts *next;
 	char *redtype;
 	char *filename;
+	int	hereID;
 } t_redlts;
 
 typedef	struct s_cmdlts
@@ -104,24 +107,34 @@ typedef struct	s_env
 	char 	*value;
 } t_env;
 
+/*--- HERE STRUCT ---*/
+typedef struct s_heredoc
+{
+	struct	s_heredoc *prev;
+	struct	s_heredoc *next;
+	char	*str;
+	char	*expstr;
+} t_heredoc;
 
 typedef struct	s_minish
 {
-	t_token  *token_lst;
-	t_env	 *envVarlst;
-	t_cmdlts *cmdLst;
-	t_flags  *flags;
-	char	 *input;
-	char	 **tab_env;
-	int		 index;
-	int 	 pipe_num;
-    int 	 in_redr_num;
-    int 	 out_redr_num;
-	int		 read_flag;
-	int		 cmdAllSet;
-	int		 cmdCounter;
-	int 	 s;
-	int 	 e;
+	t_token  	*token_lst;
+	t_env	 	*envVarlst;
+	t_cmdlts 	*cmdLst;
+	t_flags  	 *flags;
+	t_heredoc	*herelst;
+	int			here_id;
+	char	 	*input;
+	char	 	**tab_env;
+	int		 	index;
+	int 	 	pipe_num;
+    int 	 	in_redr_num;
+    int 	 	out_redr_num;
+	int		 	read_flag;
+	int		 	cmdAllSet;
+	int		 	cmdCounter;
+	int 	 	s;
+	int 	 	e;
 } t_minish;
 
 /*----------------- CMDS EXECUTION -------------*/
@@ -169,6 +182,8 @@ typedef struct s_manage_fds
 	int copy_fd;
 	struct s_manage_fds *next;	
 } t_manage_fds;
+
+
 
  
 #endif

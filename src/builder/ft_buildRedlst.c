@@ -6,13 +6,13 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/04/15 20:41:03 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:09:40 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redlts 	*setRed(char *redtype, char *filename)
+t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s)
 {
 	t_redlts *redNode;
 	
@@ -22,6 +22,11 @@ t_redlts 	*setRed(char *redtype, char *filename)
 	redNode->prev = NULL;
 	redNode->redtype = redtype;
 	redNode->filename = filename;
+	if(ft_strcmp(redNode->redtype, "<<") == true)
+	{
+		redNode->hereID = m_s->here_id;
+		m_s->here_id = m_s->here_id + 1;
+	}
 	redNode->next = NULL;
 	return(redNode);
 }

@@ -14,3 +14,50 @@ echo "e"'ch'o 'b'"o"n'jo'u"r"! ls -la "sal"ut < file1 > file2 | ls > file3 << EO
 
 "e"'ch'o 'b'"o"n'jo'u"r" c""o"mment" "l"s "-"'la' | gre"p""" all "$USER""$HOME"$PA"TH"
 
+
+
+/*====================================================*/
+/*=                       HERE DOC                   =*/
+/*====================================================*/
+
+<< E1 << E2 << E3 << E4
+
+<< E1 > file1 << E2 > file2 << E3 > file3 << E4 > file4  << E5 > file5
+
+<< E1 > file1 | << E2 > file2 | << E3 > file3 | << E4 > file4 | << E5 > file5
+
+cat << E1 > file1 | cat << E2 > file2 | cat << E3 > file3 | cat << E4 > file4 | cat << E5 > file5
+
+cat << E1 > file1 exp_split.c  !!! pourquoi est-ce que file1 a exp_split au lieu de ce qui est dans le here documement 
+
+cat > file1 exp_split.c
+
+cat << EOF > file1
+
+
+
+test1
+E1
+test2
+E2
+test3
+E3
+test4
+E4
+test5
+E5
+
+rm -rf file1 && rm -rf file2 && rm -rf file3 && rm -rf file4 && rm -rf file5
+
+/* PARSING */
+
+AAAA$USER
+AAAA$USERAAAA
+AAAA"$USER"
+AAAA"$USER
+AAAA$USER"
+AAAA'$USER'
+AAAA$US"ER"
+'$USER$?$USER'
+$US"ER"
+EOF
