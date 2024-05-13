@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 01:48:26 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 14:32:29 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/10 14:17:33 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void    evecv_built(t_cmd *built, int _w)
     {
         if (size(built->av_cmd) > 1)
             is_print = false;
-        ft_export(built->envp, built->av_cmd, is_print);
+        ft_export(built, built->envp, built->av_cmd, is_print);
     }
     if (_w == 5)
         ft_unset(built);

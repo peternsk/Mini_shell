@@ -41,6 +41,6 @@ int same_var_value(char **envp, char *var)
 
     index = index_vars_is(envp, ft_cpyvar(var));
     if (index == -1)
-        return (-1);
+        return (index);
     return (index);
 }

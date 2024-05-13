@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/09 10:22:25 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/13 06:25:00 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_minish *init_ms(void)
 	m_s->cmdLst = NULL;
 	m_s->tab_env = NULL;
 	m_s->herelst = NULL;
+	m_s->here_id = 1;
 	m_s->index = 0;
 	m_s->pipe_num = 0;
 	m_s->in_redr_num = 0;

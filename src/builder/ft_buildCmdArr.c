@@ -6,7 +6,7 @@
 /*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/09 11:36:42 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/13 06:38:16 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 			add_garbage(curCmd->command[i]);
 		}
 		else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
-			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value));
+			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value, m_s));
 		else if(curTok && curTok->type == pipe_)
 		{
 			curCmd->command[++i] = NULL;
@@ -55,6 +55,8 @@ void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 		}
 		curTok = curTok->next;
 	}
-	check_here_doc(m_s, &curCmd->redlst);
+	run_here_redlst(m_s, &curCmd->redlst);
+	herelist_exp(&m_s->herelst, &m_s->envVarlst, m_s);
+	print_here_lst(m_s->herelst);
 	curCmd->command[++i] = NULL;
 }

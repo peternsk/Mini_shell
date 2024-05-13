@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/09 10:39:49 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/13 06:24:13 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum token_type
 	here_doc,
 	pipe_,
 	dbl_pipe_,
+	dbl_et,
 	delimter,
 	_file
 }			token_type;
@@ -72,6 +73,7 @@ typedef	struct s_redlts
 	struct s_redlts *next;
 	char *redtype;
 	char *filename;
+	int	hereID;
 } t_redlts;
 
 typedef	struct s_cmdlts
@@ -119,8 +121,9 @@ typedef struct	s_minish
 	t_token  	*token_lst;
 	t_env	 	*envVarlst;
 	t_cmdlts 	*cmdLst;
-	t_flags  	*flags;
-	t_heredoc	*herelst; 
+	t_flags  	 *flags;
+	t_heredoc	*herelst;
+	int			here_id;
 	char	 	*input;
 	char	 	**tab_env;
 	int		 	index;
@@ -140,9 +143,13 @@ typedef struct	s_minish
 typedef	struct	s_files 
 {
 	int		type;
+	int		index;
 	char	*name;
 	char	*agrv;
 	int		made;
+	int		index_out;
+	int		put_last;
+	int		error;
 	struct	s_files *next;
 	struct s_manage_fds *manage_fd;
 }t_files;

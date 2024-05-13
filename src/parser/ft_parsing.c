@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/06 14:44:39 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/09 17:15:54 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	current = *lst;
 	while(current != NULL && current->next != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= dbl_pipe_) && (current->next->type >= out_p_redir && current->next->type <= dbl_pipe_))
+		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= out_p_redir && current->next->type <= dbl_et))
 			return(false);
 		current = current->next;
 	}

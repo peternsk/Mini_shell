@@ -17,61 +17,63 @@ bool    delim_cmp(char *input, char *delimiter)
     return(true);
 }
 
-void	check_here_doc(t_minish *m_s, t_redlts **lst)
+int		count_here_doc(t_redlts **lst)
 {
 	t_redlts *tmp;
-	char *here_input;
+	int hereCount;
 
 	tmp = *lst;
+	hereCount = 0;
 	while(tmp)
 	{
-		if(delim_cmp(tmp->redtype, "<<") == true)
-		{
-			while(1 && tmp->next)
-			{
-				printf("DELIMITER [%s]\n", tmp->filename);
-				here_input = readline(HERE_INPUT);
-				if(delim_cmp(here_input, tmp->filename) == true)
-				{
-					print_here_lst(m_s->herelst);
-					return;
-				}
-				else
-					create_here_lst(m_s, here_input);
-			}
-			tmp = tmp->next;
-		}
-		// tmp = tmp->next;
+		if(strcmp(tmp->redtype, "<<") == true)
+			hereCount++;
+		tmp = tmp->next;
 	}
-	print_here_lst(m_s->herelst);
+	return(hereCount);
+}
+void	empty_hereDoc(t_redlts *tmp)
+{
+	char *here_input;
+
+	while(1)
+	{
+		here_input = readline(HERE_INPUT);
+		if(delim_cmp(here_input, tmp->filename) == true)
+			return;
+		// else
+		// 	printf(" >%s\n", here_input);
+	}
 }
 
+void	last_here_doc(t_minish *m_s, t_redlts *tmp)
+{
+	char *here_input;
 
-/*
-	c'est la representation d'une linked list de redirection qu'on trouve dans une node de commande que je domme a l'execution.
-	l'objectif va etre de passer a traver et de trouver une here document et de lancer la function qui va permetre de creer un fichier
-	tempopraire qui va etre traiter par la command en cas de besoin.
+	while(1)
+	{
+		here_input = readline(HERE_INPUT);
+		if(delim_cmp(here_input, tmp->filename) == true)
+			return;
+		else
+			create_here_lst(m_s, here_input);
+	}
+}
 
-			###########			###########			###########			###########			###########			###########
-	<=======#         # <====== #		  # <====== #         # <====== #		  # <====== #		  # <====== #		  #
-			#	<<	  *			#	 >	  *			#	<<	  *			#	 >	  *			#	<<	  *			#	 >	  *
-			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
-			#	EOF	  *			#	fil	  *			#	EOF	  *			#	fil	  *			#	EOF	  *			#	fil	  *
-			#         # ======> #		  # ======> #         # ======> #		  # ======> #		  # ======> #		  # ======>
-			###########			###########			###########			###########			###########			###########
+void	run_here_redlst(t_minish *m_s, t_redlts **lst)
+{
+	t_redlts *tmp;
+	int hereNbr;
 
-				#					#					#					#					#					#
-				#					#					#					#					#					#
-				#					#					#					#					#					#
+	tmp = *lst;
+	hereNbr = count_here_doc(lst);
+	while(tmp)
+	{
+		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID < hereNbr))
+			empty_hereDoc(tmp);
+		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID == hereNbr))
+			last_here_doc(m_s, tmp);
+		tmp = tmp->next;
+	}
 
-			###########			###########			###########			###########			###########			###########
-			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  #
-			#		  *			#		  *			#		  *			#		  *			#		  *			#		  *
-			#	tmp	  *	===>	#	rel	  *			#	tmp	  *	===>	#	rel	  *			#	tmp	  *	===>	#	rel	  *
-			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *			#	fil	  *
-			#         # 		#		  # 		#         # 		#		  # 		#		  # 		#		  # 		
-			###########			###########			###########			###########			###########			###########
-
-
-
-*/
+}
