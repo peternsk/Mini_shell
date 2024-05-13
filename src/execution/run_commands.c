@@ -58,8 +58,8 @@ int   run_commands(t_cmd *cmds)
     }
     else
     {
-        // printf("more than one command\n");
-        // commands(cmds, envp_path);
+        printf("more than one command\n");
+        commands(cmds, envp_path);
         // print_cmds(cmds);
     }
     return (1);

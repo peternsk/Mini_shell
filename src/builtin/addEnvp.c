@@ -33,7 +33,7 @@ char **addEnvp(char **envp, char **vars)
         }
         else
         {
-            printf("%s\n", vars[i]);
+            // printf("%s\n", vars[i]);
             index = same_varibale(envp, vars[i]);
             new = new_envp(envp, new, vars[i], index);
         }
