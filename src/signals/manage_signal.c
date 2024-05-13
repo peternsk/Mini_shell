@@ -3,8 +3,15 @@
 void ctrl_c_parent()
 {
 	// function mal need to be fix
+	// printf("parent\n");
     // readline(INPUT); // printf("\n");
-	// rl_on_new_line();
+	// rl_line_buffer = INPUT;
+	write(2, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+	// printf("\n");
+	// printf(INPUT);
 }
 void ctrl_quit_childs()
 {
