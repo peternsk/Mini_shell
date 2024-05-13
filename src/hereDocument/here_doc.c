@@ -1,32 +1,51 @@
 #include "minishell.h"
 
-void	check_here_doc(t_redlts **lst)
+bool    delim_cmp(char *input, char *delimiter)
+{
+    int i;
+
+    i = 0;
+    if(ft_strlen(input) != ft_strlen(delimiter))
+        return(false);
+    while(input[i] != '\0')
+    {
+        if(input[i] == delimiter[i])
+            i++;
+        else
+            return(false);
+    }
+    return(true);
+}
+
+void	check_here_doc(t_minish *m_s, t_redlts **lst)
 {
 	t_redlts *tmp;
+	char *here_input;
 
 	tmp = *lst;
 	while(tmp)
 	{
-		if(delim_cmp(tmp->redtype, "<<"))
-			ft_here_doc(tmp);
-		tmp = tmp->next;
-		printf("NEXT TMP\n");
+		if(delim_cmp(tmp->redtype, "<<") == true)
+		{
+			while(1 && tmp->next)
+			{
+				printf("DELIMITER [%s]\n", tmp->filename);
+				here_input = readline(HERE_INPUT);
+				if(delim_cmp(here_input, tmp->filename) == true)
+				{
+					print_here_lst(m_s->herelst);
+					return;
+				}
+				else
+					create_here_lst(m_s, here_input);
+			}
+			tmp = tmp->next;
+		}
+		// tmp = tmp->next;
 	}
-	return;
+	print_here_lst(m_s->herelst);
 }
 
-void	ft_here_doc(t_redlts *redNode)
-{
-	char *here_input;
-
-	while(1)
-	{
-		printf("delimiter : %s\n", redNode->filename);
-		here_input = readline(HERE_INPUT);
-		if(delim_cmp(here_input, redNode->filename) == true)
-			break;
-	}
-}
 
 /*
 	c'est la representation d'une linked list de redirection qu'on trouve dans une node de commande que je domme a l'execution.
