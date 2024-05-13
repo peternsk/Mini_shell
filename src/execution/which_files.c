@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/10 15:46:32 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:18:13 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void    check_last_files(t_files *files)
 {
     t_files *node;
     t_files *tmp;
+    t_files *tmp_doc;
 
     tmp = NULL;
     node = files;
@@ -23,10 +24,14 @@ void    check_last_files(t_files *files)
     {
         if (node->type == apnd_op_redir || node->type == out_p_redir)
             tmp = node;
+        if (node->type == here_doc)
+            tmp_doc = node;
         node = node->next;    
     }
     if (tmp)
         tmp->put_last = 1;
+    if (tmp_doc)
+        tmp_doc->put_last = 1;
     // printf("tmp->index_ou %d\n tmp->name %s\n", tmp->index_out, tmp->name);
 }
 void   print_files_index(t_files *files)
@@ -55,7 +60,7 @@ void    which_files(t_cmd *current)
             if (is_files_valide(current) == 0)
                 change_stdout(files);
             // ft_here_doc(files, current);
-            // check_here_doc(m_s, &curCmd->redlst);
+            check_here_doc(current->glob, &files);
             files = files->next;
             
         }

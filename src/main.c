@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/10 15:18:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:50:07 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int		main(int ac, char **av, char **env)
 			// merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
 			// printRealList(m_s->token_lst);
+			/*---------------------------------here doc----------------------------------*/
 			ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
+			/*---------------------------------here doc----------------------------------*/
 			print_cmdLst(&m_s->cmdLst);
 			init_cmds(env, m_s);
 			// print_garbage_collector();
