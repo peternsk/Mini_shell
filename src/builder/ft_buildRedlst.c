@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/13 10:09:40 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/14 15:26:32 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s)
 		m_s->here_id = m_s->here_id + 1;
 	}
 	redNode->next = NULL;
-	return(redNode);
+	return(redNode); 
 }
 
 void	add_redNode_to_end(t_redlts **lst, t_redlts *redNode)

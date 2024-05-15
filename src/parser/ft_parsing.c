@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/09 17:15:54 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/14 15:21:10 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	prs_ast_pipe(t_token **lst)
 			return(false);
 		current = current->next;
 	}
+	printf("in prs_ast_pipe\n");
 	return(true);
 }
 
@@ -62,6 +63,7 @@ bool	prs_ast_redir(t_token **lst)
 	t_token *current;
 
 	current = *lst;
+	printf("IN HERE\n");
 	while(current != NULL)
 	{
 		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))
@@ -79,20 +81,22 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	t_token *current;
 
 	current = *lst;
-	while(current != NULL && current->next != NULL)
+	while(current != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= out_p_redir && current->next->type <= dbl_et))
+		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= apnd_op_redir && current->next->type <= dbl_et))
 			return(false);
 		current = current->next;
-	}
-	return(true);
 	
+	}
+	printf("in prs_ast_dlb_meta\n");
+	return(true);
 }
 
 void    ft_lexer(t_token **lst)
 {
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
+		printf("IN HERE\n");
 		exit_status = 0;
 		exit_status = exit_status + 2;
 		// printf("===============================\n");

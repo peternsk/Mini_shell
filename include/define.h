@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/13 06:24:13 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/14 14:19:31 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,6 @@ typedef	struct s_token
 	int setToCmd;
 } t_token;
 
-typedef	struct s_redlts
-{
-	struct s_redlts *prev;
-	struct s_redlts *next;
-	char *redtype;
-	char *filename;
-	int	hereID;
-} t_redlts;
 
 typedef	struct s_cmdlts
 {
@@ -153,6 +145,15 @@ typedef	struct	s_files
 	struct	s_files *next;
 	struct s_manage_fds *manage_fd;
 }t_files;
+
+typedef	struct s_redlts
+{
+	struct s_redlts *prev;
+	struct s_redlts *next;
+	char *redtype;
+	char *filename;
+	int	hereID;
+} t_redlts;
 
 
 /*--- PIPE/ ---*/
