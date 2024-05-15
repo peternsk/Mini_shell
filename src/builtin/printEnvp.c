@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:19:46 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/25 18:08:36 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:19:53 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ void ft_sort(char **envp)
 
     i = 0;
     j = 0;
-    while (envp[i] != NULL)
+    if (envp)
     {
-        j = i + 1;
-        while (envp[j] != NULL)
+        while (envp[i] != NULL)
         {
-            if (ft_strncmp_envp(envp[i], envp[j],  ft_strlen(envp[j])) == 2)
-                swap(&envp[i], &envp[j]);
-            j++;
+            j = i + 1;
+            while (envp[j] != NULL)
+            {
+                if (ft_strncmp_envp(envp[i], envp[j],  ft_strlen(envp[j])) == 2)
+                    swap(&envp[i], &envp[j]);
+                j++;
+            }
+            i++;
         }
-        i++;
     }
 }
  

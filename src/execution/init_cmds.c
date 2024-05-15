@@ -17,6 +17,7 @@ t_cmd *init_curr_cmd()
     node->type = -1;
     node->files = NULL;
     node->next = NULL;
+    node->glob = NULL;
     return (node);
 }
 
@@ -67,13 +68,21 @@ void print_cmds(t_cmd **s_cmd)
 // ajouter nb_cmd [done]
 // ajouter nb_pipes [done]
 // ajouter le type de cmds [done]
+void copy_envp(char **envp, char **new_env)
+{
+    (void)envp;
+    for (int i = 0; new_env[i] != NULL; i++)
+        printf("%s\n", new_env[i]);
+}
 void    init_cmds(char **envp, t_minish *m_s)
 {
+    (void)envp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
     curr = NULL;
     currList = NULL;
+    printf("error\n");
     if (m_s->cmdLst)
     {
         currList = m_s->cmdLst;
@@ -81,7 +90,9 @@ void    init_cmds(char **envp, t_minish *m_s)
         {
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
+            new->glob = m_s;
             // new->envp = list_to_tab(&m_s->envVarlst);
+            // copy_envp(new->envp, list_to_tab(&m_s->envVarlst));
             new->envp = envp;
             // free_list(m_s->envVarlst);
             new->type = type_cmds(new->cmd_name);

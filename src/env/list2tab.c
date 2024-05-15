@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list2tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/02 11:37:45 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/15 11:22:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char    *token_2_str(t_env *env_node)
         i++;
     }
     str[i] = '\0';
-    printf("%s\n", str);
+    // printf("%s\n", str);
     return(str);
 }
 
@@ -72,6 +72,8 @@ char    **list_to_tab(t_env **lst)
         env_tab[i] = token_2_str(node);
         node = node->next;
     }
+    // for (int i = 0; env_tab[i] != NULL ; i ++)
+    //     printf("%s\n", env_tab[i]);
     return(env_tab);
 }
 

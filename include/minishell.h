@@ -1,4 +1,3 @@
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -161,7 +160,7 @@ void	    herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s);
 
 /* core function */
 bool        delim_cmp(char *input, char *delimiter);
-// void	    check_here_doc(t_minish *m_s, t_redlts **lst);
+void	    check_here_doc(t_minish *m_s, t_redlts **lst);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);

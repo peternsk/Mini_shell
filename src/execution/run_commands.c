@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   run_commands.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:07:27 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/15 13:40:44 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 // void print_cmds(t_cmd *s_cmd)
@@ -70,7 +58,7 @@ int   run_commands(t_cmd *cmds)
     }
     else
     {
-        // printf("more than one command\n");
+        printf("more than one command\n");
         commands(cmds, envp_path);
         // print_cmds(cmds);
     }

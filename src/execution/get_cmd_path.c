@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:28:30 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:00:42 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ void	free_str(char **str)
 
 static char    *_check_absolute_path(char *cmd)
 {
+    int i;
+
+    i = 0;
     if (!cmd)
-        return (NULL);
+        return (NULL); 
     if (cmd[0] == '/')
         if (access(cmd, F_OK) == 0)
             return (cmd);
