@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 12:37:48 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/14 10:23:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/15 14:57:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 		}
 		curTok = curTok->next;
 	}
-	// run_here_redlst(m_s, &curCmd->redlst);
-	// herelist_exp(&m_s->herelst, &m_s->envVarlst, m_s);
-	// print_here_lst(m_s->herelst);
+	// check_here_doc(m_s, &curCmd->redlst);
+	herelist_exp(&m_s->herelst, &m_s->envVarlst, m_s);
+	print_here_lst(m_s->herelst);
 	curCmd->command[++i] = NULL;
 }
