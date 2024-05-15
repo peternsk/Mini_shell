@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:07:27 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/07 14:26:20 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/14 14:55:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int   run_commands(t_cmd *cmds)
     else
     {
         // printf("more than one command\n");
-        // commands(cmds, envp_path);
+        commands(cmds, envp_path);
         // print_cmds(cmds);
     }
     return (1);
