@@ -165,7 +165,7 @@ void	    check_here_doc(t_minish *m_s, t_files **files);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
-int			count_here_doc(t_redlts **lst);
+// int			count_here_doc(t_redlts **lst);
 void		empty_hereDoc(t_redlts *tmp);
 void		last_here_doc(t_minish *m_s, t_redlts *tmp);
 void		run_here_redlst(t_minish *m_s, t_redlts **lst);

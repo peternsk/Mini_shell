@@ -11,7 +11,7 @@ char    *get_home_path(char *envp)
     return (envp + i);
 }
 
-char    *form_envp_get_home(char **envp)
+char    *from_envp_get_home(char **envp)
 {
     int i;
 
@@ -69,7 +69,7 @@ void    ft_cd(t_cmd *cmds)
         if (!cmds->av_cmd[1])
         {
             oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
-            chdir(form_envp_get_home(cmds->envp));
+            chdir(from_envp_get_home(cmds->envp));
             newPwd[0] =  ft_strjoin("PWD=", get_live_path());
             ft_export(cmds, cmds->envp, oldPwd, false);
             ft_export(cmds, cmds->envp, newPwd, false);
