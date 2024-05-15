@@ -16,12 +16,15 @@ LIBFT_LIB = ${LIBFT_DIR}/libft.a
 SRCS_DIR 	= src
 OBJS_DIR	= obj
 
+BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export is_same new_envp same_var_value check_duplicate same_variable is_add size ft_unset is_same_key_value ft_env ft_exit
 
-BUILTIN		=
+BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_cmd is_change_std ft_append change_stdint change_stdout #handel_builtin
+EXECUTION	=	init_cmds add_cmds_files cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
+
+HERE_DOC	=   here_doc set_here_lst here_pars here_pars1
 
 GARBAGE 	=  	add_address
 
@@ -29,11 +32,9 @@ LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
 PARSER		= 	ft_parsing setFile printRealList
 
-BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
+SIGNALS		= 	manage_signal
 
-SIGNALS		=
-
-UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken
+UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
@@ -44,6 +45,7 @@ SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/builder/, $(BUILDER))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/hereDocument/, $(HERE_DOC))) \
 				$(addsuffix .c, main) 
 
 OBJS 		= 	$(addprefix ${OBJS_DIR}/, $(subst src/,,$(SRCS:.c=.o))) 
@@ -71,7 +73,7 @@ ${LIBFT_LIB}:
 
 
 $(LIBRD):
-	curl -O ftp://ftp.cwru.edu/pub/bash/$(LIBRLINE).tar.gz
+	curl -O https://ftp.gnu.org/gnu/readline/$(LIBRLINE).tar.gz
 	tar -zxvf $(LIBRLINE).tar.gz
 	@rm -rf $(LIBRLINE).tar.gz
 	@cd $(LIBRLINE) && bash configure && make
@@ -93,7 +95,8 @@ ${NAME}: ${LIBRD} ${LIBFT_LIB} ${OBJS}
 clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"
 	@make clean -C ${LIBFT_DIR}
-	@${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
+	@${RM} ${OBJS_DIR}
+	# @${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
 	@echo "$(BLACK)Nettoyage effectué avec succès !"
 
 fclean: clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:21:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/05 23:27:07 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/14 14:45:33 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	current = *lst;
 	while(current != NULL && current->next != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= dbl_pipe_) && (current->next->type >= out_p_redir && current->next->type <= dbl_pipe_))
+		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= out_p_redir && current->next->type <= dbl_et))
 			return(false);
 		current = current->next;
 	}
@@ -95,24 +95,24 @@ void    ft_lexer(t_token **lst)
 	{
 		exit_status = 0;
 		exit_status = exit_status + 2;
-		printf("===============================\n");
-		printf("=      bash: syntax error     =\n");
-		printf("===============================\n");
-		printf("                =\n");
-		printf("===============================\n");
-		printf("=             $? : %d          =\n", exit_status);
-		printf("===============================\n");
+		// printf("===============================\n");
+		// printf("=      bash: syntax error     =\n");
+		// printf("===============================\n");
+		// printf("                =\n");
+		// printf("===============================\n");
+		// printf("=             $? : %d          =\n", exit_status);
+		// printf("===============================\n");
 		exit(0);
 		
 	}
 	else
 	{
-		printf("===============================\n");
-		printf("=      command parse ok       =\n");
-		printf("===============================\n");
-		printf("                =\n");
-		printf("===============================\n");
-		printf("=             $? : %d          =\n", exit_status);
-		printf("===============================\n");	
+		// printf("===============================\n");
+		// printf("=      command parse ok       =\n");
+		// printf("===============================\n");
+		// printf("                =\n");
+		// printf("===============================\n");
+		// printf("=             $? : %d          =\n", exit_status);
+		// printf("===============================\n");	
 	}
 }

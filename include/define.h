@@ -1,20 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 10:50:52 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/03 17:55:51 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef DEFINE_H
 # define DEFINE_H
 
 /*--- MACROS ---*/
 # define INPUT "░▒▓███\001\e[0m\e[33m\002 Minishell>> \001\e[0m\002"
+# define HERE_INPUT "> "
 
 /*--- PRINTF COLOR ---*/
 #define RED   "\x1B[31m"
@@ -41,6 +30,7 @@ typedef enum token_type
 	here_doc,
 	pipe_,
 	dbl_pipe_,
+	dbl_et,
 	delimter,
 	_file
 }			token_type;
@@ -104,24 +94,33 @@ typedef struct	s_env
 	char 	*value;
 } t_env;
 
+/*--- HERE STRUCT ---*/
+typedef struct s_heredoc
+{
+	struct	s_heredoc *prev;
+	struct	s_heredoc *next;
+	char	*str;
+	char	*expstr;
+} t_heredoc;
 
 typedef struct	s_minish
 {
-	t_token  *token_lst;
-	t_env	 *envVarlst;
-	t_cmdlts *cmdLst;
-	t_flags  *flags;
-	char	 *input;
-	char	 **tab_env;
-	int		 index;
-	int 	 pipe_num;
-    int 	 in_redr_num;
-    int 	 out_redr_num;
-	int		 read_flag;
-	int		 cmdAllSet;
-	int		 cmdCounter;
-	int 	 s;
-	int 	 e;
+	t_token  	*token_lst;
+	t_env	 	*envVarlst;
+	t_cmdlts 	*cmdLst;
+	t_flags  	*flags;
+	t_heredoc	*herelst; 
+	char	 	*input;
+	char	 	**tab_env;
+	int		 	index;
+	int 	 	pipe_num;
+    int 	 	in_redr_num;
+    int 	 	out_redr_num;
+	int		 	read_flag;
+	int		 	cmdAllSet;
+	int		 	cmdCounter;
+	int 	 	s;
+	int 	 	e;
 } t_minish;
 
 /*----------------- CMDS EXECUTION -------------*/
@@ -130,27 +129,47 @@ typedef struct	s_minish
 typedef	struct	s_files 
 {
 	int		type;
+	int		index;
 	char	*name;
 	char	*agrv;
+	int		made;
+	int		index_out;
+	int		put_last;
+	int		error;
 	struct	s_files *next;
+	struct s_manage_fds *manage_fd;
 }t_files;
 
 
 /*--- PIPE/ ---*/
 typedef struct  s_cmd {
-	int		type;
-	pid_t	id;
-	int		**pipes;
-	char	**av_cmd;
-	char	*cmd_name;
-	char	**envp;
-	int		index;
-	bool	is_vars;
-	int		nb_cmds;
-	int 	nb_pipes;
-	// should be a void next stuck
-	struct s_cmd *next;
-	t_files *files;
+	int				type;
+	pid_t			id;
+	int				**pipes;
+	char			**av_cmd;
+	char			*cmd_name;
+	char			**envp;
+	int				index;
+	bool			is_vars;
+	int				nb_cmds;
+	int 			nb_pipes;
+	int				is_file_on;
+	struct s_cmd 	*next;
+	t_minish 		*glob;
+	t_files 		*files;
 } t_cmd;
+ 
+typedef struct s_manage_fds
+{
+	int type;
+	int error;
+	int _is_use;
+	int is_open;
+	int copy_fd;
+	struct s_manage_fds *next;	
+} t_manage_fds;
 
+
+
+ 
 #endif

@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   which_cmd.c                                        :+:      :+:    :+:   */
+/*   free_function.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:29:51 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/04/22 23:33:49 by mnshimiy         ###   ########.fr       */
+/*   Created: 2024/04/23 21:55:55 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/04/23 22:01:18 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    which_cmd(t_cmd *current)
+void free_list(t_token **list)
 {
-    if (current->files)
-        is_change_std(current->files);
-    if (current->type == out_p_redir)
+    t_token *tmp;
+    
+    if (list)
     {
-        // we make de les here and we look at the > redirection
-        // exit();
-    }
-    if (current->type == 8)
-    {
-        // we make de commande and we look at the > redirection
-        // exit();
+        while (*list != NULL)
+        {
+            tmp = (*list)->next;
+            free(*list);
+            (*list) = tmp;
+        }
+        *list = NULL;
     }
 }

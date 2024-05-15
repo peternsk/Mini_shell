@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/03 17:55:47 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:20:04 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_minish *init_ms(void)
 	m_s->envVarlst = NULL;
 	m_s->cmdLst = NULL;
 	m_s->tab_env = NULL;
+	m_s->herelst = NULL;
 	m_s->index = 0;
 	m_s->pipe_num = 0;
 	m_s->in_redr_num = 0;

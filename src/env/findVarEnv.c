@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   findVarEnv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 22:22:54 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 20:33:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/04/25 20:20:00 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 	last = *lst;
 	curEnv = *envVarlst;
 	if(last == NULL)
-		printf("empty list\n");
+		printf("empty list change\n");
 	while(last != NULL)
 	{
         if((last->type == argument || last->type == dbl_quote_arg) && (char_search(last->value, '$') == true))

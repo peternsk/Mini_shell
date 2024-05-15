@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/23 10:51:02 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:22:37 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char    *token_2_str(t_env *env_node)
     
     tmp = env_node;
     str = (char *)malloc((sizeof(char) * (ft_strlen(tmp->key) + ft_strlen(tmp->value))) + 2);
+    if(!str)
+        return(0);
     i = -1;
     while(tmp->key[++i])
         str[i] = tmp->key[i];
@@ -47,6 +49,7 @@ char    *token_2_str(t_env *env_node)
         i++;
     }
     str[i] = '\0';
+    // printf("%s\n", str);
     return(str);
 }
 
@@ -61,12 +64,16 @@ char    **list_to_tab(t_env **lst)
     node = *lst;
     nb_token = count_env_node(node);
     env_tab = (char**)malloc((sizeof(char *) * nb_token) + 1);
+    if (!env_tab)
+        return (NULL);
 	i = -1;
-    while(++i < nb_token)
+    while(++i < nb_token && node)
     {
         env_tab[i] = token_2_str(node);
         node = node->next;
     }
+    // for (int i = 0; env_tab[i] != NULL ; i ++)
+    //     printf("%s\n", env_tab[i]);
     return(env_tab);
 }
 
