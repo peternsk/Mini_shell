@@ -96,7 +96,7 @@ clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"
 	@make clean -C ${LIBFT_DIR}
 	@${RM} ${OBJS_DIR}
-#@${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
+	# @${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
 	@echo "$(BLACK)Nettoyage effectué avec succès !"
 
 fclean: clean
