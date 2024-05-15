@@ -102,3 +102,49 @@ void	check_here_doc(t_minish *m_s, t_files **lst)
 	// }
 	print_here_lst(m_s->herelst);
 }
+
+void	empty_hereDoc(t_redlts *tmp)
+{
+	char *here_input;
+
+	while(1)
+	{
+		here_input = readline(HERE_INPUT);
+		if(delim_cmp(here_input, tmp->filename) == true)
+			return;
+		// else
+		// 	printf(" >%s\n", here_input);
+	}
+}
+
+void	last_here_doc(t_minish *m_s, t_redlts *tmp)
+{
+	char *here_input;
+
+	while(1)
+	{
+		here_input = readline(HERE_INPUT);
+		if(delim_cmp(here_input, tmp->filename) == true)
+			return;
+		else
+			create_here_lst(m_s, here_input);
+	}
+}
+
+void	run_here_redlst(t_minish *m_s, t_redlts **lst)
+{
+	t_redlts *tmp;
+	int hereNbr;
+
+	tmp = *lst;
+	hereNbr = count_here_doc(lst);
+	while(tmp)
+	{
+		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID < hereNbr))
+			empty_hereDoc(tmp);
+		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID == hereNbr))
+			last_here_doc(m_s, tmp);
+		tmp = tmp->next;
+	}
+
+}
