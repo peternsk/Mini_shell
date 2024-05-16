@@ -91,9 +91,9 @@ void    init_cmds(char **envp, t_minish *m_s)
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
             new->glob = m_s;
-            // new->envp = list_to_tab(&m_s->envVarlst);
+            new->envp = list_to_tab(&m_s->envVarlst);
             // copy_envp(new->envp, list_to_tab(&m_s->envVarlst));
-            new->envp = envp;
+            // new->envp = envp;
             // free_list(m_s->envVarlst);
             new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
@@ -101,7 +101,7 @@ void    init_cmds(char **envp, t_minish *m_s)
             //     printf("is file null\n");
             // else
             //     printf("tell me the is not NULL \n");
-            add_cmds_files(&curr, new, currList->redlst);
+            add_cmds_files(&curr, new);
             currList = currList->next;
         }
         cout_cmds_pipes(curr);

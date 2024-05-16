@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/15 15:07:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:57:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		main(int ac, char **av, char **env)
 			setFile(&m_s->token_lst);
 			// printRealList(m_s->token_lst);
 			ft_createCmdLst(m_s);
-			// merge_token(&m_s->token_lst);
+			merge_token(&m_s->token_lst);
 			combineTokValue(&m_s->token_lst);
 			// printRealList(m_s->token_lst);
 			/*---------------------------------here doc----------------------------------*/

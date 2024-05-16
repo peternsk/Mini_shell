@@ -131,20 +131,20 @@ void	last_here_doc(t_minish *m_s, t_redlts *tmp)
 	}
 }
 
-void	run_here_redlst(t_minish *m_s, t_redlts **lst)
-{
-	t_redlts *tmp;
-	int hereNbr;
+// void	run_here_redlst(t_minish *m_s, t_redlts **lst)
+// {
+// 	t_redlts *tmp;
+// 	int hereNbr;
 
-	tmp = *lst;
-	hereNbr = count_here_doc(lst);
-	while(tmp)
-	{
-		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID < hereNbr))
-			empty_hereDoc(tmp);
-		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID == hereNbr))
-			last_here_doc(m_s, tmp);
-		tmp = tmp->next;
-	}
+// 	tmp = *lst;
+// 	hereNbr = count_here_doc(lst);
+// 	while(tmp)
+// 	{
+// 		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID < hereNbr))
+// 			empty_hereDoc(tmp);
+// 		if((delim_cmp(tmp->redtype, "<<") == true) && (tmp->hereID == hereNbr))
+// 			last_here_doc(m_s, tmp);
+// 		tmp = tmp->next;
+// 	}
 
-}
+// }

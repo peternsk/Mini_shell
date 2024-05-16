@@ -123,10 +123,10 @@ void        delete_token(t_token **lst, int tokToDel_id);
 void	    ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst);
 
 /*---- REDIRECTION ----*/
-t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s);
-void	    add_redNode_to_end(t_redlts **redNode, t_redlts *newNode);
+t_files		*setRed(char *redtype, char *filename, t_minish *m_s);
+void	    add_redNode_to_end(t_files **lst, t_files *redNode);
 int		    countNbRednode(t_token **lst);
-void		print_redLst(t_redlts **lst);
+void		print_redLst(t_files **lst);
 
 /*====================================================*/
 /*=                      UTILS                       =*/
@@ -165,10 +165,10 @@ void	    check_here_doc(t_minish *m_s, t_files **files);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
-int			count_here_doc(t_redlts **lst);
+// int			count_here_doc(t_redlts **lst);
 void		empty_hereDoc(t_redlts *tmp);
 void		last_here_doc(t_minish *m_s, t_redlts *tmp);
-void		run_here_redlst(t_minish *m_s, t_redlts **lst);
+// void		run_here_redlst(t_minish *m_s, t_redlts **lst);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
@@ -178,7 +178,7 @@ void	    print_here_lst(t_heredoc *lst);
 /*====================================================*/
 
 void        init_cmds(char **envp, t_minish *m_s);
-void        add_cmds_files(t_cmd **node, t_cmd *new, t_redlts *files);
+void        add_cmds_files(t_cmd **node, t_cmd *new);
 void        cout_cmds_pipes(t_cmd *cmds);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
 int         type_cmds(char *s);
