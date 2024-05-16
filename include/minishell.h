@@ -160,6 +160,7 @@ void	    herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s);
 
 /* core function */
 bool        delim_cmp(char *input, char *delimiter);
+// void	    check_here_doc(t_minish *m_s, t_redlts **lst);
 void	    check_here_doc(t_minish *m_s, t_files **files);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
