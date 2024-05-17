@@ -142,6 +142,7 @@ bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
 void        free_list(t_token **list);
+bool        ft_search_char(char *str, char c);
 
 /*====================================================*/
 /*=                  HERE DOCUMENT                   =*/
@@ -160,15 +161,14 @@ void	    herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s);
 
 /* core function */
 bool        delim_cmp(char *input, char *delimiter);
-// void	    check_here_doc(t_minish *m_s, t_redlts **lst);
 void	    check_here_doc(t_minish *m_s, t_files **files);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
-// int			count_here_doc(t_redlts **lst);
-void		empty_hereDoc(t_redlts *tmp);
-void		last_here_doc(t_minish *m_s, t_redlts *tmp);
-// void		run_here_redlst(t_minish *m_s, t_redlts **lst);
+int		    count_here_doc(t_files **lst);
+void		empty_hereDoc(t_files *tmp);
+void		last_here_doc(t_minish *m_s, t_files *tmp);
+void		run_here_redlst(t_minish *m_s, t_files **lst);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);

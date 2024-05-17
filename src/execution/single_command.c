@@ -68,6 +68,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
     if (cmd)
     {
+        printf("IN WHICH");
         which_files(cmd);
         cmd->is_file_on = is_files_valide(cmd);
         printf("is file good %d\n", is_files_valide(cmd));

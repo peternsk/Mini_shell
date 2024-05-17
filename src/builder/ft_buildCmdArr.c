@@ -43,8 +43,5 @@ void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 		}
 		curTok = curTok->next;
 	}
-	// check_here_doc(m_s, &curCmd->redlst);
-	herelist_exp(&m_s->herelst, &m_s->envVarlst, m_s);
-	print_here_lst(m_s->herelst);
 	curCmd->command[++i] = NULL;
 }

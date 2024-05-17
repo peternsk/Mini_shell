@@ -34,7 +34,7 @@ PARSER		= 	ft_parsing setFile printRealList
 
 SIGNALS		= 	manage_signal
 
-UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function
+UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
