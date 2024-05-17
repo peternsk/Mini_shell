@@ -6,34 +6,39 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/14 15:26:32 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/16 15:03:08 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s)
+t_files		*setRed(char *redtype, char *filename, t_minish *m_s)
 {
-	t_redlts *redNode;
+	t_files *redNode;
 	
-	redNode = malloc_and_add(sizeof(t_redlts));
-	if(!redNode)
-		return(0);
-	redNode->prev = NULL;
-	redNode->redtype = redtype;
-	redNode->filename = filename;
-	if(ft_strcmp(redNode->redtype, "<<") == true)
+	redNode = malloc_and_add(sizeof(t_files));
+	if (!redNode)
+        return (NULL);
+    redNode->name = filename;
+    redNode->index = 0;
+    redNode->made = 0;
+    redNode->error = 0;
+    redNode->index_out = 0;
+    redNode->put_last = 0;
+    redNode->type = type_cmds(redtype);
+	if(redNode->type == here_doc)
 	{
 		redNode->hereID = m_s->here_id;
 		m_s->here_id = m_s->here_id + 1;
 	}
-	redNode->next = NULL;
-	return(redNode); 
+    redNode->next = NULL;
+    redNode->manage_fd = NULL;
+    return (redNode);
 }
 
-void	add_redNode_to_end(t_redlts **lst, t_redlts *redNode)
+void	add_redNode_to_end(t_files **lst, t_files *redNode)
 {
-	t_redlts *last;
+	t_files *last;
 	
 	if(*lst == NULL)
 	{
@@ -65,9 +70,9 @@ int		countNbRednode(t_token **lst)
 	return(nb_redTok);
 }
 
-void	print_redLst(t_redlts **lst)
+void	print_redLst(t_files **lst)
 {
-	t_redlts *last;
+	t_files *last;
 	
 	last = *lst;
 	if(last == NULL)
@@ -79,8 +84,9 @@ void	print_redLst(t_redlts **lst)
 	while(last != NULL)
 	{
 		printf("-------------------------------\n");
-		printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
-		printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->filename);
+		// printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
+		printf("= RED->ARG       :" GRN " %d" RESET "         \n", last->type);
+		printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->name);
 		last = last->next;
 	}
 	printf("-------------------------------\n");

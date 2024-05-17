@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list2tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/17 12:07:09 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:19:11 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char    **list_to_tab(t_env **lst)
     if (!env_tab)
         return (NULL);
 	i = -1;
-    while(++i < nb_token && node)
+    while((++i < nb_token) && node)
     {
         env_tab[i] = token_2_str(node);
         node = node->next;

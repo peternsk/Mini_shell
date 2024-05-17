@@ -42,6 +42,22 @@ typedef enum flag_swtch
 	FLAG_ON
 }	flag_swtch;
 
+typedef	struct	s_files 
+{
+	int		type;
+	int		index;
+	char	*name;
+	char	*agrv;
+	int		made;
+	int		index_out;
+	int		put_last;
+	int		error;
+	int		hereID;
+	struct	s_files *next;
+	struct	s_files *prev;
+	struct s_manage_fds *manage_fd;
+}t_files;
+
 typedef	struct s_token
 {
 	struct s_token *prev;
@@ -63,7 +79,7 @@ typedef	struct s_cmdlts
 	int index;
 	int arrLen;
 	char **command;
-	t_redlts *redlst;
+	t_files *redlst;
 } t_cmdlts;
 
 
@@ -85,6 +101,7 @@ typedef struct	s_env
 	struct	s_env *next;
 	char 	*key;
 	char 	*value;
+	bool	eql_sign;
 } t_env;
 
 /*--- HERE STRUCT ---*/
@@ -120,19 +137,6 @@ typedef struct	s_minish
 /*----------------- CMDS EXECUTION -------------*/
 
 /*--- FILES/ ---*/
-typedef	struct	s_files 
-{
-	int		type;
-	int		index;
-	char	*name;
-	char	*agrv;
-	int		made;
-	int		index_out;
-	int		put_last;
-	int		error;
-	struct	s_files *next;
-	struct s_manage_fds *manage_fd;
-}t_files;
 
 typedef	struct s_redlts
 {

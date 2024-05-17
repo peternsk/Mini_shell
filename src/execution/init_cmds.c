@@ -95,13 +95,15 @@ void    init_cmds(char **envp, t_minish *m_s)
             // copy_envp(new->envp, list_to_tab(&m_s->envVarlst));
             // new->envp = envp;
             // free_list(m_s->envVarlst);
+            if(currList->redlst)
+                new->files = currList->redlst;
             new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
             // if (new->files == NULL)
             //     printf("is file null\n");
             // else
             //     printf("tell me the is not NULL \n");
-            add_cmds_files(&curr, new, currList->redlst);
+            add_cmds_files(&curr, new);
             currList = currList->next;
         }
         cout_cmds_pipes(curr);
