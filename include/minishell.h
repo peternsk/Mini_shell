@@ -198,18 +198,20 @@ int         handel_builtin(t_cmd *cmd);
 void        ft_pwd();
 void        ft_cd(t_cmd *cmds);
 void        ft_echo(t_cmd *ec);
-void        ft_export(t_cmd *built, char **envp, char **vars, bool print);
-char        **addEnvp(char **envp, char **vars);
+// void        ft_export(t_cmd *built, char **envp, char **vars, bool print);
+void        ft_export(t_cmd *built, char **vars, bool print);
+// char        **addEnvp(char **envp, char **vars);
+t_env       *addEnvp(char *vars);
 void        printEnvp(char **envp);
 char        **check_duplicate(char **vars);
 bool        is_same(char *s, char *v);
 char        **new_envp(char **envp, char **new, char *vars, int index);
 int         same_var_value(char **envp, char *var);
-int         same_varibale(char **envp, char *var);
-int         is_add(char **envp, char *var, int kv);
+int         is_same_key(t_env *env, char *var);
+void        is_add_envp(t_env *env, t_cmd *cmd);
 int         size(char **env);
 void        ft_unset(t_cmd *unset);
-char        *is_same_key_value(char **envp, char *s, int index);
+int         is_same_key_value(t_env *new, char *vars,int index);
 void        ft_env(t_cmd *env);
 void        ft_exit(t_cmd *exi);
 t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
@@ -223,6 +225,10 @@ int         ft_here_doc(t_files *files, t_cmd *current);
 
 void manage_signal(int id);
 
+/*====================================================*/
+/*=                    bultin                        =*/
+/*====================================================*/
+char    *copy_value(char *str);
 
 #endif
  
