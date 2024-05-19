@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/17 15:11:30 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 17:12:11 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,55 @@ char    *token_2_str(t_env *env_node)
 }
 
 
-char    **list_to_tab(t_env **lst)
-{
-    int nb_token;
-    t_env *node;
-    char **env_tab;
-	int i;
+// char    **list_to_tab(t_env **lst)
+// {
+    // int nb_token;
+    // t_env *node;
+    // char **env_tab;
+	// int i;
 
-    node = *lst;
-    nb_token = count_env_node(node);
-    env_tab = (char**)malloc((sizeof(char *) * nb_token) + 1);
-    if (!env_tab)
-        return (NULL);
-	i = -1;
-    while((++i < nb_token) && node)
-    {
-        env_tab[i] = token_2_str(node);
-        node = node->next;
-    }
-    env_tab[i - 1] = NULL;
+    // node = *lst;
+    // nb_token = count_env_node(node);
+    // env_tab = (char**)malloc((sizeof(char *) * nb_token) + 1);
+    // if (!env_tab)
+        // return (NULL);
+	// i = -1;
+    // while((++i < nb_token) && node)
+    // {
+        // printf("key ng : %s \n", node->key);
+        // env_tab[i] = token_2_str(node);
+        // node = node->next;
+    // }
+    // printf("the all shit : %s \n", env_tab[i - 1]);
+//    env_tab[i - 1] = NULL;
+    // printf("------- ----- ---- %d\n", i);
+    // printf("====================================================================\n");
     // for (int i = 0; env_tab[i] != NULL ; i ++)
     //     printf("%s\n", env_tab[i]);
-    return(env_tab);
-}
+    // printf("=====================================================================\n");
+    // return(env_tab);
+// }
 
+char    **list_to_tab(t_env **lst)
+{
+    int     nb_token;
+    t_env   *node;
+    char    **env_tab;
+	int     i;
+
+    i = 0;
+    node = *lst;
+    nb_token = count_env_node(node);
+    printf("%d -----------\n", nb_token);
+    env_tab = (char **)malloc(sizeof(char *) * (nb_token + 1));
+    if (!env_tab)
+        return (NULL);
+    while ((i < nb_token) && node != NULL)
+    {
+        env_tab[i] = token_2_str(node);
+        i++;
+        node = node->next;
+    }
+    env_tab[i] = NULL;
+    return (env_tab);
+}

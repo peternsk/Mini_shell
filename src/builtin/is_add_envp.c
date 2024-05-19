@@ -91,7 +91,21 @@ char    *copy_key_pars(char *str)
     }
     return (new);
 }
+int len_env(t_env *env)
+{
+    int i ;
 
+    i = 0;
+    if (env)
+    {
+        while (env != NULL)
+        {
+            i++;
+            env = env->next;
+        }
+    }
+    return (printf("----------------------------------------------------------------------------------------------------------------%d\n" , i), i);
+}
 void    is_add_envp(t_env *old_envp, t_cmd *cmd)
 {
     t_env   *node;
@@ -107,13 +121,12 @@ void    is_add_envp(t_env *old_envp, t_cmd *cmd)
         if (only_key(cmd->av_cmd[i]) == true)
         {
             is_same_key_value(node, cmd->av_cmd[i], add); 
-            printf("check the value %d\n", add);
             where_to_envp(&old_envp, cmd->av_cmd[i], add);
         }
         else
-        {
              where_to_envp(&old_envp, cmd->av_cmd[i], add);
-        }
         i++;
     }
+    // len_env(old_envp);
+    // cmd->envp = list_to_tab(&old_envp);
 }

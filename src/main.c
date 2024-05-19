@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/17 15:11:16 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:23:15 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 
 int exit_status = 0;
 
+// la function list_tab_env romove le last add du au NULL ???
+// list_tab_env elle remove envp du coup le a envp il devient plius petit je pense !!
 
 int		main(int ac, char **av, char **env)
 {
-	t_minish *m_s;
+	t_minish	*m_s;
+	char 		**update_envp;
+	char		**tmp;
 	(void)av;
 	// int glob_id;
 
 	ft_ascii_font();
 	// glob_id = -1;
+	tmp = NULL;
+	m_s = NULL;
+	update_envp = NULL;
 	if(ac > 0)
 	{
 		manage_signal(-1);
@@ -37,7 +44,19 @@ int		main(int ac, char **av, char **env)
 				return (printf("exit\n"), 0);
 			add_history(m_s->input);
 			// begin_setEnvVar();
-			set_env_lst(m_s, env);
+			if (update_envp)
+			{
+				set_env_lst(m_s, update_envp);
+				int i = 0;
+				while (update_envp[i] != NULL)
+				{
+					free(update_envp[i]);
+					i++;
+				}
+				update_envp = NULL;
+			}
+			else
+				set_env_lst(m_s, env);
 			// begin_lexing();
 			tokenizer(m_s);	
 			// begin_parsing();
@@ -58,10 +77,9 @@ int		main(int ac, char **av, char **env)
 			ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 			/*---------------------------------here doc----------------------------------*/
 			print_cmdLst(&m_s->cmdLst);
-			init_cmds(env, m_s);
+			update_envp = init_cmds(tmp, m_s);
 			// print_garbage_collector();
-			m_s->tab_env = list_to_tab(&m_s->envVarlst);
-			
+			// tmp = list_to_tab(&m_s->envVarlst);
 		}
 	}
 	else

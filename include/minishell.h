@@ -177,7 +177,7 @@ void	    print_here_lst(t_heredoc *lst);
 /*=                 init_cmd execution               =*/
 /*====================================================*/
 
-void        init_cmds(char **envp, t_minish *m_s);
+char       **init_cmds(char **envp, t_minish *m_s);
 void        add_cmds_files(t_cmd **node, t_cmd *new);
 void        cout_cmds_pipes(t_cmd *cmds);
 void        add_files(t_cmd *cmd, t_redlts *new_files);

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 07:36:58 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/15 15:07:41 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 14:35:23 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_minish *init_ms(void)
     m_s->e = 0;
 	return(m_s);
 }
+
 
 t_flags *init_flag(void)
 {

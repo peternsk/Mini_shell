@@ -42,7 +42,7 @@ void    evecv_built(t_cmd *built, int _w)
         if (size(built->av_cmd) > 1)
             is_print = false;
         ft_export(built, built->av_cmd, is_print);
-        set_env_lst(built->glob, built->envp);
+        // set_env_lst(built->glob, built->envp);
     }
     if (_w == 5)
         ft_unset(built);
