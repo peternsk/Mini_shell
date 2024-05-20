@@ -16,6 +16,7 @@ void    change_key_value(t_env **env, char *vars)
                 free((*env)->value);
                 (*env)->value = NULL;
                 (*env)->value = copy_value(vars);
+                (*env)->eql_sign = true;
             }
             // env->flags
             // printf(" \\\\\the value as be change \n funtion(is_add_envp): add in node \n key -- %s \n value -- %s \\\\\n",(*env)->key, (*env)->value);
@@ -106,25 +107,27 @@ int len_env(t_env *env)
     }
     return (printf("----------------------------------------------------------------------------------------------------------------%d\n" , i), i);
 }
-void    is_add_envp(t_env *old_envp, t_cmd *cmd)
+void    is_add_envp(t_env *old_envp, char **arg)
 {
     t_env   *node;
+    char    **vars;
     int     add;
     int     i;
 
     i = 1;
     node = old_envp;
-    while (cmd->av_cmd[i] != NULL)
+    vars = check_duplicate(arg);
+    while (vars[i] != NULL)
     {
         
-        add = is_same_key(node, copy_key_pars(cmd->av_cmd[i]));
-        if (only_key(cmd->av_cmd[i]) == true)
+        add = is_same_key(node, copy_key_pars(vars[i]));
+        if (only_key(vars[i]) == true)
         {
-            is_same_key_value(node, cmd->av_cmd[i], add); 
-            where_to_envp(&old_envp, cmd->av_cmd[i], add);
+            is_same_key_value(node, vars[i], add); 
+            where_to_envp(&old_envp, vars[i], add);
         }
         else
-             where_to_envp(&old_envp, cmd->av_cmd[i], add);
+             where_to_envp(&old_envp, vars[i], add);
         i++;
     }
     // len_env(old_envp);

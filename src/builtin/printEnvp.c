@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:19:46 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/19 15:16:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:39:58 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void    printEnvp(char **envp)
     int i;
 
     i = 0;
-    printf("len array %d\n", len_envp(envp));
+    // printf("len array %d\n", len_envp(envp));
     ft_sort(envp);
     while (envp[i]!= NULL){
         printf("declare -x %s\n", envp[i]);
