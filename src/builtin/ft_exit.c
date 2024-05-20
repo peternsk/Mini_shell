@@ -74,7 +74,7 @@ void    ft_exit(t_cmd *exi)
         if (exi->av_cmd)
         {
             if (size(exi->av_cmd) > 2)
-                perror("exit\n exit too many arguments");
+                perror(exi->av_cmd[1]);
             else
             {
                 if (exi->av_cmd[1] == NULL)

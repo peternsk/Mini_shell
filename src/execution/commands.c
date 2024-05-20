@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 20:01:23 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/20 01:39:54 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void _curren_fd(int fd[], int last_fd, t_cmd *cmds)
 int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd *curr;
-    // pid_t *id_childs;
     int fd[2];
     int last_fd;
     
-    // id_childs = malloc(sizeof(pid_t) * cmds->nb_cmds);
     curr = cmds;
     while (curr != NULL)
     {
