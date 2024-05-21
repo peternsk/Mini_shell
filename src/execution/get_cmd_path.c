@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/15 17:57:26 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:34:22 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,18 @@ char    *get_cmd_path(char *path, char *cmd)
         return (cmd_path);
     sub_paths = ft_split(path, ':');
     i = 0;
-    while (sub_paths[i])
+    if (sub_paths)
     {
-        cmd_path = ft_strjoin(sub_paths[i], "/"); // TODO: Caching system (key -> value)
-        cmd_path = ft_strjoin(cmd_path, cmd);
-        if (access(cmd_path, F_OK | X_OK) == 0)
-            return (free_str(sub_paths), cmd_path);
-        free(cmd_path);
-        i++;
+        while (sub_paths[i])
+        {
+            cmd_path = ft_strjoin(sub_paths[i], "/"); // TODO: Caching system (key -> value)
+            cmd_path = ft_strjoin(cmd_path, cmd);
+            if (access(cmd_path, F_OK | X_OK) == 0)
+                return (free_str(sub_paths), cmd_path);
+            free(cmd_path);
+            i++;
+        }
+        free_str(sub_paths);
     }
-    free_str(sub_paths);
     return (NULL);
 }

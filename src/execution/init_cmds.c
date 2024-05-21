@@ -74,9 +74,24 @@ void copy_envp(char **envp, char **new_env)
     for (int i = 0; new_env[i] != NULL; i++)
         printf("%s\n", new_env[i]);
 }
-void    init_cmds(char **envp, t_minish *m_s)
+
+
+void update_envp(t_minish *m_s, t_cmd *cmd)
 {
-    (void)envp;
+    char    **tmp;
+
+    tmp = NULL;
+    if (m_s && cmd)
+    {
+        tmp = list_to_tab(&cmd->glob->envVarlst);
+        for (int i = 0; tmp[i] != NULL; i++)
+            printf("%s\n", tmp[i]);
+        set_env_lst(m_s, tmp);
+    }
+}
+char   **init_cmds(char **tmp, t_minish *m_s)
+{
+    (void)tmp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
@@ -109,11 +124,13 @@ void    init_cmds(char **envp, t_minish *m_s)
         cout_cmds_pipes(curr);
         // print_cmds(&curr);
         run_commands(curr);
+        tmp = list_to_tab(&curr->glob->envVarlst);
+        // update_envp(m_s, curr);
         // envp = curr->envp;
-        // for (int i = 0; envp[i] != NULL; i++)
-        //     printf("%s\n", envp[i]);
+        // for (int i = 0; tmp[i] != NULL; i++)
+        //     printf("%s__________________________________________\n", tmp[i]);
     }
-	// m_s->tab_env = list_to_tab(&m_s->envVarlst);  
+    return (tmp);
 }
 
 void fake()

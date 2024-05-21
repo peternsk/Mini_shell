@@ -30,52 +30,37 @@ char    *get_live_path()
     char    str[PATH_MAX];
     return (getcwd(str, PATH_MAX));
 }
-// void    expansion_change_directory(t_cmd *cmds, char **oldPwd, char **newPwd)
-// {
-   
-    // if (cmds->av_cmd[1] != NULL)
-    // {  
-    //    oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
-    //     if (chdir(cmds->av_cmd[1]) == 0)
-    //     {
-    //         newPwd[0] = ft_strjoin("PWD=", get_live_path());
-    //         printf("new = %s ---- --- \n", newPwd[0]);
-    //         printf("old = %s ---- --- \n", oldPwd[0]);
-    //         ft_export(cmds, cmds->envp, newPwd, false);
-    //         ft_export(cmds, cmds->envp, oldPwd, false);
-    //         // for (int i = 0; cmds->envp[i] != NULL; i++)
-    //         //     printf("%s\n", cmds->envp[i]);
-    //     }
-    //     else
-    //         perror("minishell");
-    // }
-// }
-// TODO: maybe change the function for better error handling
-// test si le update du env function 
+
+void expansion_change_directory(t_cmd *cmd, char **pwd_change)
+{
+    if (chdir(cmd->av_cmd[1]) == 0)
+    {
+        pwd_change[2] = ft_strjoin("PWD=", get_live_path());
+        is_add_envp(cmd->glob->envVarlst, pwd_change);
+    }
+    else 
+    {
+        write(2, "minishell: ", ft_strlen("minishell: "));
+        perror(cmd->av_cmd[1]);
+    }
+    // free le bhy
+}
 void    ft_cd(t_cmd *cmds)
 {
-    char **oldPwd;
-    char **newPwd;
+    char   **pwd_change;
 
-    oldPwd = NULL;
-    newPwd = malloc(sizeof(char *) * 2);
-    oldPwd = malloc(sizeof(char *) * 2);
-    if (!newPwd || !oldPwd)
-        return;
-    newPwd[1] = NULL;
-    oldPwd[1] = NULL;
-    if (ft_strncmp(cmds->cmd_name, "cd", 2) == 0)
+    pwd_change = (char **)malloc(sizeof(char *) * 4);
+    pwd_change[0] = ft_strdup("cd\0");
+    pwd_change[3] =  NULL;
+    pwd_change[1] = ft_strjoin("OLDPWD=", get_live_path());
+    if (!cmds->av_cmd[1])
     {
-        // if (!cmds->av_cmd[1])
-        // {
-        //     oldPwd[0] =  ft_strjoin("OLDPWD=", get_live_path());
-        //     chdir(from_envp_get_home(cmds->envp));
-        //     newPwd[0] =  ft_strjoin("PWD=", get_live_path());
-            // ft_export(cmds, cmds->envp, oldPwd, false);
-            // ft_export(cmds, cmds->envp, newPwd, false);
-
-        // }
-        // else 
-        //     expansion_change_directory(cmds, oldPwd, newPwd);
+        chdir(from_envp_get_home(cmds->envp));
+        pwd_change[2] =  ft_strjoin("PWD=", get_live_path());
+        is_add_envp(cmds->glob->envVarlst, pwd_change);
+        // free le bhy
     }
+    else 
+        expansion_change_directory(cmds, pwd_change);
 }
+ 
