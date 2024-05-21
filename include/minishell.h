@@ -169,6 +169,7 @@ int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
 void		last_here_doc(t_minish *m_s, t_files *tmp);
 void		run_here_redlst(t_minish *m_s, t_files **lst);
+void        send_2_tmp(t_heredoc **lst);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);

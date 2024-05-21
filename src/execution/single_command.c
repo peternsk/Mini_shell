@@ -75,7 +75,8 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
         if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
-        { 
+        {
+            clean_cmds(cmd);
             (void)envp_path;
             (void)envp;
             printf("why dont' work !!\n");
