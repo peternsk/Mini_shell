@@ -24,7 +24,7 @@ EXECUTION	=	init_cmds add_cmds_files cout_cmds_pipes add_files type_cmd run_comm
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
-HERE_DOC	=   here_doc set_here_lst here_pars here_pars1
+HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 
 GARBAGE 	=  	add_address
 
