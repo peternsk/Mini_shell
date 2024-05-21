@@ -113,6 +113,7 @@ void    init_cmds(char **envp, t_minish *m_s)
         // for (int i = 0; envp[i] != NULL; i++)
         //     printf("%s\n", envp[i]);
     }
+	// m_s->tab_env = list_to_tab(&m_s->envVarlst);  
 }
 
 void fake()

@@ -104,7 +104,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 		if((tmp->type == here_doc) && (tmp->hereID == hereNbr))
 		{
 			last_here_doc(m_s, tmp);
-			send_2_tmp(m_s->herelst);
+			send_2_tmp(&m_s->herelst);
 		}
 		tmp = tmp->next;
 	}
