@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:19:46 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/13 19:19:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:39:58 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ int	ft_strncmp_envp(const char *s1, const char *s2, size_t n)
 	else
 		return (-s2[i]);
 }
+int len_envp(char **array)
+{
+    int i;
 
+    i = 0;
+    if (array)
+        while (array[i] != NULL)
+            i++;   
+    return (i);
+}
 void    swap(char **s1, char **s2)
 {
     char *tmp;
@@ -72,6 +81,7 @@ void    printEnvp(char **envp)
     int i;
 
     i = 0;
+    // printf("len array %d\n", len_envp(envp));
     ft_sort(envp);
     while (envp[i]!= NULL){
         printf("declare -x %s\n", envp[i]);

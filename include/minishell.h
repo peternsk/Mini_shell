@@ -123,10 +123,10 @@ void        delete_token(t_token **lst, int tokToDel_id);
 void	    ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst);
 
 /*---- REDIRECTION ----*/
-t_redlts 	*setRed(char *redtype, char *filename, t_minish *m_s);
-void	    add_redNode_to_end(t_redlts **redNode, t_redlts *newNode);
+t_files		*setRed(char *redtype, char *filename, t_minish *m_s);
+void	    add_redNode_to_end(t_files **lst, t_files *redNode);
 int		    countNbRednode(t_token **lst);
-void		print_redLst(t_redlts **lst);
+void		print_redLst(t_files **lst);
 
 /*====================================================*/
 /*=                      UTILS                       =*/
@@ -142,6 +142,7 @@ bool        ft_strcmp(char *tmpKey, char *envKey);
 char        *ft_combine(char *s1, char *s2);
 void        ft_endToken(t_token *token, t_minish *m_s);
 void        free_list(t_token **list);
+bool        ft_search_char(char *str, char c);
 
 /*====================================================*/
 /*=                  HERE DOCUMENT                   =*/
@@ -160,15 +161,14 @@ void	    herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s);
 
 /* core function */
 bool        delim_cmp(char *input, char *delimiter);
-// void	    check_here_doc(t_minish *m_s, t_redlts **lst);
 void	    check_here_doc(t_minish *m_s, t_files **files);
 void        reset_ms(t_heredoc *node, t_minish *m_s);
 void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
-int			count_here_doc(t_redlts **lst);
-void		empty_hereDoc(t_redlts *tmp);
-void		last_here_doc(t_minish *m_s, t_redlts *tmp);
-void		run_here_redlst(t_minish *m_s, t_redlts **lst);
+int		    count_here_doc(t_files **lst);
+void		empty_hereDoc(t_files *tmp);
+void		last_here_doc(t_minish *m_s, t_files *tmp);
+void		run_here_redlst(t_minish *m_s, t_files **lst);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
@@ -177,11 +177,9 @@ void	    print_here_lst(t_heredoc *lst);
 /*=                 init_cmd execution               =*/
 /*====================================================*/
 
-void        init_cmds(char **envp, t_minish *m_s);
-void        add_cmds_files(t_cmd **node, t_cmd *new, t_redlts *files);
+char       **init_cmds(char **envp, t_minish *m_s);
+void        add_cmds_files(t_cmd **node, t_cmd *new);
 void        cout_cmds_pipes(t_cmd *cmds);
-void        add_files(t_cmd *cmd, t_redlts *new_files);
-int         type_cmds(char *s);
 int         run_commands(t_cmd *cmds);
 char        *get_envp_path(char **envp);
 int         single_command(t_cmd *cmd, char **envp, char *envp_path);
@@ -189,32 +187,9 @@ int         commands(t_cmd *cmds, char *envp_path);
 void        wait_childs(t_cmd *cmds);
 int         execute_command(t_cmd *current, char **envp, char *envp_path);
 char        *get_cmd_path(char *path, char *cmd);
-void        which_files(t_cmd *current);
 void        is_change_std(t_cmd *current);
-int         ft_append(t_files *file);
-int         change_stdint(t_files *file);
-int         change_stdout(t_files *files);
 int         handel_builtin(t_cmd *cmd);
-void        ft_pwd();
-void        ft_cd(t_cmd *cmds);
-void        ft_echo(t_cmd *ec);
-void        ft_export(t_cmd *built, char **envp, char **vars, bool print);
-char        **addEnvp(char **envp, char **vars);
-void        printEnvp(char **envp);
 char        **check_duplicate(char **vars);
-bool        is_same(char *s, char *v);
-char        **new_envp(char **envp, char **new, char *vars, int index);
-int         same_var_value(char **envp, char *var);
-int         same_varibale(char **envp, char *var);
-int         is_add(char **envp, char *var, int kv);
-int         size(char **env);
-void        ft_unset(t_cmd *unset);
-char        *is_same_key_value(char **envp, char *s, int index);
-void        ft_env(t_cmd *env);
-void        ft_exit(t_cmd *exi);
-t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
-int         is_files_valide(t_cmd *cmds);
-int         ft_here_doc(t_files *files, t_cmd *current);
 
 
 /*====================================================*/
@@ -223,6 +198,39 @@ int         ft_here_doc(t_files *files, t_cmd *current);
 
 void manage_signal(int id);
 
+/*====================================================*/
+/*=                    bultin                        =*/
+/*====================================================*/
+char        *copy_value(char *str);
+void        ft_pwd();
+void        ft_cd(t_cmd *cmds);
+t_env       *addEnvp(char *vars);
+void        ft_export(t_cmd *built, bool print);
+void        ft_echo(t_cmd *ec);
+int         is_same_key_value(t_env *new, char *vars,int index);
+void        is_add_envp(t_env *env, char **arg);
+int         size(char **env);
+void        ft_env(t_cmd *env);
+void        ft_exit(t_cmd *exi);
+void        ft_unset(t_cmd *unset);
+void        printEnvp(char **envp);
+int         is_same_key(t_env *env, char *var);
+int         type_cmds(char *s);
+
+
+/*====================================================*/
+/*=                    files                        =*/
+/*====================================================*/
+
+
+int         is_files_valide(t_cmd *cmds);
+int         ft_here_doc(t_files *files, t_cmd *current);
+t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
+int         change_stdint(t_files *file);
+int         change_stdout(t_files *files);
+void        add_files(t_cmd *cmd, t_redlts *new_files);
+void        which_files(t_cmd *current);
+int         ft_append(t_files *file);
 
 #endif
  

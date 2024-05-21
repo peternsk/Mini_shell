@@ -74,9 +74,24 @@ void copy_envp(char **envp, char **new_env)
     for (int i = 0; new_env[i] != NULL; i++)
         printf("%s\n", new_env[i]);
 }
-void    init_cmds(char **envp, t_minish *m_s)
+
+
+void update_envp(t_minish *m_s, t_cmd *cmd)
 {
-    (void)envp;
+    char    **tmp;
+
+    tmp = NULL;
+    if (m_s && cmd)
+    {
+        tmp = list_to_tab(&cmd->glob->envVarlst);
+        for (int i = 0; tmp[i] != NULL; i++)
+            printf("%s\n", tmp[i]);
+        set_env_lst(m_s, tmp);
+    }
+}
+char   **init_cmds(char **tmp, t_minish *m_s)
+{
+    (void)tmp;
     t_cmd   *curr;
     t_cmd   *new;
     t_cmdlts *currList;
@@ -91,26 +106,31 @@ void    init_cmds(char **envp, t_minish *m_s)
             new = init_curr_cmd();
             new->cmd_name  = *currList->command;
             new->glob = m_s;
-            // new->envp = list_to_tab(&m_s->envVarlst);
+            new->envp = list_to_tab(&m_s->envVarlst);
             // copy_envp(new->envp, list_to_tab(&m_s->envVarlst));
-            new->envp = envp;
+            // new->envp = envp;
             // free_list(m_s->envVarlst);
+            if(currList->redlst)
+                new->files = currList->redlst;
             new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
             // if (new->files == NULL)
             //     printf("is file null\n");
             // else
             //     printf("tell me the is not NULL \n");
-            add_cmds_files(&curr, new, currList->redlst);
+            add_cmds_files(&curr, new);
             currList = currList->next;
         }
         cout_cmds_pipes(curr);
         // print_cmds(&curr);
         run_commands(curr);
+        tmp = list_to_tab(&curr->glob->envVarlst);
+        // update_envp(m_s, curr);
         // envp = curr->envp;
-        // for (int i = 0; envp[i] != NULL; i++)
-        //     printf("%s\n", envp[i]);
+        // for (int i = 0; tmp[i] != NULL; i++)
+        //     printf("%s__________________________________________\n", tmp[i]);
     }
+    return (tmp);
 }
 
 void fake()

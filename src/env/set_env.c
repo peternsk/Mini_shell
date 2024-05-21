@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:59:45 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/07 14:24:57 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:45:29 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,28 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
 {
     char **envTab;
     
-    envTab = ft_split(env_row, '=');
-	add_garbage(envTab);
 	node = malloc_and_add(sizeof(t_env));
 	if(!node)
 		return(0);
 	node->prev = NULL;
-    node->key = ft_strdup(envTab[0]);
-	add_garbage(node->key);
-    node->value = ft_strdup(envTab[1]);
-	add_garbage(node->value);
 	node->next = NULL;
+	if(ft_search_char(env_row, '=') == true)
+	{
+    	envTab = ft_split(env_row, '=');
+		add_garbage(envTab);
+    	node->key = ft_strdup(envTab[0]);
+		add_garbage(node->key);
+    	node->value = ft_strdup(envTab[1]);
+		add_garbage(node->value);
+		node->eql_sign = true;
+	}
+	else
+	{
+		node->key = ft_strdup(env_row);
+		add_garbage(node->key);
+		node->value = NULL;
+		node->eql_sign = false;
+	}
 	return(node);
 }
 
@@ -84,10 +95,13 @@ void       set_env_lst(t_minish *m_s, char **env)
     int i;
 
     i = 0;
-    while(env[i] != NULL)
-    {
-        create_var(m_s, env[i]);
-        i++;
-    }
+	if (env)
+	{
+		while(env[i] != NULL)
+		{
+			create_var(m_s, env[i]);
+			i++;
+		}
+	}
     // print_env_lst(m_s->envVarlst);
 }

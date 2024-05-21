@@ -1,15 +1,65 @@
 #include "minishell.h"
 
-char *is_same_key_value(char **envp, char *s, int index)
+bool check_equal_dup(char *var)
 {
-    char *new_str;
+    char *look;
 
-    new_str = NULL;
-    if (index == -1)
-        return (s);
-    if (ft_strncmp((const char *)envp[index], (const char *)s, ft_strlen((const char *)envp[index])) == 0)
-        return (new_str);
-    else
-        new_str = ft_strdup(s);
-    return (new_str);
+    look = ft_strchr(var, '=');
+    if (look)
+    {
+        look++;
+        if (ft_strlen(look) > 0)
+            return (true);
+    }
+    return (false);
+}
+char    *pars_va_value(char *vars)
+{
+    int     i;
+    int     j;
+    char    *var_pars;
+    
+    i = 0;
+    j = 0;
+    var_pars = malloc(sizeof(char *)  * (ft_strlen(vars)));
+    if (!var_pars)
+        return (NULL);
+    while (vars[i] != '\0' && vars[i] == '=')
+        i++;
+    while (vars[i] != '\0' && vars[i] != '=')
+    {
+        var_pars[j] = vars[i];
+        j++;
+        i++;
+    }
+    var_pars[i] = '\0';
+    // free(vars);
+    return (var_pars);
+}
+
+int    is_same_key_value(t_env *env, char *var, int index)
+{
+    t_env   *node;
+    char    *pars_var;
+    int     i;
+
+    i = 0;
+    node = env;
+    if (env && var && check_equal_dup(var) == true)
+    {
+        pars_var = ft_strchr(var, '=');
+        pars_var++;
+        while (node != NULL)
+        {
+            if (index == i)
+            {
+                if (ft_strcmp(node->value, pars_var) == false)
+                    return (i);
+            }
+            i++;
+            node =  node->next;
+        }   
+        return (-1);
+    }
+    return (-3);
 }
