@@ -4,7 +4,6 @@ void    check_last_files(t_files *files)
 {
     t_files *node;
     t_files *tmp;
-    t_files *tmp_doc;
 
     tmp = NULL;
     node = files;
@@ -12,14 +11,10 @@ void    check_last_files(t_files *files)
     {
         if (node->type == apnd_op_redir || node->type == out_p_redir)
             tmp = node;
-        if (node->type == here_doc)
-            tmp_doc = node;
         node = node->next;    
     }
     if (tmp)
         tmp->put_last = 1;
-    if (tmp_doc)
-        tmp_doc->put_last = 1;
     // printf("tmp->index_ou %d\n tmp->name %s\n", tmp->index_out, tmp->name);
 }
 void   print_files_index(t_files *files)

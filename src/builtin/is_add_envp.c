@@ -27,9 +27,11 @@ void    change_key_value(t_env **env, char *vars)
 void    where_to_envp(t_env **env, char *vars, int index)
 {
     t_env *node;
+    t_env *new_node;
     int     i;
 
     node = *env;
+    new_node = NULL;
     i = 0;
     if (vars)
         // printf("[%d index] [%s]\n",index, vars);
@@ -48,7 +50,7 @@ void    where_to_envp(t_env **env, char *vars, int index)
         }
     }
     if (index == -1)
-        add_var_to_end(env, addEnvp(vars));
+        add_var_to_end(env, intEnvVar(new_node, vars));
     // if (node)
         // printf("function(is_add_envp): =============\n add in node \n key -- %s \n value -- %s \n================\n", node->key,node->value);
 }
@@ -114,12 +116,11 @@ void    is_add_envp(t_env *old_envp, char **arg)
     int     add;
     int     i;
 
-    i = 1;
+    i = 0;
     node = old_envp;
     vars = check_duplicate(arg);
     while (vars[i] != NULL)
     {
-        
         add = is_same_key(node, copy_key_pars(vars[i]));
         if (only_key(vars[i]) == true)
         {
