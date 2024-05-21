@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/17 15:19:11 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/21 09:37:43 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char    **list_to_tab(t_env **lst)
         env_tab[i] = token_2_str(node);
         node = node->next;
     }
+    printf("THE END OF ENV\n");
     env_tab[i - 1] = NULL;
     // for (int i = 0; env_tab[i] != NULL ; i ++)
     //     printf("%s\n", env_tab[i]);

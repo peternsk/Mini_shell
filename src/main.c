@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/17 15:17:18 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/21 11:10:06 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int		main(int ac, char **av, char **env)
 			/*---------------------------------here doc----------------------------------*/
 			print_cmdLst(&m_s->cmdLst);
 			init_cmds(env, m_s);
-			// print_garbage_collector();
 			m_s->tab_env = list_to_tab(&m_s->envVarlst);
+			// print_garbage_collector();
 			
 		}
 	}
