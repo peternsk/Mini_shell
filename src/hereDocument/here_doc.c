@@ -103,6 +103,9 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 			empty_hereDoc(tmp);
 		if((tmp->type == here_doc) && (tmp->hereID == hereNbr))
 		{
+			// tmp->manage_fd = init_manage_fd(dup(0), 0, 1);
+			// tmp->manage_fd->type = here_doc;
+			tmp->manage_fd = dup(0);
 			last_here_doc(m_s, tmp);
 			send_2_tmp(&m_s->herelst);
 		}

@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:36:29 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 09:11:07 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:53:45 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int ft_append_fd(t_files *current)
             return (close(fd), perror(current->name), current->error = -1, current->made = -1);
         if (current->put_last == 1)
         {
-            current->manage_fd = init_manage_fd(dup(1), 0, 1);
-            current->manage_fd->type = apnd_op_redir;
+            // current->manage_fd = init_manage_fd(dup(1), 0, 1);
+            // current->manage_fd->type = apnd_op_redir;
+            current->manage_fd = dup(1);
             current->made = -1;
             dup2(fd, 1);
             close(fd);

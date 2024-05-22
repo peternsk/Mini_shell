@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:40:35 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/09 16:59:21 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:54:15 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int put_fd(t_files *current)
     {
         if (fd > 0 && current->made == 0)
         {
-            current->manage_fd = init_manage_fd(dup(0), 0, 1);
-            current->manage_fd->type = in_p_redir;             
+            // current->manage_fd = init_manage_fd(dup(0), 0, 1);
+            // current->manage_fd->type = in_p_redir;             
+            current->manage_fd = dup(0);
             dup2(fd, 0);
             close(fd);
             return (current->made = -1, 0);

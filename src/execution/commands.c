@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/20 12:17:02 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:55:10 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int      commands(t_cmd *cmds, char *envp_path)
         manage_signal(0);
         if (curr->id == 0)
         {
-            // printf("the childs make it !!\n");
             if (expan_child(fd, curr, envp_path) == -1)
                 return (-1);
         }

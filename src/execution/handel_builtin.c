@@ -1,13 +1,5 @@
 #include "minishell.h"
 
-// 1 cd 
-// 2 echo 
-// 3 pwd 
-// 4 export 
-// 5 unset 
-// 6 env 
-// 7 exit 
-
 int which_built(t_cmd *built)
 {
     if (ft_strncmp(built->cmd_name, "cd", ft_strlen("cd")) == 0)
@@ -42,7 +34,6 @@ void    evecv_built(t_cmd *built, int _w)
         if (size(built->av_cmd) > 1)
             is_print = false;
         ft_export(built,  is_print);
-        // set_env_lst(built->glob, built->envp);
     }
     if (_w == 5)
         ft_unset(built);

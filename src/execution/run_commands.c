@@ -44,10 +44,8 @@
 
 int   run_commands(t_cmd *cmds)
 {
-    // int     i;
-    char	*envp_path;
+    char    *envp_path;
 
-    // i = 0;
     if (!cmds)
         return (-1);
     envp_path = get_envp_path(cmds->envp);
@@ -57,10 +55,6 @@ int   run_commands(t_cmd *cmds)
             return (-1);
     }
     else
-    {
-        printf("more than one command\n");
         commands(cmds, envp_path);
-        // print_cmds(cmds);
-    }
     return (1);
 }

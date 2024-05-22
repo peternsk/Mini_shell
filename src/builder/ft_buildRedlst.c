@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildRedlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/16 15:03:08 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/22 11:03:04 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_files		*setRed(char *redtype, char *filename, t_minish *m_s)
 		m_s->here_id = m_s->here_id + 1;
 	}
     redNode->next = NULL;
-    redNode->manage_fd = NULL;
+    redNode->manage_fd = -1;
     return (redNode);
 }
 

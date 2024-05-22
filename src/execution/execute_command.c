@@ -22,8 +22,3 @@ int execute_command(t_cmd *current, char **envp, char *envp_path)
     }
     return (exit(0), 0);
 }
-
-void fake_4()
-{
-    
-}
