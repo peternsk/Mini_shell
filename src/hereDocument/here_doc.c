@@ -107,7 +107,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 			// tmp->manage_fd->type = here_doc;
 			tmp->manage_fd = dup(0);
 			last_here_doc(m_s, tmp);
-			send_2_tmp(&m_s->herelst);
+			send_2_tmp(&m_s->herelst, m_s);
 		}
 		tmp = tmp->next;
 	}

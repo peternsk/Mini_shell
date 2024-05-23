@@ -80,6 +80,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             manage_signal(0);
             if (cmd->id == 0)
             {
+                printf("stdin du child %d\n" , STDIN_FILENO);
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }

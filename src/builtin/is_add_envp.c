@@ -55,20 +55,6 @@ void    where_to_envp(t_env **env, char *vars, int index)
         // printf("function(is_add_envp): =============\n add in node \n key -- %s \n value -- %s \n================\n", node->key,node->value);
 }
 
-int only_key(char *var)
-{
-
-    char *look;
-
-    look = ft_strchr(var, '=');
-    if (look)
-    {
-        look++;
-        if (ft_strlen(look) > 0)
-            return (true);
-    }
-    return (false);
-}
 
 char    *copy_key_pars(char *str)
 {
@@ -122,7 +108,7 @@ void    is_add_envp(t_env *old_envp, char **arg)
     while (vars[i] != NULL)
     {
         add = is_same_key(node, copy_key_pars(vars[i]));
-        if (only_key(vars[i]) == true)
+        if (is_key(vars[i]) == true)
         {
             is_same_key_value(node, vars[i], add); 
             where_to_envp(&old_envp, vars[i], add);
@@ -131,6 +117,4 @@ void    is_add_envp(t_env *old_envp, char **arg)
              where_to_envp(&old_envp, vars[i], add);
         i++;
     }
-    // len_env(old_envp);
-    // cmd->envp = list_to_tab(&old_envp);
 }

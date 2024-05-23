@@ -16,11 +16,11 @@ LIBFT_LIB = ${LIBFT_DIR}/libft.a
 SRCS_DIR 	= src
 OBJS_DIR	= obj
 
-BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value
+BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
 
 BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-EXECUTION	=	init_cmds add_cmds_files cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc
+EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 

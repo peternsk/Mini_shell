@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/22 12:56:24 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:33:21 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ char    **list_to_tab(t_env **lst)
         i++;
         node = node->next;
     }
-    env_tab[i - 1] = NULL;
+    env_tab[i] = NULL;
     return(env_tab);
 }

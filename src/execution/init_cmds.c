@@ -64,11 +64,13 @@ void print_cmds(t_cmd **s_cmd)
 }
 
 // check si le file est a null
+// 
 char   **init_cmds(char **tmp, t_minish *m_s)
 {
-    t_cmd   *curr;
-    t_cmd   *new;
-    t_cmdlts *currList;
+    t_cmd       *curr;
+    t_cmd       *new;
+    t_cmdlts    *currList;
+
     curr = NULL;
     currList = NULL;
     if (m_s->cmdLst)
@@ -83,7 +85,7 @@ char   **init_cmds(char **tmp, t_minish *m_s)
             new->files = currList->redlst;
             new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
-            add_cmds_files(&curr, new);
+            add_cmds(&curr, new);
             currList = currList->next;
         }
         cout_cmds_pipes(curr);

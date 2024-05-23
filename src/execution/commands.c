@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/22 12:55:10 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:12:32 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void _curren_fd(int fd[], int last_fd, t_cmd *cmds)
 // free id_childs
 int      commands(t_cmd *cmds, char *envp_path)
 {
-    t_cmd *curr;
-    int fd[2];
-    int last_fd;
+    t_cmd   *curr;
+    int     fd[2];
+    int     last_fd;
     
     curr = cmds;
     while (curr != NULL)
