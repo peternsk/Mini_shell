@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_cmds_files.c                                   :+:      :+:    :+:   */
+/*   add_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:59:10 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/16 11:53:41 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/23 13:41:27 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    add_cmds_files(t_cmd **node, t_cmd *new)
+void    add_cmds(t_cmd **node, t_cmd *new)
 {
     t_cmd *curr;
     if (!*node)

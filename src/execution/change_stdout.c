@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:42:20 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/21 15:04:52 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:13:40 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ int put_int_fd(t_files *file)
     int fd_name;
     if (file->name  && file->made == 0)
     {
-        int old_fd = dup(1);
-        file->manage_fd = init_manage_fd(old_fd, 0, 1);
+        // int old_fd = dup(1);
+        file->manage_fd = dup(1);
+        // file->manage_fd = init_manage_fd(old_fd, 0, 1);
         file->made = 1;
         fd_name = open(file->name, O_WRONLY | O_CREAT ,  07777);
-        file->manage_fd->type = out_p_redir;
+        // file->manage_fd->type = out_p_redir;
         if (fd_name < 0)
             return (perror(file->name), file->error = 1,  -1);
-        printf("remettre les fd a la bonne plasse  file %d \n", old_fd);
+        // printf("remettre les fd a la bonne plasse  file %d \n", file->manage_fd);
         if (file->put_last == 1)
         {
+            // printf("it change  %d \n", fd_name);
             dup2(fd_name, 1);
             close(fd_name);
         }

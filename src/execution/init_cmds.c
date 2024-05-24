@@ -63,41 +63,16 @@ void print_cmds(t_cmd **s_cmd)
     printf("======================================ends init=============================================\n");
 }
 
-
-// aouter le files [en cours]
-// ajouter nb_cmd [done]
-// ajouter nb_pipes [done]
-// ajouter le type de cmds [done]
-void copy_envp(char **envp, char **new_env)
-{
-    (void)envp;
-    for (int i = 0; new_env[i] != NULL; i++)
-        printf("%s\n", new_env[i]);
-}
-
-
-void update_envp(t_minish *m_s, t_cmd *cmd)
-{
-    char    **tmp;
-
-    tmp = NULL;
-    if (m_s && cmd)
-    {
-        tmp = list_to_tab(&cmd->glob->envVarlst);
-        for (int i = 0; tmp[i] != NULL; i++)
-            printf("%s\n", tmp[i]);
-        set_env_lst(m_s, tmp);
-    }
-}
+// check si le file est a null
+// 
 char   **init_cmds(char **tmp, t_minish *m_s)
 {
-    (void)tmp;
-    t_cmd   *curr;
-    t_cmd   *new;
-    t_cmdlts *currList;
+    t_cmd       *curr;
+    t_cmd       *new;
+    t_cmdlts    *currList;
+
     curr = NULL;
     currList = NULL;
-    printf("error\n");
     if (m_s->cmdLst)
     {
         currList = m_s->cmdLst;
@@ -107,33 +82,15 @@ char   **init_cmds(char **tmp, t_minish *m_s)
             new->cmd_name  = *currList->command;
             new->glob = m_s;
             new->envp = list_to_tab(&m_s->envVarlst);
-            // copy_envp(new->envp, list_to_tab(&m_s->envVarlst));
-            // new->envp = envp;
-            // free_list(m_s->envVarlst);
-            if(currList->redlst)
-                new->files = currList->redlst;
+            new->files = currList->redlst;
             new->type = type_cmds(new->cmd_name);
             new->av_cmd  = currList->command;
-            // if (new->files == NULL)
-            //     printf("is file null\n");
-            // else
-            //     printf("tell me the is not NULL \n");
-            add_cmds_files(&curr, new);
+            add_cmds(&curr, new);
             currList = currList->next;
         }
         cout_cmds_pipes(curr);
-        // print_cmds(&curr);
         run_commands(curr);
         tmp = list_to_tab(&curr->glob->envVarlst);
-        // update_envp(m_s, curr);
-        // envp = curr->envp;
-        // for (int i = 0; tmp[i] != NULL; i++)
-        //     printf("%s__________________________________________\n", tmp[i]);
     }
     return (tmp);
-}
-
-void fake()
-{
-    
 }

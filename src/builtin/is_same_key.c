@@ -6,26 +6,13 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:37:47 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/17 01:25:53 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:15:16 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool check_equal(char *var)
-{
-    char *look;
-
-    look = ft_strchr(var, '=');
-    if (look)
-    {
-        look++;
-        if (ft_strlen(look) > 0)
-            return (true);
-    }
-    return (false);
-}
-char    *pars_var(char *vars)
+char    *pars_key(char *vars)
 {
     int     i;
     char    *var_pars;
@@ -50,11 +37,10 @@ int is_same_key(t_env *env, char *var)
 
     node = env;
     i = 0;
-    if (env && var && check_equal(var) == false)
+    if (env && var && is_key(var) == false)
     {
-        printf("we enter\n");
         if (ft_strchr(var, '='))
-            var = pars_var(var);
+            var = pars_key(var);
         while (node != NULL)
         {
             if (ft_strcmp(node->key, var) == false)

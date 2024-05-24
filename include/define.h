@@ -55,7 +55,8 @@ typedef	struct	s_files
 	int		hereID;
 	struct	s_files *next;
 	struct	s_files *prev;
-	struct s_manage_fds *manage_fd;
+	// struct s_manage_fds *manage_fd;
+	int		manage_fd;
 }t_files;
 
 typedef	struct s_token
