@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/23 11:38:00 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/23 23:08:48 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void _curren_fd(int fd[], int last_fd, t_cmd *cmds)
 // free id_childs
 int      commands(t_cmd *cmds, char *envp_path)
 {
-    t_cmd *curr;
-    int fd[2];
-    int last_fd;
+    t_cmd   *curr;
+    int     fd[2];
+    int     last_fd;
     
     curr = cmds;
     while (curr != NULL)
@@ -78,7 +78,6 @@ int      commands(t_cmd *cmds, char *envp_path)
         manage_signal(0);
         if (curr->id == 0)
         {
-            // printf("the childs make it !!\n");
             if (expan_child(fd, curr, envp_path) == -1)
                 return (-1);
         }

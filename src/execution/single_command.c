@@ -15,25 +15,27 @@ void replace_fd(t_files *files)
     {
         while (files != NULL)
         {
-            if (files->manage_fd)
+            if (files->manage_fd > -1)
             {
-                if (files->manage_fd->error == 0)
+                if (files->type == out_p_redir)
                 {
-                    if (files->type == out_p_redir)
-                    {
-                        dup2(files->manage_fd->copy_fd, 1);
-                        close(files->manage_fd->copy_fd);
-                    }
-                    if (files->type == in_p_redir)
-                    {
-                        dup2(files->manage_fd->copy_fd, 0);
-                        close(files->manage_fd->copy_fd);
-                    }
-                    if (files->type == apnd_op_redir)
-                    {
-                        dup2(files->manage_fd->copy_fd, 1);
-                        close(files->manage_fd->copy_fd);
-                    }
+                    dup2(files->manage_fd, 1);
+                    close(files->manage_fd);
+                }
+                if (files->type == in_p_redir)
+                {
+                    dup2(files->manage_fd, 0);
+                    close(files->manage_fd);
+                }
+                if (files->type == here_doc)
+                {
+                    dup2(files->manage_fd, 0);
+                    close(files->manage_fd);
+                }
+                if (files->type == apnd_op_redir)
+                {
+                    dup2(files->manage_fd, 1);
+                    close(files->manage_fd);
                 }
             }
             files = files->next;
@@ -68,29 +70,21 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
     if (cmd)
     {
-        printf("IN WHICH");
         which_files(cmd);
         cmd->is_file_on = is_files_valide(cmd);
-        printf("is file good %d\n", is_files_valide(cmd));
         if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
         {
-            clean_cmds(cmd);
-            (void)envp_path;
-            (void)envp;
-            printf("why dont' work !!\n");
             cmd->id = fork();
-            printf("and there we goo ..\n");
             manage_signal(0);
             if (cmd->id == 0)
             {
-                // is on doit change le stdint ou le out ?
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }
             else if (cmd->id < 0)
-                printf("------Error fork()\n");
+                perror("fork");
             wait_childs(cmd);
             manage_signal(-1);
             return (clean_cmds(cmd), 1);
@@ -98,9 +92,4 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
         return (clean_cmds(cmd), 1);
     }
     return (-1);   
-}
-
-void fake_2()
-{
-    
 }

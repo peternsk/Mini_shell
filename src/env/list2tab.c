@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:35:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/21 15:36:22 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:33:21 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char    **list_to_tab(t_env **lst)
     i = 0;
     node = *lst;
     nb_token = count_env_node(node);
-    printf("%d -----------\n", nb_token);
     env_tab = (char **)malloc(sizeof(char *) * (nb_token + 1));
     if (!env_tab)
         return (NULL);
@@ -103,8 +102,6 @@ char    **list_to_tab(t_env **lst)
         i++;
         node = node->next;
     }
-    env_tab[i - 1] = NULL;
-    // for (int i = 0; env_tab[i] != NULL ; i ++)
-    //     printf("%s\n", env_tab[i]);
+    env_tab[i] = NULL;
     return(env_tab);
 }

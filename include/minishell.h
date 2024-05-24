@@ -169,7 +169,7 @@ int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
 void		last_here_doc(t_minish *m_s, t_files *tmp);
 void		run_here_redlst(t_minish *m_s, t_files **lst);
-void        send_2_tmp(t_heredoc **lst);
+void        send_2_tmp(t_heredoc **lst, t_minish *ms);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
@@ -179,7 +179,7 @@ void	    print_here_lst(t_heredoc *lst);
 /*====================================================*/
 
 char       **init_cmds(char **envp, t_minish *m_s);
-void        add_cmds_files(t_cmd **node, t_cmd *new);
+void        add_cmds(t_cmd **node, t_cmd *new);
 void        cout_cmds_pipes(t_cmd *cmds);
 int         run_commands(t_cmd *cmds);
 char        *get_envp_path(char **envp);
@@ -217,6 +217,7 @@ void        ft_unset(t_cmd *unset);
 void        printEnvp(char **envp);
 int         is_same_key(t_env *env, char *var);
 int         type_cmds(char *s);
+bool        is_key(char *str);
 
 
 /*====================================================*/

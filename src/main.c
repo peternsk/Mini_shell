@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/21 15:36:45 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:31:55 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		main(int ac, char **av, char **env)
 			tokenizer(m_s);	
 			// begin_parsing();
 			/*--------------------------- quit sur deux sur "ls > | > sd" ------------------------*/
-			printf("-------- ici ----------- minishell \n");
+			// printf("-------- ici ----------- minishell \n");
 			ft_lexer(&m_s->token_lst);
 			/*-----------------------------------------------------------------------------------*/
 			print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
@@ -77,9 +77,9 @@ int		main(int ac, char **av, char **env)
 			ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 			/*---------------------------------here doc----------------------------------*/
 			print_cmdLst(&m_s->cmdLst);
-			init_cmds(env, m_s);
+			update_envp = init_cmds(tmp, m_s);
 			// print_garbage_collector();
-			m_s->tab_env = list_to_tab(&m_s->envVarlst);
+			// m_s->tab_env = list_to_tab(&m_s->envVarlst);
 			
 		}
 	}

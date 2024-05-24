@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 20:02:19 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/09 14:31:49 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:00:54 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_files *add_curr_file(t_redlts *new_files)
     files->put_last = 0;
     files->type = type_cmds(new_files->redtype);
     files->next = NULL;
-    files->manage_fd = NULL;
+    files->manage_fd = -1;
     return (files);
 }
 
@@ -54,9 +54,4 @@ void    add_files(t_cmd *cmd_file, t_redlts *new_files)
             curr_new_files = curr_new_files->next;
         }
     }
-}
-
-void fake_1()
-{
-    
 }
