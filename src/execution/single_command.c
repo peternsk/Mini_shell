@@ -58,7 +58,7 @@ int execute_one_command(t_cmd *current, char **envp, char *envp_path)
     {     
         cmd_path = get_cmd_path(envp_path, current->cmd_name);
         if(!cmd_path)
-            return (cmd_path_error(2, current->cmd_name), exit(EXIT_FAILURE),  0);
+            return (cmd_path_error(2, current->cmd_name), exit(127),  0);
         if (execve(cmd_path, current->av_cmd, envp) == -1)
             return (perror(cmd_path), exit(EXIT_FAILURE), 0);
         return (1);
@@ -80,7 +80,6 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             manage_signal(0);
             if (cmd->id == 0)
             {
-                printf("stdin du child %d\n" , STDIN_FILENO);
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }
