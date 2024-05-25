@@ -74,7 +74,7 @@ void        ft_ascii_font(void);
 /*====================================================*/
 
 /*---  meta_char ---*/
-void        ft_lexer(t_token **lst);
+bool        ft_lexer(t_token **lst);
 bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);

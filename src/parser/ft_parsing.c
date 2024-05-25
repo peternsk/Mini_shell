@@ -76,35 +76,17 @@ bool	prs_ast_dlb_meta(t_token **lst)
 		current = current->next;
 	
 	}
-	printf("in prs_ast_dlb_meta\n");
 	return(true);
 }
 
-void    ft_lexer(t_token **lst)
+bool    ft_lexer(t_token **lst)
 {
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
-		printf("IN HERE\n");
 		exit_status = 0;
 		exit_status = exit_status + 2;
-		// printf("===============================\n");
-		// printf("=      bash: syntax error     =\n");
-		// printf("===============================\n");
-		// printf("                =\n");
-		// printf("===============================\n");
-		// printf("=             $? : %d          =\n", exit_status);
-		// printf("===============================\n");
-		exit(0);
-		
+		perror("bash: syntax error near unexpected token");
+		return(false);
 	}
-	else
-	{
-		// printf("===============================\n");
-		// printf("=      command parse ok       =\n");
-		// printf("===============================\n");
-		// printf("                =\n");
-		// printf("===============================\n");
-		// printf("=             $? : %d          =\n", exit_status);
-		// printf("===============================\n");	
-	}
+	return(true);
 }
