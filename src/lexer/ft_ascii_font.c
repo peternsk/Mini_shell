@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ascii_font.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:28:16 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/05/13 10:53:40 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/25 15:51:48 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    ft_ascii_font(void)
     printf("\033[0;30m██      ██ ██ ██   ████ ██ ███████ ██   ██ ███████ ███████ ███████ \033[0m \033[0;33m __| \".        \\dS\"qML\033[0m\n");
     printf("                                                              \033[0;33m       |    `.       | `' \\Zq\033[0m\n");
     printf("                           -by                                \033[0;33m     _)       \\.___.,|    .'\033[0m\n");
-    printf("                     pnsaka mnshimiy                          \033[0;33m    \\____    ) MMMMMM|   .'\033[0m\n");
+    printf("                     pnsaka & mnshimiy                        \033[0;33m    \\____    ) MMMMMM|   .'\033[0m\n");
     printf("                                                              \033[0;33m          `-'         `--' hjm\033[0m\n");
     
 }

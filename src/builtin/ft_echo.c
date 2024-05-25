@@ -35,8 +35,7 @@ void    ft_echo(t_cmd *ec)
     bool new_line;
     i = 1;
     new_line = false;
-    while (i < size(ec->av_cmd))
-    {
+    while (i < size(ec->av_cmd))    {
         if (ec->av_cmd[i])
         {
             new_line = is_newline(ec->av_cmd[i], i);

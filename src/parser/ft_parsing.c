@@ -42,7 +42,6 @@ bool	prs_ast_pipe(t_token **lst)
 			return(false);
 		current = current->next;
 	}
-	printf("in prs_ast_pipe\n");
 	return(true);
 }
 
@@ -71,7 +70,15 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	current = *lst;
 	while(current != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= apnd_op_redir && current->next->type <= dbl_et))
+		if(current)
+		{
+			if(current->type >= out_p_redir && current->type <= dbl_et)
+			{
+				if(current->next && (current->next->type >= apnd_op_redir && current->next->type <= dbl_et))
+				return(false);
+			}
+		}
+		else if((current->type >= out_p_redir && current->type <= dbl_et) && (current->prev == NULL) && (current->next == NULL))
 			return(false);
 		current = current->next;
 	
