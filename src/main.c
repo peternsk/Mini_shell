@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/25 15:19:52 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/25 17:06:48 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int		main(int ac, char **av, char **env)
 			m_s->input = readline(INPUT);
 			// printf("----[%s]--[%d]---\n", m_s->input, m_s->input[0]);
 			if (!m_s->input)
+			{
+				// all_free();
 				return (printf("exit\n"), 0);
+			}
 			add_history(m_s->input);
 			// begin_setEnvVar();
 			if (update_envp)
