@@ -1,6 +1,7 @@
 #include "minishell.h"
 
 // les str danss le tmp->expstr son null
+
 void    send_2_tmp(t_heredoc **lst, t_minish *m_s)
 {
     t_heredoc *tmp;
@@ -8,10 +9,6 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s)
 
     tmp = *lst;
     fd = open("/tmp/heredoc", O_RDWR | O_CREAT | O_TRUNC,  07777);
-    // if(fd >= 0)
-    //     printf("fd exist %d\n", fd);
-    // else
-    //     printf("fd dont exist %d\n", fd);
     while(tmp)
     {
         herelist_exp(lst, &m_s->envVarlst, m_s);

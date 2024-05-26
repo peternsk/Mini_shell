@@ -31,7 +31,6 @@ void   print_files_index(t_files *files)
 
 void    which_files(t_cmd *current)
 {
-    // print_files_index(current->files);
     if (current->files)
     {
         check_last_files(current->files);
@@ -44,7 +43,6 @@ void    which_files(t_cmd *current)
                 change_stdout(files);
             run_here_redlst(current->glob, &files);
             herelist_exp(&current->glob->herelst, &current->glob->envVarlst, current->glob);
-	        // print_here_lst(current->glob->herelst);
             files = files->next;
         }
     }

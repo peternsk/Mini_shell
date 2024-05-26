@@ -186,7 +186,7 @@ char        *get_envp_path(char **envp);
 int         single_command(t_cmd *cmd, char **envp, char *envp_path);
 int         commands(t_cmd *cmds, char *envp_path);
 void        wait_childs(t_cmd *cmds);
-int         execute_command(t_cmd *current, char **envp, char *envp_path);
+int         execute_command(t_cmd *current,char *envp_path , int **array);
 char        *get_cmd_path(char *path, char *cmd);
 void        is_change_std(t_cmd *current);
 int         handel_builtin(t_cmd *cmd);
