@@ -29,6 +29,7 @@ int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 
     if (!current)
         return (printf("current is NULL"), -1);
+    which_files(current);
     pipe_connect(current, array_pipe);
     current->is_file_on = is_files_valide(current);
     if (current->nb_cmds > 1 && current->nb_pipes > 0 && current->type == 8 && current->is_file_on == 0)
