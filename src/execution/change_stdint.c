@@ -25,15 +25,12 @@ int put_fd(t_files *current)
     {
         if (fd > 0 && current->made == 0)
         {
-            // current->manage_fd = init_manage_fd(dup(0), 0, 1);
-            // current->manage_fd->type = in_p_redir;             
             current->manage_fd = dup(0);
             dup2(fd, 0);
             close(fd);
             return (current->made = -1, 0);
         }
         return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1,  -1);
-        // return (put_error(current), close(fd),  current->error = -1, current->made = -1,  -1);
     }
     return (0);
 }
@@ -63,8 +60,3 @@ int change_stdint(t_files *files)
     }
     return (0);
 }   
-
-// int change_stdint(t_files *file)
-// {
-//     return (more_stdint(file));
-// }

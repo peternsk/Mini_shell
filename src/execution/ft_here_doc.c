@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-
 int ft_here_doc(t_files *files, t_cmd *current)
 {
     char *input;

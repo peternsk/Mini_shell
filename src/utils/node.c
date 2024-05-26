@@ -1,5 +1,4 @@
 
-
 #include "minishell.h"
 
 t_token 	*set_token(t_token *token, t_minish *m_s)

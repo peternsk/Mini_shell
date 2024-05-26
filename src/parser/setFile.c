@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 void    setDelimiter(t_token **lst)

@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-// ajouter la function qui dis le bon put error 
-
 
 void    pipe_connect(t_cmd *current, int **array_pipe)
 {
@@ -28,7 +26,7 @@ int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
     char	*cmd_path;
 
     if (!current)
-        return (printf("current is NULL"), -1);
+        return (-1);
     which_files(current);
     pipe_connect(current, array_pipe);
     current->is_file_on = is_files_valide(current);

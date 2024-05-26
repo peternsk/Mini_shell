@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 void    wait_childs(t_cmd *cmds)

@@ -26,9 +26,7 @@ char **init_new(char **vars)
 {
     char    **new;
     int     len;
-    // int     i;
 
-    // i = 0;
     len = size(vars);
     new =   malloc(sizeof(char *) * (len + 1));
     if (!new)

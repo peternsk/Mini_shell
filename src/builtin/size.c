@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 int size(char **env)

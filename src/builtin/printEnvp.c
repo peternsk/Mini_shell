@@ -70,7 +70,6 @@ void    printEnvp(char **envp)
     int i;
 
     i = 0;
-    // printf("len array %d\n", len_envp(envp));
     ft_sort(envp);
     while (envp[i]!= NULL){
         printf("declare -x %s\n", envp[i]);

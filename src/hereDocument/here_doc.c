@@ -29,7 +29,6 @@ void	check_here_doc(t_minish *m_s, t_files **lst)
 		{
 			while(1 && tmp->next)
 			{
-				// printf("DELIMITER [%s]\n", tmp->filename);
 				here_input = readline(HERE_INPUT);
 				if(delim_cmp(here_input, tmp->name) == true)
 				{
@@ -57,8 +56,6 @@ void	empty_hereDoc(t_files *tmp)
 			here_input = readline(HERE_INPUT);
 			if(delim_cmp(here_input, tmp->name) == true)
 				return;
-			// else
-			// 	printf(" >%s\n", here_input);
 		}
 	}
 }
@@ -106,8 +103,6 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 			empty_hereDoc(tmp);
 		if((tmp->type == here_doc) && (tmp->hereID == hereNbr) && tmp->made == 0)
 		{
-			// tmp->manage_fd = init_manage_fd(dup(0), 0, 1);
-			// tmp->manage_fd->type = here_doc;
 			tmp->made = -1;
 			tmp->manage_fd = dup(0);
 			last_here_doc(m_s, tmp);

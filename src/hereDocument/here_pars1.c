@@ -60,7 +60,7 @@ void	herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s)
 	last = *lst;
 	curEnv = *envVarlst;
 	if(last == NULL)
-		// printf("empty list change\n");
+		printf("empty list change\n");
 	while(last != NULL)
 	{
         if(char_search(last->str, '$') == true)

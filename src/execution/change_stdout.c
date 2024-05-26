@@ -7,18 +7,13 @@ int put_int_fd(t_files *file)
     int fd_name;
     if (file->name  && file->made == 0)
     {
-        // int old_fd = dup(1);
         file->manage_fd = dup(1);
-        // file->manage_fd = init_manage_fd(old_fd, 0, 1);
         file->made = 1;
         fd_name = open(file->name, O_WRONLY | O_CREAT ,  07777);
-        // file->manage_fd->type = out_p_redir;
         if (fd_name < 0)
             return (perror(file->name), file->error = 1,  -1);
-        // printf("remettre les fd a la bonne plasse  file %d \n", file->manage_fd);
         if (file->put_last == 1)
         {
-            // printf("it change  %d \n", fd_name);
             dup2(fd_name, 1);
             close(fd_name);
         }
@@ -47,7 +42,6 @@ int _files(t_files *files)
         }
         if (current->name && current->type == out_p_redir && current->next == NULL)
         {
-            printf("name->file : %s\n", current->name);
             return (put_int_fd(current));
         }
         return (-1);

@@ -35,18 +35,6 @@ int **create_pipe(t_cmd *cmd)
     return (array);
 }
 
-void see_pipe_has_been_copy(t_cmd *pipe)
-{
-    t_cmd *curr;
-
-    curr = pipe;
-    while (curr != NULL)
-    {
-        if (curr->files)
-            printf("seeeee pipe  copy%d\n", curr->files->manage_fd);
-        curr = curr->next;
-    }
-}
 
 void replace_files_des(t_cmd *curr)
 {

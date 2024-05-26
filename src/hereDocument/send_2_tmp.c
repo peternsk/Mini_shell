@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-// les str danss le tmp->expstr son null
 
 void    send_2_tmp(t_heredoc **lst, t_minish *m_s)
 {

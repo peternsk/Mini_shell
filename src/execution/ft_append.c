@@ -1,10 +1,5 @@
-
-
 #include "minishell.h"
 
-// even with no files you create the file whit nothing inside 
-// take only one argv;
-// is important to close the files .. .. ?
 int print_error(t_files *current)
 {
     t_files *node;
@@ -18,6 +13,7 @@ int print_error(t_files *current)
     }
     return (0);
 }
+
 int ft_append_fd(t_files *current)
 {
     int fd;
@@ -30,8 +26,6 @@ int ft_append_fd(t_files *current)
             return (close(fd), perror(current->name), current->error = -1, current->made = -1);
         if (current->put_last == 1)
         {
-            // current->manage_fd = init_manage_fd(dup(1), 0, 1);
-            // current->manage_fd->type = apnd_op_redir;
             current->manage_fd = dup(1);
             current->made = -1;
             dup2(fd, 1);

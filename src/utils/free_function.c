@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 void free_list(t_token **list)

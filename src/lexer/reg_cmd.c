@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 bool	is_space(char c)

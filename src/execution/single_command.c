@@ -7,8 +7,7 @@ void cmd_path_error(int error_type, char *message)
     write(error_type, message, ft_strlen(message));
     write(error_type, ": command not found\n", ft_strlen(": command not found\n"));
 }
-// check the cmd type 
-// if is 
+
 void replace_fd(t_files *files)
 {
     if (files)

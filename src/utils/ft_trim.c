@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 static int	ft_char_in_set(char c, char const *str)

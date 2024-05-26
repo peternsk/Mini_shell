@@ -7,7 +7,6 @@ void    change_key_value(t_env **env, char *vars)
     var_parsing = NULL;
     if (env && vars)
     {
-        // printf(" .. change value ..\n");
         var_parsing = ft_strchr(vars, '=');
         if (var_parsing)
         {   var_parsing++;
@@ -18,8 +17,6 @@ void    change_key_value(t_env **env, char *vars)
                 (*env)->value = copy_value(vars);
                 (*env)->eql_sign = true;
             }
-            // env->flags
-            // printf(" \\\\\the value as be change \n funtion(is_add_envp): add in node \n key -- %s \n value -- %s \\\\\n",(*env)->key, (*env)->value);
         }
     }
 }
@@ -34,14 +31,12 @@ void    where_to_envp(t_env **env, char *vars, int index)
     new_node = NULL;
     i = 0;
     if (vars)
-        // printf("[%d index] [%s]\n",index, vars);
     if (index >  0)
     {
         while (node != NULL)
         {
             if (i == index)
             {
-                // printf("is chnage value .....\n");
                 change_key_value(&node, vars);
                 break;
             }
@@ -51,8 +46,6 @@ void    where_to_envp(t_env **env, char *vars, int index)
     }
     if (index == -1)
         add_var_to_end(env, intEnvVar(new_node, vars));
-    // if (node)
-        // printf("function(is_add_envp): =============\n add in node \n key -- %s \n value -- %s \n================\n", node->key,node->value);
 }
 
 

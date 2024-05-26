@@ -15,7 +15,6 @@ void    check_last_files(t_files *files)
     }
     if (tmp)
         tmp->put_last = 1;
-    // printf("tmp->index_ou %d\n tmp->name %s\n", tmp->index_out, tmp->name);
 }
 void   print_files_index(t_files *files)
 {
@@ -24,7 +23,6 @@ void   print_files_index(t_files *files)
     current = files;
     while (current != NULL)   
     {
-        // printf("------\ncurrent-last : %d \ncurrent-type %d\n current->name %s\n---------\n", current->index_out, current->type, current->name);
         current = current->next;
     }
 }

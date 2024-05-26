@@ -52,7 +52,4 @@ void        tokenizer(t_minish *m_s)
         if(m_s->input[m_s->e])
 			split_token(m_s);
     }
-	// printf("===============================\n");
-	// printf("========= list size %d  ========\n", count_token(m_s->token_lst));
-	// printf("===============================\n");	
 }

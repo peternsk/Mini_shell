@@ -1,15 +1,5 @@
 #include "minishell.h"
 
-void print_env_check(t_env *node)
-{
-    t_env *current;
-    current = node;
-    while (current != NULL)
-    {
-        printf("-=====================\n current->key %s \n current-> value %s \n ================\n", current->key, current->value);
-        current = current->next;
-    }
-}
 char  **free_array(char **vars)
 {
     int i = 0;

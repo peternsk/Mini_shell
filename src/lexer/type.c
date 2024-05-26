@@ -4,17 +4,17 @@
 
 void	meta_type(t_token *token)
 {
-	if(token->value[0] == 124 && ft_strlen(token->value) == 1) // pipe |
+	if(token->value[0] == 124 && ft_strlen(token->value) == 1)
 		token->type = pipe_;
-	else if(token->value[0] == 124 && ft_strlen(token->value) == 2)  // input red <
+	else if(token->value[0] == 124 && ft_strlen(token->value) == 2)
 		token->type = dbl_pipe_;
-	else if(token->value[0] == 60 && ft_strlen(token->value) == 1)  // input red <
+	else if(token->value[0] == 60 && ft_strlen(token->value) == 1)
 		token->type = in_p_redir;
-	else if(token->value[0] == 60 && ft_strlen(token->value) == 2)  // here doc <<
+	else if(token->value[0] == 60 && ft_strlen(token->value) == 2)
 		token->type = here_doc;
-	else if(token->value[0] == 62 && ft_strlen(token->value) == 1)  // output red >
+	else if(token->value[0] == 62 && ft_strlen(token->value) == 1)
 		token->type = out_p_redir;
-	else if(token->value[0] == 62 && ft_strlen(token->value) == 2)  // append >>
+	else if(token->value[0] == 62 && ft_strlen(token->value) == 2)
 		token->type = apnd_op_redir;
 }
 

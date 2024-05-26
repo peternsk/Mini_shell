@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 void    count_files_by_type(t_files *files)

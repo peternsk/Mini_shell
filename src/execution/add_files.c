@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 t_files *add_curr_file(t_redlts *new_files)
