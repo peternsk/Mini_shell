@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 18:20:31 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/23 13:31:55 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:06:48 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ int		main(int ac, char **av, char **env)
 			m_s = init_ms();
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
+			// printf("----[%s]--[%d]---\n", m_s->input, m_s->input[0]);
 			if (!m_s->input)
+			{
+				// all_free();
 				return (printf("exit\n"), 0);
+			}
 			add_history(m_s->input);
 			// begin_setEnvVar();
 			if (update_envp)
@@ -62,24 +66,26 @@ int		main(int ac, char **av, char **env)
 			// begin_parsing();
 			/*--------------------------- quit sur deux sur "ls > | > sd" ------------------------*/
 			// printf("-------- ici ----------- minishell \n");
-			ft_lexer(&m_s->token_lst);
-			/*-----------------------------------------------------------------------------------*/
-			print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
-			ft_removeQuotes(&m_s->token_lst);
-			setDelimiter(&m_s->token_lst);
-			setFile(&m_s->token_lst);
-			printRealList(m_s->token_lst);
-			ft_createCmdLst(m_s);
-			merge_token(&m_s->token_lst);
-			combineTokValue(&m_s->token_lst);
-			printRealList(m_s->token_lst);
-			/*---------------------------------here doc----------------------------------*/
-			ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
-			/*---------------------------------here doc----------------------------------*/
-			print_cmdLst(&m_s->cmdLst);
-			update_envp = init_cmds(tmp, m_s);
-			// print_garbage_collector();
-			// m_s->tab_env = list_to_tab(&m_s->envVarlst);
+			if(ft_lexer(&m_s->token_lst) == true)
+			{
+				/*-----------------------------------------------------------------------------------*/
+				print_expendTab(&m_s->token_lst, &m_s->envVarlst, m_s);
+				ft_removeQuotes(&m_s->token_lst);
+				setDelimiter(&m_s->token_lst);
+				setFile(&m_s->token_lst);
+				printRealList(m_s->token_lst);
+				ft_createCmdLst(m_s);
+				merge_token(&m_s->token_lst);
+				combineTokValue(&m_s->token_lst);
+				printRealList(m_s->token_lst);
+				/*---------------------------------here doc----------------------------------*/
+				ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
+				/*---------------------------------here doc----------------------------------*/
+				print_cmdLst(&m_s->cmdLst);
+				update_envp = init_cmds(tmp, m_s);
+				// print_garbage_collector();
+				// m_s->tab_env = list_to_tab(&m_s->envVarlst);
+			}
 			
 		}
 	}

@@ -3,91 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/23 16:31:24 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:31:52 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int _childs_fd(int fd[], int last_fd, t_cmd *curr, t_cmd *cmds)
+void    close_pipe(t_cmd *cmds, int **array_pipe)
 {
-    pipe(fd);
-    if (curr->index == 0)
+    int i;
+    
+    i = 0;
+    while ( i < (cmds)->nb_cmds - 1)
     {
-        last_fd = fd[0];
-        fd[0] = 0;
+        close(array_pipe[i][0]);
+        close(array_pipe[i][1]);
+        i++;
     }
-    else
+}
+void    pipe_connect(t_cmd *cmd, int **array_pipe)
+{
+    int i;
+
+    i = 0;
+    if (cmd->index != 0)
+        dup2(array_pipe[cmd->index - 1][0], 0);
+    if (cmd->next)
+        dup2(array_pipe[cmd->index][1], 1);
+    close_pipe(cmd, array_pipe);
+}
+int **create_pipe(t_cmd *cmd)
+{
+    int **array;
+    int i;
+
+    i = 0;
+    array = 0;
+    if (cmd)
     {
-        last_fd ^= fd[0];
-        fd[0] ^= last_fd;
-        last_fd ^= fd[0];
+        array = malloc ((cmd->nb_cmds - 1) * sizeof(int *));
+        while (i < (cmd->nb_cmds - 1))
+        {
+            array[i] = malloc(sizeof(int) * 2);
+            pipe(array[i]);
+            i++;
+        }
     }
-    if (curr->index == cmds->nb_cmds - 1)
-    {
-        // Don't change put in next pipe if there an > or >>
-        close(fd[1]);
-        fd[1] = 1;
-    }
-    return (last_fd);
+    return (array);
 }
 
-int expan_child(int fd[], t_cmd *curr, char *envp_path)
-{
-    if (fd[0] != 0)
-    {
-        dup2(fd[0], 0);
-        close(fd[0]);
-    }
-    if (fd[1] != 1)
-    {
-        // pas sur check si c'est un file ou bien redirection de file et append file 
-        if (!curr->files)
-            dup2(fd[1], 1);
-        close(fd[1]);
-    }
-    if (execute_command(curr, curr->envp, envp_path) == -1)
-        return (-1);
-    return (1);
-}
-
-void _curren_fd(int fd[], int last_fd, t_cmd *cmds)
-{
-    if (cmds->index != 0)
-        close(fd[0]);
-    if (cmds->index != cmds->nb_cmds -1)
-        close(fd[1]);
-    else 
-        close(last_fd);
-}
-// free id_childs
 int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd   *curr;
-    int     fd[2];
-    int     last_fd;
-    
+    int     **array_pipe;
+
+    array_pipe = create_pipe(cmds);
     curr = cmds;
     while (curr != NULL)
     {
-        last_fd = _childs_fd(fd, last_fd, curr, cmds);
         curr->id = fork();
         manage_signal(0);
         if (curr->id == 0)
         {
-            if (expan_child(fd, curr, envp_path) == -1)
-                return (-1);
+            pipe_connect(curr, array_pipe);
+            execute_command(curr, curr->envp, envp_path);
         }
         else if (curr->id < 0)
             printf("Error fork()\n");
         else
-        {
-            _curren_fd(fd, last_fd, curr);
             curr = curr->next;
-        } 
     }
+    close_pipe(cmds, array_pipe);
     return (manage_signal(-1), wait_childs(cmds), 1);
 }

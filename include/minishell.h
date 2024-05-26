@@ -74,7 +74,7 @@ void        ft_ascii_font(void);
 /*====================================================*/
 
 /*---  meta_char ---*/
-void        ft_lexer(t_token **lst);
+bool        ft_lexer(t_token **lst);
 bool	    prs_ast_pipe(t_token **lst);
 bool	    prs_ast_dlb_meta(t_token **lst);
 bool	    prs_ast_redir(t_token **lst);
@@ -233,6 +233,21 @@ int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
 void        which_files(t_cmd *current);
 int         ft_append(t_files *file);
+
+
+/*====================================================*/
+/*=                   EXIT STATUS                    =*/
+/*====================================================*/
+
+t_exit_code     *init_exit_lst(t_exit_code *node, pid_t extCode);
+void	        add_exit_to_end(t_exit_code **lst, t_exit_code *var);
+t_exit_code     *create_exitCode_lst(t_minish *m_s, pid_t extCode);
+int         	get_code(int exit_code);
+
+void        	print_extLst_lst(t_exit_code *lst);
+
+
+
 
 #endif
  

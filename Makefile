@@ -2,8 +2,8 @@
 
 NAME    	= minishell
 CC      	= gcc
-# FLAGS   	= -Wall -Werror -Wextra -g -fsanitize=address
-FLAGS   	= -Wall -Werror -Wextra -g
+FLAGS   	= -Wall -Werror -Wextra -g #-fsanitize=address
+# FLAGS   	= -Wall -Werror -Wextra -g
 RM      	= rm -rf
 
 
@@ -23,6 +23,8 @@ BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
 EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files is_change_std ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc
 
+EXT_STATUS	=	createList
+
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
 HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
@@ -39,6 +41,7 @@ UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_fu
 
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/exitStatus/, $(EXT_STATUS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/env/, $(ENV))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/garbage/, $(GARBAGE))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/lexer/, $(LEXER))) \

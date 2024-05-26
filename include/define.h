@@ -114,6 +114,13 @@ typedef struct s_heredoc
 	char	*expstr;
 } t_heredoc;
 
+typedef struct s_exit_code
+{
+	pid_t  pid;
+	struct s_exit_code *next;
+	struct s_exit_code *prev;
+} t_exit_code;
+
 typedef struct	s_minish
 {
 	t_token  	*token_lst;
@@ -121,6 +128,7 @@ typedef struct	s_minish
 	t_cmdlts 	*cmdLst;
 	t_flags  	 *flags;
 	t_heredoc	*herelst;
+	t_exit_code	*extlst;
 	int			here_id;
 	char	 	*input;
 	char	 	**tab_env;
@@ -133,6 +141,7 @@ typedef struct	s_minish
 	int		 	cmdCounter;
 	int 	 	s;
 	int 	 	e;
+	
 } t_minish;
 
 /*----------------- CMDS EXECUTION -------------*/
@@ -176,7 +185,6 @@ typedef struct s_manage_fds
 	int copy_fd;
 	struct s_manage_fds *next;	
 } t_manage_fds;
-
 
 
  

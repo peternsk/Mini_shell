@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/19 20:34:22 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/23 23:08:25 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ char    *is_cmd_valide_path(char *cmd_path, int dot)
 static char    *_check_absolute_path(char *cmd)
 {
     int i;
-    int dot;
+    // int dot;
 
-    dot = 0;
+    // dot = 0;
     i = 0;
     if (cmd)
     {
