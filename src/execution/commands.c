@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/25 15:31:52 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/05/26 18:54:13 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void    close_pipe(t_cmd *cmds, int **array_pipe)
 }
 void    pipe_connect(t_cmd *cmd, int **array_pipe)
 {
-    int i;
+    // int i;
 
-    i = 0;
+    // i = 0;
     if (cmd->index != 0)
         dup2(array_pipe[cmd->index - 1][0], 0);
     if (cmd->next)
