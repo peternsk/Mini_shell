@@ -6,7 +6,7 @@
 /*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/26 14:47:56 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:27:44 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int      commands(t_cmd *cmds, char *envp_path)
     int     **array_pipe;
 
     array_pipe = create_pipe(cmds);
-    which_files(cmds);
     curr = cmds;
     while (curr != NULL)
     {

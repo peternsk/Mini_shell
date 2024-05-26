@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/23 23:08:25 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/05/26 16:01:44 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ char    *is_cmd_valide_path(char *cmd_path, int dot)
 static char    *_check_absolute_path(char *cmd)
 {
     int i;
-    // int dot;
-
-    // dot = 0;
+    
     i = 0;
     if (cmd)
     {
@@ -73,7 +71,7 @@ char    *get_cmd_path(char *path, char *cmd)
     {
         while (sub_paths[i])
         {
-            cmd_path = ft_strjoin(sub_paths[i], "/"); // TODO: Caching system (key -> value)
+            cmd_path = ft_strjoin(sub_paths[i], "/");
             cmd_path = ft_strjoin(cmd_path, cmd);
             if (access(cmd_path, F_OK | X_OK) == 0)
                 return (free_str(sub_paths), cmd_path);
