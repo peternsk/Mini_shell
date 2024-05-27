@@ -1,9 +1,10 @@
 #include "minishell.h"
 
-void		init_structs(t_minish * m_s)
+t_minish		*init_structs(t_minish *m_s)
 {
 	m_s = init_ms();
 	m_s->flags = init_flag();
+	return(m_s);
 }
 
 void	set_and_update_env(t_minish *m_s, char **env)
@@ -38,6 +39,6 @@ int		build_and_exec(t_minish *m_s)
 	ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 	print_cmdLst(&m_s->cmdLst);
 	m_s->update_envp = init_cmds(m_s->tmp, m_s);
-	// print_garbage_collector();
+	print_garbage_collector();
 	return(0);
 }
