@@ -4,6 +4,8 @@
 
 int exit_status = 0;
 
+/*reste a teste le main avec tout*/
+
 int		main(int ac, char **av, char **env)
 {
 	(void)av;
