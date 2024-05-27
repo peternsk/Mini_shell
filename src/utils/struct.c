@@ -14,6 +14,8 @@ t_minish *init_ms(void)
 	m_s->cmdLst = NULL;
 	m_s->tab_env = NULL;
 	m_s->herelst = NULL;
+	m_s->update_envp = NULL;
+	m_s->tmp = NULL;
 	m_s->here_id = 1;
 	m_s->index = 0;
 	m_s->pipe_num = 0;

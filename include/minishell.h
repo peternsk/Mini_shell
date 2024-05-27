@@ -246,8 +246,12 @@ int         	get_code(int exit_code);
 
 void        	print_extLst_lst(t_exit_code *lst);
 
+/*====================================================*/
+/*=                      MAIN                        =*/
+/*====================================================*/
 
-
+int				build_and_exec(t_minish *m_s);
+void			set_and_update_env(t_minish *m_s, char **env);
 
 #endif
  
