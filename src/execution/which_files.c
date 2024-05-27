@@ -26,7 +26,7 @@ void   print_files_index(t_files *files)
         current = current->next;
     }
 }
-
+// faire en sorte que le here doc soit dans un fork() pour single command
 void    which_files(t_cmd *current)
 {
     if (current->files)

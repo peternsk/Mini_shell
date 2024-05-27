@@ -9,17 +9,18 @@ void ctrl_c_parent()
 }
 void ctrl_quit_childs()
 {
-	return ;
+	exit(0);
 }
 void	ctrl_c_childs()
 {
-	return ;
+	exit(0);
 }
 
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
+		printf("we are in childs\n");
 		signal(SIGINT, ctrl_c_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
 	}
