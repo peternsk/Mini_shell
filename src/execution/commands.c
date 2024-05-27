@@ -22,10 +22,10 @@ int **create_pipe(t_cmd *cmd)
     array = 0;
     if (cmd && cmd->nb_cmds  > 1)
     {
-        array = malloc ((cmd->nb_cmds - 1) * sizeof(int *));
+        array = malloc_and_add((cmd->nb_cmds - 1) * sizeof(int *));
         while (i < (cmd->nb_cmds - 1))
         {
-            array[i] = malloc(sizeof(int) * 2);
+            array[i] = malloc_and_add(sizeof(int) * 2);
             pipe(array[i]);
             i++;
         }

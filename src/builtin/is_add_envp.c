@@ -60,7 +60,7 @@ char    *copy_key_pars(char *str)
     {
         while (str[i] != '\0' && str[i] == '=')
             i++;
-        new = malloc(sizeof(char *)  * (i + 1) );
+        new = malloc_and_add(sizeof(char *)  * (i + 1) );
         if (!new)
             return (NULL);
         i = 0;

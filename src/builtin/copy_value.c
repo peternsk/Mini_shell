@@ -15,7 +15,7 @@ char    *copy_value(char *str)
             i++;
         if (str[i])
             i++;
-        new = malloc(sizeof(char *)  * (ft_strlen(str) + 1));
+        new = malloc_and_add(sizeof(char *)  * (ft_strlen(str) + 1));
         if (!new)
             return (NULL);
         while (str[i] != '\0')

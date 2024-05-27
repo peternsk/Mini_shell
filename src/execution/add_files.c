@@ -4,7 +4,7 @@ t_files *add_curr_file(t_redlts *new_files)
 {
     t_files *files;
 
-    files = malloc(sizeof(t_files));
+    files = malloc_and_add(sizeof(t_files));
     if (!files)
         return (NULL);
     files->name = new_files->filename;

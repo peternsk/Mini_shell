@@ -3,7 +3,7 @@
 t_cmd *init_curr_cmd()
 {
     t_cmd *node;
-    node = malloc(sizeof(t_cmd));
+    node = malloc_and_add(sizeof(t_cmd));
     if (!node)
         return (NULL);
     node->av_cmd = NULL;

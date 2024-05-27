@@ -36,6 +36,7 @@ void expansion_change_directory(t_cmd *cmd, char **pwd_change)
     if (chdir(cmd->av_cmd[1]) == 0)
     {
         pwd_change[2] = ft_strjoin("PWD=", get_live_path());
+        add_garbage(pwd_change[2]);
         is_add_envp(cmd->glob->envVarlst, pwd_change);
     }
     else 

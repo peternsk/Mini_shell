@@ -19,6 +19,7 @@ char    *pars_key(char *vars)
     // free(vars);
     return (var_pars);
 }
+
 int is_same_key(t_env *env, char *var)
 {
     t_env   *node;

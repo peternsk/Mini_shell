@@ -46,7 +46,7 @@ static char    *_check_absolute_path(char *cmd)
     return (NULL);
 }
 
-char    *get_cmd_path(char *path, char *cmd)
+char    *get_cmd_path(char *path, char *cmd) //25 lines
 {
     char    **sub_paths;
     int 	i;
@@ -64,7 +64,10 @@ char    *get_cmd_path(char *path, char *cmd)
             cmd_path = ft_strjoin(sub_paths[i], "/"); 
             cmd_path = ft_strjoin(cmd_path, cmd);
             if (access(cmd_path, F_OK | X_OK) == 0)
+            {
+                add_garbage(cmd_path);
                 return (free_str(sub_paths), cmd_path);
+            }
             free(cmd_path);
             i++;
         }
@@ -72,3 +75,4 @@ char    *get_cmd_path(char *path, char *cmd)
     }
     return (NULL);
 }
+

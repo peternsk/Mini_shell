@@ -29,7 +29,7 @@ ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
 HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 
-GARBAGE 	=  	add_address
+GARBAGE 	=  	add_address free_garb_lst
 
 LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
 
@@ -97,6 +97,8 @@ ${NAME}: ${LIBRD} ${LIBFT_LIB} ${OBJS}
 	@${CC} ${FLAGS} -I ${OBJS_DIR} $^ -o ${NAME} ${LIBS}
 	@echo "Compilation terminé avec succès!"
 
+leaks:
+	@valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes --suppressions=./$(NAME).sup ./$(NAME)
 
 clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"

@@ -24,7 +24,7 @@ char    *token_2_str(t_env *env_node)
     int j;
     
     tmp = env_node;
-    str = (char *)malloc((sizeof(char) * (ft_strlen(tmp->key) + ft_strlen(tmp->value))) + 2);
+    str = (char *)malloc_and_add((sizeof(char) * (ft_strlen(tmp->key) + ft_strlen(tmp->value))) + 2);
     if(!str)
         return(0);
     i = -1;
@@ -52,7 +52,7 @@ char    **list_to_tab(t_env **lst)
     i = 0;
     node = *lst;
     nb_token = count_env_node(node);
-    env_tab = (char **)malloc(sizeof(char *) * (nb_token + 1));
+    env_tab = (char **)malloc_and_add(sizeof(char *) * (nb_token + 1));
     if (!env_tab)
         return (NULL);
     while ((i < nb_token) && node != NULL)

@@ -24,7 +24,7 @@ char    *copy_key(char *str)
     {
         while (str[i] != '\0' && str[i] == '=')
             i++;
-        new = malloc(sizeof(char *)  * (i + 1) );
+        new = malloc_and_add(sizeof(char *)  * (i + 1) );
         if (!new)
             return (NULL);
         i = 0;
@@ -62,7 +62,7 @@ t_env   *addEnvp(char *vars)
     new = NULL;
     if (vars)
     {
-        new = malloc(sizeof(t_env));
+        new = malloc_and_add(sizeof(t_env));
         // if (ft_strchr(vars, '='))
             // new->flag = 1;
         if (new)
