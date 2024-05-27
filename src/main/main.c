@@ -20,13 +20,15 @@ int		main(int ac, char **av, char **env)
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
 			if (!m_s->input)
+			{
+				all_free();
 				return (printf("exit\n"), 0);
+			}
 			add_history(m_s->input);
 			set_and_update_env(m_s, env);
 			if(ft_lexer(&m_s->token_lst) == true)
 				build_and_exec(m_s);
 			all_free();
-			print_garbage_collector();
 		}
 	}
 	else

@@ -62,6 +62,7 @@ char    *get_cmd_path(char *path, char *cmd) //25 lines
         while (sub_paths[i])
         {
             cmd_path = ft_strjoin(sub_paths[i], "/"); 
+            add_garbage(cmd_path);
             cmd_path = ft_strjoin(cmd_path, cmd);
             if (access(cmd_path, F_OK | X_OK) == 0)
             {

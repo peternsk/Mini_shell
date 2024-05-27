@@ -63,6 +63,18 @@ void	all_free(void)
 	get_head()->next = NULL;
 }
 
+void	add_garbage_arr(char **arr)
+{
+	int i;
+
+	i = 0;
+	add_garbage(arr);
+	while(arr[i])
+	{
+		add_garbage(arr[i]);
+		i++;
+	}
+}
 
 void	print_garbage_collector()
 {
