@@ -39,6 +39,8 @@ SIGNALS		= 	manage_signal
 
 UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
 
+MAIN		=	build_and_exec main
+
 SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/exitStatus/, $(EXT_STATUS))) \
@@ -50,7 +52,7 @@ SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
 				$(addsuffix .c, $(addprefix $(SRCS_DIR)/hereDocument/, $(HERE_DOC))) \
-				$(addsuffix .c, main) 
+				$(addsuffix .c, $(addprefix $(SRCS_DIR)/main/, $(MAIN)))
 
 OBJS 		= 	$(addprefix ${OBJS_DIR}/, $(subst src/,,$(SRCS:.c=.o))) 
 
@@ -93,7 +95,7 @@ ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 
 ${NAME}: ${LIBRD} ${LIBFT_LIB} ${OBJS}
 	@${CC} ${FLAGS} -I ${OBJS_DIR} $^ -o ${NAME} ${LIBS}
-	@echo "$(GREEN)Compilation terminé avec succès!"
+	@echo "Compilation terminé avec succès!"
 
 
 clean:

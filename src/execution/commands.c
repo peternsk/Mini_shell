@@ -1,5 +1,4 @@
 
-
 #include "minishell.h"
 
 void    close_pipe(t_cmd *cmds, int **array_pipe)
@@ -14,7 +13,6 @@ void    close_pipe(t_cmd *cmds, int **array_pipe)
         i++;
     }
 }
-
 int **create_pipe(t_cmd *cmd)
 {
     int **array;

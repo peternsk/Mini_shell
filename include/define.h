@@ -141,8 +141,10 @@ typedef struct	s_minish
 	int		 	cmdCounter;
 	int 	 	s;
 	int 	 	e;
-	
+	char 		**update_envp;
+	char		**tmp;
 } t_minish;
+
 
 /*----------------- CMDS EXECUTION -------------*/
 
