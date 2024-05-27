@@ -62,7 +62,6 @@ int		main(int ac, char **av, char **env)
 				update_envp = init_cmds(tmp, m_s);
 				// print_garbage_collector();
 			}
-			
 		}
 	}
 	else
