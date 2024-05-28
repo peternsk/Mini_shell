@@ -11,6 +11,7 @@ t_files *add_curr_file(t_redlts *new_files)
     files->index = 0;
     files->made = 0;
     files->error = 0;
+    files->fd_here = -1;
     files->index_out = 0;
     files->put_last = 0;
     files->type = type_cmds(new_files->redtype);

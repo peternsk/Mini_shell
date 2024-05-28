@@ -7,6 +7,11 @@ void ctrl_c_parent()
 	rl_on_new_line();
 	rl_redisplay();
 }
+
+void exit_here_doc()
+{
+	exit(1);
+}
 void ctrl_quit_childs()
 {
 	exit(0);
@@ -15,14 +20,17 @@ void	ctrl_c_childs()
 {
 	exit(0);
 }
-
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
-		printf("we are in childs\n");
 		signal(SIGINT, ctrl_c_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
+	}
+	else if (id == 3)
+	{
+		signal(SIGINT, exit_here_doc);
+		signal(SIGQUIT, SIG_IGN); 
 	}
 	else
 	{

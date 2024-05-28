@@ -35,24 +35,25 @@ int **create_pipe(t_cmd *cmd)
 }
 
 
-void replace_files_des(t_cmd *curr)
-{
-    if (curr && curr->files)
-    {
-        if (curr->files->type == here_doc)
-        {
-            printf("close --fd %d\n", curr->files->manage_fd);
-            dup2(curr->files->manage_fd, 0);
-            close(curr->files->manage_fd);
-        }
-    }
-}
+// void replace_files_des(t_cmd *curr)
+// {
+//     if (curr && curr->files)
+//     {
+//         if (curr->files->type == here_doc)
+//         {
+//             printf("close --fd %d\n", curr->files->manage_fd);
+//             dup2(curr->files->manage_fd, 0);
+//             close(curr->files->manage_fd);
+//         }
+//     }
+// }
 
 int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd   *curr;
     int     **array_pipe;
 
+    which_files(cmds);
     array_pipe = create_pipe(cmds);
     curr = cmds;
     while (curr != NULL)
@@ -61,12 +62,14 @@ int      commands(t_cmd *cmds, char *envp_path)
         manage_signal(0);
         if (curr->id == 0)
         {
+            printf("more than one commmand\n");
             execute_command(curr, envp_path, array_pipe);
         }
         else if (curr->id < 0)
             printf("Error fork()\n");
         else
             curr = curr->next;
+        
     }
     manage_signal(1);
     close_pipe(cmds, array_pipe);

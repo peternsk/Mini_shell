@@ -8,6 +8,7 @@ t_heredoc   *intHereLst(t_heredoc *node, char *input)
     node->prev = NULL;
     node->str  = ft_strdup(input);
 	add_garbage(node->str);
+	node->made = false;
     node->expstr = NULL;
     node->next = NULL;
     return(node);

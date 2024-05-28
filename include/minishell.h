@@ -168,8 +168,8 @@ void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
 int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
 void		last_here_doc(t_minish *m_s, t_files *tmp);
-void		run_here_redlst(t_minish *m_s, t_files **lst);
-void        send_2_tmp(t_heredoc **lst, t_minish *ms);
+void		run_here_redlst(t_minish *m_s, t_files **lst, int index);
+void        send_2_tmp(t_heredoc **lst, t_minish *ms, t_files *tmp_files, int index);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
@@ -233,6 +233,7 @@ int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
 void        which_files(t_cmd *current);
 int         ft_append(t_files *file);
+int         is_there_here_doc(t_cmd *current);
 
 
 /*====================================================*/

@@ -19,6 +19,7 @@ t_files		*setRed(char *redtype, char *filename, t_minish *m_s)
 	{
 		redNode->hereID = m_s->here_id;
 		m_s->here_id = m_s->here_id + 1;
+		printf("we are look%d\n", redNode->hereID);
 	}
     redNode->next = NULL;
     redNode->manage_fd = -1;

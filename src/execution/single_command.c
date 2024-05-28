@@ -26,11 +26,6 @@ void replace_fd(t_files *files)
                     dup2(files->manage_fd, 0);
                     close(files->manage_fd);
                 }
-                if (files->type == here_doc)
-                {
-                    dup2(files->manage_fd, 0);
-                    close(files->manage_fd);
-                }
                 if (files->type == apnd_op_redir)
                 {
                     dup2(files->manage_fd, 1);
@@ -43,6 +38,7 @@ void replace_fd(t_files *files)
 }
 void clean_cmds(t_cmd *cmds)
 {
+    (void) cmds;
     replace_fd(cmds->files);
 }
 int execute_one_command(t_cmd *current, char **envp, char *envp_path)
@@ -65,27 +61,40 @@ int execute_one_command(t_cmd *current, char **envp, char *envp_path)
     return (0);
 }
 
+void    change_fd(t_cmd *cmd)
+{
+    int fd;
+
+    if (is_there_here_doc(cmd) > 0)
+    {
+        fd =  open(cmd->files->name_here_doc, O_RDONLY,  07777);
+        dup2(fd, 0);
+        close(fd);
+    }
+}   
+
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
+    printf("on es la \n");
     if (cmd)
     {
         which_files(cmd);
         cmd->is_file_on = is_files_valide(cmd);
-        if (cmd->type == 8 && cmd->is_file_on == 0)
+        if (cmd->type == 8 && cmd->is_file_on == 0 && exit_status == 0)
             handel_builtin(cmd);
-        else if (cmd->type != -1 && cmd->is_file_on == 0)
+        else if (cmd->type != -1 && cmd->is_file_on == 0 && exit_status == 0)
         {
             cmd->id = fork();
             manage_signal(0);
             if (cmd->id == 0)
             {
+                change_fd(cmd);
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }
-            else if (cmd->id < 0)
-                perror("fork");
+            else
+                manage_signal(-1);
             wait_childs(cmd);
-            manage_signal(-1);
             return (clean_cmds(cmd), 1);
         }
         return (clean_cmds(cmd), 1);
