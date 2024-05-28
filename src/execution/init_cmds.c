@@ -87,6 +87,7 @@ char   **init_cmds(char **tmp, t_minish *m_s)
             currList = currList->next;
         }
         cout_cmds_pipes(curr);
+        run_all_here(&curr);
         run_commands(curr);
         tmp = list_to_tab(&curr->glob->envVarlst);
     }

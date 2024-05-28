@@ -27,7 +27,7 @@ EXT_STATUS	=	createList
 
 ENV			=	set_env findVarEnv exp_split ft_expend list2tab
 
-HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
+HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc
 
 GARBAGE 	=  	add_address free_garb_lst
 

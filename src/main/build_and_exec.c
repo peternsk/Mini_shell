@@ -39,6 +39,6 @@ int		build_and_exec(t_minish *m_s)
 	ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 	print_cmdLst(&m_s->cmdLst);
 	m_s->update_envp = init_cmds(m_s->tmp, m_s);
-	print_garbage_collector();
+	// print_garbage_collector();
 	return(0);
 }

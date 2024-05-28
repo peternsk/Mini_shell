@@ -39,8 +39,8 @@ void    which_files(t_cmd *current)
             change_stdint(files);
             if (is_files_valide(current) == 0)
                 change_stdout(files);
-            run_here_redlst(current->glob, &files);
-            herelist_exp(&current->glob->herelst, &current->glob->envVarlst, current->glob);
+            // run_here_redlst(current->glob, &files);
+            // herelist_exp(&current->glob->herelst, &current->glob->envVarlst, current->glob);
             files = files->next;
         }
     }

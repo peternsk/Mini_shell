@@ -167,10 +167,15 @@ void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
 int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
-void		last_here_doc(t_minish *m_s, t_files *tmp);
-void		run_here_redlst(t_minish *m_s, t_files **lst);
-void        send_2_tmp(t_heredoc **lst, t_minish *ms);
+// void		last_here_doc(t_minish *m_s, t_files *tmp);
+void	last_here_doc(t_cmd *cmd);//new
+// void		run_here_redlst(t_minish *m_s, t_files **lst);
+void	run_here_redlst(t_cmd *cmdlst);//new
+// void        send_2_tmp(t_heredoc **lst, t_minish *ms);
+void    send_2_tmp(t_heredoc **lst, t_minish *m_s, int index);//new
+void    run_all_here(t_cmd **lst); //new
 
+void        free_here_list(t_heredoc **list);
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
 
