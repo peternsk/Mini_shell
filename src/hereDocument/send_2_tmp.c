@@ -33,12 +33,16 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, int index)
     fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC,  07777);
     while(tmp)
     {
-        herelist_exp(lst, &m_s->envVarlst, m_s);
-        ft_putstr_fd(tmp->str, fd);
+        if(tmp->made == false)
+        {
+            herelist_exp(lst, &m_s->envVarlst, m_s);
+            ft_putstr_fd(tmp->str, fd);
+            tmp->made = true;
+        }
         tmp = tmp->next;
     }
-    close(fd);
     free(file_name);
+    close(fd);
 	printf("end file[%d]\n", index);
     // fd = open(file_name, O_RDONLY,  07777);
     // dup2(fd, 0);

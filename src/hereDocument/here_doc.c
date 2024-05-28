@@ -142,7 +142,7 @@ void	run_here_redlst(t_cmd *cmdlst)
 		printf("here id [%d]\n", tmp->files->hereID);
 		if((tmp->files->type == here_doc) && (tmp->files->hereID < hereNbr))
 			empty_hereDoc(tmp->files);
-		if((tmp->files->type == here_doc) && (tmp->files->hereID == hereNbr) && tmp->files->made == 0)
+		if((tmp->files->type == here_doc) && tmp->files->made == 0)
 		{
 			tmp->files->made = -1;
 			tmp->files->manage_fd = dup(0);
