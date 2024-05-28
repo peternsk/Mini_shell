@@ -75,7 +75,6 @@ void    change_fd(t_cmd *cmd)
 
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
-    printf("on es la \n");
     if (cmd)
     {
         which_files(cmd);

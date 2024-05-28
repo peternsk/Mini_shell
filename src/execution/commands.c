@@ -34,26 +34,29 @@ int **create_pipe(t_cmd *cmd)
     return (array);
 }
 
+void here_doc_cmds(t_cmd *cmds)
+{
+    t_cmd *now_shine;
 
-// void replace_files_des(t_cmd *curr)
-// {
-//     if (curr && curr->files)
-//     {
-//         if (curr->files->type == here_doc)
-//         {
-//             printf("close --fd %d\n", curr->files->manage_fd);
-//             dup2(curr->files->manage_fd, 0);
-//             close(curr->files->manage_fd);
-//         }
-//     }
-// }
+    now_shine = cmds;
+    while (now_shine != NULL)
+    {
+        if (is_there_here_doc(now_shine) > 0)
+        {
+            run_here_redlst(now_shine->glob, &now_shine->files, now_shine->index);
+            herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
+            manage_signal(-1);
+        }
+        now_shine = now_shine->next;
+    }
+}
 
 int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd   *curr;
     int     **array_pipe;
 
-    which_files(cmds);
+    here_doc_cmds(cmds);
     array_pipe = create_pipe(cmds);
     curr = cmds;
     while (curr != NULL)

@@ -234,6 +234,7 @@ void        add_files(t_cmd *cmd, t_redlts *new_files);
 void        which_files(t_cmd *current);
 int         ft_append(t_files *file);
 int         is_there_here_doc(t_cmd *current);
+void        pipe_connect_and_files(t_cmd *current, int **array_pipe);
 
 
 /*====================================================*/
