@@ -5,12 +5,16 @@
 void    expand_pipe(t_cmd *current, int **array_pipe)
 {
     int fd;
+    char *file_name;
 
     fd = -1;
+    file_name = NULL;
     if (is_there_here_doc(current) > 0)
     {
-        fd = open(current->files->name_here_doc, O_RDONLY,  07777);
+        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(current)));
+        fd = open(file_name, O_RDONLY,  07777);
         dup2(fd, 0);
+        close(fd);
     }
     else
         dup2(array_pipe[current->index - 1][0], 0);
@@ -20,12 +24,16 @@ void    pipe_connect_and_files(t_cmd *current, int **array_pipe)
 {
     int i;
     int fd;
+    char *file_name;
 
     i = 0;
+    file_name = NULL;
     if (current->index == 0 && is_there_here_doc(current) > 0)
     {
-        fd = open(current->files->name_here_doc, O_RDONLY,  07777);
-        dup2(fd,  0); 
+        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(current)));
+        fd = open(file_name, O_RDONLY,  07777);
+        dup2(fd,  0);
+        close(fd);
     }
     if (current->index != 0)
         expand_pipe(current, array_pipe);
