@@ -43,7 +43,7 @@ void here_doc_cmds(t_cmd *cmds)
     {
         if (is_there_here_doc(now_shine) > 0)
         {
-            run_here_redlst(now_shine->glob, &now_shine->files, now_shine->index);
+            run_here_redlst(now_shine->glob, &now_shine->files);
             herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
             manage_signal(-1);
         }

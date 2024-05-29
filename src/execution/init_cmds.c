@@ -71,6 +71,7 @@ char   **init_cmds(char **tmp, t_minish *m_s)
 
     curr = NULL;
     currList = NULL;
+    m_s->index = 0;
     if (m_s->cmdLst)
     {
         currList = m_s->cmdLst;

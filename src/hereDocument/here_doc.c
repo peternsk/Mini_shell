@@ -91,7 +91,7 @@ int		count_here_doc(t_files **lst)
 	return(i);
 }
 
-void	run_here_redlst(t_minish *m_s, t_files **lst, int index)
+void	run_here_redlst(t_minish *m_s, t_files **lst)
 {
 	t_files *tmp;
 	int hereNbr;
@@ -107,7 +107,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst, int index)
 		{
 			tmp->made = -1;
 			last_here_doc(m_s, tmp);
-			send_2_tmp(&m_s->herelst, m_s, tmp, index);
+			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->hereID);
 			printf(" the name %s\n", tmp->name_here_doc);
 		}
 		tmp = tmp->next;

@@ -111,10 +111,11 @@ typedef struct	s_env
 typedef struct s_heredoc
 {
 	struct	s_heredoc *prev;
-	struct	s_heredoc *next;
 	char	*str;
 	char	*expstr;
 	bool	made;
+	int		index;
+	struct	s_heredoc *next;
 } t_heredoc;
 
 typedef struct s_exit_code

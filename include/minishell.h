@@ -149,7 +149,7 @@ bool        ft_search_char(char *str, char c);
 /*====================================================*/
 
 /* init linked list*/
-t_heredoc   *intHereLst(t_heredoc *node, char *input);
+t_heredoc   *intHereLst(t_heredoc *node, t_minish *m_s, char *input);
 void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
 t_heredoc   *create_here_lst(t_minish *m_s, char *input);
 
@@ -168,7 +168,7 @@ void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
 int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
 void		last_here_doc(t_minish *m_s, t_files *tmp);
-void		run_here_redlst(t_minish *m_s, t_files **lst, int index);
+void		run_here_redlst(t_minish *m_s, t_files **lst);
 void        send_2_tmp(t_heredoc **lst, t_minish *ms, t_files *tmp_files, int index);
 
 /* print test */
