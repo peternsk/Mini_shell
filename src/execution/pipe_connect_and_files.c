@@ -18,6 +18,52 @@ void    expand_pipe(t_cmd *current, int **array_pipe)
     }
     else
         dup2(array_pipe[current->index - 1][0], 0);
+}
+
+
+t_files    *give_last_file_type(t_files *files, int type, int last)
+{
+    t_files *tmp;
+    t_files *last_files;
+
+    last_files = NULL;
+    if (files)
+    {
+        tmp = files;
+        while (tmp != NULL)
+        {
+            printf("--------------tmp->last %s\n", tmp->name);
+            if (tmp->type == type && tmp->put_last == last)
+                last_files = tmp;
+            tmp = tmp->next;
+        }
+    }
+    if (last_files)
+        printf("we are here -> last file \n");
+    return (last_files);
+}
+
+void change_stdout_pipe(t_cmd *current, int **array_pipe)
+{
+    t_files *last;
+    int     fd;
+
+    last = give_last_file_type(current->files, out_p_redir, 1);
+    if (last && current->next)
+    {
+        fd = open(last->name, O_WRONLY,  07777);
+        dup2(fd, 1);
+        close(fd);
+    }
+    else if (current->next)
+        dup2(array_pipe[current->index][1], 1);
+    if (current->next == NULL && last)
+    {
+        fd = open(last->name, O_WRONLY,  07777);
+        printf("fd %d last cmd file \n", fd);
+        dup2(fd, 1);
+        close(fd);
+    }
 
 }
 void    pipe_connect_and_files(t_cmd *current, int **array_pipe)
@@ -37,16 +83,11 @@ void    pipe_connect_and_files(t_cmd *current, int **array_pipe)
     }
     if (current->index != 0)
         expand_pipe(current, array_pipe);
-    if (current->next)
-    {
-        // expand_pipe_stdout(current, array_pipe);
-        dup2(array_pipe[current->index][1], 1);
-    }
+    change_stdout_pipe(current, array_pipe);
     while ( i < (current)->nb_cmds - 1)
     {
         close(array_pipe[i][0]);
         close(array_pipe[i][1]);
-        close(fd);
         i++;
     }
 }

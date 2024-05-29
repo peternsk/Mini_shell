@@ -11,7 +11,6 @@ void    wait_childs(t_cmd *cmds)
         curr = cmds;
         while (curr != NULL)
         {
-            printf(" -- -- %d\n", curr->id);
             waitpid(curr->id, &code, 0);
             curr = curr->next;
         }

@@ -56,16 +56,16 @@ int      commands(t_cmd *cmds, char *envp_path)
     t_cmd   *curr;
     int     **array_pipe;
 
-    here_doc_cmds(cmds);
-    array_pipe = create_pipe(cmds);
+    which_files(cmds);
+    array_pipe = create_pipe(cmds); 
     curr = cmds;
+    (void) envp_path;
     while (curr != NULL)
     {
         curr->id = fork();
         manage_signal(0);
         if (curr->id == 0)
         {
-            printf("more than one commmand\n");
             execute_command(curr, envp_path, array_pipe);
         }
         else if (curr->id < 0)

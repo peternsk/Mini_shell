@@ -71,7 +71,6 @@ int     the_last_heredoc(t_cmd *cmd)
             i++;
         cmd->files = cmd->files->next;
     }
-    printf("I [%d]\n", i);
     return(i);
 }
 
@@ -89,6 +88,7 @@ void    change_fd(t_cmd *cmd)
         dup2(fd, 0);
         close(fd);
     }
+    
 }   
 
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)

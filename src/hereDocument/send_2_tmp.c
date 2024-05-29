@@ -19,6 +19,5 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index
         }
         tmp = tmp->next;
     }
-    printf("fd dans send_2_tmp %d\n", fd);
     close(fd);
 }

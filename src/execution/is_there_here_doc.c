@@ -15,6 +15,5 @@ int is_there_here_doc(t_cmd *current)
          i++;
       files = files->next;
    }
-   printf(" -- %d\n", i);
    return (i);
 }

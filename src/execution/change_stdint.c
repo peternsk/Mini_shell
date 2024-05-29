@@ -1,5 +1,4 @@
 
-
 #include "minishell.h"
 
 int put_error(t_files *current)

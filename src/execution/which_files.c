@@ -1,26 +1,27 @@
 #include "minishell.h"
 
-void    check_last_files(t_files *files)
+void    check_last_files(t_files *files, int type)
 {
     t_files *node;
     t_files *tmp;
-    t_files *tmp_here;
-
 
     tmp = NULL;
-    tmp_here = NULL;
     node = files;
-    while (node != NULL)
+    if (files)
     {
-        if (node->type == apnd_op_redir || node->type == out_p_redir)
-            tmp = node;
-        if (node->type == here_doc)
-            tmp_here = node;
-        node = node->next;    
+        while (node != NULL)
+        {
+            if (node->type == type)
+                tmp = node;
+            node = node->next;    
+        }
+        if (tmp)
+        {
+            printf("%d \n", tmp->put_last = 1);
+            tmp->put_last = 1;
+        }
+            
     }
-    if (tmp)
-        tmp->put_last = 1;
-
 }
 
 void   print_files_index(t_files *files)
@@ -51,26 +52,33 @@ void expan_here_doc(t_cmd *current)
     }
 }
 // faire en sorte que le here doc soit dans un fork() pour single command
-void    which_files(t_cmd *current)
+void ticket_files(t_cmd *cmd)
 {
 
-    printf("dans which files\n");
-    if (current->files)
-    {
+    check_last_files(cmd->files, here_doc);
+    check_last_files(cmd->files, in_p_redir);
+    check_last_files(cmd->files, apnd_op_redir);
+    check_last_files(cmd->files, out_p_redir);
 
-        check_last_files(current->files);
-        t_files *files = current->files;
-        ft_append(files);
-        change_stdint(files);
-        if (is_files_valide(current) == 0)
-            change_stdout(files);
-        // if (current->nb_pipes == 0 && current->nb_cmds == 1)
-            expan_here_doc(current);
-        // else
-        // {
-        //     printf("more than one command \n");
-        //     run_here_redlst(current->glob, &files);
-        //     herelist_exp(&current->glob->herelst, &current->glob->envVarlst, current->glob);
-        // }
+}
+void    which_files(t_cmd *current)
+{
+    t_files *files;
+    t_cmd   *cmd;
+
+    cmd = current;
+    while (cmd != NULL)
+    {
+        ticket_files(cmd);
+        files = cmd->files;
+        if (cmd->files)
+        {
+            ft_append(cmd->files);
+            change_stdint(cmd->files);
+            if (is_files_valide(cmd) == 0)
+                change_stdout(cmd->files);
+        }
+        cmd = cmd->next;
     }
+    expan_here_doc(current);
 }

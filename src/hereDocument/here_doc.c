@@ -98,7 +98,6 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 
 	tmp = *lst;
 	hereNbr = count_here_doc(lst);
-	printf("hereNBR -- --- %d hereID -- %d \n", hereNbr, tmp->hereID);
 	while(tmp)
 	{
 		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
@@ -108,7 +107,6 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 			tmp->made = -1;
 			last_here_doc(m_s, tmp);
 			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->hereID);
-			printf(" the name %s\n", tmp->name_here_doc);
 		}
 		tmp = tmp->next;
 	}
