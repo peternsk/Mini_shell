@@ -10,25 +10,26 @@ void ctrl_c_parent()
 
 void exit_here_doc()
 {
-	exit(1);
+	return ;
 }
 void ctrl_quit_childs()
 {
-	exit(0);
+	return ;
 }
 void	ctrl_c_childs()
 {
-	exit(0);
+	return ;
 }
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
-		signal(SIGINT, ctrl_c_childs);
+		signal(SIGINT, ctrl_quit_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
 	}
 	else if (id == 3)
 	{
+		printf("here doc siganl \n");
 		signal(SIGINT, exit_here_doc);
 		signal(SIGQUIT, SIG_IGN); 
 	}

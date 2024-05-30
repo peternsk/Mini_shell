@@ -34,7 +34,6 @@ void   print_files_index(t_files *files)
 void expan_here_doc(t_cmd *current)
 {
     t_cmd *now_shine;
-
     now_shine = current;
     while (now_shine != NULL)
     {
@@ -42,10 +41,10 @@ void expan_here_doc(t_cmd *current)
         {
             run_here_redlst(now_shine->glob, &now_shine->files);
             herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
-            manage_signal(-1);
         }
         now_shine = now_shine->next;
     }
+    manage_signal(-1);
 }
 void ticket_files(t_cmd *cmd)
 {

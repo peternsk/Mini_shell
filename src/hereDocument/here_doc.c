@@ -92,8 +92,8 @@ int		count_here_doc(t_files **lst)
 
 void	run_here_redlst(t_minish *m_s, t_files **lst)
 {
-	t_files *tmp;
-	int hereNbr;
+	t_files	*tmp;
+	int		hereNbr;
 
 	tmp = *lst;
 	hereNbr = count_here_doc(lst);

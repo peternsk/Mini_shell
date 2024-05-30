@@ -72,7 +72,6 @@ int      commands(t_cmd *cmds, char *envp_path)
             printf("Error fork()\n");
         else
             curr = curr->next;
-        
     }
     manage_signal(1);
     close_pipe(cmds, array_pipe);
