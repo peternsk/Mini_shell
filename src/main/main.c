@@ -25,8 +25,8 @@ int		main(int ac, char **av, char **env)
 			set_and_update_env(m_s, env);
 			if(ft_lexer(&m_s->token_lst) == true)
 				build_and_exec(m_s);
-			all_free();
-			print_garbage_collector();
+			// all_free();
+			// print_garbage_collector();
 		}
 	}
 	else
