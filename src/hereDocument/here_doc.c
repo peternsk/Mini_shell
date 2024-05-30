@@ -53,7 +53,6 @@ void	empty_hereDoc(t_files *tmp)
 		tmp->made = -1;
 		while(1)
 		{
-			printf("hello amis \n");
 			here_input = readline(HERE_INPUT);
 			if(delim_cmp(here_input, tmp->name) == true)
 				return;

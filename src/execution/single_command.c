@@ -97,15 +97,15 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
     {
         which_files(cmd);
         cmd->is_file_on = is_files_valide(cmd);
-        if (cmd->type == 8 && cmd->is_file_on == 0 && exit_status == 0)
+        if (cmd->type == 8 && cmd->is_file_on == 0)
             handel_builtin(cmd);
-        else if (cmd->type != -1 && cmd->is_file_on == 0 && exit_status == 0)
+        else if (cmd->type != -1 && cmd->is_file_on == 0)
         {
             cmd->id = fork();
             manage_signal(0);
             if (cmd->id == 0)
             {
-                change_fd(cmd);
+                std_one_commande(cmd);
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }

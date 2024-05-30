@@ -21,7 +21,7 @@ BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate
 
 BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files
+EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande
 
 EXT_STATUS	=	createList
 

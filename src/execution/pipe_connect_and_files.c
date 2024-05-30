@@ -1,27 +1,32 @@
 #include "minishell.h"
-//stdin
-//stdout
-//append
-void    expand_pipe(t_cmd *current, int **array_pipe)
-{
-    int fd;
-    char *file_name;
 
-    fd = -1;
-    file_name = NULL;
-    if (is_there_here_doc(current) > 0)
+void    change_stdint_pipe(t_cmd *current, int **array_pipe)
+{
+    t_files *last;
+    int     fd;
+
+    last = is_there_here_doc(current);
+    if (last)
     {
-        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(current)));
-        fd = open(file_name, O_RDONLY,  07777);
-        dup2(fd, 0);
-        close(fd);
+        if (last->type == here_doc)
+            fd = open(last->name_here_doc, O_RDONLY, 07777);
+        else
+            fd = open(last->name, O_RDONLY, 07777);
+        if (current->index == 0 && last)
+        {
+            dup2(fd, 0);
+        }
+        else if (current->index != 0 && last)
+            dup2(fd, 0);
+        close (fd);
     }
-    else
+    else if (current->index != 0)
         dup2(array_pipe[current->index - 1][0], 0);
+    
 }
 
 
-t_files    *give_last_file_type(t_files *files, int type, int last)
+t_files    *give_last_file_type(t_files *files)
 {
     t_files *tmp;
     t_files *last_files;
@@ -32,14 +37,11 @@ t_files    *give_last_file_type(t_files *files, int type, int last)
         tmp = files;
         while (tmp != NULL)
         {
-            printf("--------------tmp->last %s\n", tmp->name);
-            if (tmp->type == type && tmp->put_last == last)
+            if (tmp->type == apnd_op_redir || tmp->type == out_p_redir)
                 last_files = tmp;
             tmp = tmp->next;
         }
     }
-    if (last_files)
-        printf("we are here -> last file \n");
     return (last_files);
 }
 
@@ -48,10 +50,13 @@ void change_stdout_pipe(t_cmd *current, int **array_pipe)
     t_files *last;
     int     fd;
 
-    last = give_last_file_type(current->files, out_p_redir, 1);
+    last = give_last_file_type(current->files);
     if (last && current->next)
     {
-        fd = open(last->name, O_WRONLY,  07777);
+        if (last->type == apnd_op_redir)
+            fd = open(last->name, O_WRONLY | O_APPEND ,  07777);
+        else
+            fd = open(last->name, O_WRONLY | O_TRUNC | O_CREAT,  07777);
         dup2(fd, 1);
         close(fd);
     }
@@ -59,8 +64,10 @@ void change_stdout_pipe(t_cmd *current, int **array_pipe)
         dup2(array_pipe[current->index][1], 1);
     if (current->next == NULL && last)
     {
-        fd = open(last->name, O_WRONLY,  07777);
-        printf("fd %d last cmd file \n", fd);
+        if (last->type == apnd_op_redir)
+            fd = open(last->name, O_WRONLY | O_APPEND ,  07777);
+        else
+            fd = open(last->name, O_WRONLY | O_TRUNC,  07777);
         dup2(fd, 1);
         close(fd);
     }
@@ -69,20 +76,11 @@ void change_stdout_pipe(t_cmd *current, int **array_pipe)
 void    pipe_connect_and_files(t_cmd *current, int **array_pipe)
 {
     int i;
-    int fd;
     char *file_name;
 
     i = 0;
     file_name = NULL;
-    if (current->index == 0 && is_there_here_doc(current) > 0)
-    {
-        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(current)));
-        fd = open(file_name, O_RDONLY,  07777);
-        dup2(fd,  0);
-        close(fd);
-    }
-    if (current->index != 0)
-        expand_pipe(current, array_pipe);
+    change_stdint_pipe(current, array_pipe);
     change_stdout_pipe(current, array_pipe);
     while ( i < (current)->nb_cmds - 1)
     {

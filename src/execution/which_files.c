@@ -16,11 +16,7 @@ void    check_last_files(t_files *files, int type)
             node = node->next;    
         }
         if (tmp)
-        {
-            printf("%d \n", tmp->put_last = 1);
             tmp->put_last = 1;
-        }
-            
     }
 }
 
@@ -51,7 +47,6 @@ void expan_here_doc(t_cmd *current)
         now_shine = now_shine->next;
     }
 }
-// faire en sorte que le here doc soit dans un fork() pour single command
 void ticket_files(t_cmd *cmd)
 {
 
@@ -73,10 +68,12 @@ void    which_files(t_cmd *current)
         files = cmd->files;
         if (cmd->files)
         {
-            ft_append(cmd->files);
             change_stdint(cmd->files);
             if (is_files_valide(cmd) == 0)
+            {
+                ft_append(cmd->files);
                 change_stdout(cmd->files);
+            }
         }
         cmd = cmd->next;
     }
