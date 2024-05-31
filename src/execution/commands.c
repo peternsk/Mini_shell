@@ -71,7 +71,6 @@ int      commands(t_cmd *cmds, char *envp_path)
         else
             curr = curr->next;
     }
-    manage_signal(1);
     close_pipe(cmds, array_pipe);
-    return (manage_signal(-1), wait_childs(cmds), 1);
+    return (wait_childs(cmds), 1);
 }
