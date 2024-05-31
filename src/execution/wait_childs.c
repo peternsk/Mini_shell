@@ -12,6 +12,7 @@ void    wait_childs(t_cmd *cmds)
         while (curr != NULL)
         {
             waitpid(curr->id, &code, 0);
+            manage_signal(-1);
             curr = curr->next;
         }
         exit_status = get_code(code);
