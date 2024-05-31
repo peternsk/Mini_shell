@@ -37,7 +37,6 @@ void expan_here_doc(t_cmd *current)
     pid_t   pid_childs;
 
     now_shine = current;
-    
     if (is_there_here_doc(now_shine) > 0)
     {  
         pid_childs = fork();
@@ -46,7 +45,6 @@ void expan_here_doc(t_cmd *current)
         {
             while (now_shine != NULL)
             {
-                printf("we are in %d \n" , now_shine->index);
                 run_here_redlst(now_shine->glob, &now_shine->files);
                 herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
                 now_shine = now_shine->next;
@@ -56,7 +54,7 @@ void expan_here_doc(t_cmd *current)
         else
         {
             manage_signal(-1);
-            waitpid(pid_childs, NULL, 0);
+            waitpid(pid_childs, &current->error_code_here_doc, 0);
         }
     }
 }
