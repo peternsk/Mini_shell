@@ -232,7 +232,7 @@ t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
-void        which_files(t_cmd *current);
+int         which_files(t_cmd *current);
 int         ft_append(t_files *file);
 t_files     *is_there_here_doc(t_cmd *current);
 void        pipe_connect_and_files(t_cmd *current, int **array_pipe);

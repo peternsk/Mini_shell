@@ -54,7 +54,8 @@ void expan_here_doc(t_cmd *current)
         else
         {
             manage_signal(-1);
-            waitpid(pid_childs, &current->error_code_here_doc, 0);
+            // return (waitpid(pid_childs, &current->error_code_here_doc, 0));
+            (waitpid(pid_childs, &current->error_code_here_doc, 0));
         }
     }
 }
@@ -67,7 +68,7 @@ void ticket_files(t_cmd *cmd)
     check_last_files(cmd->files, out_p_redir);
 }
 
-void    which_files(t_cmd *current)
+int    which_files(t_cmd *current)
 {
     t_files *files;
     t_cmd   *cmd;
@@ -89,4 +90,5 @@ void    which_files(t_cmd *current)
         cmd = cmd->next;
     }
     expan_here_doc(current);
+    return (0);
 }
