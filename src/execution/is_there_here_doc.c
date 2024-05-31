@@ -33,8 +33,8 @@ t_files    *g_last_file_type(t_files *files, int type, int last)
             tmp = tmp->next;
         }
     }
-    if (last_files)
-        printf("we are here -> last file %s  index %d \n", last_files->name, last_files->index_out);
+    // if (last_files)
+        // printf("we are here -> last file %s  index %d \n", last_files->name_here_doc, last_files->index_out);
     return (last_files);
 }
 

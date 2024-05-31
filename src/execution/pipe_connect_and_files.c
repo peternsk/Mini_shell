@@ -9,7 +9,10 @@ void    change_stdint_pipe(t_cmd *current, int **array_pipe)
     if (last)
     {
         if (last->type == here_doc)
+        {
+            last->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(last->hereID));
             fd = open(last->name_here_doc, O_RDONLY, 07777);
+        }
         else
             fd = open(last->name, O_RDONLY, 07777);
         if (current->index == 0 && last)
@@ -22,7 +25,6 @@ void    change_stdint_pipe(t_cmd *current, int **array_pipe)
     }
     else if (current->index != 0)
         dup2(array_pipe[current->index - 1][0], 0);
-    
 }
 
 

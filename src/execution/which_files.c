@@ -34,26 +34,38 @@ void   print_files_index(t_files *files)
 void expan_here_doc(t_cmd *current)
 {
     t_cmd *now_shine;
+    pid_t   pid_childs;
+
     now_shine = current;
-    while (now_shine != NULL)
-    {
-        if (is_there_here_doc(now_shine) > 0)
+    
+    if (is_there_here_doc(now_shine) > 0)
+    {  
+        pid_childs = fork();
+        manage_signal(3);
+        if (pid_childs == 0)
         {
-            run_here_redlst(now_shine->glob, &now_shine->files);
-            herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
+            while (now_shine != NULL)
+            {
+                printf("we are in %d \n" , now_shine->index);
+                run_here_redlst(now_shine->glob, &now_shine->files);
+                herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
+                now_shine = now_shine->next;
+            }
+            exit(EXIT_SUCCESS);
+        } 
+        else
+        {
+            manage_signal(-1);
+            waitpid(pid_childs, NULL, 0);
         }
-        now_shine = now_shine->next;
     }
-    manage_signal(-1);
 }
 void ticket_files(t_cmd *cmd)
 {
-
     check_last_files(cmd->files, here_doc);
     check_last_files(cmd->files, in_p_redir);
     check_last_files(cmd->files, apnd_op_redir);
     check_last_files(cmd->files, out_p_redir);
-
 }
 void    which_files(t_cmd *current)
 {

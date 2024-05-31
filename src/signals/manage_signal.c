@@ -10,7 +10,7 @@ void ctrl_c_parent()
 
 void exit_here_doc()
 {
-	return ;
+	exit(0);
 }
 void ctrl_quit_childs()
 {

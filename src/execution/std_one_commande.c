@@ -45,7 +45,10 @@ void std_one_commande(t_cmd *current)
     if (stdint_files)
     {
         if (stdint_files->type == here_doc)
+        {
+            stdint_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(stdint_files->hereID));
             fd = open(stdint_files->name_here_doc, O_RDONLY, 07777);
+        }
         else    
             fd = open(stdint_files->name, O_RDONLY, 07777);
         dup2(fd, 0);

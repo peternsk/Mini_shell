@@ -59,7 +59,6 @@ int      commands(t_cmd *cmds, char *envp_path)
     which_files(cmds);
     array_pipe = create_pipe(cmds); 
     curr = cmds;
-    (void) envp_path;
     while (curr != NULL)
     {
         curr->id = fork();
