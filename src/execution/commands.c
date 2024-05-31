@@ -54,7 +54,7 @@ int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd   *curr;
     int     **array_pipe;
-
+    
     which_files(cmds);
     array_pipe = create_pipe(cmds); 
     curr = cmds;

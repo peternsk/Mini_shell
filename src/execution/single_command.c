@@ -111,7 +111,6 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             }
             else
                 wait_childs(cmd);
-            return (clean_cmds(cmd), 1);
         }
         return (clean_cmds(cmd), 1);
     }
