@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_cmd_path.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/05/31 13:28:10 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -35,7 +45,9 @@ char    *is_cmd_valide_path(char *cmd_path, int dot)
 static char    *_check_absolute_path(char *cmd)
 {
     int i;
+    // int dot;
 
+    // dot = 0;
     i = 0;
     if (cmd)
     {
@@ -76,4 +88,5 @@ char    *get_cmd_path(char *path, char *cmd) //25 lines
     }
     return (NULL);
 }
+
 

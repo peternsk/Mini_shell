@@ -61,21 +61,7 @@ void	empty_hereDoc(t_files *tmp)
 	}
 }
 
-// void	last_here_doc(t_minish *m_s, t_files *tmp)
-// {
-// 	char *here_input;
-
-// 	while(1)
-// 	{
-// 		here_input = readline(HERE_INPUT);
-// 		if(delim_cmp(here_input, tmp->name) == true)
-// 			return;
-// 		else
-// 			create_here_lst(m_s, here_input);
-// 	}
-// }
-
-void	last_here_doc(t_cmd *cmd)
+void	last_here_doc(t_minish *m_s, t_files *tmp)
 {
 	char *here_input;
 
@@ -83,10 +69,10 @@ void	last_here_doc(t_cmd *cmd)
 	while(1)
 	{
 		here_input = readline(HERE_INPUT);
-		if(delim_cmp(here_input, cmd->files->name) == true)
+		if(delim_cmp(here_input, tmp->name) == true)
 			return;
 		else
-			create_here_lst(cmd->glob, here_input);
+			create_here_lst(m_s, here_input);
 	}
 }
 
@@ -106,51 +92,24 @@ int		count_here_doc(t_files **lst)
 	return(i);
 }
 
-// void	run_here_redlst(t_minish *m_s, t_files **lst)
-// {
-// 	t_files *tmp;
-// 	int hereNbr;
-
-// 	tmp = *lst;
-// 	hereNbr = count_here_doc(lst);
-// 	while(tmp)
-// 	{
-// 		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
-// 			empty_hereDoc(tmp);
-// 		if((tmp->type == here_doc) && (tmp->hereID == hereNbr) && tmp->made == 0)
-// 		{
-// 			tmp->made = -1;
-// 			tmp->manage_fd = dup(0);
-// 			last_here_doc(m_s, tmp);
-// 			send_2_tmp(&m_s->herelst, m_s);
-// 		}
-// 		tmp = tmp->next;
-// 	}
-// }
-
-void	run_here_redlst(t_cmd *cmdlst)
+void	run_here_redlst(t_minish *m_s, t_files **lst)
 {
-	t_cmd *tmp;
+	t_files *tmp;
 	int hereNbr;
 
-	tmp = cmdlst;
-	hereNbr = count_here_doc(&tmp->files);
-	printf("here nbr [%d]\n", hereNbr);
-	while(tmp->files)
+	tmp = *lst;
+	hereNbr = count_here_doc(lst);
+	while(tmp)
 	{
-		printf("in cmd [%d]\n", tmp->index);
-		printf("here id [%d]\n", tmp->files->hereID);
-		if((tmp->files->type == here_doc) && (tmp->files->hereID < hereNbr))
-			empty_hereDoc(tmp->files);
-		if((tmp->files->type == here_doc) && tmp->files->made == 0)
+		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
+			empty_hereDoc(tmp);
+		if((tmp->type == here_doc) && (tmp->hereID == hereNbr) && tmp->made == 0)
 		{
-			tmp->files->made = -1;
-			tmp->files->manage_fd = dup(0);
-			last_here_doc(tmp);
-			send_2_tmp(&tmp->glob->herelst, tmp->glob, tmp->index);
-			// free_here_list(&tmp->glob->herelst);
-			// return;
+			tmp->made = -1;
+			tmp->manage_fd = dup(0);
+			last_here_doc(m_s, tmp);
+			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->hereID);
 		}
-		tmp->files = tmp->files->next;
+		tmp = tmp->next;
 	}
 }

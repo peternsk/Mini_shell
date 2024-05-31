@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_heredoc   *intHereLst(t_heredoc *node, char *input)
+t_heredoc   *intHereLst(t_heredoc *node, t_minish *m_s, char *input)
 {
     node = malloc_and_add(sizeof(t_heredoc));
     if(!node)
@@ -10,6 +10,8 @@ t_heredoc   *intHereLst(t_heredoc *node, char *input)
 	add_garbage(node->str);
 	node->made = false;
     node->expstr = NULL;
+	node->index = m_s->index;
+	m_s->index = m_s->index + 1;
     node->next = NULL;
     return(node);
 }
@@ -38,7 +40,7 @@ t_heredoc     *create_here_lst(t_minish *m_s, char *input)
 	t_heredoc *hereNode;
 
 	hereNode = NULL;
-    add_here_to_end(&m_s->herelst, intHereLst(hereNode, input));
+    add_here_to_end(&m_s->herelst, intHereLst(hereNode, m_s, input));
     return(m_s->herelst);
 }
 

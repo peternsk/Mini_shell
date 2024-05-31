@@ -149,7 +149,7 @@ bool        ft_search_char(char *str, char c);
 /*====================================================*/
 
 /* init linked list*/
-t_heredoc   *intHereLst(t_heredoc *node, char *input);
+t_heredoc   *intHereLst(t_heredoc *node, t_minish *m_s, char *input);
 void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
 t_heredoc   *create_here_lst(t_minish *m_s, char *input);
 
@@ -167,15 +167,11 @@ void        replace_here_str(t_heredoc *node);
 void        ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
 int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
-// void		last_here_doc(t_minish *m_s, t_files *tmp);
-void	last_here_doc(t_cmd *cmd);//new
-// void		run_here_redlst(t_minish *m_s, t_files **lst);
-void	run_here_redlst(t_cmd *cmdlst);//new
-// void        send_2_tmp(t_heredoc **lst, t_minish *ms);
-void    send_2_tmp(t_heredoc **lst, t_minish *m_s, int index);//new
-void    run_all_here(t_cmd **lst); //new
+void		last_here_doc(t_minish *m_s, t_files *tmp);
+void		run_here_redlst(t_minish *m_s, t_files **lst);
+void        send_2_tmp(t_heredoc **lst, t_minish *ms, t_files *tmp_files, int index);
+int         the_last_heredoc(t_cmd *cmd);
 
-void        free_here_list(t_heredoc **list);
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
 
@@ -193,7 +189,7 @@ int         commands(t_cmd *cmds, char *envp_path);
 void        wait_childs(t_cmd *cmds);
 int         execute_command(t_cmd *current,char *envp_path , int **array);
 char        *get_cmd_path(char *path, char *cmd);
-void        is_change_std(t_cmd *current);
+// void        is_change_std(t_cmd *current);
 int         handel_builtin(t_cmd *cmd);
 char        **check_duplicate(char **vars);
 
@@ -238,6 +234,9 @@ int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
 void        which_files(t_cmd *current);
 int         ft_append(t_files *file);
+t_files     *is_there_here_doc(t_cmd *current);
+void        pipe_connect_and_files(t_cmd *current, int **array_pipe);
+void        std_one_commande(t_cmd *current);
 
 
 /*====================================================*/

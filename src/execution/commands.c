@@ -33,17 +33,20 @@ int **create_pipe(t_cmd *cmd)
     return (array);
 }
 
-
-void replace_files_des(t_cmd *curr)
+void here_doc_cmds(t_cmd *cmds)
 {
-    if (curr && curr->files)
+    t_cmd *now_shine;
+
+    now_shine = cmds;
+    while (now_shine != NULL)
     {
-        if (curr->files->type == here_doc)
+        if (is_there_here_doc(now_shine) > 0)
         {
-            printf("close --fd %d\n", curr->files->manage_fd);
-            dup2(curr->files->manage_fd, 0);
-            close(curr->files->manage_fd);
+            run_here_redlst(now_shine->glob, &now_shine->files);
+            herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
+            manage_signal(-1);
         }
+        now_shine = now_shine->next;
     }
 }
 
@@ -52,7 +55,8 @@ int      commands(t_cmd *cmds, char *envp_path)
     t_cmd   *curr;
     int     **array_pipe;
 
-    array_pipe = create_pipe(cmds);
+    which_files(cmds);
+    array_pipe = create_pipe(cmds); 
     curr = cmds;
     while (curr != NULL)
     {
@@ -67,6 +71,7 @@ int      commands(t_cmd *cmds, char *envp_path)
         else
             curr = curr->next;
     }
+    manage_signal(1);
     close_pipe(cmds, array_pipe);
     return (manage_signal(-1), wait_childs(cmds), 1);
 }
