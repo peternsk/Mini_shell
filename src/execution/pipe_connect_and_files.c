@@ -46,7 +46,7 @@ void    pipe_connect_and_files(t_cmd *current, int **array_pipe)
     {
         close(array_pipe[i][0]);
         close(array_pipe[i][1]);
-        close(fd);
+        // close(fd);
         i++;
     }
 }
