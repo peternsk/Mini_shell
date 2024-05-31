@@ -21,6 +21,8 @@
         "tuple": "c",
         "unordered_map": "c",
         "utility": "c",
-        "vector": "c"
+        "vector": "c",
+        "locale": "c",
+        "iterator": "c"
     }
 }

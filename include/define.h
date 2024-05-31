@@ -53,6 +53,8 @@ typedef	struct	s_files
 	int		put_last;
 	int		error;
 	int		hereID;
+	char	*name_here_doc;
+	int 	fd_here;
 	struct	s_files *next;
 	struct	s_files *prev;
 	// struct s_manage_fds *manage_fd;
@@ -109,9 +111,11 @@ typedef struct	s_env
 typedef struct s_heredoc
 {
 	struct	s_heredoc *prev;
-	struct	s_heredoc *next;
 	char	*str;
 	char	*expstr;
+	bool	made;
+	int		index;
+	struct	s_heredoc *next;
 } t_heredoc;
 
 typedef struct s_exit_code

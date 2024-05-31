@@ -26,11 +26,6 @@ void replace_fd(t_files *files)
                     dup2(files->manage_fd, 0);
                     close(files->manage_fd);
                 }
-                if (files->type == here_doc)
-                {
-                    dup2(files->manage_fd, 0);
-                    close(files->manage_fd);
-                }
                 if (files->type == apnd_op_redir)
                 {
                     dup2(files->manage_fd, 1);
@@ -43,6 +38,7 @@ void replace_fd(t_files *files)
 }
 void clean_cmds(t_cmd *cmds)
 {
+    (void) cmds;
     replace_fd(cmds->files);
 }
 int execute_one_command(t_cmd *current, char **envp, char *envp_path)
@@ -64,6 +60,36 @@ int execute_one_command(t_cmd *current, char **envp, char *envp_path)
     }
     return (0);
 }
+int     the_last_heredoc(t_cmd *cmd)
+{  
+    int     i;    
+
+    i = 0;
+    while(cmd->files)
+    {
+        if(cmd->files->type == here_doc)
+            i++;
+        cmd->files = cmd->files->next;
+    }
+    return(i);
+}
+
+void    change_fd(t_cmd *cmd)
+{
+    int fd;
+
+    char *file_name;
+
+    file_name = NULL;
+    if (is_there_here_doc(cmd) > 0)
+    {
+        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(cmd)));
+        fd =  open(file_name, O_RDONLY,  07777);
+        dup2(fd, 0);
+        close(fd);
+    }
+    
+}   
 
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
@@ -79,13 +105,13 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             manage_signal(0);
             if (cmd->id == 0)
             {
+                std_one_commande(cmd);
                 if (execute_one_command(cmd, envp, envp_path) == -1)
                     return (-1);
             }
-            else if (cmd->id < 0)
-                perror("fork");
+            else
+                manage_signal(-1);
             wait_childs(cmd);
-            manage_signal(-1);
             return (clean_cmds(cmd), 1);
         }
         return (clean_cmds(cmd), 1);
