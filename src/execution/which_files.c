@@ -59,6 +59,7 @@ void expan_here_doc(t_cmd *current)
         }
     }
 }
+
 void ticket_files(t_cmd *cmd)
 {
     check_last_files(cmd->files, here_doc);
@@ -66,6 +67,7 @@ void ticket_files(t_cmd *cmd)
     check_last_files(cmd->files, apnd_op_redir);
     check_last_files(cmd->files, out_p_redir);
 }
+
 int    which_files(t_cmd *current)
 {
     t_files *files;

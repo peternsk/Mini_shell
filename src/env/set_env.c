@@ -14,7 +14,7 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
 	if(ft_search_char(env_row, '=') == true)
 	{
     	envTab = ft_split(env_row, '=');
-		add_garbage(envTab);
+		add_garbage_arr(envTab);
     	node->key = ft_strdup(envTab[0]);
 		add_garbage(node->key);
     	node->value = ft_strdup(envTab[1]);

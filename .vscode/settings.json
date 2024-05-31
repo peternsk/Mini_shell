@@ -22,7 +22,11 @@
         "unordered_map": "c",
         "utility": "c",
         "vector": "c",
+<<<<<<< HEAD
+        "minishell.h": "c"
+=======
         "locale": "c",
         "iterator": "c"
+>>>>>>> 963034c049ea7fb5929d7370edf4b58bc59f5b8e
     }
 }

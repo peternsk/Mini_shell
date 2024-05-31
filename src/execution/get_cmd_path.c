@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 23:26:38 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/29 13:54:34 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/05/31 13:28:10 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char    *get_cmd_path(char *path, char *cmd) //25 lines
     {
         while (sub_paths[i])
         {
-            cmd_path = ft_strjoin(sub_paths[i], "/");
+            cmd_path = ft_strjoin(sub_paths[i], "/"); 
+            add_garbage(cmd_path);
             cmd_path = ft_strjoin(cmd_path, cmd);
             if (access(cmd_path, F_OK | X_OK) == 0)
             {
