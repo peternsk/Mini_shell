@@ -101,7 +101,6 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
         {
-            printf("we have enter the fork() \n");
             cmd->id = fork();
             manage_signal(0);
             if (cmd->id == 0)
@@ -113,7 +112,7 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             else
                 wait_childs(cmd);
         }
-        return (clean_cmds(cmd), 1);
+        return (1);
     }
     return (-1);   
 }

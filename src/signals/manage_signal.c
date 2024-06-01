@@ -2,7 +2,6 @@
 
 void ctrl_c_parent()
 {
-	printf(" we are in the parent\n");
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -11,24 +10,24 @@ void ctrl_c_parent()
 
 void exit_here_doc()
 {
-	printf(" we are in the function here doc\n");
+	// printf(" we exit from the here doc \n");
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
 	exit(EXIT_FAILURE);
 }
 void ctrl_quit_childs()
 {
-	printf(" we are in the childs  quit \n");
 	return ;
 }
 void	ctrl_c_childs()
 {
-	printf(" we are in the childs ctr-c\n");
 	return ;
 }
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
-		printf("we are in the childs\n");
+		// printf("manage_siganal we are in the childs \n");
 		signal(SIGINT, ctrl_quit_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
 		return ;
@@ -39,9 +38,9 @@ void manage_signal (int id)
 		signal(SIGINT, exit_here_doc);
 		signal(SIGQUIT, SIG_IGN); 
 	}
-	else
+	if (id == -1)
 	{
-		printf("we are in the parent \n");
+		printf("we manage_signal for the parent\n");
 		signal(SIGINT, ctrl_c_parent);
 		signal(SIGQUIT, SIG_IGN); 
 	}

@@ -13,6 +13,7 @@ int		main(int ac, char **av, char **env)
 	if(ac > 0)
 	{
 		ft_ascii_font();
+		printf("before main change the manage_sgnal \n");
 		manage_signal(-1);
 		while(1)
 		{

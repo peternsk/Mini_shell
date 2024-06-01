@@ -22,7 +22,7 @@ void    check_last_files(t_files *files, int type)
 
 int expan_here_doc(t_cmd *current)
 {
-    t_cmd *now_shine;
+    t_cmd   *now_shine;
     pid_t   pid_childs;
     int     state;
 
@@ -33,7 +33,6 @@ int expan_here_doc(t_cmd *current)
         manage_signal(3);
         if (pid_childs == 0)
         {
-            printf("fork() in the here doc \n");
             while (now_shine != NULL)
             {
                 run_here_redlst(now_shine->glob, &now_shine->files);
@@ -44,8 +43,9 @@ int expan_here_doc(t_cmd *current)
         } 
         else
         {
+            manage_signal(-1);
             waitpid(pid_childs, &state, 0);
-            return (state);
+            current->exit_here_doc = state;
         }
     }
     return (0);
@@ -80,5 +80,5 @@ void    which_files(t_cmd *current)
         }
         cmd = cmd->next;
     }
-    current->exit_here_doc = expan_here_doc(current);
+    expan_here_doc(current);
 }

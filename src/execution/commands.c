@@ -44,7 +44,6 @@ void here_doc_cmds(t_cmd *cmds)
         {
             run_here_redlst(now_shine->glob, &now_shine->files);
             herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
-            manage_signal(-1);
         }
         now_shine = now_shine->next;
     }
@@ -58,7 +57,7 @@ int      commands(t_cmd *cmds, char *envp_path)
     which_files(cmds);
     array_pipe = create_pipe(cmds); 
     curr = cmds;
-    while (curr != NULL)
+    while (curr != NULL && is_files_valide(cmds) == 0)
     {
         curr->id = fork();
         manage_signal(0);
