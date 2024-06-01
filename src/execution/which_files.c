@@ -20,21 +20,11 @@ void    check_last_files(t_files *files, int type)
     }
 }
 
-void   print_files_index(t_files *files)
-{
-    t_files *current;
-
-    current = files;
-    while (current != NULL)   
-    {
-        current = current->next;
-    }
-}
-
-void expan_here_doc(t_cmd *current)
+int expan_here_doc(t_cmd *current)
 {
     t_cmd *now_shine;
     pid_t   pid_childs;
+    int     state;
 
     now_shine = current;
     if (is_there_here_doc(now_shine) > 0)
@@ -43,6 +33,7 @@ void expan_here_doc(t_cmd *current)
         manage_signal(3);
         if (pid_childs == 0)
         {
+            printf("fork() in the here doc \n");
             while (now_shine != NULL)
             {
                 run_here_redlst(now_shine->glob, &now_shine->files);
@@ -53,11 +44,11 @@ void expan_here_doc(t_cmd *current)
         } 
         else
         {
-            manage_signal(-1);
-            // return (waitpid(pid_childs, &current->error_code_here_doc, 0));
-            (waitpid(pid_childs, &current->error_code_here_doc, 0));
+            waitpid(pid_childs, &state, 0);
+            return (state);
         }
     }
+    return (0);
 }
 
 void ticket_files(t_cmd *cmd)
@@ -68,7 +59,7 @@ void ticket_files(t_cmd *cmd)
     check_last_files(cmd->files, out_p_redir);
 }
 
-int    which_files(t_cmd *current)
+void    which_files(t_cmd *current)
 {
     t_files *files;
     t_cmd   *cmd;
@@ -89,6 +80,5 @@ int    which_files(t_cmd *current)
         }
         cmd = cmd->next;
     }
-    expan_here_doc(current);
-    return (0);
+    current->exit_here_doc = expan_here_doc(current);
 }

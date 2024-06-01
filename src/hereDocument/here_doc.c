@@ -47,7 +47,6 @@ void	check_here_doc(t_minish *m_s, t_files **lst)
 
 void	empty_hereDoc(t_files *tmp)
 {
-	printf("in empty\n");
 	char *here_input;
 	if (tmp->made == 0)
 	{
@@ -65,7 +64,6 @@ void	last_here_doc(t_minish *m_s, t_files *tmp)
 {
 	char *here_input;
 
-	printf("in last\n");
 	while(1)
 	{
 		here_input = readline(HERE_INPUT);
@@ -103,7 +101,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 	{
 		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
 			empty_hereDoc(tmp);
-		if((tmp->type == here_doc) && (tmp->hereID == hereNbr) && tmp->made == 0)
+		if((tmp->type == here_doc)  && tmp->made == 0)
 		{
 			tmp->made = -1;
 			tmp->manage_fd = dup(0);

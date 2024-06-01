@@ -15,7 +15,7 @@ t_cmd *init_curr_cmd()
     node->is_vars = false;
     node->id = -1;
     node->type = -1;
-    node->error_code_here_doc = 0;
+    node->exit_here_doc = 0;
     node->files = NULL;
     node->next = NULL;
     node->glob = NULL;
