@@ -149,7 +149,7 @@ bool        ft_search_char(char *str, char c);
 /*====================================================*/
 
 /* init linked list*/
-t_heredoc   *intHereLst(t_heredoc *node, char *input);
+t_heredoc   *intHereLst(t_heredoc *node, t_minish *m_s, char *input);
 void	    add_here_to_end(t_heredoc **lst, t_heredoc *var);
 t_heredoc   *create_here_lst(t_minish *m_s, char *input);
 
@@ -169,7 +169,13 @@ int		    count_here_doc(t_files **lst);
 void		empty_hereDoc(t_files *tmp);
 void		last_here_doc(t_minish *m_s, t_files *tmp);
 void		run_here_redlst(t_minish *m_s, t_files **lst);
-void        send_2_tmp(t_heredoc **lst, t_minish *ms);
+void        send_2_tmp(t_heredoc **lst, t_minish *ms, t_files *tmp_files, int index);
+int         the_last_heredoc(t_cmd *cmd);
+
+/* UNLINK FILE */
+t_unlnk 	*int_unlnk_node(t_unlnk *node, char *filepath);
+void		add_file_to_end(t_unlnk **lst, t_unlnk *var);
+t_env    	*create_unlnk_node(t_minish *m_s, char *filepath);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);
@@ -188,7 +194,7 @@ int         commands(t_cmd *cmds, char *envp_path);
 void        wait_childs(t_cmd *cmds);
 int         execute_command(t_cmd *current,char *envp_path , int **array);
 char        *get_cmd_path(char *path, char *cmd);
-void        is_change_std(t_cmd *current);
+// void        is_change_std(t_cmd *current);
 int         handel_builtin(t_cmd *cmd);
 char        **check_duplicate(char **vars);
 
@@ -231,8 +237,11 @@ t_manage_fds *init_manage_fd(int copy_fd, int error, int is_open);
 int         change_stdint(t_files *file);
 int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
-void        which_files(t_cmd *current);
+int         which_files(t_cmd *current);
 int         ft_append(t_files *file);
+t_files     *is_there_here_doc(t_cmd *current);
+void        pipe_connect_and_files(t_cmd *current, int **array_pipe);
+void        std_one_commande(t_cmd *current);
 
 
 /*====================================================*/

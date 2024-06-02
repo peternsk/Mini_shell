@@ -53,12 +53,20 @@ typedef	struct	s_files
 	int		put_last;
 	int		error;
 	int		hereID;
+	char	*name_here_doc;
+	int 	fd_here;
 	struct	s_files *next;
 	struct	s_files *prev;
 	// struct s_manage_fds *manage_fd;
 	int		manage_fd;
 }t_files;
 
+typedef	struct s_unlnk
+{
+	struct s_token *prev;
+	char *filepath_name;
+	struct s_token *next;
+} t_unlnk;
 typedef	struct s_token
 {
 	struct s_token *prev;
@@ -109,9 +117,11 @@ typedef struct	s_env
 typedef struct s_heredoc
 {
 	struct	s_heredoc *prev;
-	struct	s_heredoc *next;
 	char	*str;
 	char	*expstr;
+	bool	made;
+	int		index;
+	struct	s_heredoc *next;
 } t_heredoc;
 
 typedef struct s_exit_code
@@ -129,6 +139,7 @@ typedef struct	s_minish
 	t_flags  	 *flags;
 	t_heredoc	*herelst;
 	t_exit_code	*extlst;
+	t_unlnk		*unlnk_lst;
 	int			here_id;
 	char	 	*input;
 	char	 	**tab_env;
@@ -144,7 +155,6 @@ typedef struct	s_minish
 	char 		**update_envp;
 	char		**tmp;
 } t_minish;
-
 
 /*----------------- CMDS EXECUTION -------------*/
 
@@ -172,6 +182,7 @@ typedef struct  s_cmd {
 	bool			is_vars;
 	int				nb_cmds;
 	int 			nb_pipes;
+	int				error_code_here_doc;
 	int				is_file_on;
 	struct s_cmd 	*next;
 	t_minish 		*glob;

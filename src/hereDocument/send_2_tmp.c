@@ -1,21 +1,26 @@
 #include "minishell.h"
 
 
-void    send_2_tmp(t_heredoc **lst, t_minish *m_s)
+void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index)
 {
     t_heredoc *tmp;
     int fd;
 
     tmp = *lst;
-    fd = open("/tmp/heredoc", O_RDWR | O_CREAT | O_TRUNC,  07777);
+    tmp_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(index));
+    printf(" send to tmp fd name %s\n", tmp_files->name_here_doc);
+    fd = open(tmp_files->name_here_doc, O_RDWR | O_CREAT | O_TRUNC,  07777);
+	create_unlnk_node(m_s, tmp_files->name_here_doc);
+    printf("%d fd number \n", fd);
     while(tmp)
     {
-        herelist_exp(lst, &m_s->envVarlst, m_s);
-        ft_putstr_fd(tmp->str, fd);
+        if (tmp->made == false)
+        {
+            herelist_exp(lst, &m_s->envVarlst, m_s);
+            ft_putstr_fd(tmp->str, fd);
+            tmp->made = true;
+        }
         tmp = tmp->next;
     }
-    close(fd);
-    fd = open("/tmp/heredoc", O_RDONLY,  07777);
-    dup2(fd, 0);
     close(fd);
 }

@@ -14,7 +14,7 @@ int is_files_valide(t_cmd *cmds)
             curr_files  = current->files;
             while (curr_files != NULL)
             {
-                if (curr_files->error == -1)
+                if (curr_files->error == -1 || current->error_code_here_doc != 0)
                     return (-1);
                 curr_files = curr_files->next;
             }
