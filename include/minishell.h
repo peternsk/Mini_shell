@@ -20,6 +20,7 @@
 #include "readline/history.h"
 #include "../libft/libft.h"
 #include <limits.h>
+#include <sys/ioctl.h>
 /*====================================================*/
 /*=                  GLOBAL VARIABLE                 =*/
 /*====================================================*/

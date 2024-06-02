@@ -20,6 +20,13 @@ void    check_last_files(t_files *files, int type)
     }
 }
 
+void w_exit_here_doc()
+{
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	exit(EXIT_FAILURE);
+}
+
 int expan_here_doc(t_cmd *current)
 {
     t_cmd   *now_shine;
@@ -29,10 +36,12 @@ int expan_here_doc(t_cmd *current)
     now_shine = current;
     if (is_there_here_doc(now_shine) > 0)
     {  
+        signal(SIGINT, SIG_IGN);
+        signal(SIGQUIT, SIG_IGN); 
         pid_childs = fork();
-        manage_signal(3);
         if (pid_childs == 0)
         {
+            manage_signal(3);
             while (now_shine != NULL)
             {
                 run_here_redlst(now_shine->glob, &now_shine->files);
@@ -43,8 +52,8 @@ int expan_here_doc(t_cmd *current)
         } 
         else
         {
-            manage_signal(-1);
             waitpid(pid_childs, &state, 0);
+            manage_signal(-1);
             current->exit_here_doc = state;
         }
     }

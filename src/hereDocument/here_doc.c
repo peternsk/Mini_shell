@@ -99,6 +99,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 	hereNbr = count_here_doc(lst);
 	while(tmp)
 	{
+		// signal(SIGINT, ft_handle_heredoc);
 		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
 			empty_hereDoc(tmp);
 		if((tmp->type == here_doc)  && tmp->made == 0)
