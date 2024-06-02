@@ -8,39 +8,6 @@ void cmd_path_error(int error_type, char *message)
     write(error_type, ": command not found\n", ft_strlen(": command not found\n"));
 }
 
-void replace_fd(t_files *files)
-{
-    if (files)
-    {
-        while (files != NULL)
-        {
-            if (files->manage_fd > -1)
-            {
-                if (files->type == out_p_redir)
-                {
-                    dup2(files->manage_fd, 1);
-                    close(files->manage_fd);
-                }
-                if (files->type == in_p_redir)
-                {
-                    dup2(files->manage_fd, 0);
-                    close(files->manage_fd);
-                }
-                if (files->type == apnd_op_redir)
-                {
-                    dup2(files->manage_fd, 1);
-                    close(files->manage_fd);
-                }
-            }
-            files = files->next;
-        }
-    }
-}
-void clean_cmds(t_cmd *cmds)
-{
-    (void) cmds;
-    replace_fd(cmds->files);
-}
 int execute_one_command(t_cmd *current, char **envp, char *envp_path)
 {
      char	*cmd_path;
@@ -73,23 +40,7 @@ int     the_last_heredoc(t_cmd *cmd)
     }
     return(i);
 }
-
-void    change_fd(t_cmd *cmd)
-{
-    int fd;
-
-    char *file_name;
-
-    file_name = NULL;
-    if (is_there_here_doc(cmd) > 0)
-    {
-        file_name = ft_strjoin("/tmp/heredoc", ft_itoa(the_last_heredoc(cmd)));
-        fd =  open(file_name, O_RDONLY,  07777);
-        dup2(fd, 0);
-        close(fd);
-    }
-    
-}   
+ 
 
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
