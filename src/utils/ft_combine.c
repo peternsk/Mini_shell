@@ -10,7 +10,7 @@ char    *ft_combine(char *s1, char *s2)
     
     i = -1;
     j = -1;
-    combStr = (char *)malloc(sizeof(char) *(ft_strlen(s1) + ft_strlen(s2)) + 1);
+    combStr = (char *)malloc_and_add(sizeof(char) *(ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if(!combStr)
 		return(0);
     while(s1[++i])

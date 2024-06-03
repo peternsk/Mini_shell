@@ -7,7 +7,7 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index
     int fd;
 
     tmp = *lst;
-    tmp_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(index)); 
+    tmp_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(index));
     fd = open(tmp_files->name_here_doc, O_RDWR | O_CREAT | O_TRUNC,  07777);
     while(tmp)
     {
@@ -19,6 +19,5 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index
         }
         tmp = tmp->next;
     }
-    printf("fd dans send_2_tmp %d\n", fd);
     close(fd);
 }

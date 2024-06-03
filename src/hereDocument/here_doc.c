@@ -53,7 +53,6 @@ void	empty_hereDoc(t_files *tmp)
 		tmp->made = -1;
 		while(1)
 		{
-			printf("hello amis \n");
 			here_input = readline(HERE_INPUT);
 			if(delim_cmp(here_input, tmp->name) == true)
 				return;
@@ -98,17 +97,16 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 
 	tmp = *lst;
 	hereNbr = count_here_doc(lst);
-	printf("hereNBR -- --- %d hereID -- %d \n", hereNbr, tmp->hereID);
 	while(tmp)
 	{
+		// signal(SIGINT, ft_handle_heredoc);
 		if((tmp->type == here_doc) && (tmp->hereID < hereNbr))
 			empty_hereDoc(tmp);
-		if((tmp->type == here_doc) && tmp->made == 0)
+		if((tmp->type == here_doc)  && tmp->made == 0)
 		{
 			tmp->made = -1;
 			last_here_doc(m_s, tmp);
 			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->hereID);
-			printf(" the name %s\n", tmp->name_here_doc);
 		}
 		tmp = tmp->next;
 	}

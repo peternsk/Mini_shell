@@ -1,76 +1,91 @@
 #include "minishell.h"
 
-void    check_last_files(t_files *files)
+void    check_last_files(t_files *files, int type)
 {
     t_files *node;
     t_files *tmp;
-    t_files *tmp_here;
-
 
     tmp = NULL;
-    tmp_here = NULL;
     node = files;
-    while (node != NULL)
+    if (files)
     {
-        if (node->type == apnd_op_redir || node->type == out_p_redir)
-            tmp = node;
-        if (node->type == here_doc)
-            tmp_here = node;
-        node = node->next;    
-    }
-    if (tmp)
-        tmp->put_last = 1;
-
-}
-
-void   print_files_index(t_files *files)
-{
-    t_files *current;
-
-    current = files;
-    while (current != NULL)   
-    {
-        current = current->next;
+        while (node != NULL)
+        {
+            if (node->type == type)
+                tmp = node;
+            node = node->next;    
+        }
+        if (tmp)
+            tmp->put_last = 1;
     }
 }
-
-void expan_here_doc(t_cmd *current)
+void    on_expand(t_cmd *now_shine)
 {
-    t_cmd *now_shine;
-
-    now_shine = current;
+    manage_signal(3);
     while (now_shine != NULL)
     {
-        if (is_there_here_doc(now_shine) > 0)
-        {
-            run_here_redlst(now_shine->glob, &now_shine->files);
-            herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
-            manage_signal(-1);
-        }
+        run_here_redlst(now_shine->glob, &now_shine->files);
+        herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
         now_shine = now_shine->next;
     }
+           
 }
-// faire en sorte que le here doc soit dans un fork() pour single command
+
+int expan_here_doc(t_cmd *current)
+{
+    t_cmd   *now_shine;
+    pid_t   pid_childs;
+    int     state;
+
+    now_shine = current;
+    if (is_there_here_doc(now_shine) > 0)
+    {  
+        signal(SIGINT, SIG_IGN);
+        signal(SIGQUIT, SIG_IGN); 
+        pid_childs = fork();
+        if (pid_childs == 0)
+        {
+            on_expand(now_shine);
+            exit(EXIT_SUCCESS);
+        } 
+        else
+        {
+            waitpid(pid_childs, &state, 0);
+            manage_signal(-1);
+            current->exit_here_doc = state;
+        }
+    }
+    return (0);
+}
+
+void ticket_files(t_cmd *cmd)
+{
+    check_last_files(cmd->files, here_doc);
+    check_last_files(cmd->files, in_p_redir);
+    check_last_files(cmd->files, apnd_op_redir);
+    check_last_files(cmd->files, out_p_redir);
+}
+
 void    which_files(t_cmd *current)
 {
+    t_files *files;
+    t_cmd   *cmd;
 
-    printf("dans which files\n");
-    if (current->files)
+    cmd = current;
+    while (cmd != NULL)
     {
-
-        check_last_files(current->files);
-        t_files *files = current->files;
-        ft_append(files);
-        change_stdint(files);
-        if (is_files_valide(current) == 0)
-            change_stdout(files);
-        // if (current->nb_pipes == 0 && current->nb_cmds == 1)
-            expan_here_doc(current);
-        // else
-        // {
-        //     printf("more than one command \n");
-        //     run_here_redlst(current->glob, &files);
-        //     herelist_exp(&current->glob->herelst, &current->glob->envVarlst, current->glob);
-        // }
+        ticket_files(cmd);
+        files = cmd->files;
+        if (cmd->files)
+        {
+            change_stdint(cmd->files);
+            if (is_files_valide(cmd) == 0)
+            {
+                ft_append(cmd->files);
+                change_stdout(cmd->files);
+            }
+        }
+        cmd = cmd->next;
     }
+    expan_here_doc(current);
 }

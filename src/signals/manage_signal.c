@@ -10,29 +10,34 @@ void ctrl_c_parent()
 
 void exit_here_doc()
 {
-	exit(1);
+	write(1, "\n", 1);
+	rl_reset_line_state();
+	rl_replace_line("", 0);
+	exit(EXIT_FAILURE);
 }
 void ctrl_quit_childs()
 {
-	exit(0);
+	return ;
 }
 void	ctrl_c_childs()
 {
-	exit(0);
+	return ;
 }
 void manage_signal (int id)
 {
 	if (id == 0)
 	{
-		signal(SIGINT, ctrl_c_childs);
+		signal(SIGINT, ctrl_quit_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
+		return ;
 	}
 	else if (id == 3)
 	{
 		signal(SIGINT, exit_here_doc);
 		signal(SIGQUIT, SIG_IGN); 
+		return ;
 	}
-	else
+	if (id == -1)
 	{
 		signal(SIGINT, ctrl_c_parent);
 		signal(SIGQUIT, SIG_IGN); 

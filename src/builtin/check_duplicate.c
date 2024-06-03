@@ -28,7 +28,7 @@ char **init_new(char **vars)
     int     len;
 
     len = size(vars);
-    new =   malloc(sizeof(char *) * (len + 1));
+    new =   malloc_and_add(sizeof(char *) * (len + 1));
     if (!new)
         return (new[len] = NULL, NULL);
     return (new);
@@ -52,6 +52,7 @@ char **check_duplicate(char **vars)
         if (check_same_((const char *)vars[i], (const char *)vars[i + 1], ft_strlen((const char *)vars[i])) != 0)
         {
             new[j] = ft_strdup(vars[i]);
+            add_garbage(new[j]);
             j++;
         }
         i++;

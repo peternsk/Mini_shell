@@ -13,7 +13,6 @@ void    close_pipe(t_cmd *cmds, int **array_pipe)
         i++;
     }
 }
-
 int **create_pipe(t_cmd *cmd)
 {
     int **array;
@@ -23,10 +22,10 @@ int **create_pipe(t_cmd *cmd)
     array = 0;
     if (cmd && cmd->nb_cmds  > 1)
     {
-        array = malloc ((cmd->nb_cmds - 1) * sizeof(int *));
+        array = malloc_and_add((cmd->nb_cmds - 1) * sizeof(int *));
         while (i < (cmd->nb_cmds - 1))
         {
-            array[i] = malloc(sizeof(int) * 2);
+            array[i] = malloc_and_add(sizeof(int) * 2);
             pipe(array[i]);
             i++;
         }
@@ -45,7 +44,6 @@ void here_doc_cmds(t_cmd *cmds)
         {
             run_here_redlst(now_shine->glob, &now_shine->files);
             herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
-            manage_signal(-1);
         }
         now_shine = now_shine->next;
     }
@@ -55,26 +53,23 @@ int      commands(t_cmd *cmds, char *envp_path)
 {
     t_cmd   *curr;
     int     **array_pipe;
-
-    here_doc_cmds(cmds);
-    array_pipe = create_pipe(cmds);
+    
+    which_files(cmds);
+    array_pipe = create_pipe(cmds); 
     curr = cmds;
-    while (curr != NULL)
+    while (curr != NULL && is_files_valide(cmds) == 0)
     {
         curr->id = fork();
         manage_signal(0);
         if (curr->id == 0)
         {
-            printf("more than one commmand\n");
             execute_command(curr, envp_path, array_pipe);
         }
         else if (curr->id < 0)
             printf("Error fork()\n");
         else
             curr = curr->next;
-        
     }
-    manage_signal(1);
     close_pipe(cmds, array_pipe);
-    return (manage_signal(-1), wait_childs(cmds), 1);
+    return (wait_childs(cmds), 1);
 }

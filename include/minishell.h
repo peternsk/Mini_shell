@@ -20,6 +20,7 @@
 #include "readline/history.h"
 #include "../libft/libft.h"
 #include <limits.h>
+#include <sys/ioctl.h>
 /*====================================================*/
 /*=                  GLOBAL VARIABLE                 =*/
 /*====================================================*/
@@ -234,8 +235,9 @@ int         change_stdout(t_files *files);
 void        add_files(t_cmd *cmd, t_redlts *new_files);
 void        which_files(t_cmd *current);
 int         ft_append(t_files *file);
-int         is_there_here_doc(t_cmd *current);
+t_files     *is_there_here_doc(t_cmd *current);
 void        pipe_connect_and_files(t_cmd *current, int **array_pipe);
+void        std_one_commande(t_cmd *current);
 
 
 /*====================================================*/
@@ -249,8 +251,13 @@ int         	get_code(int exit_code);
 
 void        	print_extLst_lst(t_exit_code *lst);
 
+/*====================================================*/
+/*=                      MAIN                        =*/
+/*====================================================*/
 
-
+int				build_and_exec(t_minish *m_s);
+void			set_and_update_env(t_minish *m_s, char **env);
+t_minish		*init_structs(t_minish *m_s);
 
 #endif
  
