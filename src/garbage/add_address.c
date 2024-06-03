@@ -100,5 +100,4 @@ void	print_garbage_collector()
 	printf("========= GARNODES ============\n");
 	printf("= num of nodes  : %d           \n", i);
 	printf("===============================\n");
-	
 }

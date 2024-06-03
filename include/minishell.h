@@ -175,7 +175,8 @@ int         the_last_heredoc(t_cmd *cmd);
 /* UNLINK FILE */
 t_unlnk 	*int_unlnk_node(t_unlnk *node, char *filepath);
 void		add_file_to_end(t_unlnk **lst, t_unlnk *var);
-t_env    	*create_unlnk_node(t_minish *m_s, char *filepath);
+t_unlnk    	*create_unlnk_node(t_minish *m_s, char *filepath);
+void    	unlnk_all_file(t_unlnk **lst);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);

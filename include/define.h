@@ -63,9 +63,8 @@ typedef	struct	s_files
 
 typedef	struct s_unlnk
 {
-	struct s_token *prev;
 	char *filepath_name;
-	struct s_token *next;
+	struct s_unlnk*next;
 } t_unlnk;
 typedef	struct s_token
 {
