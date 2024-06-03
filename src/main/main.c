@@ -21,8 +21,7 @@ int		main(int ac, char **av, char **env)
 			m_s->input = readline(INPUT);
 			if (!m_s->input)
 			{
-				unlnk_all_file(&m_s->unlnk_lst);
-				return (all_free(), printf("exit\n"), 0);
+				return (unlnk_all_file(&m_s->unlnk_lst), all_free(), printf("exit\n"), 0);
 			}
 			add_history(m_s->input);
 			set_and_update_env(m_s, env);
