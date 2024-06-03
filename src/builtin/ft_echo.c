@@ -23,7 +23,7 @@ bool    is_newline(char *av, int index)
                 while (av[i] != '\0' && av[i] == 'n' )
                         i++;
             }
-            if (i == (int)ft_strlen(av))
+            if (i == (int)ft_strlen(av) && ft_strlen(av) != 0)
                 return (true);
         }
     }

@@ -181,7 +181,7 @@ typedef struct  s_cmd {
 	bool			is_vars;
 	int				nb_cmds;
 	int 			nb_pipes;
-	int				error_code_here_doc;
+	int				exit_here_doc;
 	int				is_file_on;
 	struct s_cmd 	*next;
 	t_minish 		*glob;

@@ -3,14 +3,17 @@
 void ctrl_c_parent()
 {
 	write(1, "\n", 1);
-	// rl_replace_line("", 0);
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
 
 void exit_here_doc()
 {
-	exit(0);
+	write(1, "\n", 1);
+	rl_reset_line_state();
+	rl_replace_line("", 0);
+	exit(EXIT_FAILURE);
 }
 void ctrl_quit_childs()
 {
@@ -32,8 +35,9 @@ void manage_signal (int id)
 	{
 		signal(SIGINT, exit_here_doc);
 		signal(SIGQUIT, SIG_IGN); 
+		return ;
 	}
-	else
+	if (id == -1)
 	{
 		signal(SIGINT, ctrl_c_parent);
 		signal(SIGQUIT, SIG_IGN); 
