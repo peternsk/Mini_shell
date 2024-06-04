@@ -68,6 +68,7 @@ bool	prs_ast_dlb_meta(t_token **lst)
 	t_token *current;
 
 	current = *lst;
+
 	while(current != NULL)
 	{
 		if(current)
