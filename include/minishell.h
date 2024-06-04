@@ -262,7 +262,7 @@ void        	print_extLst_lst(t_exit_code *lst);
 /*====================================================*/
 
 int				build_and_exec(t_minish *m_s);
-void			set_and_update_env(t_minish *m_s, char **env);
+void			set_and_update_env(t_minish *m_s, char **env, char **tmp);
 t_minish		*init_structs(t_minish *m_s);
 
 #endif

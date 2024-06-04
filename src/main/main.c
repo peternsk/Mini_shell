@@ -16,7 +16,9 @@ int		main(int ac, char **av, char **env)
 {
 	(void)av;
 	t_minish	*m_s;
+	char **tmp;
 
+	tmp = NULL;
 	m_s = NULL;
 	if(ac > 0)
 	{
@@ -28,13 +30,14 @@ int		main(int ac, char **av, char **env)
 			m_s->flags = init_flag();
 			m_s->input = readline(INPUT);
 			if (!m_s->input)
-			{
 				return (unlnk_all_file(&m_s->unlnk_lst), all_free(), printf("exit\n"), 0);
-			}
 			add_history(m_s->input);
-			set_and_update_env(m_s, env);
+			set_and_update_env(m_s, env, tmp);
 			if(ft_lexer(&m_s->token_lst) == true)
+			{
 				build_and_exec(m_s);
+				tmp = init_cmds(tmp, m_s);
+			}
 		}
 	}
 	else

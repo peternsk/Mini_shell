@@ -7,21 +7,24 @@ t_minish		*init_structs(t_minish *m_s)
 	return(m_s);
 }
 
-void	set_and_update_env(t_minish *m_s, char **env)
+void	set_and_update_env(t_minish *m_s, char **env, char **tmp)
 {
-	if (m_s->update_envp)
+	if (tmp)
 	{
-		set_env_lst(m_s, m_s->update_envp);
+		set_env_lst(m_s, tmp);
 		int i = 0;
-		while (m_s->update_envp[i] != NULL)
+		while(tmp[i] != NULL)
 		{
-			free(m_s->update_envp[i]);
+			free(tmp[i]);
 			i++;
 		}
-		m_s->update_envp = NULL;
+		tmp = NULL;
 	}
 	else
+	{
+
 		set_env_lst(m_s, env);
+	}
 	tokenizer(m_s);
 }
 
@@ -38,7 +41,7 @@ int		build_and_exec(t_minish *m_s)
 	printRealList(m_s->token_lst);
 	ft_cmdBuilder(m_s, &m_s->token_lst, &m_s->cmdLst);
 	print_cmdLst(&m_s->cmdLst);
-	m_s->update_envp = init_cmds(m_s->tmp, m_s);
+	// m_s->update_envp = init_cmds(m_s->tmp, m_s);
 	// print_garbage_collector();
 	return(0);
 }
