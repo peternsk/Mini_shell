@@ -9,7 +9,6 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index
     tmp = *lst;
     tmp_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(index));
     fd = open(tmp_files->name_here_doc, O_RDWR | O_CREAT | O_TRUNC,  07777);
-	create_unlnk_node(m_s, tmp_files->name_here_doc);
     printf("%d fd number \n", fd);
     while(tmp)
     {

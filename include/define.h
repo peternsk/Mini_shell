@@ -49,6 +49,7 @@ typedef	struct	s_files
 	char	*name;
 	char	*agrv;
 	int		made;
+	int		here_count;
 	int		index_out;
 	int		put_last;
 	int		error;
@@ -63,6 +64,7 @@ typedef	struct	s_files
 
 typedef	struct s_unlnk
 {
+	struct s_unlnk*prev;
 	char *filepath_name;
 	struct s_unlnk*next;
 } t_unlnk;

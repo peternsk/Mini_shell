@@ -1,7 +1,7 @@
 
 #include "../../include/minishell.h"
 
-t_minish *init_ms(void)
+t_minish *init_ms()
 {
 	t_minish	*m_s;
 
@@ -11,10 +11,10 @@ t_minish *init_ms(void)
 	m_s->input = NULL;
 	m_s->token_lst = NULL;
 	m_s->envVarlst = NULL;
+	m_s->update_envp = NULL;
 	m_s->cmdLst = NULL;
 	m_s->tab_env = NULL;
 	m_s->herelst = NULL;
-	m_s->update_envp = NULL;
 	m_s->tmp = NULL;
 	m_s->unlnk_lst = NULL;
 	m_s->here_id = 1;
