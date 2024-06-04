@@ -178,6 +178,9 @@ t_unlnk 	*int_unlnk_node(t_unlnk *node, char *filepath);
 void		add_file_to_end(t_unlnk **lst, t_unlnk *var);
 t_unlnk    	*create_unlnk_node(t_minish *m_s, char *filepath);
 void    	unlnk_all_file(t_unlnk **lst);
+void	    print_unlnk_Lst(t_unlnk **lst);
+void	    create_filename_linklist(t_minish *m_s, t_files **lst);
+void	    add_filename_unlnk_lst(t_cmdlts **cmd, t_minish *m_s);
 
 /* print test */
 void	    print_here_lst(t_heredoc *lst);

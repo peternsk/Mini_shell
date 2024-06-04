@@ -11,6 +11,7 @@ t_files		*setRed(char *redtype, char *filename, t_minish *m_s)
     redNode->name = filename;
     redNode->index = 0;
     redNode->made = 0;
+	redNode->here_count = 0;
     redNode->error = 0;
     redNode->index_out = 0;
     redNode->put_last = 0;

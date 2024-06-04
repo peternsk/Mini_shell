@@ -1,11 +1,11 @@
 #include "minishell.h"
 
-t_minish		*init_structs(t_minish *m_s)
-{
-	m_s = init_ms();
-	m_s->flags = init_flag();
-	return(m_s);
-}
+// t_minish		*init_structs(t_minish *m_s)
+// {
+// 	m_s = init_ms();
+// 	m_s->flags = init_flag();
+// 	return(m_s);
+// }
 
 void	set_and_update_env(t_minish *m_s, char **env, char **tmp)
 {
