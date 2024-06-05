@@ -1,12 +1,11 @@
 #--- BASIC ---#
 
-NAME    	= minishell
-CC      	= gcc
-FLAGS   	= -Wall -Wextra -Werror -g -fsanitize=address
-# FLAGS   	= -Wall -Wextra -fsanitize=address
-# FLAGS   	= -Wall -Werror -Wextra -g
-RM      	= rm -rf
-
+NAME        = minishell
+CC          = gcc
+FLAGS       = -Wall -Wextra -Werror -g
+# FLAGS     = -Wall -Wextra -fsanitize=address
+# FLAGS     = -Wall -Werror -Wextra -g
+RM          = rm -rf
 
 #--- LIBFT ---#
 
@@ -15,70 +14,71 @@ LIBFT_LIB = ${LIBFT_DIR}/libft.a
 
 #--- GROUP ---#
 
-SRCS_DIR 	= src
-OBJS_DIR	= obj
+SRCS_DIR    = 	src
+OBJS_DIR    = 	obj
 
-BUILTIN     =   ft_pwd ft_cd add_envp print_envp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
+BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
 
-BUILDER		= 	ft_remove_quotes set_comd_lst ft_buildCmdArr merge_token ft_buildRedlst
+BUILDER     =   ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande
+EXECUTION   =   init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande
 
-EXT_STATUS	=	createList
+EXT_STATUS  =   createList
 
-ENV			=	set_env find_var_env exp_split ft_expend list2tab
+ENV         =   set_env findVarEnv exp_split ft_expend list2tab
 
-# HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
-HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc unlink_lst
+# HERE_DOC  =   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 
-GARBAGE 	=  	add_address free_garb_lst
+HERE_DOC    =   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc unlink_lst
 
-LEXER		=	quotes tokenizer reg_cmd ft_ascii_font meta type
+GARBAGE     =   add_address free_garb_lst
 
-PARSER		= 	ft_parsing setFile printRealList
+LEXER       =   quotes tokenizer reg_cmd ft_ascii_font meta type
 
-SIGNALS		= 	manage_signal
+PARSER      =   ft_parsing set_file print_real_list
 
-UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_end_token free_function ft_search_char
+SIGNALS     =   manage_signal
 
-MAIN		=	build_and_exec main
+UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
 
-SRCS		= 	$(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/exitStatus/, $(EXT_STATUS))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/env/, $(ENV))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/garbage/, $(GARBAGE))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/lexer/, $(LEXER))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/parser/, $(PARSER))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/builder/, $(BUILDER))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/hereDocument/, $(HERE_DOC))) \
-				$(addsuffix .c, $(addprefix $(SRCS_DIR)/main/, $(MAIN)))
+MAIN        =   build_and_exec main
 
-OBJS 		= 	$(addprefix ${OBJS_DIR}/, $(subst src/,,$(SRCS:.c=.o))) 
+SRCS        =   $(addsuffix .c, $(addprefix $(SRCS_DIR)/builtin/, $(BUILTIN))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/execution/, $(EXECUTION))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/exitStatus/, $(EXT_STATUS))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/env/, $(ENV))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/garbage/, $(GARBAGE))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/lexer/, $(LEXER))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/parser/, $(PARSER))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/builder/, $(BUILDER))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/signals/, $(SIGNALS))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/utils/, $(UTILS))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/hereDocument/, $(HERE_DOC))) \
+                $(addsuffix .c, $(addprefix $(SRCS_DIR)/main/, $(MAIN))) 
+
+OBJS        =   $(addprefix ${OBJS_DIR}/, $(subst src/,,$(SRCS:.c=.o)))
 
 #--- COLOR ---#
-BLACK 		=	\033[90;1m
-RESET 		=	\033[0m
-GREEN		=	\033[0;32m
-RED			=	\033[0;31m
-YELLOW		=	\033[0;33m
+
+BLACK       =   \033[90;1m
+RESET       =   \033[0m
+GREEN       =   \033[0;32m
+RED         =   \033[0;31m
+YELLOW      =   \033[0;33m
 
 #--- TARGET ---#
 
 #--- readline ---#
 
-LIBRLINE	 	= readline-8.2
-LIBRLINE_DIR 	= include/readline
-LIBRD 			= $(LIBRLINE_DIR)/bin/libreadline.a $(LIBRLINE_DIR)/bin/libhistory.a
-LIBS 			= $(LIBFT_LIB) -lreadline -lcurses $(LIBRD)
+LIBRLINE        = readline-8.2
+LIBRLINE_DIR    = include/readline
+LIBRD           = $(LIBRLINE_DIR)/bin/libreadline.a $(LIBRLINE_DIR)/bin/libhistory.a
+LIBS            = $(LIBFT_LIB) -lreadline -lcurses $(LIBRD)
 
 all: ${NAME}
 
 ${LIBFT_LIB}:
 	@make -C ${LIBFT_DIR}
-
 
 $(LIBRD):
 	curl -O https://ftp.gnu.org/gnu/readline/$(LIBRLINE).tar.gz
@@ -106,11 +106,12 @@ clean:
 	@echo "$(YELLOW)Nettoyage en cours ... !"
 	@make clean -C ${LIBFT_DIR}
 	@${RM} ${OBJS_DIR}
-	# @${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
+    # @${RM} ${OBJS_DIR} ${LIBFT_LIB} $(LIBRLINE_DIR)
 	@echo "$(BLACK)Nettoyage effectué avec succès !"
 
 fclean: clean
-	@${RM} ${NAME} 
+
+	@${RM} ${NAME}
 	@make clean -C ${LIBFT_DIR}
 
 re: fclean all

@@ -96,17 +96,17 @@ int	count_here_doc(t_files **lst)
 void	run_here_redlst(t_minish *m_s, t_files **lst)
 {
 	t_files	*tmp;
-	int		hereNbr;
+	int		here_nbr;
 
 	tmp = *lst;
-	hereNbr = count_here_doc(lst);
+	here_nbr = count_here_doc(lst);
 	while (tmp)
 	{
 		// signal(SIGINT, ft_handle_heredoc);
-		if ((tmp->type == here_doc) && (tmp->heredoc_id < hereNbr))
+		if ((tmp->type == here_doc) && (tmp->heredoc_id < here_nbr))
 			empty_hereDoc(tmp);
-		// if((tmp->type == here_doc) && (tmp->heredoc_id == hereNbr)
-			&& tmp->made == 0)
+		// if((tmp->type == here_doc) && (tmp->heredoc_id == here_nbr)
+			// && tmp->made == 0)
 		if ((tmp->type == here_doc) && tmp->made == 0)
 		{
 			tmp->made = -1;

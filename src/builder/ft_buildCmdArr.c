@@ -17,7 +17,7 @@ int	ft_countArrayspace(t_token **lst)
 	return (arrSpc);
 }
 
-void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
+void	ft_cmd_builder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
 {
 	t_token		*cur_tok;
 	t_cmdlts	*cur_cmd;

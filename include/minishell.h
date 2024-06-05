@@ -5,13 +5,10 @@
 # include "define.h"
 # include "error.h"
 # include "garbage.h"
-# include "readline/history.h"
-# include "readline/readline.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -19,6 +16,9 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include "readline/history.h"
+# include "readline/readline.h"
+# include <signal.h>
 # include <term.h>
 # include <unistd.h>
 /*====================================================*/
@@ -32,7 +32,7 @@ extern int		g_exit_status;
 /*====================================================*/
 
 void			begin_lexing(void);
-void			begin_setEnvVar(void);
+void			begin_set_env_var(void);
 
 /*--- create struct ---*/
 t_flags			*init_flag(void);
@@ -45,7 +45,7 @@ int				count_token(t_token *token);
 void			assign_type(t_token *token, t_minish *m_s);
 void			meta_type(t_token *token);
 void			assign_token_type(t_token **lst, t_minish *m_s);
-void			printRealList(t_token *lst);
+void			print_real_list(t_token *lst);
 char			*rightType(int type);
 
 /*--- quote && double quote ---*/
@@ -80,8 +80,8 @@ bool			prs_ast_pipe(t_token **lst);
 bool			prs_ast_dlb_meta(t_token **lst);
 bool			prs_ast_redir(t_token **lst);
 void			begin_parsing(void);
-void			setDelimiter(t_token **lst);
-void			setFile(t_token **lst);
+void			set_delimiter(t_token **lst);
+void			set_file_red(t_token **lst);
 
 /*====================================================*/
 /*=                       ENV                        =*/
@@ -122,7 +122,7 @@ void			ft_createcomd_lst(t_minish *m_s);
 void			combine_tok_value(t_token **lst);
 void			merge_token(t_token **lst);
 void			delete_token(t_token **lst, int tokToDel_id);
-void			ft_cmdBuilder(t_minish *m_s, t_token **toklst,
+void			ft_cmd_builder(t_minish *m_s, t_token **toklst,
 					t_cmdlts **comd_lst);
 
 /*---- REDIRECTION ----*/
@@ -152,14 +152,14 @@ bool			ft_search_char(char *str, char c);
 /*====================================================*/
 
 /* init linked list*/
-t_heredoc		*intHereLst(t_heredoc *node, t_minish *m_s, char *input);
+t_heredoc		*int_here_lst(t_heredoc *node, t_minish *m_s, char *input);
 void			add_here_to_end(t_heredoc **lst, t_heredoc *var);
 t_heredoc		*create_here_lst(t_minish *m_s, char *input);
 
 /* parsing */
 bool			end_key(char c);
 char			*find_here_key(t_heredoc *node, t_minish *m_s);
-void			hereExp(t_heredoc *node, t_env **lst, t_minish *m_s);
+void			here_exp(t_heredoc *node, t_env **lst, t_minish *m_s);
 void			herelist_exp(t_heredoc **lst, t_env **env_varlst,
 					t_minish *m_s);
 
@@ -168,7 +168,7 @@ bool			delim_cmp(char *input, char *delimiter);
 void			check_here_doc(t_minish *m_s, t_files **files);
 void			reset_ms(t_heredoc *node, t_minish *m_s);
 void			replace_here_str(t_heredoc *node);
-void			ft_here_exitStatus(t_heredoc *token, t_minish *m_s);
+void			ft_here_exit_status(t_heredoc *token, t_minish *m_s);
 int				count_here_doc(t_files **lst);
 void			empty_hereDoc(t_files *tmp);
 void			last_here_doc(t_minish *m_s, t_files *tmp);
@@ -258,7 +258,7 @@ void			add_exit_to_end(t_exit_code **lst, t_exit_code *var);
 t_exit_code		*create_exit_code_lst(t_minish *m_s, pid_t extCode);
 int				get_code(int exit_code);
 
-void			print_extLst_lst(t_exit_code *lst);
+void			print_ext_lst_lst(t_exit_code *lst);
 
 /*====================================================*/
 /*=                      MAIN                        =*/

@@ -7,4 +7,3 @@ void	ft_pwd(void)
 
 	printf("%s\n", getcwd(str, PATH_MAX));
 }
-
