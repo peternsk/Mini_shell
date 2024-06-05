@@ -15,7 +15,7 @@ void    ft_endToken(t_token *token, t_minish *m_s)
         token->endToken = FLAG_ON;
         token->to_merge = FLAG_ON;
     }
-    else if (token->type >= out_p_redir && token->type <= dbl_pipe_)
+    else if (token->type >= OPR && token->type <= DBLP)
     {
         token->endToken = FLAG_ON;
         token->to_merge = FLAG_OFF;

@@ -61,9 +61,9 @@ int expan_here_doc(t_cmd *current)
 void ticket_files(t_cmd *cmd)
 {
     check_last_files(cmd->files, here_doc);
-    check_last_files(cmd->files, in_p_redir);
-    check_last_files(cmd->files, apnd_op_redir);
-    check_last_files(cmd->files, out_p_redir);
+    check_last_files(cmd->files, IPR);
+    check_last_files(cmd->files, APOR);
+    check_last_files(cmd->files, OPR);
 }
 
 void    which_files(t_cmd *current)

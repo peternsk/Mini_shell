@@ -14,7 +14,7 @@ void    count_files_by_type(t_files *files)
     while (current != NULL)
     {
         current->index = i;
-        if (current->type == apnd_op_redir || current->type == out_p_redir)
+        if (current->type == APOR || current->type == OPR)
         {
             current->index_out = j;
             j++;

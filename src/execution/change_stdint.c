@@ -9,7 +9,7 @@ int put_error(t_files *current)
     node = current;
     while (node != NULL)
     {
-        if (node->type == in_p_redir)
+        if (node->type == IPR)
             node->error = -1;
         node = node->next;
     }
@@ -38,7 +38,7 @@ int change_stdint(t_files *files)
     {
         while (current != NULL )
         {
-            if (current->type == in_p_redir)
+            if (current->type == IPR)
                 put_fd(current);
             current = current->next;
         }

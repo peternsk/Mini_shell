@@ -12,7 +12,7 @@ t_files    *give_last_file_stdout(t_files *files)
         tmp = files;
         while (tmp != NULL)
         {
-            if (tmp->type == apnd_op_redir || tmp->type == out_p_redir)
+            if (tmp->type == APOR || tmp->type == OPR)
                 last_files = tmp;
             tmp = tmp->next;
         }
@@ -28,7 +28,7 @@ void    is_output_change(t_cmd *current)
     out = give_last_file_stdout(current->files);
     if (out)
     {
-        if (out->type == apnd_op_redir)
+        if (out->type == APOR)
             fd = open(out->name, O_WRONLY | O_APPEND ,  07777);
         else 
             fd = open(out->name, O_WRONLY | O_CREAT | O_TRUNC,  07777);

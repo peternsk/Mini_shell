@@ -93,7 +93,7 @@ void	print_expendTab(t_token **lst, t_env **envVarlst, t_minish *m_s)
 		printf("empty list change\n");
 	while(last != NULL)
 	{
-        if((last->type == argument || last->type == dbl_quote_arg) && (char_search(last->value, '$') == true))
+        if((last->type == argument || last->type == DQA) && (char_search(last->value, '$') == true))
             ft_expend(last, &curEnv, m_s);
 		last = last->next;
 	}

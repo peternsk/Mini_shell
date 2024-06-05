@@ -25,7 +25,7 @@ int change_stdout(t_files *files)
         current = files;
         while (current != NULL)
         {
-            if (current->type == out_p_redir)
+            if (current->type == OPR)
                 put_int_fd(current);
             current = current->next;
         }

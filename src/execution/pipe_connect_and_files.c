@@ -39,7 +39,7 @@ t_files    *give_last_file_type(t_files *files)
         tmp = files;
         while (tmp != NULL)
         {
-            if (tmp->type == apnd_op_redir || tmp->type == out_p_redir)
+            if (tmp->type == APOR || tmp->type == OPR)
                 last_files = tmp;
             tmp = tmp->next;
         }
@@ -55,7 +55,7 @@ void change_stdout_pipe(t_cmd *current, int **array_pipe)
     last = give_last_file_type(current->files);
     if (last && current->next)
     {
-        if (last->type == apnd_op_redir)
+        if (last->type == APOR)
             fd = open(last->name, O_WRONLY | O_APPEND ,  07777);
         else
             fd = open(last->name, O_WRONLY | O_TRUNC | O_CREAT,  07777);
@@ -66,7 +66,7 @@ void change_stdout_pipe(t_cmd *current, int **array_pipe)
         dup2(array_pipe[current->index][1], 1);
     if (current->next == NULL && last)
     {
-        if (last->type == apnd_op_redir)
+        if (last->type == APOR)
             fd = open(last->name, O_WRONLY | O_APPEND ,  07777);
         else
             fd = open(last->name, O_WRONLY | O_TRUNC,  07777);

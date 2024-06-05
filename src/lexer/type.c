@@ -7,23 +7,23 @@ void	meta_type(t_token *token)
 	if(token->value[0] == 124 && ft_strlen(token->value) == 1)
 		token->type = pipe_;
 	else if(token->value[0] == 124 && ft_strlen(token->value) == 2)
-		token->type = dbl_pipe_;
+		token->type = DBLP;
 	else if(token->value[0] == 60 && ft_strlen(token->value) == 1)
-		token->type = in_p_redir;
+		token->type = IPR;
 	else if(token->value[0] == 60 && ft_strlen(token->value) == 2)
 		token->type = here_doc;
 	else if(token->value[0] == 62 && ft_strlen(token->value) == 1)
-		token->type = out_p_redir;
+		token->type = OPR;
 	else if(token->value[0] == 62 && ft_strlen(token->value) == 2)
-		token->type = apnd_op_redir;
+		token->type = APOR;
 }
 
 void	assign_type(t_token *token, t_minish *m_s)
 {
 	if(m_s->flags->dbl_flag == FLAG_ON)
-		token->type = dbl_quote_arg;
+		token->type = DQA;
 	else if(m_s->flags->sgl_flag == FLAG_ON)
-		token->type = sgl_quote_arg;
+		token->type = SQA;
 	else if(m_s->flags->met_flag == FLAG_ON)
 		meta_type(token);
 	else if(m_s->flags->otc_flag == FLAG_ON)

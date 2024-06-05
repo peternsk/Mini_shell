@@ -28,12 +28,12 @@ void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
 	i = -1;
 	while(curTok)
 	{
-		if(curTok && (curTok->type >= command && curTok->type <= dbl_quote_arg))
+		if(curTok && (curTok->type >= command && curTok->type <= DQA))
 		{
 			curCmd->command[++i] = ft_strdup(curTok->value);
 			add_garbage(curCmd->command[i]);
 		}
-		else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
+		else if(curTok && (curTok->type >= OPR && curTok->type <= here_doc))
 			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value, m_s));
 		else if(curTok && curTok->type == pipe_)
 		{

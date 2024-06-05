@@ -54,7 +54,7 @@ int		countNbRednode(t_token **lst)
 	nb_redTok = 0;
 	while(token && token->type != pipe_)
 	{
-		if(token && (token->type >= out_p_redir && token->type <= in_p_redir))
+		if(token && (token->type >= OPR && token->type <= IPR))
 			nb_redTok++;
 		token = token->next;
 	}

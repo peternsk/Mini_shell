@@ -22,15 +22,15 @@ typedef enum token_type
 {
 	command,
 	argument,
-	sgl_quote_arg,
-	dbl_quote_arg,
-	out_p_redir,
-	in_p_redir,
-	apnd_op_redir,
+	SQA,
+	DQA,
+	OPR,
+	IPR,
+	APOR,
 	here_doc,
 	pipe_,
-	dbl_pipe_,
-	dbl_et,
+	DBLP,
+	DBLE,
 	delimter,
 	_file
 }			token_type;

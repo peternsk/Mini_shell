@@ -41,19 +41,19 @@ t_files    *g_last_file_type(t_files *files, int type, int last)
 t_files  *is_there_here_doc(t_cmd *current)
 {
    t_files *here_doc_files;
-   t_files *in_p_redir_file;
+   t_files *IPR_file;
 
    here_doc_files = g_last_file_type(current->files, here_doc, 1);
-   in_p_redir_file = g_last_file_type(current->files, in_p_redir, 1);
+   IPR_file = g_last_file_type(current->files, IPR, 1);
    count_types_files(current);
    count_types_files(current);
-   if (in_p_redir_file && here_doc_files)
+   if (IPR_file && here_doc_files)
    {
-        if (here_doc_files->index > in_p_redir_file->index)
+        if (here_doc_files->index > IPR_file->index)
             return (here_doc_files);
-        return (in_p_redir_file);
+        return (IPR_file);
    }
-   if (in_p_redir_file)
-        return (in_p_redir_file);
+   if (IPR_file)
+        return (IPR_file);
    return (here_doc_files);
 }

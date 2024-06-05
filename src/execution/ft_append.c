@@ -7,7 +7,7 @@
 //     node = current;
 //     while (node != NULL)
 //     {
-//         if (node->type == in_p_redir)
+//         if (node->type == IPR)
 //             node->error = -1;
 //         node = node->next;
 //     }
@@ -42,7 +42,7 @@
 //     current = files;
 //     if (current->name)
 //     {
-//         while (current->next != NULL && current->type == apnd_op_redir && current->made == 0)
+//         while (current->next != NULL && current->type == APOR && current->made == 0)
 //         {
 //             fd = open(current->name, O_WRONLY | O_APPEND | O_CREAT ,  07777);
 //             if (fd < 0)
@@ -51,7 +51,7 @@
 //             current->made = -1;
 //             current = current->next;
 //         }
-//         if (current->name && current->type == apnd_op_redir && current->next == NULL && current->made == 0)
+//         if (current->name && current->type == APOR && current->next == NULL && current->made == 0)
 //             return (ft_append_fd(current));
 //         return (-1);
 //     }
@@ -66,7 +66,7 @@ int print_error(t_files *current)
     node = current;
     while (node != NULL)
     {
-        if (node->type == in_p_redir)
+        if (node->type == IPR)
             node->error = -1;
         node = node->next;
     }
@@ -96,7 +96,7 @@ int ft_append(t_files *files)
     {
         while (current != NULL)
         {   
-            if (current->type == apnd_op_redir)
+            if (current->type == APOR)
                 ft_append_fd(current);
             current = current->next;
         }

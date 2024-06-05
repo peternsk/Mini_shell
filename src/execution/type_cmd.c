@@ -26,11 +26,11 @@ int is_files(char *s)
     if (ft_strcmp(s, "<<") == true)
         return (here_doc);
     if (ft_strcmp(s, ">>")== true)
-        return (apnd_op_redir);
+        return (APOR);
     if (ft_strcmp(s, ">") == true)
-        return (out_p_redir);
+        return (OPR);
     if (ft_strcmp(s, "<") == true)
-        return (in_p_redir);
+        return (IPR);
     return (-1);
 }
 

@@ -38,8 +38,11 @@ bool	prs_ast_pipe(t_token **lst)
 	current = *lst;
 	while(current != NULL)
 	{
-		if((current->type == pipe_ && (current->prev == NULL ||  current->next == NULL)) || current->type == dbl_pipe_)
+		if((current->type == pipe_ && (current->prev == NULL ||  current->next == NULL)) || current->type == DBLP)
+		{
+			printf("prs_ast_pipe\n");
 			return(false);
+		}
 		current = current->next;
 	}
 	return(true);
@@ -50,13 +53,18 @@ bool	prs_ast_redir(t_token **lst)
 	t_token *current;
 
 	current = *lst;
-	printf("IN HERE\n");
 	while(current != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))
+		if((current->type >= OPR && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))
+		{
+			printf("prs_ast_redir\n");
 			return(false);
-		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->next == NULL))
+		}
+		if((current->type >= OPR && current->type <= here_doc ) && (current->next == NULL))
+		{
+			printf("prs_ast_redir\n");
 			return(false);
+		}
 		current = current->next;
 	}
 	return(true);
@@ -65,24 +73,18 @@ bool	prs_ast_redir(t_token **lst)
 
 bool	prs_ast_dlb_meta(t_token **lst)
 {
-	t_token *current;
+	t_token *cur;
 
-	current = *lst;
-
-	while(current != NULL)
+	cur = *lst;
+	while(cur != NULL)
 	{
-		if(current)
-		{
-			if(current->type >= out_p_redir && current->type <= dbl_et)
-			{
-				if(current->next && (current->next->type >= apnd_op_redir && current->next->type <= dbl_et))
-				return(false);
-			}
-		}
-		else if((current->type >= out_p_redir && current->type <= dbl_et) && (current->prev == NULL) && (current->next == NULL))
+		if((cur && (cur->type >= OPR && cur->type <= DBLE)) && (cur->next && (cur->next->type == here_doc)))
+			cur = cur->next;
+		if((cur && (cur->type >= OPR && cur->type <= DBLE)) && (cur->next && (cur->next->type == APOR || (cur->next->type >= pipe_ && cur->next->type <= DBLE))))
 			return(false);
-		current = current->next;
-	
+		else if((cur->type >= OPR && cur->type <= DBLE) && (cur->prev == NULL) && (cur->next == NULL))
+			return(false);
+		cur = cur->next;
 	}
 	return(true);
 }
