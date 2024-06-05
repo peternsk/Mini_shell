@@ -50,6 +50,7 @@ char   **init_cmds(char **tmp, t_minish *m_s)
         cout_cmds_pipes(curr);
         run_commands(curr);
         tmp = list_to_tab(&curr->glob->envVarlst);
+		add_filename_unlnk_lst(&m_s->cmdLst, m_s);
     }
     return (tmp);
 }

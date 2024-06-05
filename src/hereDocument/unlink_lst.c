@@ -91,6 +91,7 @@ void	add_filename_unlnk_lst(t_cmdlts **cmd, t_minish *m_s)
 			create_filename_linklist(m_s, &tmp->redlst);
 			tmp = tmp->next;
 		}
+		unlnk_all_file(&m_s->unlnk_lst);
 }
 
 void	print_unlnk_Lst(t_unlnk **lst)

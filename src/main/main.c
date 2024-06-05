@@ -37,9 +37,6 @@ int		main(int ac, char **av, char **env)
 			{
 				build_and_exec(m_s);
 				tmp = init_cmds(tmp, m_s);
-				add_filename_unlnk_lst(&m_s->cmdLst, m_s);
-				print_unlnk_Lst(&m_s->unlnk_lst);
-				unlnk_all_file(&m_s->unlnk_lst);
 			}
 		}
 	}
