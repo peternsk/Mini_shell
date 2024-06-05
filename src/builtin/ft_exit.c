@@ -1,3 +1,4 @@
+
 #include "minishell.h"
 
 long long	ft_atoi_long(const char *str)
@@ -29,60 +30,60 @@ long long	ft_atoi_long(const char *str)
 	return (result * pos_neg_sign);
 }
 
-int ft_is_strdigit(char *str)
+int	ft_is_strdigit(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (str)
-    {
-        while (str[i] != '\0')
-        {
-            if (str[0] == '-' && i == 0)
-                i++;
-            if (str[i] != '\0')
-            {
-                if (ft_isdigit(str[i]) != 1)
-                    return (-1);
-            }
-            i++;
-        }
-        return (0);
-    }
-    return (-1);
-}
-void    expan_exit(char **av)
-{
-    long long _res;
-
-    if (ft_is_strdigit(av[1]) == 0)
-    {
-        _res = ft_atoi_long(av[1]);
-        if (_res >= INT_MAX || _res <= INT_MIN)
-            perror("exit\nnumeric argument required");
-        else 
-            exit((int)_res);
-    }
-    else
-        perror("exit\nnumeric argument required");
+	i = 0;
+	if (str)
+	{
+		while (str[i] != '\0')
+		{
+			if (str[0] == '-' && i == 0)
+				i++;
+			if (str[i] != '\0')
+			{
+				if (ft_isdigit(str[i]) != 1)
+					return (-1);
+			}
+			i++;
+		}
+		return (0);
+	}
+	return (-1);
 }
 
-void    ft_exit(t_cmd *exi)
+void	expan_exit(char **av)
 {
-    if (exi)
-    {
-        if (exi->av_cmd)
-        {
-            if (size(exi->av_cmd) > 2)
-                perror(exi->av_cmd[1]);
-            else
-            {
-                if (exi->av_cmd[1] == NULL)
-                    exit(0);
-                else
-                    expan_exit(exi->av_cmd);
-            }
-                
-        }
-    }
+	long long	_res;
+
+	if (ft_is_strdigit(av[1]) == 0)
+	{
+		_res = ft_atoi_long(av[1]);
+		if (_res >= INT_MAX || _res <= INT_MIN)
+			perror("exit\nnumeric argument required");
+		else
+			exit((int)_res);
+	}
+	else
+		perror("exit\nnumeric argument required");
+}
+
+void	ft_exit(t_cmd *exi)
+{
+	if (exi)
+	{
+		if (exi->av_cmd)
+		{
+			if (size(exi->av_cmd) > 2)
+				perror(exi->av_cmd[1]);
+			else
+			{
+				if (exi->av_cmd[1] == NULL)
+					exit(0);
+				else
+					expan_exit(exi->av_cmd);
+			}
+		}
+	}
 }

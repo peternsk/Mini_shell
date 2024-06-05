@@ -2,8 +2,8 @@
 
 NAME    	= minishell
 CC      	= gcc
-# FLAGS   	= -Wall -Wextra -Werror -g -fsanitize=address
-FLAGS   	= -Wall -Wextra -fsanitize=address
+FLAGS   	= -Wall -Wextra -Werror -g -fsanitize=address
+# FLAGS   	= -Wall -Wextra -fsanitize=address
 # FLAGS   	= -Wall -Werror -Wextra -g
 RM      	= rm -rf
 
@@ -18,15 +18,15 @@ LIBFT_LIB = ${LIBFT_DIR}/libft.a
 SRCS_DIR 	= src
 OBJS_DIR	= obj
 
-BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
+BUILTIN     =   ft_pwd ft_cd add_envp print_envp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
 
-BUILDER		= 	ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
+BUILDER		= 	ft_remove_quotes set_comd_lst ft_buildCmdArr merge_token ft_buildRedlst
 
 EXECUTION	=	init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande
 
 EXT_STATUS	=	createList
 
-ENV			=	set_env findVarEnv exp_split ft_expend list2tab
+ENV			=	set_env find_var_env exp_split ft_expend list2tab
 
 # HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 HERE_DOC	=   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc unlink_lst
@@ -39,7 +39,7 @@ PARSER		= 	ft_parsing setFile printRealList
 
 SIGNALS		= 	manage_signal
 
-UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
+UTILS		=	struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_end_token free_function ft_search_char
 
 MAIN		=	build_and_exec main
 

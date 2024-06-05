@@ -2,15 +2,15 @@
 
 void    ft_here_exitStatus(t_heredoc *token, t_minish *m_s)
 {
-    char *exitCode;
+    char *exit_code;
     (void)m_s;
     
-    exitCode = ft_itoa(exit_status);
-    token->expstr = ft_strjoin(token->expstr, exitCode);
+    exit_code = ft_itoa(g_exit_status);
+    token->expstr = ft_strjoin(token->expstr, exit_code);
     m_s->e = m_s->e + 2;
     m_s->s = m_s->e;
     add_garbage(token->expstr);
-    free(exitCode);
+    free(exit_code);
 }
 
 void    replace_here_str(t_heredoc *node)
@@ -24,8 +24,8 @@ void    replace_here_str(t_heredoc *node)
 
 void    hereExp(t_heredoc *node, t_env **lst, t_minish *m_s)
 {
-    char *tmpKey;
-    char *tmpExp;
+    char *tmp_key;
+    char *tmp_exp;
     
     reset_ms(node, m_s);
     while(node->str[m_s->e])
@@ -34,37 +34,37 @@ void    hereExp(t_heredoc *node, t_env **lst, t_minish *m_s)
             ft_here_exitStatus(node, m_s);
         if(node->str[m_s->e] == '$' && (node->str[m_s->e + 1] != '\0'))
         {
-            tmpKey = find_here_key(node, m_s);
-            if(find_key_in_list(lst, tmpKey) == true)
-                findVarEnv(lst, &node->expstr, tmpKey);
+            tmp_key = find_here_key(node, m_s);
+            if(find_key_in_list(lst, tmp_key) == true)
+                find_var_env(lst, &node->expstr, tmp_key);
             m_s->s = m_s->e;
         }
         if(node->str[m_s->e] != '$')
         {
             while(node->str[m_s->e] && node->str[m_s->e] != '$')
                 m_s->e = m_s->e + 1;
-            tmpExp = ft_substr(node->str, m_s->s, (m_s->e - m_s->s));
-            node->expstr = ft_strjoin(node->expstr, tmpExp);
+            tmp_exp = ft_substr(node->str, m_s->s, (m_s->e - m_s->s));
+            node->expstr = ft_strjoin(node->expstr, tmp_exp);
             add_garbage(node->expstr);
-            free(tmpExp);
+            free(tmp_exp);
         }
     }
     replace_here_str(node);
 }
 
-void	herelist_exp(t_heredoc **lst, t_env **envVarlst, t_minish *m_s)
+void	herelist_exp(t_heredoc **lst, t_env **env_varlst, t_minish *m_s)
 {
 	t_heredoc *last;
-	t_env *curEnv;
+	t_env *cur_env;
 	
 	last = *lst;
-	curEnv = *envVarlst;
+	cur_env = *env_varlst;
 	if(last == NULL)
 		printf("empty list change\n");
 	while(last != NULL)
 	{
         if(char_search(last->str, '$') == true)
-            hereExp(last, &curEnv, m_s);
+            hereExp(last, &cur_env, m_s);
 		last = last->next;
 	}
 }

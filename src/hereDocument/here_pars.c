@@ -9,21 +9,21 @@ bool        end_key(char c)
 
 char        *find_here_key(t_heredoc *node, t_minish *m_s)
 {
-    char    *tmpKey;
+    char    *tmp_key;
 
-    tmpKey = NULL;
+    tmp_key = NULL;
     m_s->e = m_s->e + 1;
     m_s->s = m_s->e;
     while(node->str[m_s->e] && (node->str[m_s->e] != '$' && is_space(node->str[m_s->e]) == false && end_key(node->str[m_s->e]) == false))
         m_s->e++;
     if(m_s->e > m_s->s)
     {
-        tmpKey = (char *)malloc_and_add((sizeof(char) * (m_s->e - m_s->s)) + 1);
-        if(!tmpKey)
+        tmp_key = (char *)malloc_and_add((sizeof(char) * (m_s->e - m_s->s)) + 1);
+        if(!tmp_key)
             return(0);
-        ft_strncpy(tmpKey, (node->str + m_s->s), (m_s->e - m_s->s));
+        ft_strncpy(tmp_key, (node->str + m_s->s), (m_s->e - m_s->s));
     }
-    return(tmpKey);
+    return(tmp_key);
 }
 
 

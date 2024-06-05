@@ -14,7 +14,7 @@ void    send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files, int index
     {
         if (tmp->made == false)
         {
-            herelist_exp(lst, &m_s->envVarlst, m_s);
+            herelist_exp(lst, &m_s->env_varlst, m_s);
             ft_putstr_fd(tmp->str, fd);
             tmp->made = true;
         }

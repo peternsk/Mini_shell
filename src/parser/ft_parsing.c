@@ -93,8 +93,8 @@ bool    ft_lexer(t_token **lst)
 {
     if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
 	{
-		exit_status = 0;
-		exit_status = exit_status + 2;
+		g_exit_status = 0;
+		g_exit_status = g_exit_status + 2;
 		perror("bash: syntax error near unexpected token");
 		return(false);
 	}

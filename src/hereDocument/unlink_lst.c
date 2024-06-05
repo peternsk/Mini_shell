@@ -70,8 +70,8 @@ void	create_filename_linklist(t_minish *m_s, t_files **lst)
 	hereNbr = count_here_doc(lst);
 	while(tmp)
 	{
-		tmp->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(tmp->hereID));
-		if((tmp->type == here_doc) && (tmp->hereID < hereNbr) && tmp->here_count == 0)
+		tmp->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(tmp->heredoc_id));
+		if((tmp->type == here_doc) && (tmp->heredoc_id < hereNbr) && tmp->here_count == 0)
 			tmp->here_count = -1;
 		if((tmp->type == here_doc) && tmp->here_count == 0)
 		{

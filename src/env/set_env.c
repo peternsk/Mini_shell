@@ -2,22 +2,22 @@
 
 #include "minishell.h"
 
-t_env 	*intEnvVar(t_env *node, char *env_row)
+t_env	*int_env_var(t_env *node, char *env_row)
 {
-    char **envTab;
-    
+	char	**env_tab;
+
 	node = malloc_and_add(sizeof(t_env));
-	if(!node)
-		return(0);
+	if (!node)
+		return (0);
 	node->prev = NULL;
 	node->next = NULL;
-	if(ft_search_char(env_row, '=') == true)
+	if (ft_search_char(env_row, '=') == true)
 	{
-    	envTab = ft_split(env_row, '=');
-		add_garbage_arr(envTab);
-    	node->key = ft_strdup(envTab[0]);
+		env_tab = ft_split(env_row, '=');
+		add_garbage_arr(env_tab);
+		node->key = ft_strdup(env_tab[0]);
 		add_garbage(node->key);
-    	node->value = ft_strdup(envTab[1]);
+		node->value = ft_strdup(env_tab[1]);
 		add_garbage(node->value);
 		node->eql_sign = true;
 	}
@@ -28,45 +28,45 @@ t_env 	*intEnvVar(t_env *node, char *env_row)
 		node->value = NULL;
 		node->eql_sign = false;
 	}
-	return(node);
+	return (node);
 }
 
 void	add_var_to_end(t_env **lst, t_env *var)
 {
 	t_env	*last;
-	
-	if(!lst)
-		return;
-	if(*lst == NULL)
+
+	if (!lst)
+		return ;
+	if (*lst == NULL)
 	{
 		*lst = var;
 		var->next = NULL;
-		return;	
+		return ;
 	}
 	last = *lst;
-	while(last->next != NULL)
+	while (last->next != NULL)
 		last = last->next;
 	last->next = var;
-	var->prev =last;
+	var->prev = last;
 }
 
-t_env     *create_var(t_minish *m_s, char *env_row)
+t_env	*create_var(t_minish *m_s, char *env_row)
 {
-	t_env *var;
+	t_env	*var;
 
 	var = NULL;
-    add_var_to_end(&m_s->envVarlst, intEnvVar(var, env_row));
-    return(m_s->envVarlst);
+	add_var_to_end(&m_s->env_varlst, int_env_var(var, env_row));
+	return (m_s->env_varlst);
 }
 
 void	print_env_lst(t_env *lst)
 {
-	t_env *last;
-	
+	t_env	*last;
+
 	last = lst;
-	if(last == NULL )
+	if (last == NULL)
 		printf("empty list\n");
-	while(last != NULL)
+	while (last != NULL)
 	{
 		printf("========== token ==============\n");
 		printf("= token prev  : %p           \n", last->prev);
@@ -80,18 +80,18 @@ void	print_env_lst(t_env *lst)
 	}
 }
 
-void       set_env_lst(t_minish *m_s, char **env)
+void	set_env_lst(t_minish *m_s, char **env)
 {
-    int i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	if (env)
 	{
-		while(env[i] != NULL)
+		while (env[i] != NULL)
 		{
 			create_var(m_s, env[i]);
 			i++;
 		}
 	}
-    // print_env_lst(m_s->envVarlst);
+	// print_env_lst(m_s->env_varlst);
 }

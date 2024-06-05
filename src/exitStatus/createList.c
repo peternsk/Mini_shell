@@ -30,7 +30,7 @@ void	add_exit_to_end(t_exit_code **lst, t_exit_code *var)
 	var->prev =last;
 }
 
-t_exit_code     *create_exitCode_lst(t_minish *m_s, pid_t extCode)
+t_exit_code     *create_exit_code_lst(t_minish *m_s, pid_t extCode)
 {
 	t_exit_code *hereNode;
 

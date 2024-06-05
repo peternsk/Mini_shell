@@ -14,12 +14,12 @@ t_token 	*set_token(t_token *token, t_minish *m_s)
 	ft_strncpy(token->value, &m_s->input[m_s->s], ((m_s->e + 1) - m_s->s));
 	token->type = -1;
 	assign_type(token, m_s);
-	token->expValue = NULL;
+	token->exp_value = NULL;
 	m_s->index = m_s->index + 1;
-	token->endToken = FLAG_OFF;
+	token->end_token = FLAG_OFF;
 	token->to_merge = FLAG_OFF;
-	token->setToCmd = FLAG_OFF;
-	ft_endToken(token, m_s);
+	token->set_to_cmd = FLAG_OFF;
+	ft_end_token(token, m_s);
 	token->next = NULL;
 	return(token);
 }

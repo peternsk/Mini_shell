@@ -15,7 +15,7 @@ void    wait_childs(t_cmd *cmds)
             manage_signal(-1);
             curr = curr->next;
         }
-        exit_status = get_code(code);
+        g_exit_status = get_code(code);
     }
 }
 int	get_code(int exit_code)

@@ -1,47 +1,48 @@
 #include "minishell.h"
 
-
-int		ft_countArrayspace(t_token **lst)
+int	ft_countArrayspace(t_token **lst)
 {
-	t_token *last;
-	int	arrSpc;
+	t_token	*last;
+	int		arrSpc;
 
 	last = *lst;
 	arrSpc = 1;
-	while(last && last->type != pipe_)
+	while (last && last->type != pipe_)
 	{
-		if(last->type == argument && last->endToken == 1 && last->setToCmd == FLAG_OFF)
+		if (last->type == argument && last->end_token == 1
+			&& last->set_to_cmd == FLAG_OFF)
 			arrSpc++;
 		last = last->next;
 	}
-	return(arrSpc);
+	return (arrSpc);
 }
 
-void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
+void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
 {
-	t_token *curTok;
-	t_cmdlts *curCmd;
-	int i;
-	
-	curTok = *toklst;
-	curCmd = *cmdlst;
+	t_token		*cur_tok;
+	t_cmdlts	*cur_cmd;
+	int			i;
+
+	cur_tok = *toklst;
+	cur_cmd = *comd_lst;
 	i = -1;
-	while(curTok)
+	while (cur_tok)
 	{
-		if(curTok && (curTok->type >= command && curTok->type <= DQA))
+		if (cur_tok && (cur_tok->type >= command && cur_tok->type <= DQA))
 		{
-			curCmd->command[++i] = ft_strdup(curTok->value);
-			add_garbage(curCmd->command[i]);
+			cur_cmd->command[++i] = ft_strdup(cur_tok->value);
+			add_garbage(cur_cmd->command[i]);
 		}
-		else if(curTok && (curTok->type >= OPR && curTok->type <= here_doc))
-			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value, m_s));
-		else if(curTok && curTok->type == pipe_)
+		else if (cur_tok && (cur_tok->type >= OPR && cur_tok->type <= here_doc))
+			add_red_node_to_end(&cur_cmd->redlst, set_red(cur_tok->value,
+					cur_tok->next->value, m_s));
+		else if (cur_tok && cur_tok->type == pipe_)
 		{
-			curCmd->command[++i] = NULL;
+			cur_cmd->command[++i] = NULL;
 			i = -1;
-			curCmd = curCmd->next;
+			cur_cmd = cur_cmd->next;
 		}
-		curTok = curTok->next;
+		cur_tok = cur_tok->next;
 	}
-	curCmd->command[++i] = NULL;
+	cur_cmd->command[++i] = NULL;
 }

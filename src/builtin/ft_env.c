@@ -1,12 +1,14 @@
+
 #include "minishell.h"
 
-void    ft_env(t_cmd *env)
+void	ft_env(t_cmd *env)
 {
-    if(!env->glob->envVarlst)
-        return;
-    while(env->glob->envVarlst && env->glob->envVarlst->eql_sign == true)
-    {
-        printf("%s=%s\n", env->glob->envVarlst->key, env->glob->envVarlst->value);
-        env->glob->envVarlst = env->glob->envVarlst->next;
-    }
+	if (!env->glob->env_varlst)
+		return ;
+	while (env->glob->env_varlst && env->glob->env_varlst->eql_sign == true)
+	{
+		printf("%s=%s\n", env->glob->env_varlst->key,
+			env->glob->env_varlst->value);
+		env->glob->env_varlst = env->glob->env_varlst->next;
+	}
 }

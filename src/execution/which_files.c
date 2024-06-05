@@ -25,7 +25,7 @@ void    on_expand(t_cmd *now_shine)
     while (now_shine != NULL)
     {
         run_here_redlst(now_shine->glob, &now_shine->files);
-        herelist_exp(&now_shine->glob->herelst, &now_shine->glob->envVarlst, now_shine->glob);
+        herelist_exp(&now_shine->glob->herelst, &now_shine->glob->env_varlst, now_shine->glob);
         now_shine = now_shine->next;
     }
            

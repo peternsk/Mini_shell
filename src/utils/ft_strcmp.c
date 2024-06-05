@@ -2,12 +2,12 @@
 
 #include "minishell.h"
 
-bool    ft_strcmp(char *tmpKey, char *envKey)
+bool    ft_strcmp(char *tmp_key, char *envKey)
 {
     int i;
     char *newKey;
     i = 0;
-    newKey = ft_strtrim(tmpKey, "\"");
+    newKey = ft_strtrim(tmp_key, "\"");
     add_garbage(newKey);
     if(ft_strlen(newKey) != ft_strlen(envKey))
         return(false);

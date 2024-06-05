@@ -10,9 +10,9 @@ t_minish *init_ms()
 		return (NULL);
 	m_s->input = NULL;
 	m_s->token_lst = NULL;
-	m_s->envVarlst = NULL;
+	m_s->env_varlst = NULL;
 	m_s->update_envp = NULL;
-	m_s->cmdLst = NULL;
+	m_s->comd_lst = NULL;
 	m_s->tab_env = NULL;
 	m_s->herelst = NULL;
 	m_s->update_envp = NULL;
@@ -24,8 +24,8 @@ t_minish *init_ms()
 	m_s->in_redr_num = 0;
 	m_s->out_redr_num = 0;
 	m_s->read_flag = 0;
-	m_s->cmdAllSet = 0;
-	m_s->cmdCounter = 0;
+	m_s->cmd_all_set = 0;
+	m_s->cmd_counter = 0;
     m_s->s = 0;
     m_s->e = 0;
 	return(m_s);

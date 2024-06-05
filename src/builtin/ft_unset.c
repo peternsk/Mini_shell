@@ -1,96 +1,97 @@
+
 #include "minishell.h"
 
-t_env *free_node(t_env *env)
+t_env	*free_node(t_env *env)
 {
-    if (env)
-    {
-        free(env->key);
-        free(env->value);
-        free(env);
-    }
-    return (NULL);
-}
-void    remove_from_env(t_env *node, int remove)
-{
-    int     index;
-    t_env   *current;
-    t_env   *n_node;
-
-    index = 0;
-    current = node;
-    n_node = NULL;
-    while (current != NULL && index != remove)
-    {
-        index++;
-        n_node = current;
-        current = current->next;
-    }
-    if (current == NULL)
-        return ;
-    n_node->next = current->next;
-    current = free_node(current);
+	if (env)
+	{
+		free(env->key);
+		free(env->value);
+		free(env);
+	}
+	return (NULL);
 }
 
-void    index_search_env(char **env, int index)
+void	remove_from_env(t_env *node, int remove)
 {
-    int i;
+	int		index;
+	t_env	*current;
+	t_env	*n_node;
 
-    i = 0;
-    while (env[i] != NULL)
-    {
-        if (i == index)
-        {
-            printf(":::::::::::::::::::::::::::[%s]\n", env[i]);
-            return ;
-        }
-        i++;
-    }
+	index = 0;
+	current = node;
+	n_node = NULL;
+	while (current != NULL && index != remove)
+	{
+		index++;
+		n_node = current;
+		current = current->next;
+	}
+	if (current == NULL)
+		return ;
+	n_node->next = current->next;
+	current = free_node(current);
 }
 
-char    *copy_key_pars_unset(char *str)
+void	index_search_env(char **env, int index)
 {
-    int     i;
-    char    *new;
+	int	i;
 
-    i = 0;
-    new = NULL;
-    if (str)
-    {
-        while (str[i] != '\0' && str[i] == '=')
-            i++;
-        new = malloc(sizeof(char *)  * (i + 1) );
-        if (!new)
-            return (NULL);
-        i = 0;
-        while (str[i] != '\0' && str[i] != '=')
-        {
-            new[i] = str[i];
-            i++;
-        }
-        new[i] = '\0';
-    }
-    return (new);
+	i = 0;
+	while (env[i] != NULL)
+	{
+		if (i == index)
+		{
+			printf(":::::::::::::::::::::::::::[%s]\n", env[i]);
+			return ;
+		}
+		i++;
+	}
 }
 
-void ft_unset(t_cmd *unset)
+char	*copy_key_pars_unset(char *str)
 {
-    t_env   *linked_node;
-    int     i;
-    int     remove;
+	int		i;
+	char	*new;
 
-    linked_node = unset->glob->envVarlst;
-    i = 1;
-    remove = 0;
-    while (unset->av_cmd[i] != NULL)
-    {
+	i = 0;
+	new = NULL;
+	if (str)
+	{
+		while (str[i] != '\0' && str[i] == '=')
+			i++;
+		new = malloc(sizeof(char *) * (i + 1));
+		if (!new)
+			return (NULL);
+		i = 0;
+		while (str[i] != '\0' && str[i] != '=')
+		{
+			new[i] = str[i];
+			i++;
+		}
+		new[i] = '\0';
+	}
+	return (new);
+}
 
-        remove = is_same_key(linked_node, copy_key_pars_unset(unset->av_cmd[i]));
-        if (remove > -1)
-        {
-            remove_from_env(linked_node, remove);
-            return ;
-        }
+void	ft_unset(t_cmd *unset)
+{
+	t_env	*linked_node;
+	int		i;
+	int		remove;
 
-        linked_node = linked_node->next;
-    }
+	linked_node = unset->glob->env_varlst;
+	i = 1;
+	remove = 0;
+	while (unset->av_cmd[i] != NULL)
+	{
+		remove = is_same_key(linked_node,
+				copy_key_pars_unset(unset->av_cmd[i]));
+		if (remove > -1)
+		{
+			remove_from_env(linked_node, remove);
+			return ;
+		}
+		linked_node = linked_node->next;
+	}
 }
