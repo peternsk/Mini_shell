@@ -16,3 +16,16 @@ void	free_list(t_token **list)
 		*list = NULL;
 	}
 }
+
+void	free_tabl(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}

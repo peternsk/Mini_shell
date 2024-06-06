@@ -127,7 +127,7 @@ void			ft_cmd_builder(t_minish *m_s, t_token **toklst,
 
 /*---- REDIRECTION ----*/
 t_files			*set_red(char *redtype, char *filename, t_minish *m_s);
-void			add_red_node_to_end(t_files **lst, t_files *red_node);
+void			rd_end(t_files **lst, t_files *red_node);
 int				count_nbred_node(t_token **lst);
 void			print_red_lst(t_files **lst);
 
@@ -145,7 +145,9 @@ bool			ft_strcmp(char *tmp_key, char *envKey);
 char			*ft_combine(char *s1, char *s2);
 void			ft_end_token(t_token *token, t_minish *m_s);
 void			free_list(t_token **list);
+void			free_tabl(char **map);
 bool			ft_search_char(char *str, char c);
+char			*ft_int_to_ascii(int n);
 
 /*====================================================*/
 /*=                  HERE DOCUMENT                   =*/

@@ -27,7 +27,7 @@ t_files	*set_red(char *redtype, char *filename, t_minish *m_s)
 	return (red_node);
 }
 
-void	add_red_node_to_end(t_files **lst, t_files *red_node)
+void	rd_end(t_files **lst, t_files *red_node)
 {
 	t_files	*last;
 

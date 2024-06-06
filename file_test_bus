@@ -1,1 +1,8 @@
-test4
+src/main/main.c: Error!
+Error: TOO_MANY_LINES       (line:  44, col:   1):      Function has more than 25 line
+
+src/parser/print_real_list.c: Error!
+Error: TOO_MANY_LINES       (line:  34, col:   1):      Function has more than 25 lines
+
+src/builder/ft_buildCmdArr.c: Error!
+Error: TOO_MANY_LINES       (line:  48, col:   1):      Function has more than 25 lines

@@ -2,7 +2,7 @@
 
 NAME        = minishell
 CC          = gcc
-FLAGS       = -Wall -Wextra -Werror -g
+FLAGS       = -Wall -Wextra -Werror -g #-fsanitize=address
 # FLAGS     = -Wall -Wextra -fsanitize=address
 # FLAGS     = -Wall -Werror -Wextra -g
 RM          = rm -rf
@@ -39,7 +39,7 @@ PARSER      =   ft_parsing set_file print_real_list
 
 SIGNALS     =   manage_signal
 
-UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
+UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char ft_int_to_asc
 
 MAIN        =   build_and_exec main
 
@@ -117,3 +117,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#---  make && valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes --suppressions=sup.txt ./minishell ---#

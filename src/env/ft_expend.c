@@ -1,5 +1,4 @@
 
-
 #include "minishell.h"
 
 static void	phase_one_exp(t_token *token, t_minish *m_s)
@@ -25,16 +24,32 @@ static void	ft_exit_status(t_token *token, t_minish *m_s)
 	free(exit_code);
 }
 
+static	void	ft_last_phase(t_token *token, t_minish *m_s)
+{
+	char	*tmp_exp;
+
+	while (token->value[m_s->e] && token->value[m_s->e] != '$')
+		m_s->e = m_s->e + 1;
+	tmp_exp = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
+	token->exp_value = ft_strjoin(token->exp_value, tmp_exp);
+	add_garbage(token->exp_value);
+	free(tmp_exp);
+}
+
 void	ft_expend(t_token *token, t_env **lst, t_minish *m_s)
 {
 	char	*tmp_key;
 	char	*tmp_exp;
 
+	tmp_key = NULL;
+	tmp_exp = NULL;
 	phase_one_exp(token, m_s);
 	while (token->value[m_s->e])
 	{
 		if (token->value[m_s->e] == '$' && token->value[m_s->e + 1] == '?')
 			ft_exit_status(token, m_s);
+		if (token->value[m_s->e] == '$' && (token->value[m_s->e + 1] == '\0'))
+			m_s->e++;
 		if (token->value[m_s->e] == '$' && (token->value[m_s->e + 1] != '\0'))
 		{
 			tmp_key = find_tmp_key(token, m_s);
@@ -43,14 +58,7 @@ void	ft_expend(t_token *token, t_env **lst, t_minish *m_s)
 			m_s->s = m_s->e;
 		}
 		if (token->value[m_s->e] != '$')
-		{
-			while (token->value[m_s->e] && token->value[m_s->e] != '$')
-				m_s->e = m_s->e + 1;
-			tmp_exp = ft_substr(token->value, m_s->s, (m_s->e - m_s->s));
-			token->exp_value = ft_strjoin(token->exp_value, tmp_exp);
-			add_garbage(token->exp_value);
-			free(tmp_exp);
-		}
+			ft_last_phase(token, m_s);
 	}
 	replace_token(token);
 }

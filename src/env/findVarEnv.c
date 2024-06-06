@@ -70,6 +70,7 @@ char	*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key)
 			*tmpvalue = ft_strjoin(*tmpvalue, tmp_str);
 			add_garbage(tmpvalue);
 			free(tmp_str);
+			tmp_str = NULL;
 		}
 		cur_var = cur_var->next;
 	}

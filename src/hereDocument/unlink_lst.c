@@ -72,7 +72,8 @@ void	create_filename_linklist(t_minish *m_s, t_files **lst)
 	while (tmp)
 	{
 		tmp->name_here_doc = ft_strjoin("/tmp/heredoc",
-				ft_itoa(tmp->heredoc_id));
+				ft_int_to_ascii(tmp->heredoc_id));
+		add_garbage(tmp->name_here_doc);
 		if ((tmp->type == here_doc) && (tmp->heredoc_id < here_nbr)
 			&& tmp->here_count == 0)
 			tmp->here_count = -1;
