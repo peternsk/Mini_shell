@@ -45,6 +45,7 @@ void	here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
 			while (node->str[m_s->e] && node->str[m_s->e] != '$')
 				m_s->e = m_s->e + 1;
 			tmp_exp = ft_substr(node->str, m_s->s, (m_s->e - m_s->s));
+
 			node->expstr = ft_strjoin(node->expstr, tmp_exp);
 			add_garbage(node->expstr);
 			free(tmp_exp);
