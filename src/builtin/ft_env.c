@@ -2,11 +2,14 @@
 
 void    ft_env(t_cmd *env)
 {
+    t_env *curr;
     if(!env->glob->envVarlst)
         return;
-    while(env->glob->envVarlst && env->glob->envVarlst->eql_sign == true)
+
+    curr = env->glob->envVarlst;
+    while(curr  && curr->eql_sign == true)
     {
-        printf("%s=%s\n", env->glob->envVarlst->key, env->glob->envVarlst->value);
-        env->glob->envVarlst = env->glob->envVarlst->next;
+        printf("%s=%s\n", curr->key,curr->value);
+        curr = curr->next;
     }
 }

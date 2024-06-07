@@ -59,10 +59,12 @@ int      commands(t_cmd *cmds, char *envp_path)
     curr = cmds;
     while (curr != NULL && is_files_valide(cmds) == 0)
     {
+        signal(SIGINT, SIG_IGN);
+        signal(SIGQUIT, SIG_IGN); 
         curr->id = fork();
-        manage_signal(0);
         if (curr->id == 0)
         {
+            manage_signal(0);
             execute_command(curr, envp_path, array_pipe);
         }
         else if (curr->id < 0)

@@ -247,6 +247,7 @@ int         ft_append(t_files *file);
 t_files     *is_there_here_doc(t_cmd *current);
 void        pipe_connect_and_files(t_cmd *current, int **array_pipe);
 void        std_one_commande(t_cmd *current);
+t_files    *give_last_file_stdout(t_files *files);
 
 
 /*====================================================*/

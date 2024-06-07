@@ -17,11 +17,11 @@ void exit_here_doc()
 }
 void ctrl_quit_childs()
 {
-	return ;
+	exit(127);
 }
 void	ctrl_c_childs()
 {
-	return ;
+	exit(127);
 }
 void manage_signal (int id)
 {
@@ -29,13 +29,11 @@ void manage_signal (int id)
 	{
 		signal(SIGINT, ctrl_quit_childs);
 		signal(SIGQUIT, ctrl_quit_childs); 
-		return ;
 	}
 	else if (id == 3)
 	{
 		signal(SIGINT, exit_here_doc);
 		signal(SIGQUIT, SIG_IGN); 
-		return ;
 	}
 	if (id == -1)
 	{

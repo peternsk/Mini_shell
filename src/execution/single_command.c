@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-
 void cmd_path_error(int error_type, char *message)
 {
     write(error_type, "minishell: ", ft_strlen("minishell: "));
@@ -10,7 +9,7 @@ void cmd_path_error(int error_type, char *message)
 
 int execute_one_command(t_cmd *current, char **envp, char *envp_path)
 {
-     char	*cmd_path;
+    char	*cmd_path;
 
     if (!current)
         return (printf("current is NULL"), -1);
@@ -44,6 +43,9 @@ int     the_last_heredoc(t_cmd *cmd)
 
 int    single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
+    t_files *last;
+
+    last = NULL;
     if (cmd)
     {
         which_files(cmd);
@@ -52,18 +54,21 @@ int    single_command(t_cmd *cmd, char **envp, char *envp_path)
             handel_builtin(cmd);
         else if (cmd->type != -1 && cmd->is_file_on == 0)
         {
+            signal(SIGINT, SIG_IGN);
+            signal(SIGQUIT, SIG_IGN); 
             cmd->id = fork();
-            manage_signal(0);
             if (cmd->id == 0)
             {
+                manage_signal(0);
                 std_one_commande(cmd);
-                if (execute_one_command(cmd, envp, envp_path) == -1)
-                    return (-1);
+                execute_one_command(cmd, envp, envp_path);
             }
             else
                 wait_childs(cmd);
         }
-        return (1);
+        last = give_last_file_stdout(cmd->files);
+        if (last)
+            dup2(last->manage_fd, 1);
     }
     return (-1);   
 }

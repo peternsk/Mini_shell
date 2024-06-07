@@ -83,14 +83,11 @@ void ft_unset(t_cmd *unset)
     remove = 0;
     while (unset->av_cmd[i] != NULL)
     {
-
         remove = is_same_key(linked_node, copy_key_pars_unset(unset->av_cmd[i]));
         if (remove > -1)
         {
             remove_from_env(linked_node, remove);
-            return ;
         }
-
-        linked_node = linked_node->next;
+        i++;
     }
 }
