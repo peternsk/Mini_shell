@@ -11,9 +11,6 @@ void	set_and_update_env(t_minish *m_s, char **env, char **tmp)
 {
 	if (tmp)
 	{
-		printf("is not a NULL\n");
-		for (int i = 0; tmp[i] != NULL; i++)
-			printf("-- -- -- %s\n", tmp[i]);
 		set_env_lst(m_s, tmp);
 		int i = 0;
 		while(tmp[i] != NULL)
@@ -25,7 +22,6 @@ void	set_and_update_env(t_minish *m_s, char **env, char **tmp)
 	}
 	else
 	{
-		printf("the function is NULL\n");
 		set_env_lst(m_s, env);
 	}
 	tokenizer(m_s);
