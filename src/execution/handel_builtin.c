@@ -46,7 +46,6 @@ int handel_builtin(t_cmd *cmd)
 {
     int _res;
     
-    printf("buitin more commaade\n");
     _res = -1;
     if (cmd)
     {
