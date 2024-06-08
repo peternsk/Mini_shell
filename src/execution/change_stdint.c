@@ -25,7 +25,7 @@ int put_fd(t_files *current)
         fd = open(current->name, O_RDONLY);
         if (fd > -1)
             return (current->made = -1, close(fd), 0);
-        return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1,  -1);
+        return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1, exit_status = 1, -1);
     }
     return (0);
 }

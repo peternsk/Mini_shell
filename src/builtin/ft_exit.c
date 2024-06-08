@@ -38,7 +38,7 @@ int ft_is_strdigit(char *str)
     {
         while (str[i] != '\0')
         {
-            if (str[0] == '-' && i == 0)
+            if ((str[0] == '-' || str[0] == '+') && i == 0)
                 i++;
             if (str[i] != '\0')
             {
@@ -59,12 +59,15 @@ void    expan_exit(char **av)
     {
         _res = ft_atoi_long(av[1]);
         if (_res >= INT_MAX || _res <= INT_MIN)
-            perror("exit\nnumeric argument required");
+            write(2, "exit: numeric argument required\n", ft_strlen("exit: numeric argument required\n"));
         else 
             exit((int)_res);
     }
     else
-        perror("exit\nnumeric argument required");
+    {
+        write(2, "exit: numeric argument required\n", ft_strlen("exit: numeric argument required\n"));
+        exit(255);
+    }
 }
 
 void    ft_exit(t_cmd *exi)

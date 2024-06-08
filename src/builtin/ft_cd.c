@@ -43,8 +43,8 @@ void expansion_change_directory(t_cmd *cmd, char **pwd_change)
     {
         write(2, "minishell: ", ft_strlen("minishell: "));
         perror(cmd->av_cmd[1]);
+        exit_status = 1;
     }
-    // free le bhy
 }
 void    ft_cd(t_cmd *cmds)
 {
