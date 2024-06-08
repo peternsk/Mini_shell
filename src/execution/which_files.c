@@ -68,6 +68,23 @@ void	ticket_files(t_cmd *cmd)
 	check_last_files(cmd->files, OPR);
 }
 
+void	change_stdint_cmd(t_cmd *current)
+{
+	t_files	*out;
+	int		fd;
+
+	out = give_last_file_stdout(current->files);
+	if (out)
+	{
+		out->manage_fd = dup(1);
+		if (out->type == APOR)
+			fd = open(out->name, O_WRONLY | O_APPEND, 07777);
+		else
+			fd = open(out->name, O_WRONLY | O_CREAT | O_TRUNC, 07777);
+		dup2(fd, 1);
+		close(fd);
+	}
+}
 void	which_files(t_cmd *current)
 {
 	t_files	*files;
@@ -85,6 +102,8 @@ void	which_files(t_cmd *current)
 			{
 				ft_append(cmd->files);
 				change_stdout(cmd->files);
+				if (current->nb_cmds == 1)
+					change_stdint_cmd(current);
 			}
 		}
 		cmd = cmd->next;

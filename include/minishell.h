@@ -9,16 +9,16 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include "readline/history.h"
+# include "readline/readline.h"
 # include <string.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
-# include "readline/history.h"
-# include "readline/readline.h"
-# include <signal.h>
 # include <term.h>
 # include <unistd.h>
 /*====================================================*/
@@ -250,6 +250,7 @@ int				ft_append(t_files *file);
 t_files			*is_there_here_doc(t_cmd *current);
 void			pipe_connect_and_files(t_cmd *current, int **array_pipe);
 void			std_one_commande(t_cmd *current);
+t_files			*give_last_file_stdout(t_files *files);
 
 /*====================================================*/
 /*=                   EXIT STATUS                    =*/
