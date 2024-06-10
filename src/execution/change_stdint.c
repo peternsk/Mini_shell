@@ -17,17 +17,16 @@ int	put_error(t_files *current)
 
 int	put_fd(t_files *current)
 {
-	int	fd;
-
-	if (current->error == 0 && current->made == 0)
-	{
-		fd = open(current->name, O_RDONLY);
-		if (fd > -1)
-			return (current->made = -1, close(fd), 0);
-		return (put_error(current), perror(current->name), close(fd),
-			current->error = -1, current->made = -1, -1);
-	}
-	return (0);
+    int fd;
+    
+    if (current->error == 0 && current->made == 0)
+    {
+        fd = open(current->name, O_RDONLY);
+        if (fd > -1)
+            return (current->made = -1, close(fd), 0);
+        return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1, g_exit_status = 1, -1);
+    }
+    return (0);
 }
 
 int	change_stdint(t_files *files)

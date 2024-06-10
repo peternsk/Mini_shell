@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 int	check_same_(const char *s1, const char *s2, size_t n)

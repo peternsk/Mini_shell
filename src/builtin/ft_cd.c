@@ -35,18 +35,18 @@ char	*get_live_path(void)
 
 void	expansion_change_directory(t_cmd *cmd, char **pwd_change)
 {
-	if (chdir(cmd->av_cmd[1]) == 0)
-	{
-		pwd_change[2] = ft_strjoin("PWD=", get_live_path());
-		add_garbage(pwd_change[2]);
-		is_add_envp(cmd->glob->env_varlst, pwd_change);
-	}
-	else
-	{
-		write(2, "minishell: ", ft_strlen("minishell: "));
-		perror(cmd->av_cmd[1]);
-	}
-	// free le bhy
+    if (chdir(cmd->av_cmd[1]) == 0)
+    {
+        pwd_change[2] = ft_strjoin("PWD=", get_live_path());
+        add_garbage(pwd_change[2]);
+        is_add_envp(cmd->glob->env_varlst, pwd_change);
+    }
+    else 
+    {
+        write(2, "minishell: ", ft_strlen("minishell: "));
+        perror(cmd->av_cmd[1]);
+        g_exit_status = 1;
+    }
 }
 void	ft_cd(t_cmd *cmds)
 {

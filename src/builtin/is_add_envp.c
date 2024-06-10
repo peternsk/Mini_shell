@@ -74,22 +74,12 @@ char	*copy_key_pars(char *str)
 	}
 	return (new);
 }
-
-int	len_env(t_env *env)
+int is_valide(char *str)
 {
-	int	i;
-
-	i = 0;
-	if (env)
-	{
-		while (env != NULL)
-		{
-			i++;
-			env = env->next;
-		}
-	}
-	return (printf("----------------------------------------------------------------------------------------------------------------%d\n",
-			i), i);
+    (void)str;
+    // 123 no 
+    // 
+    return (0);
 }
 
 void	is_add_envp(t_env *old_envp, char **arg)
