@@ -20,7 +20,6 @@ t_files	*set_red(char *redtype, char *filename, t_minish *m_s)
 	{
 		red_node->heredoc_id = m_s->here_id;
 		m_s->here_id = m_s->here_id + 1;
-		// printf("we are look%d\n", redNode->hereID);
 	}
 	red_node->next = NULL;
 	red_node->manage_fd = -1;
@@ -58,26 +57,4 @@ int	count_nbred_node(t_token **lst)
 		token = token->next;
 	}
 	return (nb_redtok);
-}
-
-void	print_red_lst(t_files **lst)
-{
-	t_files	*last;
-
-	last = *lst;
-	if(last == NULL)
-	{	
-		// printf("-------------------------------\n");
-		// printf("- " RED "EMPTY RED LIST  " RESET "  \n");
-		// printf("-------------------------------\n");
-	}
-	while (last != NULL)
-	{
-		// printf("-------------------------------\n");
-		// printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
-		// printf("= RED->ARG       :" GRN " %d" RESET "         \n", last->type);
-		// printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->name);
-		last = last->next;
-	}
-	// printf("-------------------------------\n");
 }

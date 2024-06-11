@@ -35,35 +35,36 @@ char	*get_live_path(void)
 
 void	expansion_change_directory(t_cmd *cmd, char **pwd_change)
 {
-    if (chdir(cmd->av_cmd[1]) == 0)
-    {
-        pwd_change[2] = ft_strjoin("PWD=", get_live_path());
-        add_garbage(pwd_change[2]);
-        is_add_envp(cmd->glob->env_varlst, pwd_change);
-        g_exit_status = 0;
-    }
-    else 
-    {
-        write(2, "minishell: ", ft_strlen("minishell: "));
-        perror(cmd->av_cmd[1]);
-        g_exit_status = 1;
-    }
+	if (chdir(cmd->av_cmd[1]) == 0)
+	{
+		pwd_change[2] = ft_strjoin("PWD=", get_live_path());
+		add_garbage(pwd_change[2]);
+		is_add_envp(cmd->glob->env_varlst, pwd_change);
+		g_exit_status = 0;
+	}
+	else
+	{
+		write(2, "minishell: ", ft_strlen("minishell: "));
+		perror(cmd->av_cmd[1]);
+		g_exit_status = 1;
+	}
 }
+
 void	ft_cd(t_cmd *cmds)
 {
 	char	**pwd_change;
 
-    pwd_change = (char **)malloc(sizeof(char *) * 4);
-    pwd_change[0] = ft_strdup("cd\0");
-    pwd_change[3] =  NULL;
-    pwd_change[1] = ft_strjoin("OLDPWD=", get_live_path());
-    if (!cmds->av_cmd[1])
-    {
-        chdir(from_envp_get_home(cmds->envp));
-        pwd_change[2] =  ft_strjoin("PWD=", get_live_path());
-        is_add_envp(cmds->glob->env_varlst, pwd_change);
-        g_exit_status = 0;
-    }
-    else 
-        expansion_change_directory(cmds, pwd_change);
+	pwd_change = (char **)malloc(sizeof(char *) * 4);
+	pwd_change[0] = ft_strdup("cd\0");
+	pwd_change[3] = NULL;
+	pwd_change[1] = ft_strjoin("OLDPWD=", get_live_path());
+	if (!cmds->av_cmd[1])
+	{
+		chdir(from_envp_get_home(cmds->envp));
+		pwd_change[2] = ft_strjoin("PWD=", get_live_path());
+		is_add_envp(cmds->glob->env_varlst, pwd_change);
+		g_exit_status = 0;
+	}
+	else
+		expansion_change_directory(cmds, pwd_change);
 }

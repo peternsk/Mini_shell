@@ -59,27 +59,6 @@ t_env	*create_var(t_minish *m_s, char *env_row)
 	return (m_s->env_varlst);
 }
 
-void	print_env_lst(t_env *lst)
-{
-	t_env	*last;
-
-	last = lst;
-	if (last == NULL)
-		printf("empty list\n");
-	while (last != NULL)
-	{
-		// printf("========== token ==============\n");
-		// printf("= token prev  : %p           \n", last->prev);
-		// printf("= token key   : %s          \n", last->key);
-		// printf("= token value : %s          \n", last->value);
-		// printf("= token next  : %p           \n", last->next);
-		// printf("===============================\n");
-		// printf("                 =\n");
-		// printf("                 =\n");
-		last = last->next;
-	}
-}
-
 void	set_env_lst(t_minish *m_s, char **env)
 {
 	int	i;
@@ -93,5 +72,4 @@ void	set_env_lst(t_minish *m_s, char **env)
 			i++;
 		}
 	}
-	// print_env_lst(m_s->env_varlst);
 }

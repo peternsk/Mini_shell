@@ -1,36 +1,5 @@
 #include "minishell.h"
 
-void	begin_set_env_var(void)
-{
-	// printf("                 =\n");
-	// printf("                 =\n");
-	// printf("===============================\n");
-	// printf("=       Setting env var       =\n");
-	// printf("===============================\n");
-	// printf("                 =\n");
-	// printf("                 =\n");
-}
-
-void	begin_parsing(void)
-{
-	// printf("                 =\n");
-	// printf("                 =\n");
-	// printf("===============================\n");
-	// printf("=             PARSER          =\n");
-	// printf("===============================\n");
-	// printf("                 =\n");
-	// printf("                 =\n");
-}
-
-void	begin_lexing(void)
-{
-	// printf("===============================\n");
-	// printf("=              LEXER          =\n");
-	// printf("===============================\n");
-	// printf("                 =\n");
-	// printf("                 =\n");
-}
-
 bool	prs_ast_pipe(t_token **lst)
 {
 	t_token	*current;
@@ -41,7 +10,6 @@ bool	prs_ast_pipe(t_token **lst)
 		if ((current->type == pipe_ && (current->prev == NULL
 					|| current->next == NULL)) || current->type == DBLP)
 		{
-			// printf("prs_ast_pipe\n");
 			return (false);
 		}
 		current = current->next;
@@ -54,19 +22,16 @@ bool	prs_ast_redir(t_token **lst)
 	t_token	*current;
 
 	current = *lst;
-	// printf("IN HERE\n");
-	while(current != NULL)
+	while (current != NULL)
 	{
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->prev == NULL && current->next == NULL))
 		{
-			// printf("prs_ast_redir\n");
 			return (false);
 		}
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->next == NULL))
 		{
-			// printf("prs_ast_redir\n");
 			return (false);
 		}
 		current = current->next;

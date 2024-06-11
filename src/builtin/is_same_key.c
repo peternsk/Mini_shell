@@ -7,7 +7,7 @@ char	*pars_key(char *vars)
 	char	*var_pars;
 
 	i = 0;
-	var_pars = malloc(sizeof(char *) * (ft_strlen(vars)));
+	var_pars = malloc_and_add(sizeof(char *) * (ft_strlen(vars)));
 	if (!var_pars)
 		return (NULL);
 	while (vars[i] != '\0' || vars[i] != '=')
@@ -16,7 +16,6 @@ char	*pars_key(char *vars)
 		i++;
 	}
 	var_pars[i] = '\0';
-	// free(vars);
 	return (var_pars);
 }
 

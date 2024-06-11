@@ -56,7 +56,7 @@ void	put_key_value(t_env *env, bool both, char *vars)
 
 t_env	*add_envp(char *vars)
 {
-	t_env   *new;
+	t_env	*new;
 
 	new = NULL;
 	if (vars)

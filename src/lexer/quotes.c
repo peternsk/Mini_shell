@@ -22,10 +22,7 @@ void	find_next_quote(t_minish *m_s, char quote_type)
 	}
 	if (m_s->flags->found_flag == FLAG_OFF)
 	{
-		// printf("**************************************\n");
-		// printf("* ERROR : missing ending quotation...*\n");
-		// printf("**************************************\n");
-		return;
+		return ;
 	}
 	m_s->s = m_s->e + 1;
 }

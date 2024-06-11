@@ -172,7 +172,7 @@ void			reset_ms(t_heredoc *node, t_minish *m_s);
 void			replace_here_str(t_heredoc *node);
 void			ft_here_exit_status(t_heredoc *token, t_minish *m_s);
 int				count_here_doc(t_files **lst);
-void			empty_hereDoc(t_files *tmp);
+void			empty_heredoc(t_files *tmp);
 void			last_here_doc(t_minish *m_s, t_files *tmp);
 void			run_here_redlst(t_minish *m_s, t_files **lst);
 void			send_2_tmp(t_heredoc **lst, t_minish *ms, t_files *tmp_files,

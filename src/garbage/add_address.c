@@ -74,30 +74,3 @@ void	add_garbage_arr(char **arr)
 		i++;
 	}
 }
-
-void	print_garbage_collector(void)
-{
-	t_garbage	*last;
-	int			i;
-
-	i = 0;
-	last = get_head()->next;
-	if(last == NULL )
-		// printf("empty list\n");
-	while(last != NULL)
-	{
-		// printf("                 =\n");
-		// printf("                 =\n");
-		// printf("========== GARLST =============\n");
-		// printf("= garbage addy  : %p           \n", last->adresse);
-		// printf("= garbage next  : %p           \n", last->next);
-		// printf("===============================\n");
-		// printf("                 =\n");
-		// printf("                 =\n");
-		i++;
-		last = last->next;
-	}
-	// printf("========= GARNODES ============\n");
-	// printf("= num of nodes  : %d           \n", i);
-	// printf("===============================\n");
-}

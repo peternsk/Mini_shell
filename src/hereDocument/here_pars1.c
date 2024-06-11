@@ -23,9 +23,19 @@ void	replace_here_str(t_heredoc *node)
 	node->expstr = NULL;
 }
 
-void	here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
+static void	extra_here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
 {
 	char	*tmp_key;
+
+	tmp_key = NULL;
+	tmp_key = find_here_key(node, m_s);
+	if (find_key_in_list(lst, tmp_key) == true)
+		find_var_env(lst, &node->expstr, tmp_key);
+	m_s->s = m_s->e;
+}
+
+void	here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
+{
 	char	*tmp_exp;
 
 	reset_ms(node, m_s);
@@ -34,18 +44,12 @@ void	here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
 		if (node->str[m_s->e] == '$' && node->str[m_s->e + 1] == '?')
 			ft_here_exit_status(node, m_s);
 		if (node->str[m_s->e] == '$' && (node->str[m_s->e + 1] != '\0'))
-		{
-			tmp_key = find_here_key(node, m_s);
-			if (find_key_in_list(lst, tmp_key) == true)
-				find_var_env(lst, &node->expstr, tmp_key);
-			m_s->s = m_s->e;
-		}
+			extra_here_exp(node, lst, m_s);
 		if (node->str[m_s->e] != '$')
 		{
 			while (node->str[m_s->e] && node->str[m_s->e] != '$')
 				m_s->e = m_s->e + 1;
 			tmp_exp = ft_substr(node->str, m_s->s, (m_s->e - m_s->s));
-
 			node->expstr = ft_strjoin(node->expstr, tmp_exp);
 			add_garbage(node->expstr);
 			free(tmp_exp);
@@ -62,8 +66,8 @@ void	herelist_exp(t_heredoc **lst, t_env **env_varlst, t_minish *m_s)
 	last = *lst;
 	cur_env = *env_varlst;
 	if (last == NULL)
-		return;
-		// printf("empty list change\n");
+		return ;
+	// printf("empty list change\n");
 	while (last != NULL)
 	{
 		if (char_search(last->str, '$') == true)
