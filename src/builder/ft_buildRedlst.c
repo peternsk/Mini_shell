@@ -58,4 +58,3 @@ int	count_nbred_node(t_token **lst)
 	}
 	return (nb_redtok);
 }
-

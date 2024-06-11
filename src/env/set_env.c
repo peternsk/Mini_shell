@@ -59,7 +59,6 @@ t_env	*create_var(t_minish *m_s, char *env_row)
 	return (m_s->env_varlst);
 }
 
-
 void	set_env_lst(t_minish *m_s, char **env)
 {
 	int	i;
@@ -73,5 +72,4 @@ void	set_env_lst(t_minish *m_s, char **env)
 			i++;
 		}
 	}
-	// print_env_lst(m_s->env_varlst);
 }

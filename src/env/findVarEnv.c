@@ -93,8 +93,7 @@ void	print_expend_tab(t_token **lst, t_env **env_varlst, t_minish *m_s)
 	last = *lst;
 	cur_env = *env_varlst;
 	if (last == NULL)
-		return;
-		// printf("empty list change\n");
+		return ;
 	while (last != NULL)
 	{
 		if ((last->type == argument || last->type == DQA)

@@ -53,7 +53,6 @@ int	ft_nbr_of_node(t_token **lst)
 	return (node_needed);
 }
 
-
 void	ft_createcomd_lst(t_minish *m_s)
 {
 	t_cmdlts	*cmd;
