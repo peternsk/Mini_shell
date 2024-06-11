@@ -126,12 +126,10 @@ void	is_add_envp(t_env *old_envp, char **arg)
     i = 0;
     node = old_envp;
     vars = check_duplicate(arg);
-	printf("tag 1\n");
     while (vars[i] != NULL)
     {
-        if (is_valide(vars[i]) == 0)
+        if (is_valide(vars[i]) == 0 && ft_strlen(vars[i]) > 0)
         {
-            g_exit_status = 0;
             add = is_same_key(node, copy_key_pars(vars[i]));
             if (is_key(vars[i]) == true)
             {
@@ -140,6 +138,7 @@ void	is_add_envp(t_env *old_envp, char **arg)
             }
             else
                 where_to_envp(&old_envp, vars[i], add);
+            g_exit_status = 0;
         }
         i++;
     }

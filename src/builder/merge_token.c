@@ -10,11 +10,11 @@ void	merge_token(t_token **lst)
 	{
 		if (cur && (cur->end_token == FLAG_ON))
 		{
-			// printf("Not need to merge :" BLU "%s\n" RESET, cur->value);
+			printf("Not need to merge :" BLU "%s\n" RESET, cur->value);
 		}
 		else if (cur && (cur->end_token == FLAG_OFF))
 		{
-			// printf("Need to merge     :" RED "%s\n" RESET, cur->value);
+			printf("Need to merge     :" RED "%s\n" RESET, cur->value);
 		}
 		cur = cur->next;
 	}
