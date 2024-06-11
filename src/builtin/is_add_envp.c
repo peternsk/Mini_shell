@@ -94,6 +94,7 @@ void	is_add_envp(t_env *old_envp, char **arg)
 	vars = check_duplicate(arg);
 	while (vars[i] != NULL)
 	{
+
 		add = is_same_key(node, copy_key_pars(vars[i]));
 		if (is_key(vars[i]) == true)
 		{

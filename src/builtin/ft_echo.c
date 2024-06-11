@@ -13,6 +13,7 @@ bool	is_newline(char *av, int index)
 	int	i;
 
 	i = 0;
+	(void)index;
 	if (index == 1)
 	{
 		if (av)

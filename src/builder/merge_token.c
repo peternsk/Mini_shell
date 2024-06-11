@@ -34,8 +34,8 @@ void	delete_token(t_token **lst, int tokToDel_id)
 	}
 	else
 		cur->prev->next = NULL;
-	free(cur->value);
-	free(cur);
+	// free(cur->value);
+	// free(cur);
 }
 
 void	combine_tok_value(t_token **lst)
@@ -52,7 +52,7 @@ void	combine_tok_value(t_token **lst)
 			&& cur->next->type != pipe_)
 		{
 			tmp = ft_strdup(cur->value);
-			free(cur->value);
+			// free(cur->value);
 			cur->value = ft_strjoin(tmp, cur->next->value);
 			free(tmp);
 			printf("NEW CUR VALUE OF  :" RED "%d " RESET "is " BLU "%s\n" RESET,
