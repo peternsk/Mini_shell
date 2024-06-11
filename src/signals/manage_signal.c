@@ -1,39 +1,51 @@
+
 #include "minishell.h"
 
-void ctrl_c_parent()
+void	ctrl_c_parent(int x)
 {
-	// function mal need to be fix
-	// printf("parent\n");
-    // readline(INPUT); // printf("\n");
-	// rl_line_buffer = INPUT;
-	write(2, "\n", 1);
+	(void)x;
+	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-	// printf("\n");
-	// printf(INPUT);
 }
-void ctrl_quit_childs()
-{
-	return ;
-}
-void	ctrl_c_childs()
-{
-	printf("ctr \\");
-	return ;
-}
-// void nothing(){ printf("say my name ... \n");}
 
-void manage_signal (int id)
+void	exit_here_doc(int x)
+{
+	(void)x;
+	write(1, "\n", 1);
+	rl_reset_line_state();
+	rl_replace_line("", 0);
+	exit(EXIT_FAILURE);
+}
+
+void	ctrl_quit_childs(int x)
+{
+	(void)x;
+	exit(127);
+}
+
+void	ctrl_c_childs(int x)
+{
+	(void)x;
+	exit(127);
+}
+
+void	manage_signal(int id)
 {
 	if (id == 0)
 	{
-		signal(SIGINT, ctrl_c_childs);
-		signal(SIGQUIT, ctrl_quit_childs); 
+		signal(SIGINT, ctrl_quit_childs);
+		signal(SIGQUIT, ctrl_quit_childs);
 	}
-	else
+	else if (id == 3)
+	{
+		signal(SIGINT, exit_here_doc);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	if (id == -1)
 	{
 		signal(SIGINT, ctrl_c_parent);
-		signal(SIGQUIT, SIG_IGN); 
+		signal(SIGQUIT, SIG_IGN);
 	}
 }

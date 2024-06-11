@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_trim.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 19:57:48 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/03/06 10:06:48 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -45,7 +34,7 @@ char	*ft_trim(char const *s1, char const *set)
 	while (end > start && ft_char_in_set(s1[end - 1], set))
 		end--;
 	str_size = (end - start + 1);
-	str = (char *)malloc(str_size * sizeof(*s1));
+	str = (char *)malloc_and_add(str_size * sizeof(*s1));
 	if (!str)
 		return (0);
 	i = 0;

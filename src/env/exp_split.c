@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   exp_split.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 10:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/04/15 19:57:51 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -35,7 +25,7 @@ static size_t	count_word(char const *str, char c)
 	if (!str)
 		return (0);
 	while ((str[i] != c) && str[i])
-			i++;
+		i++;
 	while (str[i] != '\0')
 	{
 		while ((str[i] == c) && str[i])
@@ -57,7 +47,7 @@ static char	**splitcpy(char **split, char const *s, char c)
 	i = 0;
 	word = 0;
 	while ((s[i] != c) && s[i])
-			i++;
+		i++;
 	while (s[i] && word < count_word(s, c))
 	{
 		while (s[i] == c && s[i])

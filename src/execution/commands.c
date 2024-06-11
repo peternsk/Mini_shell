@@ -1,96 +1,79 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:18:01 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/08 20:01:23 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
-int _childs_fd(int fd[], int last_fd, t_cmd *curr, t_cmd *cmds)
+void	close_pipe(t_cmd *cmds, int **array_pipe)
 {
-    pipe(fd);
-    if (curr->index == 0)
-    {
-        last_fd = fd[0];
-        fd[0] = 0;
-    }
-    else
-    {
-        last_fd ^= fd[0];
-        fd[0] ^= last_fd;
-        last_fd ^= fd[0];
-    }
-    if (curr->index == cmds->nb_cmds - 1)
-    {
-        // Don't change put in next pipe if there an > or >>
-        close(fd[1]);
-        fd[1] = 1;
-    }
-    return (last_fd);
+	int	i;
+
+	i = 0;
+	while (i < (cmds)->nb_cmds - 1)
+	{
+		close(array_pipe[i][0]);
+		close(array_pipe[i][1]);
+		i++;
+	}
 }
 
-int expan_child(int fd[], t_cmd *curr, char *envp_path)
+int	**create_pipe(t_cmd *cmd)
 {
-    if (fd[0] != 0)
-    {
-        dup2(fd[0], 0);
-        close(fd[0]);
-    }
-    if (fd[1] != 1)
-    {
-        // pas sur check si c'est un file ou bien redirection de file et append file 
-        if (!curr->files)
-            dup2(fd[1], 1);
-        close(fd[1]);
-    }
-    if (execute_command(curr, curr->envp, envp_path) == -1)
-        return (-1);
-    return (1);
+	int	**array;
+	int	i;
+
+	i = 0;
+	array = 0;
+	if (cmd && cmd->nb_cmds > 1)
+	{
+		array = malloc_and_add((cmd->nb_cmds - 1) * sizeof(int *));
+		while (i < (cmd->nb_cmds - 1))
+		{
+			array[i] = malloc_and_add(sizeof(int) * 2);
+			pipe(array[i]);
+			i++;
+		}
+	}
+	return (array);
 }
 
-void _curren_fd(int fd[], int last_fd, t_cmd *cmds)
+void	here_doc_cmds(t_cmd *cmds)
 {
-    if (cmds->index != 0)
-        close(fd[0]);
-    if (cmds->index != cmds->nb_cmds -1)
-        close(fd[1]);
-    else 
-        close(last_fd);
+	t_cmd	*now_shine;
+
+	now_shine = cmds;
+	while (now_shine != NULL)
+	{
+		if (is_there_here_doc(now_shine) > 0)
+		{
+			run_here_redlst(now_shine->glob, &now_shine->files);
+			herelist_exp(&now_shine->glob->herelst,
+				&now_shine->glob->env_varlst, now_shine->glob);
+		}
+		now_shine = now_shine->next;
+	}
 }
-// free id_childs
-int      commands(t_cmd *cmds, char *envp_path)
+
+int	commands(t_cmd *cmds, char *envp_path)
 {
-    t_cmd *curr;
-    // pid_t *id_childs;
-    int fd[2];
-    int last_fd;
-    
-    // id_childs = malloc(sizeof(pid_t) * cmds->nb_cmds);
-    curr = cmds;
-    while (curr != NULL)
-    {
-        last_fd = _childs_fd(fd, last_fd, curr, cmds);
-        curr->id = fork();
-        manage_signal(0);
-        if (curr->id == 0)
-        {
-            // printf("the childs make it !!\n");
-            if (expan_child(fd, curr, envp_path) == -1)
-                return (-1);
-        }
-        else if (curr->id < 0)
-            printf("Error fork()\n");
-        else
-        {
-            _curren_fd(fd, last_fd, curr);
-            curr = curr->next;
-        } 
-    }
-    return (manage_signal(-1), wait_childs(cmds), 1);
+	t_cmd	*curr;
+	int		**array_pipe;
+
+	which_files(cmds);
+	array_pipe = create_pipe(cmds);
+	curr = cmds;
+	while (curr != NULL)
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
+		curr->id = fork();
+		if (curr->id == 0)
+		{
+			manage_signal(0);
+			execute_command(curr, envp_path, array_pipe);
+		}
+		else if (curr->id < 0)
+			printf("Error fork()\n");
+		else
+			curr = curr->next;
+	}
+	close_pipe(cmds, array_pipe);
+	return (wait_childs(cmds), 1);
 }

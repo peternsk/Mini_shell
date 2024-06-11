@@ -1,28 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   wait_childs.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 23:20:09 by mnshimiy          #+#    #+#             */
-/*   Updated: 2024/05/03 18:02:46 by mnshimiy         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
-void    wait_childs(t_cmd *cmds)
+void	wait_childs(t_cmd *cmds)
 {
-    t_cmd *curr;
-    curr = NULL;
-    if (cmds)
-    {
-        curr = cmds;
-        while (curr != NULL)
-        {
-            waitpid(curr->id, NULL, 0);
-            curr = curr->next;
-        }
-    }
+	t_cmd	*curr;
+	int		code;
+
+	curr = NULL;
+	if (cmds)
+	{
+		curr = cmds;
+		while (curr != NULL)
+		{
+			waitpid(curr->id, &code, 0);
+			manage_signal(-1);
+			curr = curr->next;
+		}
+		g_exit_status = get_code(code);
+	}
+}
+
+int	get_code(int exit_code)
+{
+	if (WIFEXITED(exit_code))
+		return ((unsigned char)WEXITSTATUS(exit_code));
+	else if (WIFSIGNALED(exit_code))
+		return ((unsigned char)(128 + WTERMSIG(exit_code)));
+	return ((unsigned char)exit_code);
 }

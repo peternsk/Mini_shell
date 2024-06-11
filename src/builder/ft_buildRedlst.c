@@ -1,93 +1,61 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_buildRedlst.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 17:39:23 by peternsaka        #+#    #+#             */
-/*   Updated: 2024/05/16 15:03:08 by pnsaka           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
-t_files		*setRed(char *redtype, char *filename, t_minish *m_s)
+t_files	*set_red(char *redtype, char *filename, t_minish *m_s)
 {
-	t_files *redNode;
-	
-	redNode = malloc_and_add(sizeof(t_files));
-	if (!redNode)
-        return (NULL);
-    redNode->name = filename;
-    redNode->index = 0;
-    redNode->made = 0;
-    redNode->error = 0;
-    redNode->index_out = 0;
-    redNode->put_last = 0;
-    redNode->type = type_cmds(redtype);
-	if(redNode->type == here_doc)
+	t_files	*red_node;
+
+	red_node = malloc_and_add(sizeof(t_files));
+	if (!red_node)
+		return (NULL);
+	red_node->name = filename;
+	red_node->index = 0;
+	red_node->made = 0;
+	red_node->here_count = 0;
+	red_node->error = 0;
+	red_node->index_out = 0;
+	red_node->put_last = 0;
+	red_node->type = type_cmds(redtype);
+	if (red_node->type == here_doc)
 	{
-		redNode->hereID = m_s->here_id;
+		red_node->heredoc_id = m_s->here_id;
 		m_s->here_id = m_s->here_id + 1;
 	}
-    redNode->next = NULL;
-    redNode->manage_fd = NULL;
-    return (redNode);
+	red_node->next = NULL;
+	red_node->manage_fd = -1;
+	return (red_node);
 }
 
-void	add_redNode_to_end(t_files **lst, t_files *redNode)
+void	rd_end(t_files **lst, t_files *red_node)
 {
-	t_files *last;
-	
-	if(*lst == NULL)
+	t_files	*last;
+
+	if (*lst == NULL)
 	{
-		*lst = redNode;
-		redNode->next = NULL;
-		return;	
+		*lst = red_node;
+		red_node->next = NULL;
+		return ;
 	}
 	last = *lst;
-	while(last->next != NULL)
+	while (last->next != NULL)
 		last = last->next;
-	last->next = redNode;
-	redNode->prev = last;
+	last->next = red_node;
+	red_node->prev = last;
 }
 
-
-int		countNbRednode(t_token **lst)
+int	count_nbred_node(t_token **lst)
 {
-	t_token *token;
-	int	nb_redTok;
+	t_token	*token;
+	int		nb_redtok;
 
 	token = *lst;
-	nb_redTok = 0;
-	while(token && token->type != pipe_)
+	nb_redtok = 0;
+	while (token && token->type != pipe_)
 	{
-		if(token && (token->type >= out_p_redir && token->type <= in_p_redir))
-			nb_redTok++;
+		if (token && (token->type >= OPR && token->type <= IPR))
+			nb_redtok++;
 		token = token->next;
 	}
-	return(nb_redTok);
+	return (nb_redtok);
 }
 
-void	print_redLst(t_files **lst)
-{
-	t_files *last;
-	
-	last = *lst;
-	if(last == NULL)
-	{	
-		printf("-------------------------------\n");
-		printf("- " RED "EMPTY RED LIST  " RESET "  \n");
-		printf("-------------------------------\n");
-	}
-	while(last != NULL)
-	{
-		printf("-------------------------------\n");
-		// printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
-		printf("= RED->ARG       :" GRN " %d" RESET "         \n", last->type);
-		printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->name);
-		last = last->next;
-	}
-	printf("-------------------------------\n");
-}

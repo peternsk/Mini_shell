@@ -1,47 +1,56 @@
+
 #include "minishell.h"
 
-
-int		ft_countArrayspace(t_token **lst)
+int	ft_count_arr_spc(t_token **lst)
 {
-	t_token *last;
-	int	arrSpc;
+	t_token	*last;
+	int		arr_spc;
 
 	last = *lst;
-	arrSpc = 1;
-	while(last && last->type != pipe_)
+	arr_spc = 1;
+	while (last && last->type != pipe_)
 	{
-		if(last->type == argument && last->endToken == 1 && last->setToCmd == FLAG_OFF)
-			arrSpc++;
+		if (last->type == argument && last->end_token == 1
+			&& last->set_to_cmd == FLAG_OFF)
+			arr_spc++;
 		last = last->next;
 	}
-	return(arrSpc);
+	return (arr_spc);
 }
 
-void	ft_cmdBuilder(t_minish *m_s, t_token **toklst, t_cmdlts **cmdlst)
+static void	reset_cmd_builder(t_minish *m_s, t_cmdlts **comd_lst)
 {
-	t_token *curTok;
-	t_cmdlts *curCmd;
-	int i;
-	
-	curTok = *toklst;
-	curCmd = *cmdlst;
-	i = -1;
-	while(curTok)
+	t_cmdlts	*c_cm;
+
+	c_cm = *comd_lst;
+	c_cm->command[++m_s->index] = NULL;
+	m_s->index = -1;
+	c_cm = c_cm->next;
+}
+
+void	ft_cmd_builder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
+{
+	t_token		*c_t;
+	t_cmdlts	*c_cm;
+
+	c_t = *toklst;
+	c_cm = *comd_lst;
+	m_s->index = -1;
+	while (c_t)
 	{
-		if(curTok && (curTok->type >= command && curTok->type <= dbl_quote_arg))
+		if (c_t && c_t->prev && (c_t->type >= command && c_t->type <= DQA)
+			&& (c_t->prev->type >= OPR && c_t->prev->type <= APOR))
+			c_t->type = _file;
+		if (c_t && (c_t->type >= command && c_t->type <= DQA))
 		{
-			curCmd->command[++i] = ft_strdup(curTok->value);
-			add_garbage(curCmd->command[i]);
+			c_cm->command[++m_s->index] = ft_strdup(c_t->value);
+			add_garbage(c_cm->command[m_s->index]);
 		}
-		else if(curTok && (curTok->type >= out_p_redir && curTok->type <= here_doc))
-			add_redNode_to_end(&curCmd->redlst, setRed(curTok->value, curTok->next->value, m_s));
-		else if(curTok && curTok->type == pipe_)
-		{
-			curCmd->command[++i] = NULL;
-			i = -1;
-			curCmd = curCmd->next;
-		}
-		curTok = curTok->next;
+		else if (c_t && (c_t->type >= OPR && c_t->type <= here_doc))
+			rd_end(&c_cm->redlst, set_red(c_t->value, c_t->next->value, m_s));
+		else if (c_t && c_t->type == pipe_)
+			reset_cmd_builder(m_s, &c_cm);
+		c_t = c_t->next;
 	}
-	curCmd->command[++i] = NULL;
+	c_cm->command[++m_s->index] = NULL;
 }

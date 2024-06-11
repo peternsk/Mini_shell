@@ -1,110 +1,75 @@
 #include "minishell.h"
 
-void	begin_setEnvVar(void)
-{
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=       Setting env var       =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
-
-void	begin_parsing(void)
-{
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=             PARSER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
-
-void	begin_lexing(void)
-{
-	printf("===============================\n");
-	printf("=              LEXER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
-
 bool	prs_ast_pipe(t_token **lst)
 {
-	t_token *current;
+	t_token	*current;
 
 	current = *lst;
-	while(current != NULL)
+	while (current != NULL)
 	{
-		if((current->type == pipe_ && (current->prev == NULL ||  current->next == NULL)) || current->type == dbl_pipe_)
-			return(false);
+		if ((current->type == pipe_ && (current->prev == NULL
+					|| current->next == NULL)) || current->type == DBLP)
+		{
+			return (false);
+		}
 		current = current->next;
 	}
-	printf("in prs_ast_pipe\n");
-	return(true);
+	return (true);
 }
 
 bool	prs_ast_redir(t_token **lst)
 {
-	t_token *current;
+	t_token	*current;
 
 	current = *lst;
-	printf("IN HERE\n");
-	while(current != NULL)
+	while (current != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))
-			return(false);
-		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->next == NULL))
-			return(false);
+		if ((current->type >= OPR && current->type <= here_doc)
+			&& (current->prev == NULL && current->next == NULL))
+		{
+			return (false);
+		}
+		if ((current->type >= OPR && current->type <= here_doc)
+			&& (current->next == NULL))
+		{
+			return (false);
+		}
 		current = current->next;
 	}
-	return(true);
+	return (true);
 }
-
 
 bool	prs_ast_dlb_meta(t_token **lst)
 {
-	t_token *current;
+	t_token	*cur;
 
-	current = *lst;
-	while(current != NULL)
+	cur = *lst;
+	while (cur != NULL)
 	{
-		if((current->type >= out_p_redir && current->type <= dbl_et) && (current->next->type >= apnd_op_redir && current->next->type <= dbl_et))
-			return(false);
-		current = current->next;
-	
+		if ((cur && (cur->type >= OPR && cur->type <= DBLE)) && (cur->next
+				&& (cur->next->type == here_doc)))
+			cur = cur->next;
+		if ((cur && (cur->type >= OPR && cur->type <= DBLE)) && (cur->next
+				&& (cur->next->type == APOR || (cur->next->type >= pipe_
+						&& cur->next->type <= DBLE))))
+			return (false);
+		else if ((cur->type >= OPR && cur->type <= DBLE) && (cur->prev == NULL)
+			&& (cur->next == NULL))
+			return (false);
+		cur = cur->next;
 	}
-	printf("in prs_ast_dlb_meta\n");
-	return(true);
+	return (true);
 }
 
-void    ft_lexer(t_token **lst)
+bool	ft_lexer(t_token **lst)
 {
-    if(prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false || prs_ast_redir(lst) == false)
+	if (prs_ast_pipe(lst) == false || prs_ast_dlb_meta(lst) == false
+		|| prs_ast_redir(lst) == false)
 	{
-		printf("IN HERE\n");
-		exit_status = 0;
-		exit_status = exit_status + 2;
-		// printf("===============================\n");
-		// printf("=      bash: syntax error     =\n");
-		// printf("===============================\n");
-		// printf("                =\n");
-		// printf("===============================\n");
-		// printf("=             $? : %d          =\n", exit_status);
-		// printf("===============================\n");
-		exit(0);
-		
+		g_exit_status = 0;
+		g_exit_status = g_exit_status + 2;
+		perror("bash: syntax error near unexpected token");
+		return (false);
 	}
-	else
-	{
-		// printf("===============================\n");
-		// printf("=      command parse ok       =\n");
-		// printf("===============================\n");
-		// printf("                =\n");
-		// printf("===============================\n");
-		// printf("=             $? : %d          =\n", exit_status);
-		// printf("===============================\n");	
-	}
+	return (true);
 }

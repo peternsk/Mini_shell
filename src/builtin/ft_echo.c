@@ -1,37 +1,55 @@
+
 #include "minishell.h"
 
-int  is_line (char **av)
+int	is_line(char **av)
 {
-   
-    if (ft_strncmp(av[1], "-n", ft_strlen("-n")) == 0)
-        return (true);
-    return (false);
+	if (ft_strncmp(av[1], "-n", ft_strlen("-n")) == 0)
+		return (true);
+	return (false);
 }
 
-bool it_print(char *av, int index)
+bool	is_newline(char *av, int index)
 {
-        if (index == 1 && ft_strncmp(av, "-n", ft_strlen("-n")) == 0)
-            return (false);
-        return (true);
-}
-void    ft_echo(t_cmd *ec)
-{
-    int i;
+	int	i;
 
-    i = 1;
-    while (i < size(ec->av_cmd))
-    {
-        if (ec->av_cmd[i])
-        {
-            if (it_print(ec->av_cmd[i], i) == true)
-            {
-                printf("%s", ec->av_cmd[i]);
-                if (ec->av_cmd[i + 1] != NULL)
-                    printf(" ");
-            }
-        }
-        i++;
-    }
-    if (is_line(ec->av_cmd) == false || size(ec->av_cmd) == 1)
-        printf("\n");
+	i = 0;
+	(void)index;
+	if (av)
+	{
+		if (av[i] == '-')
+		{
+			i++;
+			while (av[i] != '\0' && av[i] == 'n')
+				i++;
+		}
+		if (i == (int)ft_strlen(av) && ft_strlen(av) != 0)
+			return (true);
+	}
+	return (false);
+}
+
+void	ft_echo(t_cmd *ec)
+{
+	int		i;
+	bool	new_line;
+
+	i = 1;
+	new_line = false;
+	while (i < size(ec->av_cmd))
+	{
+		if (ec->av_cmd[i])
+		{
+			new_line = is_newline(ec->av_cmd[i], i);
+			if (new_line == false)
+			{
+				printf("%s", ec->av_cmd[i]);
+				if (ec->av_cmd[i + 1] != NULL)
+					printf(" ");
+			}
+		}
+		i++;
+	}
+	if (size(ec->av_cmd) == 1 || is_newline(ec->av_cmd[1], 1) == false)
+		printf("\n");
+	g_exit_status = 0;
 }
