@@ -59,7 +59,7 @@ int	commands(t_cmd *cmds, char *envp_path)
 	which_files(cmds);
 	array_pipe = create_pipe(cmds);
 	curr = cmds;
-	while (curr != NULL && is_files_valide(cmds) == 0)
+	while (curr != NULL)
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);

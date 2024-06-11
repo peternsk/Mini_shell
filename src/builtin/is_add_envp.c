@@ -74,6 +74,24 @@ char	*copy_key_pars(char *str)
 	}
 	return (new);
 }
+
+bool is_meta_export(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != '=')
+	{
+		if (str[i] == '-' || str[i] == '$' || str[i] == '+' || str[i] == '!' || str[i] == '#')
+		{
+            write(2, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
+            g_exit_status = 1;
+			return (true);
+		}
+		i++;
+	}
+	return (false);
+}
 int is_valide(char *str)
 {
     bool is;
@@ -81,19 +99,20 @@ int is_valide(char *str)
 
     i = 0;
     is = false;
-    while (str[i] != '\0')
-    {
-
-        if (ft_isalpha(str[i]) == 1)
-            is = true;
-        if (ft_isalpha(str[i]) == 0 && is == false)
-        {
-            write(2, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
-            g_exit_status = 1;
-            return (1);
-        }
-        i++;
-    }
+	if (is_meta_export(str) == true)
+		return (1);
+	while (str[i] != '\0')
+	{
+		if (ft_isalpha(str[i]) == 1)
+			is = true;
+		if (ft_isalpha(str[i]) == 0 && is == false)
+		{
+			write(2, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
+			g_exit_status = 1;
+			return (1);
+		}
+		i++;
+	}
     return (0);
 }
 
@@ -107,6 +126,7 @@ void	is_add_envp(t_env *old_envp, char **arg)
     i = 0;
     node = old_envp;
     vars = check_duplicate(arg);
+	printf("tag 1\n");
     while (vars[i] != NULL)
     {
         if (is_valide(vars[i]) == 0)

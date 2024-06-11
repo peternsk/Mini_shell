@@ -67,16 +67,16 @@ void	print_red_lst(t_files **lst)
 	last = *lst;
 	if(last == NULL)
 	{	
-		printf("-------------------------------\n");
-		printf("- " RED "EMPTY RED LIST  " RESET "  \n");
-		printf("-------------------------------\n");
+		// printf("-------------------------------\n");
+		// printf("- " RED "EMPTY RED LIST  " RESET "  \n");
+		// printf("-------------------------------\n");
 	}
 	while (last != NULL)
 	{
-		printf("-------------------------------\n");
+		// printf("-------------------------------\n");
 		// printf("= RED->TYPE      :" RED " %s" RESET "         \n", last->redtype);
-		printf("= RED->ARG       :" GRN " %d" RESET "         \n", last->type);
-		printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->name);
+		// printf("= RED->ARG       :" GRN " %d" RESET "         \n", last->type);
+		// printf("= RED->ARG       :" GRN " %s" RESET "         \n", last->name);
 		last = last->next;
 	}
 	// printf("-------------------------------\n");

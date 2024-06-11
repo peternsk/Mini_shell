@@ -55,8 +55,8 @@ void	combine_tok_value(t_token **lst)
 			// free(cur->value);
 			cur->value = ft_strjoin(tmp, cur->next->value);
 			free(tmp);
-			printf("NEW CUR VALUE OF  :" RED "%d " RESET "is " BLU "%s\n" RESET,
-				cur->token_id, cur->value);
+			// printf("NEW CUR VALUE OF  :" RED "%d " RESET "is " BLU "%s\n" RESET,
+				// cur->token_id, cur->value);
 			cur->end_token = cur->next->end_token;
 			cur->to_merge = cur->next->to_merge;
 			delete_token(lst, cur->next->token_id);

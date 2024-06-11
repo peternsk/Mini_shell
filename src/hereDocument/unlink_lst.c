@@ -51,9 +51,9 @@ void	unlnk_all_file(t_unlnk **lst)
 
 	tmp = *lst;
 	if(!tmp)
-		printf("[LST EMPTY]\n");
-	else
-		printf("[LST NOT EMPTY]\n");
+		// printf("[LST EMPTY]\n");
+	// else
+		// printf("[LST NOT EMPTY]\n");
 	while(tmp != NULL)
 	{
 		// printf("[DELETING FILE : %s]\n", tmp->filepath_name);

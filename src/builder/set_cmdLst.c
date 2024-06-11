@@ -58,7 +58,7 @@ void	print_array(char **arr)
 	int	i;
 
 	i = 0;
-	printf("========== command ============\n");
+	// printf("========== command ============\n");
 	while (arr[i])
 	{
 		// printf("%s\n", arr[i]);
@@ -75,8 +75,8 @@ void	print_comd_lst(t_cmdlts **lst)
 
 	last = *lst;
 	i = 0;
-	if (last == NULL)
-		printf("= empty list\n");
+	// if (last == NULL)
+	// 	printf("= empty list\n");
 	// while (last != NULL)
 	// {
 	// 	printf("============= CMD =============\n");
