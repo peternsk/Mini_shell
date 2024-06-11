@@ -24,39 +24,29 @@ char	*get_current_path(void)
 	return (getcwd(str, PATH_MAX));
 }
 
-int	is_cmd_valide_path(char *cmd)
-{
-	int	dot;
 
-	dot = 0;
-	if (cmd)
-	{
-		if (cmd[0] == '.' || cmd[0] == '/')
-			return (1);
-		while (cmd[dot] != '\0' && (cmd[dot] == '.' || cmd[dot] == '/'))
-			dot++;
-	}
-	return (dot);
-}
-
-static char	*_check_absolute_path(char *cmd)
+char 	*extra_path_check(char **sub_paths, char *cmd_path, char *cmd)
 {
 	int	i;
 
 	i = 0;
-	if (cmd)
+	while (sub_paths[i])
 	{
-		while (cmd[i] != '\0' && (cmd[i] == '.' || cmd[i] == '/'))
-			i++;
-		if (i > 0)
+		cmd_path = ft_strjoin(sub_paths[i], "/");
+		add_garbage(cmd_path);
+		cmd_path = ft_strjoin(cmd_path, cmd);
+		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
-			if (access(cmd, F_OK | X_OK) == 0)
-				return (g_exit_status = 0, cmd);
+			add_garbage(cmd_path);
+			return (g_exit_status = 0, free_str(sub_paths), cmd_path);
 		}
+		g_exit_status = 127;
+		free(cmd_path);
+		i++;
 	}
-	return (g_exit_status = 127, NULL);
+	free_str(sub_paths);
+	return (NULL);
 }
-
 char	*get_cmd_path(char *path, char *cmd) // 25 lines
 {
 	char	**sub_paths;
@@ -71,27 +61,7 @@ char	*get_cmd_path(char *path, char *cmd) // 25 lines
 	sub_paths = ft_split(path, ':');
 	i = 0;
 	if (sub_paths)
-	{
-		while (sub_paths[i])
-		{
-			cmd_path = ft_strjoin(sub_paths[i], "/");
-			add_garbage(cmd_path);
-			cmd_path = ft_strjoin(cmd_path, cmd);
-			if (access(cmd_path, F_OK | X_OK) == 0)
-			{
-				add_garbage(cmd_path);
-				return (g_exit_status = 0, free_str(sub_paths), cmd_path);
-			}
-			g_exit_status = 127;
-			free(cmd_path);
-			i++;
-		}
-		free_str(sub_paths);
-	}
+		return (extra_path_check(sub_paths, cmd_path, cmd));
 	return (NULL);
 }
 
-
-void	fake(void)
-{
-}

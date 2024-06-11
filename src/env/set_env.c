@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 t_env	*int_env_var(t_env *node, char *env_row)

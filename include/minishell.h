@@ -108,6 +108,9 @@ char			**list_to_tab(t_env **lst);
 char			*token_2_str(t_env *env_node);
 int				count_env_node(t_env *node);
 
+bool			char_search(char *tok_value, char c);
+char			*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key);
+
 /*====================================================*/
 /*=                     BUILDER                      =*/
 /*====================================================*/
@@ -208,6 +211,8 @@ char			*get_cmd_path(char *path, char *cmd);
 // void        is_change_std(t_cmd *current);
 int				handel_builtin(t_cmd *cmd);
 char			**check_duplicate(char **vars);
+char			*_check_absolute_path(char *cmd);
+int				is_cmd_valide_path(char *cmd);
 
 /*====================================================*/
 /*=                    signal                        =*/
@@ -251,6 +256,8 @@ t_files			*is_there_here_doc(t_cmd *current);
 void			pipe_connect_and_files(t_cmd *current, int **array_pipe);
 void			std_one_commande(t_cmd *current);
 t_files			*give_last_file_stdout(t_files *files);
+int				expan_here_doc(t_cmd *current);
+void			create_filename_linklist(t_minish *m_s, t_files **lst);
 
 /*====================================================*/
 /*=                   EXIT STATUS                    =*/

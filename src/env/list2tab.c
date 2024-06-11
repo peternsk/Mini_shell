@@ -1,5 +1,3 @@
-
-
 #include "minishell.h"
 
 int	count_env_node(t_env *node)

@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 static void	phase_one_exp(t_token *token, t_minish *m_s)
