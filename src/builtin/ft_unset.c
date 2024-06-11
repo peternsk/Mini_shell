@@ -40,7 +40,7 @@ void    index_search_env(char **env, int index)
     {
         if (i == index)
         {
-            printf(":::::::::::::::::::::::::::[%s]\n", env[i]);
+            // printf(":::::::::::::::::::::::::::[%s]\n", env[i]);
             return ;
         }
         i++;

@@ -2,33 +2,33 @@
 
 void	begin_setEnvVar(void)
 {
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=       Setting env var       =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
+	// printf("                 =\n");
+	// printf("                 =\n");
+	// printf("===============================\n");
+	// printf("=       Setting env var       =\n");
+	// printf("===============================\n");
+	// printf("                 =\n");
+	// printf("                 =\n");
 }
 
 void	begin_parsing(void)
 {
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=             PARSER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
+	// printf("                 =\n");
+	// printf("                 =\n");
+	// printf("===============================\n");
+	// printf("=             PARSER          =\n");
+	// printf("===============================\n");
+	// printf("                 =\n");
+	// printf("                 =\n");
 }
 
 void	begin_lexing(void)
 {
-	printf("===============================\n");
-	printf("=              LEXER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
+	// printf("===============================\n");
+	// printf("=              LEXER          =\n");
+	// printf("===============================\n");
+	// printf("                 =\n");
+	// printf("                 =\n");
 }
 
 bool	prs_ast_pipe(t_token **lst)
@@ -50,7 +50,7 @@ bool	prs_ast_redir(t_token **lst)
 	t_token *current;
 
 	current = *lst;
-	printf("IN HERE\n");
+	// printf("IN HERE\n");
 	while(current != NULL)
 	{
 		if((current->type >= out_p_redir && current->type <= here_doc ) && (current->prev == NULL &&  current->next == NULL))

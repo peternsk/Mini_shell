@@ -49,16 +49,16 @@ void	print_extLst_lst(t_exit_code *lst)
 	
 	last = lst;
 	if(last == NULL )
-		printf("empty list\n");
+		// printf("empty list\n");
 	while(last != NULL)
 	{
-		printf("========== HERE STR ==============\n");
-		printf("= node prev  : %p           \n", last->prev);
-		printf("= node EC    : %d          \n", last->pid);
-		printf("= node next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
+		// printf("========== HERE STR ==============\n");
+		// printf("= node prev  : %p           \n", last->prev);
+		// printf("= node EC    : %d          \n", last->pid);
+		// printf("= node next  : %p           \n", last->next);
+		// printf("===============================\n");
+		// printf("                 =\n");
+		// printf("                 =\n");
 		last = last->next;
 	}
 }

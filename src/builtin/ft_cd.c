@@ -38,6 +38,7 @@ void expansion_change_directory(t_cmd *cmd, char **pwd_change)
         pwd_change[2] = ft_strjoin("PWD=", get_live_path());
         add_garbage(pwd_change[2]);
         is_add_envp(cmd->glob->envVarlst, pwd_change);
+        exit_status = 0;
     }
     else 
     {
@@ -59,7 +60,7 @@ void    ft_cd(t_cmd *cmds)
         chdir(from_envp_get_home(cmds->envp));
         pwd_change[2] =  ft_strjoin("PWD=", get_live_path());
         is_add_envp(cmds->glob->envVarlst, pwd_change);
-        // free le bhy
+        exit_status = 0;
     }
     else 
         expansion_change_directory(cmds, pwd_change);

@@ -9,7 +9,7 @@ t_unlnk 	*int_unlnk_node(t_unlnk *node, char *filepath)
 	add_garbage(node->filepath_name);
 	node->next = NULL;
 	node->prev = NULL;
-	printf("NODE SET]\n");
+	// printf("NODE SET]\n");
 	return(node);
 }
 
@@ -23,7 +23,7 @@ void	add_file_to_end(t_unlnk **lst, t_unlnk *node)
 	{
 		*lst = node;
 		node->next = NULL;
-		printf("FILE ADDED]\n");
+		// printf("FILE ADDED]\n");
 		return;	
 	}
 	last = *lst;
@@ -31,7 +31,7 @@ void	add_file_to_end(t_unlnk **lst, t_unlnk *node)
 		last = last->next;
 	last->next = node;
 	last->prev = last;
-	printf("FILE ADDED]\n");
+	// printf("FILE ADDED]\n");
 }
 
 t_unlnk     *create_unlnk_node(t_minish *m_s, char *filepath)
@@ -50,12 +50,12 @@ void	unlnk_all_file(t_unlnk **lst)
 
 	tmp = *lst;
 	if(!tmp)
-		printf("[LST EMPTY]\n");
-	else
-		printf("[LST NOT EMPTY]\n");
+		// printf("[LST EMPTY]\n");
+	// else
+		// printf("[LST NOT EMPTY]\n");
 	while(tmp != NULL)
 	{
-		printf("[DELETING FILE : %s]\n", tmp->filepath_name);
+		// printf("[DELETING FILE : %s]\n", tmp->filepath_name);
 		unlink(tmp->filepath_name);
 		tmp = tmp->next;
 	}
@@ -99,13 +99,13 @@ void	print_unlnk_Lst(t_unlnk **lst)
 	
 	last = *lst;
 	if(last == NULL)
-		printf("= empty list =\n");
+		// printf("= empty list =\n");
 	while(last != NULL)
 	{
-		printf("============= ULK =============\n");
-		printf("FILE IN LST : %s\n", last->filepath_name);
-		printf("===============================\n");
-		printf("                 =\n");
+		// printf("============= ULK =============\n");
+		// printf("FILE IN LST : %s\n", last->filepath_name);
+		// printf("===============================\n");
+		// printf("                 =\n");
 		last = last->next;
 	}
 }

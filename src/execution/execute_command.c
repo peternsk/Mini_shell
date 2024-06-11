@@ -17,7 +17,7 @@ int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
     pipe_connect_and_files(current, array_pipe);
     current->is_file_on = is_files_valide(current);
     if (current->type == 8 && current->is_file_on == 0)
-        exit(handel_builtin(current));
+        handel_builtin(current);
     else if (current->is_file_on == 0 && current->type != -1 && current->is_file_on == 0)
     {     
         cmd_path = get_cmd_path(envp_path, current->cmd_name);
@@ -27,5 +27,5 @@ int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
             return (perror(current->cmd_name), exit(EXIT_FAILURE), 0);
         return (1);
     }
-    return (exit(0), 0);
+    return (exit(exit_status), 0);
 }

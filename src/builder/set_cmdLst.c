@@ -56,14 +56,14 @@ int		ft_nbrOfNode(t_token **lst)
 void	printArray(char **arr)
 {
 	int i = 0;
-	printf("========== command ============\n");
+	// printf("========== command ============\n");
 	while(arr[i])
 	{
-		printf("%s\n", arr[i]);
-		printf("_______________________________\n");
+		// printf("%s\n", arr[i]);
+		// printf("_______________________________\n");
 		i++;
 	}
-	printf("===============================\n");
+	// printf("===============================\n");
 }
 
 void	print_cmdLst(t_cmdlts **lst)
@@ -74,23 +74,23 @@ void	print_cmdLst(t_cmdlts **lst)
 	last = *lst;
 	i = 0;
 	if(last == NULL)
-		printf("= empty list\n");
+		// printf("= empty list\n");
 	while(last != NULL)
 	{
-		printf("============= CMD =============\n");
-		printf("= " GRN "command prev  : %p" RESET " \n", last->prev);
-		printf("= command id    : "YEL"%d" RESET " \n", last->index);
+		// printf("============= CMD =============\n");
+		// printf("= " GRN "command prev  : %p" RESET " \n", last->prev);
+		// printf("= command id    : "YEL"%d" RESET " \n", last->index);
 		while(last->command[i] != NULL)
 		{
-			printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
+			// printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
 			i++;
 		}
-		printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
-		printf("= " GRN "command next  : %p" RESET " \n", last->next);
+		// printf("= argument[%d]   :" BLU " %s" RESET "         \n", i, last->command[i]);
+		// printf("= " GRN "command next  : %p" RESET " \n", last->next);
 		print_redLst(&last->redlst);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
+		// printf("===============================\n");
+		// printf("                 =\n");
+		// printf("                 =\n");
 		i = 0;
 		last = last->next;
 	}

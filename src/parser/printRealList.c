@@ -40,21 +40,21 @@ void	printRealList(t_token *lst)
 	
 	last = lst;
 	if(last == NULL )
-		printf("empty list\n");
+		// printf("empty list\n");
 	while(last != NULL)
 	{
-		printf("========== CMDLST =============\n");
-		printf("= token prev  : %p           \n", last->prev);
-		printf("= token id    : %d             \n", last->token_id);
-		printf("= token value : %s          \n", last->value);
-		printf("= token len   : %zu          \n", ft_strlen(last->value));
-		printf("= token type  : %s          \n", rightType(last->type));
-		printf("= token end   : %d          \n", last->endToken);
-		printf("= token mrg   : %d          \n", last->to_merge);
-		printf("= token next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
+		// printf("========== CMDLST =============\n");
+		// printf("= token prev  : %p           \n", last->prev);
+		// printf("= token id    : %d             \n", last->token_id);
+		// printf("= token value : %s          \n", last->value);
+		// printf("= token len   : %zu          \n", ft_strlen(last->value));
+		// printf("= token type  : %s          \n", rightType(last->type));
+		// printf("= token end   : %d          \n", last->endToken);
+		// printf("= token mrg   : %d          \n", last->to_merge);
+		// printf("= token next  : %p           \n", last->next);
+		// printf("===============================\n");
+		// printf("                 =\n");
+		// printf("                 =\n");
 		last = last->next;
 	}
 }

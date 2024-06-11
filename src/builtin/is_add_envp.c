@@ -75,9 +75,24 @@ char    *copy_key_pars(char *str)
 }
 int is_valide(char *str)
 {
-    (void)str;
-    // 123 no 
-    // 
+    bool is;
+    int i;
+
+    i = 0;
+    is = false;
+    while (str[i] != '\0')
+    {
+
+        if (ft_isalpha(str[i]) == 1)
+            is = true;
+        if (ft_isalpha(str[i]) == 0 && is == false)
+        {
+            write(2, "export: not a valid identifier\n", ft_strlen("export: not a valid identifier\n"));
+            exit_status = 1;
+            return (1);
+        }
+        i++;
+    }
     return (0);
 }
 void    is_add_envp(t_env *old_envp, char **arg)
@@ -92,14 +107,18 @@ void    is_add_envp(t_env *old_envp, char **arg)
     vars = check_duplicate(arg);
     while (vars[i] != NULL)
     {
-        add = is_same_key(node, copy_key_pars(vars[i]));
-        if (is_key(vars[i]) == true)
+        if (is_valide(vars[i]) == 0)
         {
-            is_same_key_value(node, vars[i], add); 
-            where_to_envp(&old_envp, vars[i], add);
+            exit_status = 0;
+            add = is_same_key(node, copy_key_pars(vars[i]));
+            if (is_key(vars[i]) == true)
+            {
+                is_same_key_value(node, vars[i], add); 
+                where_to_envp(&old_envp, vars[i], add);
+            }
+            else
+                where_to_envp(&old_envp, vars[i], add);
         }
-        else
-             where_to_envp(&old_envp, vars[i], add);
         i++;
     }
 }
