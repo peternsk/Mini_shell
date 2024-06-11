@@ -1,0 +1,14 @@
+Makefile
+a.txt
+include
+libft
+minishell
+minishell.dSYM
+minishell.sup
+minishell_tester
+obj
+salut
+src
+sup.txt
+test_cmd
+test_prompt
