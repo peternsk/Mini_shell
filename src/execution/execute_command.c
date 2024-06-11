@@ -1,16 +1,17 @@
+
 #include "minishell.h"
 
-
-void m_cmd_path_error(int error_type, char *message)
+void	m_cmd_path_error(int error_type, char *message)
 {
-    write(error_type, "minishell: ", ft_strlen("minishell: "));
-    write(error_type, message, ft_strlen(message));
-    write(error_type, ": command not found\n", ft_strlen(": command not found\n"));
+	write(error_type, "minishell: ", ft_strlen("minishell: "));
+	write(error_type, message, ft_strlen(message));
+	write(error_type, ": command not found\n",
+		ft_strlen(": command not found\n"));
 }
 
-int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
+int	execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 {
-    char	*cmd_path;
+	char	*cmd_path;
 
     if (!current)
         return (-1);
@@ -27,5 +28,5 @@ int execute_command(t_cmd *current, char *envp_path, int **array_pipe)
             return (perror(current->cmd_name), exit(EXIT_FAILURE), 0);
         return (1);
     }
-    return (exit(exit_status), 0);
+    return (exit(g_exit_status), 0);
 }

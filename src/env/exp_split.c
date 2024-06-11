@@ -25,7 +25,7 @@ static size_t	count_word(char const *str, char c)
 	if (!str)
 		return (0);
 	while ((str[i] != c) && str[i])
-			i++;
+		i++;
 	while (str[i] != '\0')
 	{
 		while ((str[i] == c) && str[i])
@@ -47,7 +47,7 @@ static char	**splitcpy(char **split, char const *s, char c)
 	i = 0;
 	word = 0;
 	while ((s[i] != c) && s[i])
-			i++;
+		i++;
 	while (s[i] && word < count_word(s, c))
 	{
 		while (s[i] == c && s[i])

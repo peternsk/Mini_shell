@@ -1,21 +1,28 @@
 #include "../include/minishell.h"
 
-int exit_status = 0;
+int		g_exit_status = 0;
 
-
-int		main(int ac, char **av, char **env)
+void	m_ctrl_c_parent(void)
 {
-	(void)av;
-	t_minish	*m_s;
-	char **tmp;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
 
+int	main(int ac, char **av, char **env)
+{
+	t_minish	*m_s;
+	char		**tmp;
+
+	(void)av;
 	tmp = NULL;
 	m_s = NULL;
-	if(ac > 0)
+	if (ac > 0)
 	{
 		ft_ascii_font();
 		manage_signal(-1);
-		while(1)
+		while (1)
 		{
 			m_s = init_ms();
 			m_s->flags = init_flag();
@@ -24,13 +31,10 @@ int		main(int ac, char **av, char **env)
 				return (all_free(), printf("exit\n"), 0);
 			add_history(m_s->input);
 			set_and_update_env(m_s, env, tmp);
-			if(ft_lexer(&m_s->token_lst) == true)
+			if (ft_lexer(&m_s->token_lst) == true)
 			{
 				build_and_exec(m_s);
 				tmp = init_cmds(tmp, m_s);
-				add_filename_unlnk_lst(&m_s->cmdLst, m_s);
-				print_unlnk_Lst(&m_s->unlnk_lst);
-				unlnk_all_file(&m_s->unlnk_lst);
 			}
 		}
 	}

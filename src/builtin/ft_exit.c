@@ -1,3 +1,4 @@
+
 #include "minishell.h"
 
 long long	ft_atoi_long(const char *str)
@@ -29,9 +30,9 @@ long long	ft_atoi_long(const char *str)
 	return (result * pos_neg_sign);
 }
 
-int ft_is_strdigit(char *str)
+int	ft_is_strdigit(char *str)
 {
-    int i;
+	int	i;
 
     i = 0;
     if (str)
@@ -51,9 +52,10 @@ int ft_is_strdigit(char *str)
     }
     return (-1);
 }
-void    expan_exit(char **av)
+
+void	expan_exit(char **av)
 {
-    long long _res;
+	long long	_res;
 
     if (ft_is_strdigit(av[1]) == 0)
     {
@@ -70,7 +72,7 @@ void    expan_exit(char **av)
     }
 }
 
-void    ft_exit(t_cmd *exi)
+void	ft_exit(t_cmd *exi)
 {
     if (exi)
     {

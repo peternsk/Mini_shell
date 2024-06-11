@@ -1,12 +1,13 @@
+
 #include "minishell.h"
 
-int size(char **env)
+int	size(char **env)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (env)
-        while (env[i] != NULL)
-            i++;
-    return (i);
+	i = 0;
+	if (env)
+		while (env[i] != NULL)
+			i++;
+	return (i);
 }
