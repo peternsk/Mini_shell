@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	m_s = NULL;
 	if (ac > 0)
 	{
-		ft_ascii_font();
+		// ft_ascii_font();
 		manage_signal(-1);
 		while (1)
 		{

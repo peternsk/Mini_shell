@@ -42,7 +42,7 @@ int	build_and_exec(t_minish *m_s)
 	combine_tok_value(&m_s->token_lst);
 	print_real_list(m_s->token_lst);
 	ft_cmd_builder(m_s, &m_s->token_lst, &m_s->comd_lst);
-	print_comd_lst(&m_s->comd_lst);
+	// print_comd_lst(&m_s->comd_lst);
 	// printf("IN BUILT AND EXEC\n");
 	// m_s->update_envp = init_cmds(m_s->tmp, m_s);
 	// print_garbage_collector();
