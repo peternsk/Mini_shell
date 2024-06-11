@@ -51,10 +51,10 @@ static char	*_check_absolute_path(char *cmd)
 		if (i > 0)
 		{
 			if (access(cmd, F_OK | X_OK) == 0)
-				return (cmd);
+				return (g_exit_status = 0, cmd);
 		}
 	}
-	return (NULL);
+	return (g_exit_status = 127, NULL);
 }
 
 char	*get_cmd_path(char *path, char *cmd) // 25 lines
@@ -80,8 +80,9 @@ char	*get_cmd_path(char *path, char *cmd) // 25 lines
 			if (access(cmd_path, F_OK | X_OK) == 0)
 			{
 				add_garbage(cmd_path);
-				return (free_str(sub_paths), cmd_path);
+				return (g_exit_status = 0, free_str(sub_paths), cmd_path);
 			}
+			g_exit_status = 127;
 			free(cmd_path);
 			i++;
 		}

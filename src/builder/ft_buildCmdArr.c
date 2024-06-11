@@ -30,7 +30,7 @@ void	ft_cmd_builder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
 	while (c_t)
 	{
 		if(c_t && c_t->prev && (c_t->type >= command && c_t->type <= DQA) &&(c_t->prev->type >= OPR && c_t->prev->type <= APOR))
-			c_t->type == _file;
+            c_t->type = _file;
 		if (c_t && (c_t->type >= command && c_t->type <= DQA))
 		{
 			c_cm->command[++i] = ft_strdup(c_t->value);

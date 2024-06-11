@@ -22,8 +22,8 @@ int	put_fd(t_files *current)
     if (current->error == 0 && current->made == 0)
     {
         fd = open(current->name, O_RDONLY);
-        if (fd > -1)
-            return (current->made = -1, close(fd), 0);
+        if (fd > 0)
+            return (current->made = -1, close(fd),g_exit_status = 0,  0);
         return (put_error(current),  perror(current->name), close(fd), current->error = -1, current->made = -1, g_exit_status = 1, -1);
     }
     return (0);
@@ -40,6 +40,8 @@ int	change_stdint(t_files *files)
 		{
 			if (current->type == IPR)
 				put_fd(current);
+			if (current->error == -1)
+				return (-1);
 			current = current->next;
 		}
 		return (0);

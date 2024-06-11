@@ -41,7 +41,7 @@ bool	prs_ast_pipe(t_token **lst)
 		if ((current->type == pipe_ && (current->prev == NULL
 					|| current->next == NULL)) || current->type == DBLP)
 		{
-			printf("prs_ast_pipe\n");
+			// printf("prs_ast_pipe\n");
 			return (false);
 		}
 		current = current->next;
@@ -60,13 +60,13 @@ bool	prs_ast_redir(t_token **lst)
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->prev == NULL && current->next == NULL))
 		{
-			printf("prs_ast_redir\n");
+			// printf("prs_ast_redir\n");
 			return (false);
 		}
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->next == NULL))
 		{
-			printf("prs_ast_redir\n");
+			// printf("prs_ast_redir\n");
 			return (false);
 		}
 		current = current->next;
