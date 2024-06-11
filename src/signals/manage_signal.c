@@ -1,29 +1,33 @@
 
 #include "minishell.h"
 
-void	ctrl_c_parent()
+void	ctrl_c_parent(int x)
 {
+	(void)x;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
 
-void	exit_here_doc()
+void	exit_here_doc(int x)
 {
+	(void)x;
 	write(1, "\n", 1);
 	rl_reset_line_state();
 	rl_replace_line("", 0);
 	exit(EXIT_FAILURE);
 }
 
-void	ctrl_quit_childs()
+void	ctrl_quit_childs(int x)
 {
+	(void)x;
 	exit(127);
 }
 
-void	ctrl_c_childs()
+void	ctrl_c_childs(int x)
 {
+	(void)x;
 	exit(127);
 }
 

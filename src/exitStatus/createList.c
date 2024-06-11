@@ -40,26 +40,3 @@ t_exit_code	*create_exit_code_lst(t_minish *m_s, pid_t extCode)
 	return (m_s->extlst);
 }
 
-/*====================================================*/
-/*=                    PRINT TEST                    =*/
-/*====================================================*/
-
-void	print_ext_lst_lst(t_exit_code *lst)
-{
-	t_exit_code	*last;
-
-	last = lst;
-	if(last == NULL )
-		// printf("empty list\n");
-	while(last != NULL)
-	{
-		// printf("========== HERE STR ==============\n");
-		// printf("= node prev  : %p           \n", last->prev);
-		// printf("= node EC    : %d          \n", last->pid);
-		// printf("= node next  : %p           \n", last->next);
-		// printf("===============================\n");
-		// printf("                 =\n");
-		// printf("                 =\n");
-		last = last->next;
-	}
-}

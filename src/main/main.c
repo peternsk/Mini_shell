@@ -20,8 +20,7 @@ int	main(int ac, char **av, char **env)
 	m_s = NULL;
 	if (ac > 0)
 	{
-		// ft_ascii_font();
-		manage_signal(-1);
+		ft_ascii_font();
 		while (1)
 		{
 			m_s = init_ms();
@@ -38,6 +37,4 @@ int	main(int ac, char **av, char **env)
 			}
 		}
 	}
-	else
-		printf("arg missing !!\n");
 }

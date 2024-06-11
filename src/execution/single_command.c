@@ -21,7 +21,8 @@ int	execute_one_command(t_cmd *current, char **envp, char *envp_path)
 	{
 		cmd_path = get_cmd_path(envp_path, current->cmd_name);
 		if (!cmd_path)
-			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status), 0);
+			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status),
+				0);
 		if (execve(cmd_path, current->av_cmd, envp) == -1)
 			return (perror(cmd_path), exit(EXIT_FAILURE), 0);
 		return (1);
@@ -43,6 +44,13 @@ int	the_last_heredoc(t_cmd *cmd)
 	return (i);
 }
 
+static void	extra_single_command(t_cmd *cmd, char **envp, char *envp_path)
+{
+	manage_signal(0);
+	std_one_commande(cmd);
+	execute_one_command(cmd, envp, envp_path);
+}
+
 int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
 	t_files	*last;
@@ -60,11 +68,7 @@ int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 			signal(SIGQUIT, SIG_IGN);
 			cmd->id = fork();
 			if (cmd->id == 0)
-			{
-				manage_signal(0);
-				std_one_commande(cmd);
-				execute_one_command(cmd, envp, envp_path);
-			}
+				extra_single_command(cmd, envp, envp_path);
 			else
 				wait_childs(cmd);
 		}

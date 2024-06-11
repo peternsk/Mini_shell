@@ -3,7 +3,7 @@
 
 void	ft_remove_quotes(t_token **tkLst)
 {
-	t_token *last;
+	t_token	*last;
 
 	last = *tkLst;
 	while (last != NULL)
