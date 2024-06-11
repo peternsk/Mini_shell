@@ -66,6 +66,7 @@ int	commands(t_cmd *cmds, char *envp_path)
 		curr->id = fork();
 		if (curr->id == 0)
 		{
+			printf("=== in commands ===\n");
 			manage_signal(0);
 			execute_command(curr, envp_path, array_pipe);
 		}

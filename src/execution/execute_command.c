@@ -34,9 +34,15 @@ int	is_files_valide_single(t_cmd *cmds)
 int	execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 {
 	char	*cmd_path;
-
+	int i = 0;
 	if (!current)
 		return (-1);
+	printf("=== in execute_command ===\n");
+	while(current->av_cmd[i] != NULL)
+	{
+		printf("=== %s ===\n",current->av_cmd[i]);
+		i++;
+	}
 	pipe_connect_and_files(current, array_pipe);
 	current->is_file_on = is_files_valide_single(current);
 	if (current->type == 8 && current->is_file_on == 0)
