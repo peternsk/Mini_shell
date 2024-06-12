@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_buildCmdArr.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:13:15 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 22:26:04 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -48,6 +59,8 @@ void	ft_cmd_builder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
 	m_s->index = -1;
 	while (c_t)
 	{
+		if ((c_t && c_t->prev) && (c_t->prev->type == here_doc))
+			c_t->type = delimter;
 		if (c_t && c_t->prev && (c_t->type >= command && c_t->type <= DQA)
 			&& (c_t->prev->type >= OPR && c_t->prev->type <= APOR))
 			c_t->type = _file;

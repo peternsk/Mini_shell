@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:21:20 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:44 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	delim_cmp(char *input, char *delimiter)
@@ -87,25 +99,4 @@ int	count_here_doc(t_files **lst)
 		tmp = tmp->next;
 	}
 	return (i);
-}
-
-void	run_here_redlst(t_minish *m_s, t_files **lst)
-{
-	t_files	*tmp;
-	int		here_nbr;
-
-	tmp = *lst;
-	here_nbr = count_here_doc(lst);
-	while (tmp)
-	{
-		if ((tmp->type == here_doc) && (tmp->heredoc_id < here_nbr))
-			empty_heredoc(tmp);
-		if ((tmp->type == here_doc) && tmp->made == 0)
-		{
-			tmp->made = -1;
-			last_here_doc(m_s, tmp);
-			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->heredoc_id);
-		}
-		tmp = tmp->next;
-	}
 }

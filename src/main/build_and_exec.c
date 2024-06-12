@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   build_and_exec.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:25:39 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 00:33:08 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -24,6 +35,7 @@ void	set_and_update_env(t_minish *m_s, char **env, char **tmp)
 
 int	build_and_exec(t_minish *m_s)
 {
+	// m_s->garbage = NULL;
 	print_expend_tab(&m_s->token_lst, &m_s->env_varlst, m_s);
 	ft_remove_quotes(&m_s->token_lst);
 	set_delimiter(&m_s->token_lst);

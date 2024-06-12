@@ -45,8 +45,6 @@ int				count_token(t_token *token);
 void			assign_type(t_token *token, t_minish *m_s);
 void			meta_type(t_token *token);
 void			assign_token_type(t_token **lst, t_minish *m_s);
-void			print_real_list(t_token *lst);
-char			*rightType(int type);
 
 /*--- quote && double quote ---*/
 void			find_next_quote(t_minish *m_s, char quote_type);
@@ -79,14 +77,12 @@ bool			ft_lexer(t_token **lst);
 bool			prs_ast_pipe(t_token **lst);
 bool			prs_ast_dlb_meta(t_token **lst);
 bool			prs_ast_redir(t_token **lst);
-void			begin_parsing(void);
 void			set_delimiter(t_token **lst);
 void			set_file_red(t_token **lst);
 
 /*====================================================*/
 /*=                       ENV                        =*/
 /*====================================================*/
-void			print_env_lst(t_env *lst);
 
 t_env			*int_env_var(t_env *node, char *env_row);
 void			add_var_to_end(t_env **lst, t_env *var);
@@ -102,7 +98,7 @@ void			print_expend_tab(t_token **lst, t_env **env_varlst,
 char			**exp_split(char const *s, char c);
 
 char			*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key);
-void			replace_token(t_token *token);
+void			replace_token(t_token *token, t_minish *m_s);
 
 char			**list_to_tab(t_env **lst);
 char			*token_2_str(t_env *env_node);
@@ -119,8 +115,6 @@ void			ft_remove_quotes(t_token **tkLst);
 int				ft_nbr_of_node(t_token **lst);
 t_cmdlts		*set_cmd_node(t_cmdlts *cmd, t_minish *m_s);
 void			add_cmd_node_to_end(t_cmdlts **lst, t_cmdlts *cmd);
-void			print_comd_lst(t_cmdlts **lst);
-void			print_array(char **arr);
 void			ft_createcomd_lst(t_minish *m_s);
 void			combine_tok_value(t_token **lst);
 void			merge_token(t_token **lst);
@@ -132,7 +126,6 @@ void			ft_cmd_builder(t_minish *m_s, t_token **toklst,
 t_files			*set_red(char *redtype, char *filename, t_minish *m_s);
 void			rd_end(t_files **lst, t_files *red_node);
 int				count_nbred_node(t_token **lst);
-void			print_red_lst(t_files **lst);
 
 /*====================================================*/
 /*=                      UTILS                       =*/
@@ -187,12 +180,8 @@ t_unlnk			*int_unlnk_node(t_unlnk *node, char *filepath);
 void			add_file_to_end(t_unlnk **lst, t_unlnk *var);
 t_unlnk			*create_unlnk_node(t_minish *m_s, char *filepath);
 void			unlnk_all_file(t_unlnk **lst);
-void			print_unlnk_Lst(t_unlnk **lst);
 void			create_filename_linklist(t_minish *m_s, t_files **lst);
 void			add_filename_unlnk_lst(t_cmdlts **cmd, t_minish *m_s);
-
-/* print test */
-void			print_here_lst(t_heredoc *lst);
 
 /*====================================================*/
 /*=                 init_cmd execution               =*/
@@ -268,14 +257,23 @@ void			add_exit_to_end(t_exit_code **lst, t_exit_code *var);
 t_exit_code		*create_exit_code_lst(t_minish *m_s, pid_t extCode);
 int				get_code(int exit_code);
 
-void			print_ext_lst_lst(t_exit_code *lst);
-
 /*====================================================*/
 /*=                      MAIN                        =*/
 /*====================================================*/
 
 int				build_and_exec(t_minish *m_s);
 void			set_and_update_env(t_minish *m_s, char **env, char **tmp);
-t_minish		*init_structs(t_minish *m_s);
+
+/*====================================================*/
+/*=                      MIJ                         =*/
+/*====================================================*/
+
+void			where_to_envp(t_env **env, char *vars, int index);
+void			set_char_before_meta(t_minish *m_s);
+void			set_meta(t_minish *m_s);
+void			set_quotes(t_minish *m_s);
+char			*copy_key_pars_unset(char *str);
+int				is_valide(char *str);
+char			*copy_key_pars(char *str);
 
 #endif

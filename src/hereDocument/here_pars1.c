@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_pars1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:21:30 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:29 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -67,7 +78,6 @@ void	herelist_exp(t_heredoc **lst, t_env **env_varlst, t_minish *m_s)
 	cur_env = *env_varlst;
 	if (last == NULL)
 		return ;
-	// printf("empty list change\n");
 	while (last != NULL)
 	{
 		if (char_search(last->str, '$') == true)

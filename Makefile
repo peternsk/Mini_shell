@@ -3,7 +3,7 @@
 NAME        = minishell
 CC          = gcc
 # FLAGS       = -Wall -Wextra -Werror -g #-fsanitize=address
-FLAGS     = -Wall -Wextra -fsanitize=address
+FLAGS     = -Wall -Wextra -Werror -fsanitize=address -g
 # FLAGS     = -Wall -Werror -Wextra -g
 RM          = rm -rf
 
@@ -29,17 +29,17 @@ ENV         =   set_env findVarEnv exp_split ft_expend list2tab extra_find_var
 
 # HERE_DOC  =   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 
-HERE_DOC    =   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc unlink_lst create_file_unlnk
+HERE_DOC    =   here_doc set_here_lst here_pars here_pars1 send_2_tmp unlink_lst create_file_unlnk
 
 GARBAGE     =   add_address free_garb_lst
 
 LEXER       =   quotes tokenizer reg_cmd ft_ascii_font meta type
 
-PARSER      =   ft_parsing set_file print_real_list
+PARSER      =   ft_parsing set_file
 
 SIGNALS     =   manage_signal
 
-UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char ft_int_to_asc
+UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char ft_int_to_asc extra_func
 
 MAIN        =   build_and_exec main
 

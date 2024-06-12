@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_here_lst.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:24:44 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:03 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -44,4 +55,3 @@ t_heredoc	*create_here_lst(t_minish *m_s, char *input)
 	add_here_to_end(&m_s->herelst, int_here_lst(here_node, m_s, input));
 	return (m_s->herelst);
 }
-

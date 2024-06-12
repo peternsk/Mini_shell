@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_cmd_path.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:18:26 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:58:00 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -24,8 +35,7 @@ char	*get_current_path(void)
 	return (getcwd(str, PATH_MAX));
 }
 
-
-char 	*extra_path_check(char **sub_paths, char *cmd_path, char *cmd)
+char	*extra_path_check(char **sub_paths, char *cmd_path, char *cmd)
 {
 	int	i;
 
@@ -47,7 +57,8 @@ char 	*extra_path_check(char **sub_paths, char *cmd_path, char *cmd)
 	free_str(sub_paths);
 	return (NULL);
 }
-char	*get_cmd_path(char *path, char *cmd) // 25 lines
+
+char	*get_cmd_path(char *path, char *cmd)
 {
 	char	**sub_paths;
 	int		i;
@@ -64,4 +75,3 @@ char	*get_cmd_path(char *path, char *cmd) // 25 lines
 		return (extra_path_check(sub_paths, cmd_path, cmd));
 	return (NULL);
 }
-

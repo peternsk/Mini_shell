@@ -16,6 +16,8 @@
 # define RESET "\x1B[0m"
 
 # include <stdbool.h>
+# include "garbage.h"
+
 
 typedef struct s_redlts	t_redlts;
 
@@ -141,6 +143,7 @@ typedef struct s_minish
 	t_heredoc			*herelst;
 	t_exit_code			*extlst;
 	t_unlnk				*unlnk_lst;
+	t_garbage			*garbage;
 	int					here_id;
 	char				*input;
 	char				**tab_env;

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reg_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:25:22 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:52:48 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -15,7 +26,7 @@ void	create_cmd(t_minish *m_s)
 	m_s->s = m_s->e + 1;
 }
 
-static void	set_char_before_meta(t_minish *m_s)
+void	set_char_before_meta(t_minish *m_s)
 {
 	if (m_s->e > m_s->s)
 	{
@@ -26,7 +37,7 @@ static void	set_char_before_meta(t_minish *m_s)
 	}
 }
 
-static void	set_meta(t_minish *m_s)
+void	set_meta(t_minish *m_s)
 {
 	if (is_meta(m_s->input[m_s->e]))
 	{
@@ -35,7 +46,7 @@ static void	set_meta(t_minish *m_s)
 	}
 }
 
-static void	set_quotes(t_minish *m_s)
+void	set_quotes(t_minish *m_s)
 {
 	if (is_quotes(m_s->input[m_s->e]))
 	{
@@ -54,28 +65,4 @@ static void	set_quotes(t_minish *m_s)
 			m_s->flags->sgl_flag = FLAG_OFF;
 		}
 	}
-}
-
-void	find_cmd(t_minish *m_s)
-{
-	m_s->e = m_s->s;
-	while (m_s->input[m_s->e] && !is_space(m_s->input[m_s->e]))
-	{
-		m_s->flags->otc_flag = FLAG_ON;
-		if (is_meta(m_s->input[m_s->e]) || is_quotes(m_s->input[m_s->e]))
-		{
-			set_char_before_meta(m_s);
-			if (is_meta(m_s->input[m_s->e]))
-				set_meta(m_s);
-			if (is_quotes(m_s->input[m_s->e]))
-				set_quotes(m_s);
-		}
-		m_s->e++;
-	}
-	if (m_s->e > m_s->s)
-	{
-		m_s->e--;
-		create_token(m_s);
-	}
-	m_s->s = m_s->e + 1;
 }
