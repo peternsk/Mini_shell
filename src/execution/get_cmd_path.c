@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:26 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:58:00 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 10:06:53 by peternsaka       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*extra_path_check(char **sub_paths, char *cmd_path, char *cmd)
 char	*get_cmd_path(char *path, char *cmd)
 {
 	char	**sub_paths;
-	int		i;
+	// int		i;
 	char	*cmd_path;
 
 	cmd_path = _check_absolute_path(cmd);
@@ -70,7 +70,7 @@ char	*get_cmd_path(char *path, char *cmd)
 	if (cmd_path == NULL && is_cmd_valide_path(cmd) > 0)
 		return (NULL);
 	sub_paths = ft_split(path, ':');
-	i = 0;
+	// i = 0;
 	if (sub_paths)
 		return (extra_path_check(sub_paths, cmd_path, cmd));
 	return (NULL);
