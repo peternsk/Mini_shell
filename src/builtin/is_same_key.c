@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_same_key.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:15:51 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:15:53 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -7,7 +18,7 @@ char	*pars_key(char *vars)
 	char	*var_pars;
 
 	i = 0;
-	var_pars = malloc(sizeof(char *) * (ft_strlen(vars)));
+	var_pars = malloc_and_add(sizeof(char *) * (ft_strlen(vars)));
 	if (!var_pars)
 		return (NULL);
 	while (vars[i] != '\0' || vars[i] != '=')
@@ -16,7 +27,6 @@ char	*pars_key(char *vars)
 		i++;
 	}
 	var_pars[i] = '\0';
-	// free(vars);
 	return (var_pars);
 }
 

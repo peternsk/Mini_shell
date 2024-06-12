@@ -2,8 +2,8 @@
 
 NAME        = minishell
 CC          = gcc
-FLAGS       = -Wall -Wextra -Werror -g
-# FLAGS     = -Wall -Wextra -fsanitize=address
+# FLAGS       = -Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS     = -Wall -Wextra -Werror -fsanitize=address -g
 # FLAGS     = -Wall -Werror -Wextra -g
 RM          = rm -rf
 
@@ -21,25 +21,25 @@ BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate
 
 BUILDER     =   ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 
-EXECUTION   =   init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande
+EXECUTION   =   init_cmds add_cmds cout_cmds_pipes add_files type_cmd run_commands get_envp_path get_cmd_path single_command commands wait_childs execute_command which_files  ft_append change_stdint change_stdout handel_builtin init_manage_fd is_files_valide ft_here_doc is_there_here_doc pipe_connect_and_files std_one_commande check_absolute_path file_here_doc
 
 EXT_STATUS  =   createList
 
-ENV         =   set_env findVarEnv exp_split ft_expend list2tab
+ENV         =   set_env findVarEnv exp_split ft_expend list2tab extra_find_var
 
 # HERE_DOC  =   here_doc set_here_lst here_pars here_pars1 send_2_tmp
 
-HERE_DOC    =   here_doc set_here_lst here_pars here_pars1 send_2_tmp run_all_heredoc unlink_lst
+HERE_DOC    =   here_doc set_here_lst here_pars here_pars1 send_2_tmp unlink_lst create_file_unlnk
 
 GARBAGE     =   add_address free_garb_lst
 
 LEXER       =   quotes tokenizer reg_cmd ft_ascii_font meta type
 
-PARSER      =   ft_parsing set_file print_real_list
+PARSER      =   ft_parsing set_file
 
 SIGNALS     =   manage_signal
 
-UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char
+UTILS       =   struct node ft_strncpy ft_trim ft_strcmp ft_combine ft_endToken free_function ft_search_char ft_int_to_asc extra_func
 
 MAIN        =   build_and_exec main
 
@@ -117,3 +117,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+#---  make && valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --trace-children=yes --suppressions=sup.txt ./minishell ---#

@@ -1,48 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_buildCmdArr.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:13:15 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 22:26:04 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	ft_countArrayspace(t_token **lst)
+int	ft_count_arr_spc(t_token **lst)
 {
 	t_token	*last;
-	int		arrSpc;
+	int		arr_spc;
 
 	last = *lst;
-	arrSpc = 1;
+	arr_spc = 1;
 	while (last && last->type != pipe_)
 	{
 		if (last->type == argument && last->end_token == 1
 			&& last->set_to_cmd == FLAG_OFF)
-			arrSpc++;
+			arr_spc++;
 		last = last->next;
 	}
-	return (arrSpc);
+	return (arr_spc);
+}
+
+static void	reset_cmd_builder(t_minish *m_s, t_cmdlts **comd_lst)
+{
+	t_cmdlts	*c_cm;
+
+	c_cm = *comd_lst;
+	c_cm->command[++m_s->index] = NULL;
+	m_s->index = -1;
+}
+
+static void	reset_cmd_2(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
+{
+	t_token		*c_t;
+	t_cmdlts	*c_cm;
+
+	c_t = *toklst;
+	c_cm = *comd_lst;
+	c_cm->command[++m_s->index] = ft_strdup(c_t->value);
+	add_garbage(c_cm->command[m_s->index]);
 }
 
 void	ft_cmd_builder(t_minish *m_s, t_token **toklst, t_cmdlts **comd_lst)
 {
-	t_token		*cur_tok;
-	t_cmdlts	*cur_cmd;
-	int			i;
+	t_token		*c_t;
+	t_cmdlts	*c_cm;
 
-	cur_tok = *toklst;
-	cur_cmd = *comd_lst;
-	i = -1;
-	while (cur_tok)
+	c_t = *toklst;
+	c_cm = *comd_lst;
+	m_s->index = -1;
+	while (c_t)
 	{
-		if (cur_tok && (cur_tok->type >= command && cur_tok->type <= DQA))
+		if ((c_t && c_t->prev) && (c_t->prev->type == here_doc))
+			c_t->type = delimter;
+		if (c_t && c_t->prev && (c_t->type >= command && c_t->type <= DQA)
+			&& (c_t->prev->type >= OPR && c_t->prev->type <= APOR))
+			c_t->type = _file;
+		if (c_t && (c_t->type >= command && c_t->type <= DQA))
+			reset_cmd_2(m_s, &c_t, &c_cm);
+		else if (c_t && (c_t->type >= OPR && c_t->type <= here_doc))
+			rd_end(&c_cm->redlst, set_red(c_t->value, c_t->next->value, m_s));
+		else if (c_t && c_t->type == pipe_)
 		{
-			cur_cmd->command[++i] = ft_strdup(cur_tok->value);
-			add_garbage(cur_cmd->command[i]);
+			reset_cmd_builder(m_s, &c_cm);
+			c_cm = c_cm->next;
 		}
-		else if (cur_tok && (cur_tok->type >= OPR && cur_tok->type <= here_doc))
-			add_red_node_to_end(&cur_cmd->redlst, set_red(cur_tok->value,
-					cur_tok->next->value, m_s));
-		else if (cur_tok && cur_tok->type == pipe_)
-		{
-			cur_cmd->command[++i] = NULL;
-			i = -1;
-			cur_cmd = cur_cmd->next;
-		}
-		cur_tok = cur_tok->next;
+		c_t = c_t->next;
 	}
-	cur_cmd->command[++i] = NULL;
+	c_cm->command[++m_s->index] = NULL;
 }

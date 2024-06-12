@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:14:39 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:14:41 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 void	ft_env(t_cmd *env)
 {
+	t_env	*curr;
+
 	if (!env->glob->env_varlst)
 		return ;
-	while (env->glob->env_varlst && env->glob->env_varlst->eql_sign == true)
+	curr = env->glob->env_varlst;
+	while (curr && curr->eql_sign == true)
 	{
-		printf("%s=%s\n", env->glob->env_varlst->key,
-			env->glob->env_varlst->value);
-		env->glob->env_varlst = env->glob->env_varlst->next;
+		printf("%s=%s\n", curr->key, curr->value);
+		curr = curr->next;
 	}
 }

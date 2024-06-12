@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:14:47 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:14:49 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -39,7 +50,7 @@ int	ft_is_strdigit(char *str)
 	{
 		while (str[i] != '\0')
 		{
-			if (str[0] == '-' && i == 0)
+			if ((str[0] == '-' || str[0] == '+') && i == 0)
 				i++;
 			if (str[i] != '\0')
 			{
@@ -61,12 +72,17 @@ void	expan_exit(char **av)
 	{
 		_res = ft_atoi_long(av[1]);
 		if (_res >= INT_MAX || _res <= INT_MIN)
-			perror("exit\nnumeric argument required");
+			write(2, "exit: numeric argument required\n",
+				ft_strlen("exit: numeric argument required\n"));
 		else
 			exit((int)_res);
 	}
 	else
-		perror("exit\nnumeric argument required");
+	{
+		write(2, "exit: numeric argument required\n",
+			ft_strlen("exit: numeric argument required\n"));
+		exit(255);
+	}
 }
 
 void	ft_exit(t_cmd *exi)
@@ -76,7 +92,11 @@ void	ft_exit(t_cmd *exi)
 		if (exi->av_cmd)
 		{
 			if (size(exi->av_cmd) > 2)
-				perror(exi->av_cmd[1]);
+			{
+				write(2, "exit: too many arguments\n",
+					ft_strlen("exit: too many arguments\n"));
+				exit(1);
+			}
 			else
 			{
 				if (exi->av_cmd[1] == NULL)

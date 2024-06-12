@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   which_files.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:20:33 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:54:27 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -21,51 +32,30 @@ void	check_last_files(t_files *files, int type)
 	}
 }
 
-void	on_expand(t_cmd *now_shine)
-{
-	manage_signal(3);
-	while (now_shine != NULL)
-	{
-		run_here_redlst(now_shine->glob, &now_shine->files);
-		herelist_exp(&now_shine->glob->herelst, &now_shine->glob->env_varlst,
-			now_shine->glob);
-		now_shine = now_shine->next;
-	}
-}
-
-int	expan_here_doc(t_cmd *current)
-{
-	t_cmd	*now_shine;
-	pid_t	pid_childs;
-	int		state;
-
-	now_shine = current;
-	if (is_there_here_doc(now_shine) > 0)
-	{
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
-		pid_childs = fork();
-		if (pid_childs == 0)
-		{
-			on_expand(now_shine);
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			waitpid(pid_childs, &state, 0);
-			manage_signal(-1);
-			current->exit_here_doc = state;
-		}
-	}
-	return (0);
-}
-
 void	ticket_files(t_cmd *cmd)
 {
 	check_last_files(cmd->files, here_doc);
 	check_last_files(cmd->files, IPR);
 	check_last_files(cmd->files, APOR);
 	check_last_files(cmd->files, OPR);
+}
+
+void	change_stdint_cmd(t_cmd *current)
+{
+	t_files	*out;
+	int		fd;
+
+	out = give_last_file_stdout(current->files);
+	if (out)
+	{
+		out->manage_fd = dup(1);
+		if (out->type == APOR)
+			fd = open(out->name, O_WRONLY | O_APPEND, 07777);
+		else
+			fd = open(out->name, O_WRONLY | O_CREAT | O_TRUNC, 07777);
+		dup2(fd, 1);
+		close(fd);
+	}
 }
 
 void	which_files(t_cmd *current)
@@ -85,6 +75,8 @@ void	which_files(t_cmd *current)
 			{
 				ft_append(cmd->files);
 				change_stdout(cmd->files);
+				if (current->nb_cmds == 1)
+					change_stdint_cmd(current);
 			}
 		}
 		cmd = cmd->next;

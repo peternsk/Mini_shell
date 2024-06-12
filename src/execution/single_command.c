@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   single_command.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:19:52 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:19:55 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -21,7 +32,8 @@ int	execute_one_command(t_cmd *current, char **envp, char *envp_path)
 	{
 		cmd_path = get_cmd_path(envp_path, current->cmd_name);
 		if (!cmd_path)
-			return (cmd_path_error(2, current->cmd_name), exit(127), 0);
+			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status),
+				0);
 		if (execve(cmd_path, current->av_cmd, envp) == -1)
 			return (perror(cmd_path), exit(EXIT_FAILURE), 0);
 		return (1);
@@ -43,8 +55,18 @@ int	the_last_heredoc(t_cmd *cmd)
 	return (i);
 }
 
+static void	extra_single_command(t_cmd *cmd, char **envp, char *envp_path)
+{
+	manage_signal(0);
+	std_one_commande(cmd);
+	execute_one_command(cmd, envp, envp_path);
+}
+
 int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 {
+	t_files	*last;
+
+	last = NULL;
 	if (cmd)
 	{
 		which_files(cmd);
@@ -53,18 +75,17 @@ int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 			handel_builtin(cmd);
 		else if (cmd->type != -1 && cmd->is_file_on == 0)
 		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
 			cmd->id = fork();
-			manage_signal(0);
 			if (cmd->id == 0)
-			{
-				std_one_commande(cmd);
-				if (execute_one_command(cmd, envp, envp_path) == -1)
-					return (-1);
-			}
+				extra_single_command(cmd, envp, envp_path);
 			else
 				wait_childs(cmd);
 		}
-		return (1);
+		last = give_last_file_stdout(cmd->files);
+		if (last)
+			dup2(last->manage_fd, 1);
 	}
 	return (-1);
 }

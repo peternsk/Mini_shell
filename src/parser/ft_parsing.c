@@ -1,35 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:26:53 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:26:55 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-void	begin_set_env_var(void)
-{
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=       Setting env var       =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
-
-void	begin_parsing(void)
-{
-	printf("                 =\n");
-	printf("                 =\n");
-	printf("===============================\n");
-	printf("=             PARSER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
-
-void	begin_lexing(void)
-{
-	printf("===============================\n");
-	printf("=              LEXER          =\n");
-	printf("===============================\n");
-	printf("                 =\n");
-	printf("                 =\n");
-}
 
 bool	prs_ast_pipe(t_token **lst)
 {
@@ -41,7 +22,6 @@ bool	prs_ast_pipe(t_token **lst)
 		if ((current->type == pipe_ && (current->prev == NULL
 					|| current->next == NULL)) || current->type == DBLP)
 		{
-			printf("prs_ast_pipe\n");
 			return (false);
 		}
 		current = current->next;
@@ -59,13 +39,11 @@ bool	prs_ast_redir(t_token **lst)
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->prev == NULL && current->next == NULL))
 		{
-			printf("prs_ast_redir\n");
 			return (false);
 		}
 		if ((current->type >= OPR && current->type <= here_doc)
 			&& (current->next == NULL))
 		{
-			printf("prs_ast_redir\n");
 			return (false);
 		}
 		current = current->next;

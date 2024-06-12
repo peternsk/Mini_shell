@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:15:29 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 09:16:20 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -30,7 +41,6 @@ void	remove_from_env(t_env *node, int remove)
 	if (current == NULL)
 		return ;
 	n_node->next = current->next;
-	current = free_node(current);
 }
 
 void	index_search_env(char **env, int index)
@@ -42,7 +52,6 @@ void	index_search_env(char **env, int index)
 	{
 		if (i == index)
 		{
-			printf(":::::::::::::::::::::::::::[%s]\n", env[i]);
 			return ;
 		}
 		i++;
@@ -90,8 +99,7 @@ void	ft_unset(t_cmd *unset)
 		if (remove > -1)
 		{
 			remove_from_env(linked_node, remove);
-			return ;
 		}
-		linked_node = linked_node->next;
+		i++;
 	}
 }

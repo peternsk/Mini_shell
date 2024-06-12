@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_add_envp.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:15:34 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 09:16:46 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -14,8 +25,6 @@ void	change_key_value(t_env **env, char *vars)
 			var_parsing++;
 			if (ft_strcmp((*env)->value, var_parsing) == false)
 			{
-				free((*env)->value);
-				(*env)->value = NULL;
 				(*env)->value = copy_value(vars);
 				(*env)->eql_sign = true;
 			}
@@ -32,20 +41,19 @@ void	where_to_envp(t_env **env, char *vars, int index)
 	node = *env;
 	new_node = NULL;
 	i = 0;
-	if (vars)
-		if (index > 0)
+	if (vars && index > 0)
+	{
+		while (node != NULL)
 		{
-			while (node != NULL)
+			if (i == index)
 			{
-				if (i == index)
-				{
-					change_key_value(&node, vars);
-					break ;
-				}
-				i++;
-				node = node->next;
+				change_key_value(&node, vars);
+				break ;
 			}
+			i++;
+			node = node->next;
 		}
+	}
 	if (index == -1)
 		add_var_to_end(env, int_env_var(new_node, vars));
 }
@@ -75,43 +83,47 @@ char	*copy_key_pars(char *str)
 	return (new);
 }
 
-int	len_env(t_env *env)
+bool	is_meta_export(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (env)
+	while (str[i] != '\0' && str[i] != '=')
 	{
-		while (env != NULL)
+		if (str[i] == '-' || str[i] == '$' || str[i] == '+' || str[i] == '!'
+			|| str[i] == '#')
 		{
-			i++;
-			env = env->next;
+			write(2, "export: not a valid identifier\n",
+				ft_strlen("export: not a valid identifier\n"));
+			g_exit_status = 1;
+			return (true);
 		}
+		i++;
 	}
-	return (printf("----------------------------------------------------------------------------------------------------------------%d\n",
-			i), i);
+	return (false);
 }
 
-void	is_add_envp(t_env *old_envp, char **arg)
+int	is_valide(char *str)
 {
-	t_env	*node;
-	char	**vars;
-	int		add;
+	bool	is;
 	int		i;
 
 	i = 0;
-	node = old_envp;
-	vars = check_duplicate(arg);
-	while (vars[i] != NULL)
+	is = false;
+	if (is_meta_export(str) == true)
+		return (1);
+	while (str[i] != '\0')
 	{
-		add = is_same_key(node, copy_key_pars(vars[i]));
-		if (is_key(vars[i]) == true)
+		if (ft_isalpha(str[i]) == 1)
+			is = true;
+		if (ft_isalpha(str[i]) == 0 && is == false)
 		{
-			is_same_key_value(node, vars[i], add);
-			where_to_envp(&old_envp, vars[i], add);
+			write(2, "export: not a valid identifier\n",
+				ft_strlen("export: not a valid identifier\n"));
+			g_exit_status = 1;
+			return (1);
 		}
-		else
-			where_to_envp(&old_envp, vars[i], add);
 		i++;
 	}
+	return (0);
 }

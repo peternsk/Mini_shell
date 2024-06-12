@@ -1,15 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:26:15 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 10:05:03 by peternsaka       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		g_exit_status = 0;
-
-void	m_ctrl_c_parent(void)
-{
-	write(1, "\n", 1);
-	// rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
+int	g_exit_status = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -22,7 +25,6 @@ int	main(int ac, char **av, char **env)
 	if (ac > 0)
 	{
 		ft_ascii_font();
-		manage_signal(-1);
 		while (1)
 		{
 			m_s = init_ms();
@@ -39,6 +41,4 @@ int	main(int ac, char **av, char **env)
 			}
 		}
 	}
-	else
-		printf("arg missing !!\n");
 }

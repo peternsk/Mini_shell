@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_cmdLst.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:13:51 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:13:53 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -51,53 +62,6 @@ int	ft_nbr_of_node(t_token **lst)
 		last = last->next;
 	}
 	return (node_needed);
-}
-
-void	print_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	printf("========== command ============\n");
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		printf("_______________________________\n");
-		i++;
-	}
-	printf("===============================\n");
-}
-
-void	print_comd_lst(t_cmdlts **lst)
-{
-	t_cmdlts	*last;
-	int			i;
-
-	last = *lst;
-	i = 0;
-	if (last == NULL)
-		printf("= empty list\n");
-	while (last != NULL)
-	{
-		printf("============= CMD =============\n");
-		printf("= " GRN "command prev  : %p" RESET " \n", last->prev);
-		printf("= command id    : " YEL "%d" RESET " \n", last->index);
-		while (last->command[i] != NULL)
-		{
-			printf("= argument[%d]   :" BLU " %s" RESET "         \n", i,
-				last->command[i]);
-			i++;
-		}
-		printf("= argument[%d]   :" BLU " %s" RESET "         \n", i,
-			last->command[i]);
-		printf("= " GRN "command next  : %p" RESET " \n", last->next);
-		print_red_lst(&last->redlst);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
-		i = 0;
-		last = last->next;
-	}
 }
 
 void	ft_createcomd_lst(t_minish *m_s)

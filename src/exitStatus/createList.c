@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   createList.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:20:40 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:54:09 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -38,28 +49,4 @@ t_exit_code	*create_exit_code_lst(t_minish *m_s, pid_t extCode)
 	here_node = NULL;
 	add_exit_to_end(&m_s->extlst, init_exit_lst(here_node, extCode));
 	return (m_s->extlst);
-}
-
-/*====================================================*/
-/*=                    PRINT TEST                    =*/
-/*====================================================*/
-
-void	print_ext_lst_lst(t_exit_code *lst)
-{
-	t_exit_code	*last;
-
-	last = lst;
-	if (last == NULL)
-		printf("empty list\n");
-	while (last != NULL)
-	{
-		printf("========== HERE STR ==============\n");
-		printf("= node prev  : %p           \n", last->prev);
-		printf("= node EC    : %d          \n", last->pid);
-		printf("= node next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
-		last = last->next;
-	}
 }

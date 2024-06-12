@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_removeQuotes.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:13:37 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:13:39 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 void	ft_remove_quotes(t_token **tkLst)
 {
-	t_token *last;
+	t_token	*last;
 
 	last = *tkLst;
 	while (last != NULL)

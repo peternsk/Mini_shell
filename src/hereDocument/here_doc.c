@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:21:20 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:44 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	delim_cmp(char *input, char *delimiter)
@@ -32,7 +44,6 @@ void	check_here_doc(t_minish *m_s, t_files **lst)
 				here_input = readline(HERE_INPUT);
 				if (delim_cmp(here_input, tmp->name) == true)
 				{
-					print_here_lst(m_s->herelst);
 					return ;
 				}
 				else
@@ -42,14 +53,12 @@ void	check_here_doc(t_minish *m_s, t_files **lst)
 		}
 		tmp = tmp->next;
 	}
-	print_here_lst(m_s->herelst);
 }
 
-void	empty_hereDoc(t_files *tmp)
+void	empty_heredoc(t_files *tmp)
 {
 	char	*here_input;
 
-	// printf("in empty\n");
 	if (tmp->made == 0)
 	{
 		tmp->made = -1;
@@ -66,7 +75,6 @@ void	last_here_doc(t_minish *m_s, t_files *tmp)
 {
 	char	*here_input;
 
-	// printf("in last\n");
 	while (1)
 	{
 		here_input = readline(HERE_INPUT);
@@ -91,29 +99,4 @@ int	count_here_doc(t_files **lst)
 		tmp = tmp->next;
 	}
 	return (i);
-}
-
-void	run_here_redlst(t_minish *m_s, t_files **lst)
-{
-	t_files	*tmp;
-	int		here_nbr;
-
-	tmp = *lst;
-	here_nbr = count_here_doc(lst);
-	while (tmp)
-	{
-		// signal(SIGINT, ft_handle_heredoc);
-		if ((tmp->type == here_doc) && (tmp->heredoc_id < here_nbr))
-			empty_hereDoc(tmp);
-		// if((tmp->type == here_doc) && (tmp->heredoc_id == here_nbr)
-			// && tmp->made == 0)
-		if ((tmp->type == here_doc) && tmp->made == 0)
-		{
-			tmp->made = -1;
-			// tmp->manage_fd = dup(0);
-			last_here_doc(m_s, tmp);
-			send_2_tmp(&m_s->herelst, m_s, tmp, tmp->heredoc_id);
-		}
-		tmp = tmp->next;
-	}
 }

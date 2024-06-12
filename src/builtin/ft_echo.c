@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:14:27 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:14:30 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -13,19 +24,17 @@ bool	is_newline(char *av, int index)
 	int	i;
 
 	i = 0;
-	if (index == 1)
+	(void)index;
+	if (av)
 	{
-		if (av)
+		if (av[i] == '-')
 		{
-			if (av[i] == '-')
-			{
+			i++;
+			while (av[i] != '\0' && av[i] == 'n')
 				i++;
-				while (av[i] != '\0' && av[i] == 'n')
-					i++;
-			}
-			if (i == (int)ft_strlen(av) && ft_strlen(av) != 0)
-				return (true);
 		}
+		if (i == (int)ft_strlen(av) && ft_strlen(av) != 0)
+			return (true);
 	}
 	return (false);
 }
@@ -53,4 +62,5 @@ void	ft_echo(t_cmd *ec)
 	}
 	if (size(ec->av_cmd) == 1 || is_newline(ec->av_cmd[1], 1) == false)
 		printf("\n");
+	g_exit_status = 0;
 }

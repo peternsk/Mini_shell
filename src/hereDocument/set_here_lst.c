@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_here_lst.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:24:44 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:03 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -43,29 +54,4 @@ t_heredoc	*create_here_lst(t_minish *m_s, char *input)
 	here_node = NULL;
 	add_here_to_end(&m_s->herelst, int_here_lst(here_node, m_s, input));
 	return (m_s->herelst);
-}
-
-/*====================================================*/
-/*=                    PRINT TEST                    =*/
-/*====================================================*/
-
-void	print_here_lst(t_heredoc *lst)
-{
-	t_heredoc	*last;
-
-	last = lst;
-	if (last == NULL)
-		printf("empty HERE DOCUMENT list\n");
-	while (last != NULL)
-	{
-		printf("========== HERE STR ==============\n");
-		printf("= token prev  : %p           \n", last->prev);
-		printf("= token key   : %s          \n", last->str);
-		printf("= token value : %s          \n", last->expstr);
-		printf("= token next  : %p           \n", last->next);
-		printf("===============================\n");
-		printf("                 =\n");
-		printf("                 =\n");
-		last = last->next;
-	}
 }

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   commands.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:17:45 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:17:47 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -59,12 +70,14 @@ int	commands(t_cmd *cmds, char *envp_path)
 	which_files(cmds);
 	array_pipe = create_pipe(cmds);
 	curr = cmds;
-	while (curr != NULL && is_files_valide(cmds) == 0)
+	while (curr != NULL)
 	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 		curr->id = fork();
-		manage_signal(0);
 		if (curr->id == 0)
 		{
+			manage_signal(0);
 			execute_command(curr, envp_path, array_pipe);
 		}
 		else if (curr->id < 0)

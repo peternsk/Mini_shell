@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:14:20 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:14:22 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -40,14 +51,16 @@ void	expansion_change_directory(t_cmd *cmd, char **pwd_change)
 		pwd_change[2] = ft_strjoin("PWD=", get_live_path());
 		add_garbage(pwd_change[2]);
 		is_add_envp(cmd->glob->env_varlst, pwd_change);
+		g_exit_status = 0;
 	}
 	else
 	{
 		write(2, "minishell: ", ft_strlen("minishell: "));
 		perror(cmd->av_cmd[1]);
+		g_exit_status = 1;
 	}
-	// free le bhy
 }
+
 void	ft_cd(t_cmd *cmds)
 {
 	char	**pwd_change;
@@ -61,7 +74,7 @@ void	ft_cd(t_cmd *cmds)
 		chdir(from_envp_get_home(cmds->envp));
 		pwd_change[2] = ft_strjoin("PWD=", get_live_path());
 		is_add_envp(cmds->glob->env_varlst, pwd_change);
-		// free le bhy
+		g_exit_status = 0;
 	}
 	else
 		expansion_change_directory(cmds, pwd_change);
