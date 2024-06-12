@@ -79,10 +79,10 @@ void	change_stdout_pipe(t_cmd *current, int **array_pipe)
 void	pipe_connect_and_files(t_cmd *current, int **array_pipe)
 {
 	int		i;
-	char	*file_name;
+	// char	*file_name;
 
 	i = 0;
-	file_name = NULL;
+	// file_name = NULL;
 	change_stdint_pipe(current, array_pipe);
 	change_stdout_pipe(current, array_pipe);
 	while (i < (current)->nb_cmds - 1)

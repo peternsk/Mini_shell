@@ -70,14 +70,14 @@ void	ticket_files(t_cmd *cmd)
 
 void	which_files(t_cmd *current)
 {
-	t_files	*files;
+	// t_files	*files;
 	t_cmd	*cmd;
 
 	cmd = current;
 	while (cmd != NULL)
 	{
 		ticket_files(cmd);
-		files = cmd->files;
+		// files = cmd->files;
 		if (cmd->files)
 		{
 			change_stdint(cmd->files);
