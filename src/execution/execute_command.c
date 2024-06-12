@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:01 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:18:03 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 09:20:36 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ int	execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 	}
 	return (exit(g_exit_status), 0);
 }
-

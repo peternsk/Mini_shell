@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:35:14 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 21:46:30 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 09:21:48 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	run_here_redlst(t_minish *m_s, t_files **lst)
 
 void	find_cmd(t_minish *m_s)
 {
-	m_s->e = m_s->s; 
+	m_s->e = m_s->s;
 	while (m_s->input[m_s->e] && !is_space(m_s->input[m_s->e]))
 	{
 		m_s->flags->otc_flag = FLAG_ON;

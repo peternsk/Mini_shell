@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:15:34 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 21:13:53 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 09:16:46 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	change_key_value(t_env **env, char *vars)
 			var_parsing++;
 			if (ft_strcmp((*env)->value, var_parsing) == false)
 			{
-				// free((*env)->value);
-				// (*env)->value = NULL;
 				(*env)->value = copy_value(vars);
 				(*env)->eql_sign = true;
 			}

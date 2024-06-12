@@ -15,9 +15,8 @@
 # define WHT "\x1B[37m"
 # define RESET "\x1B[0m"
 
-# include <stdbool.h>
 # include "garbage.h"
-
+# include <stdbool.h>
 
 typedef struct s_redlts	t_redlts;
 
