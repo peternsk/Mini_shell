@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:24:38 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:24:40 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 14:08:47 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	send_2_tmp(t_heredoc **lst, t_minish *m_s, t_files *tmp_files,
 	tmp_files->name_here_doc = ft_strjoin("/tmp/heredoc", ft_itoa(index));
 	add_garbage(tmp_files->name_here_doc);
 	fd = open(tmp_files->name_here_doc, O_RDWR | O_CREAT | O_TRUNC, 07777);
-	printf("%d fd number \n", fd);
 	while (tmp)
 	{
 		if (tmp->made == false)
