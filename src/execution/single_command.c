@@ -87,5 +87,5 @@ int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 		if (last)
 			dup2(last->manage_fd, 1);
 	}
-	return (-1);
+	return (0);
 }

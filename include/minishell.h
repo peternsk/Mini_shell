@@ -229,6 +229,7 @@ void			print_envp(char **envp);
 int				is_same_key(t_env *env, char *var);
 int				type_cmds(char *s);
 bool			is_key(char *str);
+bool			expand_exit(char **vars);
 
 /*====================================================*/
 /*=                    files                        =*/
@@ -273,8 +274,8 @@ void			where_to_envp(t_env **env, char *vars, int index);
 void			set_char_before_meta(t_minish *m_s);
 void			set_meta(t_minish *m_s);
 void			set_quotes(t_minish *m_s);
-char			*copy_key_pars_unset(char *str);
 int				is_valide(char *str);
 char			*copy_key_pars(char *str);
+char			*copy_key_pars_unset(char *str);
 
 #endif

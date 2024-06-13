@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:14:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:14:49 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:34:33 by mnshimiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	expan_exit(char **av)
 	}
 }
 
+
 void	ft_exit(t_cmd *exi)
 {
 	if (exi)
@@ -93,9 +94,10 @@ void	ft_exit(t_cmd *exi)
 		{
 			if (size(exi->av_cmd) > 2)
 			{
-				write(2, "exit: too many arguments\n",
-					ft_strlen("exit: too many arguments\n"));
-				exit(1);
+				if (expand_exit(exi->av_cmd) == true)
+					g_exit_status = 255;
+				else 
+					exit(1);
 			}
 			else
 			{
