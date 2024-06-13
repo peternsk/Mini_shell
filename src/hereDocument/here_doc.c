@@ -55,6 +55,8 @@ void	empty_heredoc(t_files *tmp)
 			here_input = readline(HERE_INPUT);
 			if (delim_cmp(here_input, tmp->name) == true)
 				return ;
+			if (!here_doc)
+				return ;
 		}
 	}
 }
@@ -66,6 +68,8 @@ void	last_here_doc(t_minish *m_s, t_files *tmp)
 	while (1)
 	{
 		here_input = readline(HERE_INPUT);
+		if (!here_input)
+			return ;
 		if (delim_cmp(here_input, tmp->name) == true)
 			return ;
 		else

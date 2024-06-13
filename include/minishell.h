@@ -239,6 +239,7 @@ void			print_envp(char **envp);
 int				is_same_key(t_env *env, char *var);
 int				type_cmds(char *s);
 bool			is_key(char *str);
+bool			ft_expand_exit(char **vars);
 
 /*====================================================*/
 /*=                    files                        =*/

@@ -17,7 +17,7 @@ LIBFT_LIB = ${LIBFT_DIR}/libft.a
 SRCS_DIR    = 	src
 OBJS_DIR    = 	obj
 
-BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key
+BUILTIN     =   ft_pwd ft_cd addEnvp printEnvp ft_echo ft_export check_duplicate is_same_key is_add_envp size ft_unset is_same_key_value ft_env ft_exit copy_value is_key ft_expan_exit
 
 BUILDER     =   ft_removeQuotes set_cmdLst ft_buildCmdArr merge_token ft_buildRedlst
 

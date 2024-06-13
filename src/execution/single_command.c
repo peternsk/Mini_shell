@@ -24,7 +24,7 @@ int	execute_one_command(t_cmd *current, char **envp, char *envp_path)
 			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status),
 				0);
 		if (execve(cmd_path, current->av_cmd, envp) == -1)
-			return (perror(cmd_path), exit(EXIT_FAILURE), 0);
+			return (perror(cmd_path), exit(126), 0);
 		return (1);
 	}
 	return (0);
@@ -76,5 +76,5 @@ int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 		if (last)
 			dup2(last->manage_fd, 1);
 	}
-	return (-1);
+	return (0);
 }

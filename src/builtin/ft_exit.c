@@ -74,6 +74,7 @@ void	expan_exit(char **av)
 	}
 }
 
+
 void	ft_exit(t_cmd *exi)
 {
 	if (exi)
@@ -82,9 +83,10 @@ void	ft_exit(t_cmd *exi)
 		{
 			if (size(exi->av_cmd) > 2)
 			{
-				write(2, "exit: too many arguments\n",
-					ft_strlen("exit: too many arguments\n"));
-				exit(1);
+				if (ft_expand_exit(exi->av_cmd) == true)
+					g_exit_status = 255;
+				else 
+					exit(1);
 			}
 			else
 			{
