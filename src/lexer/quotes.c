@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:25:18 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:25:20 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 22:33:22 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	find_next_quote(t_minish *m_s, char quote_type)
 		m_s->e++;
 	}
 	if (m_s->flags->found_flag == FLAG_OFF)
-	{
-		return ;
-	}
-	m_s->s = m_s->e + 1;
+		perror("minihell : missing closing quote");
+	if(m_s->input[m_s->e] != '\0')
+		m_s->s = m_s->e + 1;
+	else
+		return;
 }

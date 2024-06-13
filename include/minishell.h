@@ -144,6 +144,7 @@ void			free_list(t_token **list);
 void			free_tabl(char **map);
 bool			ft_search_char(char *str, char c);
 char			*ft_int_to_ascii(int n);
+bool			check_quote(t_token **lst);
 
 /*====================================================*/
 /*=                  HERE DOCUMENT                   =*/

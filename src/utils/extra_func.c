@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:35:14 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 09:21:48 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 22:46:19 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,34 @@ void	find_cmd(t_minish *m_s)
 		create_token(m_s);
 	}
 	m_s->s = m_s->e + 1;
+}
+
+bool	is_char_in_str(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+bool	check_quote(t_token **lst)
+{
+	t_token	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		// if (is_char_in_str(tmp->value, '\'') == true)
+		// 	return (false);
+		if ((tmp->type == DQA) && (is_char_in_str(tmp->value, '\"') == true))
+			return (false);
+		tmp = tmp->next;
+	}
+	return (true);
 }

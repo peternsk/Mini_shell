@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:19:52 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:19:55 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/12 22:49:08 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	execute_one_command(t_cmd *current, char **envp, char *envp_path)
 			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status),
 				0);
 		if (execve(cmd_path, current->av_cmd, envp) == -1)
-			return (perror(cmd_path), exit(EXIT_FAILURE), 0);
+			return (perror(cmd_path), exit(126), 0);
 		return (1);
 	}
 	return (0);
