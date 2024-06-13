@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_expend.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:16:39 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 10:07:38 by peternsaka       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	phase_one_exp(t_token *token, t_minish *m_s)
@@ -38,10 +50,10 @@ static void	ft_last_phase(t_token *token, t_minish *m_s)
 static void	ft_bef_last(t_token *token, t_env **lst, t_minish *m_s)
 {
 	char	*tmp_key;
-	char	*tmp_exp;
+	// char	*tmp_exp;
 
 	tmp_key = NULL;
-	tmp_exp = NULL;
+	// tmp_exp = NULL;
 	tmp_key = find_tmp_key(token, m_s);
 	if (find_key_in_list(lst, tmp_key) == true)
 		find_var_env(lst, &token->exp_value, tmp_key);
@@ -50,11 +62,11 @@ static void	ft_bef_last(t_token *token, t_env **lst, t_minish *m_s)
 
 void	ft_expend(t_token *token, t_env **lst, t_minish *m_s)
 {
-	char	*tmp_key;
-	char	*tmp_exp;
+	// char	*tmp_key;
+	// char	*tmp_exp;
 
-	tmp_key = NULL;
-	tmp_exp = NULL;
+	// tmp_key = NULL;
+	// tmp_exp = NULL;
 	phase_one_exp(token, m_s);
 	while (token->value[m_s->e])
 	{
@@ -72,5 +84,5 @@ void	ft_expend(t_token *token, t_env **lst, t_minish *m_s)
 		if (token->value[m_s->e] != '$')
 			ft_last_phase(token, m_s);
 	}
-	replace_token(token);
+	replace_token(token, m_s);
 }

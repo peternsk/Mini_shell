@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_append.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:18:14 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:58:51 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -23,8 +34,8 @@ int	ft_append_fd(t_files *current)
 	{
 		fd = open(current->name, O_WRONLY | O_APPEND | O_CREAT, 07777);
 		if (fd < 0)
-			return (close(fd), perror(current->name), g_exit_status = 1 , current->error = -1,
-				current->made = -1);
+			return (close(fd), perror(current->name), g_exit_status = 1,
+				current->error = -1, current->made = -1);
 		close(fd);
 		g_exit_status = 0;
 		current->made = -1;

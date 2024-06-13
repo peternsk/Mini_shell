@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   which_files.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:20:33 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:54:27 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -20,8 +31,6 @@ void	check_last_files(t_files *files, int type)
 			tmp->put_last = 1;
 	}
 }
-
-
 
 void	ticket_files(t_cmd *cmd)
 {
@@ -48,16 +57,17 @@ void	change_stdint_cmd(t_cmd *current)
 		close(fd);
 	}
 }
+
 void	which_files(t_cmd *current)
 {
-	t_files	*files;
+	// t_files	*files;
 	t_cmd	*cmd;
 
 	cmd = current;
 	while (cmd != NULL)
 	{
 		ticket_files(cmd);
-		files = cmd->files;
+		// files = cmd->files;
 		if (cmd->files)
 		{
 			change_stdint(cmd->files);

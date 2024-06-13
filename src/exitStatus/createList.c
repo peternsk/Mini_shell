@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   createList.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:20:40 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:54:09 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -39,4 +50,3 @@ t_exit_code	*create_exit_code_lst(t_minish *m_s, pid_t extCode)
 	add_exit_to_end(&m_s->extlst, init_exit_lst(here_node, extCode));
 	return (m_s->extlst);
 }
-

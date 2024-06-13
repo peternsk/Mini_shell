@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_expan_exit.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 23:35:33 by mnshimiy          #+#    #+#             */
+/*   Updated: 2024/06/12 23:35:34 by mnshimiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	ft_extra_exit(char *vars)
@@ -14,13 +26,13 @@ bool	ft_extra_exit(char *vars)
             else
                 break;
         }
-        if (i == ft_strlen(vars))
+        if ((size_t)i == ft_strlen(vars))
             return (true);
     }
 	return (false);
 }
 
-bool ft_expand_exit(char **vars)
+bool expand_exit(char **vars)
 {
     int i;
 
@@ -33,8 +45,8 @@ bool ft_expand_exit(char **vars)
 					ft_strlen("exit: too many arguments\n"));
             return (true);
         }
-        write(2, "exit: numeric argument required\n",
-                ft_strlen("exit: numeric argument required\n"));
-        return (false);
     }
+    write(2, "exit: numeric argument required\n",
+            ft_strlen("exit: numeric argument required\n"));
+    return (false);
 }

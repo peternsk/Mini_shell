@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_cmds.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:18:42 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 10:06:40 by peternsaka       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -26,37 +37,37 @@ t_cmd	*init_curr_cmd(void)
 
 char	**extra_init_cmds(t_minish *m_s, t_cmd *curr, char **tmp)
 {
-	t_cmd *new;
-	t_cmdlts	*currList;
+	t_cmd		*new;
+	t_cmdlts	*curr_list;
 
 	new = NULL;
-	currList = NULL;
-	currList = m_s->comd_lst;
-	while (currList != NULL)
+	curr_list = NULL;
+	curr_list = m_s->comd_lst;
+	while (curr_list != NULL)
 	{
 		new = init_curr_cmd();
-		new->cmd_name = *currList->command;
+		new->cmd_name = *curr_list->command;
 		new->glob = m_s;
 		new->envp = list_to_tab(&m_s->env_varlst);
-		new->files = currList->redlst;
+		new->files = curr_list->redlst;
 		new->type = type_cmds(new->cmd_name);
-		new->av_cmd = currList->command;
+		new->av_cmd = curr_list->command;
 		add_cmds(&curr, new);
-		currList = currList->next;
+		curr_list = curr_list->next;
 	}
 	cout_cmds_pipes(curr);
 	run_commands(curr);
 	tmp = list_to_tab(&curr->glob->env_varlst);
-	return  (tmp);
+	return (tmp);
 }
 
 char	**init_cmds(char **tmp, t_minish *m_s)
 {
 	t_cmd		*curr;
-	t_cmdlts	*currList;
+	// t_cmdlts	*curr_list;
 
 	curr = NULL;
-	currList = NULL;
+	// curr_list = NULL;
 	m_s->index = 0;
 	if (m_s->comd_lst)
 	{

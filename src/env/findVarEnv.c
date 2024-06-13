@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   findVarEnv.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:16:31 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 00:49:26 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*find_tmp_key(t_token *tk, t_minish *m_s)
@@ -38,12 +50,12 @@ bool	find_key_in_list(t_env **lst, char *tmp_key)
 	return (false);
 }
 
-void	replace_token(t_token *token)
+void	replace_token(t_token *token, t_minish *m_s)
 {
-	free(token->value);
+	remove_from_garb(&m_s->garbage, &token->value);
 	token->value = ft_strdup(token->exp_value);
 	add_garbage(token->value);
-	free(token->exp_value);
+	remove_from_garb(&m_s->garbage, &token->exp_value);
 }
 
 void	print_expend_tab(t_token **lst, t_env **env_varlst, t_minish *m_s)

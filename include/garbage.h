@@ -24,9 +24,6 @@ void					add_garbage_arr(char **arr);
 /*--- DELETING NODE TO THE GARBAGE LINKED LIST ---*/
 void					all_free(void);
 void					free_list_garb(t_garbage **list);
-
-/*--- PRINTING THE GARBAGE LINKED LIST ---*/
-
-void					print_garbage_collector(void);
+void					remove_from_garb(t_garbage **lst, void *add);
 
 #endif
