@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:25:39 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 22:25:38 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:37:16 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	build_and_exec(t_minish *m_s)
 		ft_createcomd_lst(m_s);
 		combine_tok_value(&m_s->token_lst);
 		ft_cmd_builder(m_s, &m_s->token_lst, &m_s->comd_lst);
+		return(1);
 	}
 	return (0);
 }

@@ -159,6 +159,8 @@ typedef struct s_minish
 	char				**tmp;
 }						t_minish;
 
+//(unsigned long)m_s->e < (strlen(m_s->input) -1 )
+
 /*----------------- CMDS EXECUTION -------------*/
 
 /*--- FILES/ ---*/

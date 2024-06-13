@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:26:15 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 22:34:50 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 15:37:45 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	main(int ac, char **av, char **env)
 			set_and_update_env(m_s, env, tmp);
 			if (ft_lexer(&m_s->token_lst) == true)
 			{
-				build_and_exec(m_s);
-				if (check_quote(&m_s->token_lst) == true)
+				if ( build_and_exec(m_s)== 1)
 					tmp = init_cmds(tmp, m_s);
 			}
 		}
