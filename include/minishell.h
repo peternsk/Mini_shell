@@ -97,7 +97,6 @@ void			print_expend_tab(t_token **lst, t_env **env_varlst,
 					t_minish *m_s);
 char			**exp_split(char const *s, char c);
 
-char			*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key);
 void			replace_token(t_token *token, t_minish *m_s);
 
 char			**list_to_tab(t_env **lst);
@@ -105,7 +104,8 @@ char			*token_2_str(t_env *env_node);
 int				count_env_node(t_env *node);
 
 bool			char_search(char *tok_value, char c);
-char			*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key);
+char			*fve( t_minish *m_s, t_env **lst, char **tp_vl, char *tmp_key);
+
 
 /*====================================================*/
 /*=                     BUILDER                      =*/

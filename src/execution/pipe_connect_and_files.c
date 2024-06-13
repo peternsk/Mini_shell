@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:19:41 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:19:43 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 09:03:15 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ void	change_stdout_pipe(t_cmd *current, int **array_pipe)
 void	pipe_connect_and_files(t_cmd *current, int **array_pipe)
 {
 	int		i;
-	// char	*file_name;
 
 	i = 0;
-	// file_name = NULL;
 	change_stdint_pipe(current, array_pipe);
 	change_stdout_pipe(current, array_pipe);
 	while (i < (current)->nb_cmds - 1)

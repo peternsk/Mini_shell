@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: peternsaka <peternsaka@student.42.fr>      +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:42 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 10:06:40 by peternsaka       ###   ########.fr       */
+/*   Updated: 2024/06/13 09:02:26 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ char	**extra_init_cmds(t_minish *m_s, t_cmd *curr, char **tmp)
 char	**init_cmds(char **tmp, t_minish *m_s)
 {
 	t_cmd		*curr;
-	// t_cmdlts	*curr_list;
 
 	curr = NULL;
-	// curr_list = NULL;
 	m_s->index = 0;
 	if (m_s->comd_lst)
 	{

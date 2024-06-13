@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:35:14 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 22:46:19 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 10:21:17 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ bool	check_quote(t_token **lst)
 	tmp = *lst;
 	while (tmp)
 	{
-		// if (is_char_in_str(tmp->value, '\'') == true)
-		// 	return (false);
 		if ((tmp->type == DQA) && (is_char_in_str(tmp->value, '\"') == true))
 			return (false);
 		tmp = tmp->next;

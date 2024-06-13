@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:16:23 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 00:23:10 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 09:01:18 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	char_search(char *tok_value, char c)
 	return (false);
 }
 
-char	*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key)
+char	*fve( t_minish *m_s, t_env **lst, char **tp_vl, char *tmp_key)
 {
 	t_env	*cur_var;
 	char	*tmp_str;
@@ -39,9 +39,9 @@ char	*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key)
 		if (ft_strcmp(tmp_key, cur_var->key) == true)
 		{
 			tmp_str = ft_strdup(cur_var->value);
-			*tmpvalue = ft_strjoin(*tmpvalue, tmp_str);
-			add_garbage(tmpvalue);
-			free(tmp_str);
+			add_garbage(tmp_str);
+			*tp_vl = ft_combine(*tp_vl, tmp_str);
+			remove_from_garb(&m_s->garbage, &tmp_str);
 			tmp_str = NULL;
 		}
 		cur_var = cur_var->next;

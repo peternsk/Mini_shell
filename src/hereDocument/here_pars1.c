@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:21:30 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:53:29 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 08:52:23 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	extra_here_exp(t_heredoc *node, t_env **lst, t_minish *m_s)
 	tmp_key = NULL;
 	tmp_key = find_here_key(node, m_s);
 	if (find_key_in_list(lst, tmp_key) == true)
-		find_var_env(lst, &node->expstr, tmp_key);
+		fve(m_s, lst, &node->expstr, tmp_key);
 	m_s->s = m_s->e;
 }
 
