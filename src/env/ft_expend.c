@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:16:39 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 09:02:06 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/13 23:31:53 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_bef_last(t_token *token, t_env **lst, t_minish *m_s)
 	tmp_key = NULL;
 	tmp_key = find_tmp_key(token, m_s);
 	if (find_key_in_list(lst, tmp_key) == true)
-		fve(m_s,lst, &token->exp_value, tmp_key);
+		fve(m_s, lst, &token->exp_value, tmp_key);
 	m_s->s = m_s->e;
 }
 

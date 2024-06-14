@@ -6,7 +6,7 @@
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:15:29 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 09:16:20 by pnsaka           ###   ########.fr       */
+/*   Updated: 2024/06/14 00:04:05 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*copy_key_pars_unset(char *str)
 	{
 		while (str[i] != '\0' && str[i] == '=')
 			i++;
-		new = malloc(sizeof(char *) * (i + 1));
+		new = malloc_and_add(sizeof(char *) * (i + 1));
 		if (!new)
 			return (NULL);
 		i = 0;

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 23:25:31 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/13 23:26:00 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "../libft/libft.h"
 # include "define.h"
-# include "error.h"
 # include "garbage.h"
 # include <dirent.h>
 # include <errno.h>
@@ -105,7 +116,6 @@ int				count_env_node(t_env *node);
 
 bool			char_search(char *tok_value, char c);
 char			*fve( t_minish *m_s, t_env **lst, char **tp_vl, char *tmp_key);
-
 
 /*====================================================*/
 /*=                     BUILDER                      =*/

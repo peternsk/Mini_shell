@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:25:18 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 18:58:35 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:32:09 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ void	find_next_quote(t_minish *m_s, char quote_type)
 	}
 	if (m_s->flags->found_flag == FLAG_OFF)
 	{
-		write(2,  "missing closing quote\n", ft_strlen("missing closing quote\n"));
+		write(2, "missing closing quote\n",
+			ft_strlen("missing closing quote\n"));
 		m_s->error_pars = -1;
 	}
-	if(m_s->input[m_s->e] != '\0')
+	if (m_s->input[m_s->e] != '\0')
 		m_s->s = m_s->e + 1;
 	else
-		return;
+		return ;
 }

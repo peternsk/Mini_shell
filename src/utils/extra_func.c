@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:35:14 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 20:21:49 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:45:03 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ void	find_cmd(t_minish *m_s)
 			set_char_before_meta(m_s);
 			if (is_meta(m_s->input[m_s->e]))
 				set_meta(m_s);
-			if ((unsigned long)m_s->e < (ft_strlen(m_s->input)) && is_quotes(m_s->input[m_s->e]))
+			if ((unsigned long)m_s->e < (ft_strlen(m_s->input))
+				&& is_quotes(m_s->input[m_s->e]))
 				set_quotes(m_s);
 		}
+		if (m_s->input[m_s->e] == '\0')
+			break ;
 		m_s->e++;
 	}
 	if (m_s->e > m_s->s)
@@ -107,7 +110,7 @@ bool	check_quote(t_token **lst)
 	while (tmp)
 	{
 		if ((tmp->type == DQA) && (is_char_in_str(tmp->value, '\"') == true))
-				return (false);
+			return (false);
 		tmp = tmp->next;
 	}
 	return (true);

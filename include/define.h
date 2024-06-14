@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 23:24:00 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/13 23:24:02 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINE_H
 # define DEFINE_H
 
@@ -21,7 +33,7 @@
 typedef struct s_redlts	t_redlts;
 
 /*--- ENUM && STRUCT ---*/
-typedef enum token_type
+typedef enum s_token_type
 {
 	command,
 	argument,
@@ -36,14 +48,14 @@ typedef enum token_type
 	DBLE,
 	delimter,
 	_file
-}						token_type;
+}						t_token_type;
 
 /*--- ENUM FLAG ---*/
-typedef enum flag_swtch
+typedef enum s_flag_swtch
 {
 	FLAG_OFF,
 	FLAG_ON
-}						flag_swtch;
+}						t_flag_swtch;
 
 typedef struct s_files
 {

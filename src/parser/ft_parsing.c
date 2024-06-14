@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:26:53 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 18:34:04 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:44:21 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ bool	ft_lexer(t_token **lst)
 	{
 		g_exit_status = 0;
 		g_exit_status = g_exit_status + 2;
-		write(2, "minisell: syntax error near unexpected token\n", ft_strlen("minisell: syntax error near unexpected token\n"));
+		write(2, "minisell: syntax error near unexpected token\n",
+			ft_strlen("minisell: syntax error near unexpected token\n")
+			);
 		return (false);
 	}
 	return (true);

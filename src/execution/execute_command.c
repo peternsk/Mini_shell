@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:01 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 20:03:47 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:30:16 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	is_files_valide_single(t_cmd *cmds)
 int	execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 {
 	char	*cmd_path;
+
 	if (!current)
 		return (-1);
 	pipe_connect_and_files(current, array_pipe);
@@ -57,7 +58,8 @@ int	execute_command(t_cmd *current, char *envp_path, int **array_pipe)
 		if (!cmd_path)
 			return (m_cmd_path_error(2, current->cmd_name), exit(127), 0);
 		if (execve(cmd_path, current->av_cmd, current->envp) == -1)
-			return (m_cmd_path_error(2, current->cmd_name), exit(EXIT_FAILURE), 0);
+			return (m_cmd_path_error(2, current->cmd_name), exit(EXIT_FAILURE),
+				0);
 		return (1);
 	}
 	return (exit(g_exit_status), 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:25:29 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/13 18:44:10 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:32:35 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	split_token(t_minish *m_s)
 {
 	if (m_s->flags->dbl_flag == FLAG_ON)
 	{
-		
 		m_s->flags->found_flag = FLAG_OFF;
 		find_next_quote(m_s, 34);
 		m_s->flags->dbl_flag = FLAG_OFF;

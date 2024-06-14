@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:14:47 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 23:34:33 by mnshimiy         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:27:53 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	expan_exit(char **av)
 	}
 }
 
-
 void	ft_exit(t_cmd *exi)
 {
 	if (exi)
@@ -96,7 +95,7 @@ void	ft_exit(t_cmd *exi)
 			{
 				if (expand_exit(exi->av_cmd) == true)
 					g_exit_status = 255;
-				else 
+				else
 					exit(1);
 			}
 			else
