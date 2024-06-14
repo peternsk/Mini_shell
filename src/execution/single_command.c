@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   single_command.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:19:52 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/13 20:02:32 by mnshimiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -20,11 +31,11 @@ int	execute_one_command(t_cmd *current, char **envp, char *envp_path)
 	else
 	{
 		cmd_path = get_cmd_path(envp_path, current->cmd_name);
-		if (!cmd_path)
+		if (!cmd_path && ft_strlen(cmd_path) == 0)
 			return (cmd_path_error(2, current->cmd_name), exit(g_exit_status),
 				0);
 		if (execve(cmd_path, current->av_cmd, envp) == -1)
-			return (perror(cmd_path), exit(EXIT_FAILURE), 0);
+			return (cmd_path_error(2, current->cmd_name), exit(126), 0);
 		return (1);
 	}
 	return (0);
@@ -76,5 +87,5 @@ int	single_command(t_cmd *cmd, char **envp, char *envp_path)
 		if (last)
 			dup2(last->manage_fd, 1);
 	}
-	return (-1);
+	return (0);
 }

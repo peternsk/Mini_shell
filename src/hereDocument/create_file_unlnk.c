@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_garb_lst.c                                    :+:      :+:    :+:   */
+/*   create_file_unlnk.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 20:20:57 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/12 00:51:06 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/06/11 20:21:06 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:53:57 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_list_garb(t_garbage **list)
+void	create_filename_linklist(t_minish *m_s, t_files **lst)
 {
-	t_garbage	*tmp;
-
-	if (list)
-	{
-		while (*list != NULL)
-		{
-			tmp = (*list)->next;
-			free(*list);
-			(*list) = tmp;
-		}
-		*list = NULL;
-	}
-}
-
-void	remove_from_garb(t_garbage **lst, void *add)
-{
-	t_garbage	*tmp;
-	t_garbage	*last;
+	t_files	*tmp;
+	int		here_nbr;
 
 	tmp = *lst;
+	here_nbr = count_here_doc(lst);
 	while (tmp)
 	{
-		if (tmp->next->adresse == add)
+		tmp->name_here_doc = ft_strjoin("/tmp/heredoc",
+				ft_int_to_ascii(tmp->heredoc_id));
+		add_garbage(tmp->name_here_doc);
+		if ((tmp->type == here_doc) && (tmp->heredoc_id < here_nbr)
+			&& tmp->here_count == 0)
+			tmp->here_count = -1;
+		if ((tmp->type == here_doc) && tmp->here_count == 0)
 		{
-			last = tmp->next;
-			if (tmp->next->next != NULL)
-				tmp->next = tmp->next->next;
-			free(last);
+			tmp->here_count = -1;
+			create_unlnk_node(m_s, tmp->name_here_doc);
 		}
 		tmp = tmp->next;
 	}

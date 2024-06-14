@@ -1,13 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:28:43 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 09:29:03 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_minish	*init_ms(void)
+static	void	set_minish_null(t_minish *m_s)
 {
-	t_minish	*m_s;
-
-	m_s = malloc_and_add(1 * sizeof(t_minish));
-	if (!m_s)
-		return (NULL);
 	m_s->input = NULL;
 	m_s->token_lst = NULL;
 	m_s->env_varlst = NULL;
@@ -17,6 +23,17 @@ t_minish	*init_ms(void)
 	m_s->herelst = NULL;
 	m_s->update_envp = NULL;
 	m_s->unlnk_lst = NULL;
+	m_s->garbage = NULL;
+}
+
+t_minish	*init_ms(void)
+{
+	t_minish	*m_s;
+
+	m_s = malloc_and_add(1 * sizeof(t_minish));
+	if (!m_s)
+		return (NULL);
+	set_minish_null(m_s);
 	m_s->here_id = 1;
 	m_s->index = 0;
 	m_s->pipe_num = 0;

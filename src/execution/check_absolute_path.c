@@ -1,42 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_function.c                                    :+:      :+:    :+:   */
+/*   check_absolute_path.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/11 20:27:33 by pnsaka            #+#    #+#             */
-/*   Updated: 2024/06/11 20:27:35 by pnsaka           ###   ########.fr       */
+/*   Created: 2024/06/11 20:17:38 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 09:20:10 by pnsaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_list(t_token **list)
+int	is_cmd_valide_path(char *cmd)
 {
-	t_token	*tmp;
+	int	dot;
 
-	if (list)
+	dot = 0;
+	if (cmd)
 	{
-		while (*list != NULL)
-		{
-			tmp = (*list)->next;
-			free(*list);
-			(*list) = tmp;
-		}
-		*list = NULL;
+		if (cmd[0] == '.' || cmd[0] == '/')
+			return (1);
+		while (cmd[dot] != '\0' && (cmd[dot] == '.' || cmd[dot] == '/'))
+			dot++;
 	}
+	return (dot);
 }
 
-void	free_tabl(char **map)
+char	*_check_absolute_path(char *cmd)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	if (cmd)
 	{
-		free(map[i]);
-		i++;
+		while (cmd[i] != '\0' && (cmd[i] == '.' || cmd[i] == '/'))
+			i++;
+		if (i > 0)
+		{
+			if (access(cmd, F_OK | X_OK) == 0)
+				return (g_exit_status = 0, cmd);
+		}
 	}
-	free(map);
+	return (g_exit_status = 127, NULL);
 }

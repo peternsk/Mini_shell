@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_there_here_doc.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:19:35 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:19:37 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -33,9 +43,6 @@ t_files	*g_last_file_type(t_files *files, int type, int last)
 			tmp = tmp->next;
 		}
 	}
-	// if (last_files)
-	// printf("we are here -> last file %s  index %d \n",
-		// last_files->name_here_doc, last_files->index_out);
 	return (last_files);
 }
 

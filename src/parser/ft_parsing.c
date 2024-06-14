@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnshimiy <mnshimiy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:26:53 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/13 18:34:04 by mnshimiy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 bool	prs_ast_pipe(t_token **lst)
@@ -68,7 +80,7 @@ bool	ft_lexer(t_token **lst)
 	{
 		g_exit_status = 0;
 		g_exit_status = g_exit_status + 2;
-		perror("bash: syntax error near unexpected token");
+		write(2, "minisell: syntax error near unexpected token\n", ft_strlen("minisell: syntax error near unexpected token\n"));
 		return (false);
 	}
 	return (true);

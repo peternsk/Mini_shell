@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_env.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:16:58 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:17:01 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -59,7 +69,6 @@ t_env	*create_var(t_minish *m_s, char *env_row)
 	return (m_s->env_varlst);
 }
 
-
 void	set_env_lst(t_minish *m_s, char **env)
 {
 	int	i;
@@ -73,5 +82,4 @@ void	set_env_lst(t_minish *m_s, char **env)
 			i++;
 		}
 	}
-	// print_env_lst(m_s->env_varlst);
 }

@@ -1,22 +1,16 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   findVarEnv.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:16:31 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/12 00:49:26 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	char_search(char *tok_value, char c)
-{
-	int	i;
-
-	i = 0;
-	while (tok_value[i] != '\0')
-	{
-		if (tok_value[i] == c)
-		{
-			return (true);
-		}
-		i++;
-	}
-	return (false);
-}
 
 char	*find_tmp_key(t_token *tk, t_minish *m_s)
 {
@@ -56,33 +50,12 @@ bool	find_key_in_list(t_env **lst, char *tmp_key)
 	return (false);
 }
 
-char	*find_var_env(t_env **lst, char **tmpvalue, char *tmp_key)
+void	replace_token(t_token *token, t_minish *m_s)
 {
-	t_env	*cur_var;
-	char	*tmp_str;
-
-	cur_var = *lst;
-	while (cur_var != NULL)
-	{
-		if (ft_strcmp(tmp_key, cur_var->key) == true)
-		{
-			tmp_str = ft_strdup(cur_var->value);
-			*tmpvalue = ft_strjoin(*tmpvalue, tmp_str);
-			add_garbage(tmpvalue);
-			free(tmp_str);
-			tmp_str = NULL;
-		}
-		cur_var = cur_var->next;
-	}
-	return (0);
-}
-
-void	replace_token(t_token *token)
-{
-	free(token->value);
+	remove_from_garb(&m_s->garbage, &token->value);
 	token->value = ft_strdup(token->exp_value);
 	add_garbage(token->value);
-	free(token->exp_value);
+	remove_from_garb(&m_s->garbage, &token->exp_value);
 }
 
 void	print_expend_tab(t_token **lst, t_env **env_varlst, t_minish *m_s)
@@ -93,8 +66,7 @@ void	print_expend_tab(t_token **lst, t_env **env_varlst, t_minish *m_s)
 	last = *lst;
 	cur_env = *env_varlst;
 	if (last == NULL)
-		return;
-		// printf("empty list change\n");
+		return ;
 	while (last != NULL)
 	{
 		if ((last->type == argument || last->type == DQA)

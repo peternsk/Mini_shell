@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   addEnvp.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pnsaka <pnsaka@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 20:13:57 by pnsaka            #+#    #+#             */
+/*   Updated: 2024/06/11 20:13:59 by pnsaka           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -56,7 +67,7 @@ void	put_key_value(t_env *env, bool both, char *vars)
 
 t_env	*add_envp(char *vars)
 {
-	t_env   *new;
+	t_env	*new;
 
 	new = NULL;
 	if (vars)
